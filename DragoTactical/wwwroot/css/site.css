@@ -20,3 +20,200 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.dt-navbar {
+    background-color: rgb(217, 217, 217);
+    padding: 0rem 1rem;
+    background-position: right center; 
+    background-size: auto 100%;
+}
+
+.dt-navbar-logo {
+    height: 50px;
+    width: auto;
+}
+
+.dt-navbar-nav {
+    display: flex;
+    gap: 1rem;
+    margin-left: 1rem; 
+    justify-content: flex-start;
+}
+
+.dt-navbar .nav-link {
+    font-family: "DM Serif Text", serif;
+    font-size: 1rem;
+    color: #000;
+}
+
+.dt-navbar-pattern img {
+    height: 50px; 
+    width: auto;
+    display: block;
+}
+
+
+@media (max-width: 992px) {
+  .dt-navbar .nav-link {
+    font-size: 1.05rem;
+  }
+}
+
+.dt-navbar .nav-link:hover,
+.dt-navbar .nav-link:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+.dt-full-bleed {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+
+.dt-hero {
+  background: radial-gradient(80% 80% at 65% 30%, rgba(255,255,255,0.12), rgba(255,255,255,0) 60%),
+              linear-gradient(180deg, #113a78 0%, #14386b 60%, #153563 100%);
+  color: #fff;
+  overflow: hidden;
+}
+
+.dt-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.0));
+}
+
+.dt-hero-gradient { 
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60% 60% at 70% 35%, rgba(255,255,255,0.15), rgba(0,0,0,0) 60%);
+  pointer-events: none;
+}
+
+.dt-hero-overlay { 
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.15) 100%);
+  pointer-events: none;
+}
+
+.dt-hero-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 4rem 1rem 5rem;
+}
+
+.dt-hero-title {
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 4vw + 1rem, 3.25rem);
+  line-height: 1.15;
+  margin: 0 0 1rem 0;
+}
+
+.dt-hero-subtitle {
+  max-width: 52ch;
+  margin: 0 0 1.5rem 0;
+  color: #e7eef6;
+}
+
+.dt-btn-primary {
+  display: inline-block;
+  padding: 0.65rem 1.5rem;
+  border: 2px solid #ffffff;
+  color: #111;
+  background: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.dt-hero-image {
+  display: flex;
+  justify-content: center;
+}
+
+.dt-hero-image img {
+  width: min(520px, 90%);
+  height: auto;
+  filter: drop-shadow(0 8px 32px rgba(0,0,0,0.35));
+}
+
+@media (max-width: 992px) {
+  .dt-hero-inner {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+  .dt-hero-image {
+    order: -1;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Stats Section */
+.dt-stats {
+  background: rgb(217,217,217);
+  position: relative;
+}
+
+.dt-stats-pattern {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: clamp(220px, 28vw, 420px);
+  background-image: url('/images/WhiteWeb.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left bottom;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.dt-stats-inner {
+  position: relative;
+  padding: 3rem 1rem;
+}
+
+.dt-stats-heading {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.dt-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.dt-stat-card {
+  background: #e6e6e6;
+  border-radius: 4px;
+  padding: 2.25rem 1rem;
+  text-align: center;
+}
+
+.dt-stat-number {
+  color: #243b7b;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 2.5vw + 1rem, 2.5rem);
+  margin-bottom: 0.5rem;
+}
+
+.dt-stat-label {
+  color: #222;
+}
+
+@media (max-width: 992px) {
+  .dt-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
