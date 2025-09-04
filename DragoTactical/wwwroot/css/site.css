@@ -217,3 +217,314 @@ body {
   }
 }
 
+/* About Us Page Styles */
+.dt-about-us {
+  position: relative;
+  min-height: 100vh;
+  background: url('/images/BlueBG.png') no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.dt-about-us-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.dt-about-us-gradient-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80vh;
+  background: url('/images/GradientBG.png') no-repeat center center;
+  background-size: cover;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dt-about-bg-pattern {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background: url('/images/BlackPatterns.png') no-repeat;
+  background-size: contain;
+  opacity: 0.1;
+  transform: rotate(15deg);
+}
+
+/* Large decorative images on left and right */
+.dt-about-us-decorative {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dt-about-decorative-left {
+  position: absolute;
+  top: 0%;
+  left: -10%;
+  width: 560px;
+  height: auto;
+  opacity: 0.9;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+}
+
+.dt-about-decorative-right {
+  position: absolute;
+  bottom: -10%;
+  right: -12%;
+  width: 550px;
+  height: auto;
+  opacity: 0.9;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+}
+
+.dt-about-us-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 2rem 2rem;
+}
+
+.dt-about-us-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.dt-about-us-title {
+  font-family: "DM Serif Text", serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.dt-about-us-spacing {
+  height: 8rem;
+}
+
+.dt-about-us-subtitle {
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  color: #ffffff;
+  margin: 0;
+  font-weight: 300;
+}
+
+.dt-about-us-body {
+  margin-bottom: 3rem;
+}
+
+.dt-about-us-text {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.dt-about-us-description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #ffffff;
+  margin: 0;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .dt-about-decorative-left {
+    width: 500px;
+    left: -8%;
+  }
+  
+  .dt-about-decorative-right {
+    width: 450px;
+    right: -10%;
+    bottom: 0%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .dt-about-decorative-left {
+    width: 400px;
+    left: -5%;
+  }
+  
+  .dt-about-decorative-right {
+    width: 350px;
+    right: -7%;
+    bottom: 0%;
+  }
+}
+
+@media (max-width: 768px) {
+  .dt-about-us {
+    padding: 0;
+  }
+  
+  .dt-about-us-content {
+    padding: 2rem 1rem;
+    max-width: 100%;
+  }
+  
+  .dt-about-decorative-left,
+  .dt-about-decorative-right {
+    display: none; /* Hide decorative images on mobile for cleaner layout */
+  }
+  
+  .dt-about-bg-pattern {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .dt-about-us-description {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .dt-about-us-title {
+    font-size: 2.5rem;
+  }
+  
+  .dt-about-us-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .dt-about-us-description {
+    font-size: 1rem;
+  }
+}
+
+/* Why Choose Us Section */
+.dt-why-choose-us {
+  position: relative;
+  min-height: 80vh;
+  background: url('/images/BlueBG.png') no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
+  padding: 2rem 1rem 4rem 1rem;
+  margin-top: -20vh;
+}
+
+.dt-why-choose-us-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.dt-why-choose-us-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dt-why-choose-us-title {
+  font-family: "DM Serif Text", serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+  margin: 0 0 0.1rem 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.dt-why-choose-us-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: start;
+  margin-top: -2rem;
+}
+
+.dt-why-choose-us-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dt-why-choose-us-card-border {
+  background: url('/images/AboutUs3.png') no-repeat center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 7rem 6rem;
+  min-height: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin-left: -1cm;
+}
+
+.dt-why-choose-us-card-title {
+  font-family: "DM Serif Text", serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.dt-why-choose-us-card-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Responsive Design for Why Choose Us */
+@media (max-width: 992px) {
+  .dt-why-choose-us-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .dt-why-choose-us-card-border {
+    max-width: 1200px;
+    min-height: 950px;
+    margin-left: -1cm;
+  }
+}
+
+@media (max-width: 768px) {
+  .dt-why-choose-us {
+    padding: 2rem 1rem;
+  }
+  
+  .dt-why-choose-us-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .dt-why-choose-us-card-border {
+    padding: 6rem 5rem;
+    min-height: 900px;
+    margin-left: -1cm;
+  }
+  
+  .dt-why-choose-us-card-title {
+    font-size: 1.2rem;
+  }
+  
+  .dt-why-choose-us-card-description {
+    font-size: 0.9rem;
+  }
+}
+
