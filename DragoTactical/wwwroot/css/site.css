@@ -669,3 +669,23 @@ body {
     background: linear-gradient(to bottom right, #01082E 0%, #014687 34%);
     height: 400px;
 }
+
+.services-section {
+    background: linear-gradient(to bottom, #01082E 0%, BDC1C6 100%);
+
+}
+
+.card-title {
+    font-family: "DM Sans", 'Sans Serif Collection';
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+font-color {
+    color: #004D8F;
+}
+
+.card-service {
+
+}
