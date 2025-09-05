@@ -1,30 +1,35 @@
+/* ===== Base / Bootstrap tweaks ===== */
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    html {
+        font-size: 16px;
+    }
 }
 
 body {
-  margin-bottom: 60px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 60px;
+    width: 100%;
+    overflow-x: hidden;
 }
 
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* ===== Navbar ===== */
 .dt-navbar {
-    background-color: rgb(217, 217, 217);
-    padding: 0rem 1rem;
-    background-position: right center; 
+    background: #d9d9d9;
+    padding: 0 1rem;
+    background-position: right center;
     background-size: auto 100%;
 }
 
@@ -36,7 +41,7 @@ body {
 .dt-navbar-nav {
     display: flex;
     gap: 1rem;
-    margin-left: 1rem; 
+    margin-left: 1rem;
     justify-content: flex-start;
 }
 
@@ -46,32 +51,368 @@ body {
     color: #000;
 }
 
+    .dt-navbar .nav-link:hover, .dt-navbar .nav-link:focus {
+        color: #000;
+        text-decoration: none;
+    }
+
 .dt-navbar-pattern img {
-    height: 50px; 
+    height: 50px;
     width: auto;
     display: block;
 }
 
-
 @media (max-width: 992px) {
-  .dt-navbar .nav-link {
-    font-size: 1.05rem;
-  }
+    .dt-navbar .nav-link {
+        font-size: 1.05rem;
+    }
 }
 
-.dt-navbar .nav-link:hover,
-.dt-navbar .nav-link:focus {
-  color: #000;
-  text-decoration: none;
-}
-
+/* ===== Full-bleed helper (escapes Bootstrap container width) ===== */
 .dt-full-bleed {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+/* ===== About Us � Section 1 (Gradient hero) ===== */
+.dt-about-us {
+    min-height: 92vh;
+    /* show gradient art at the top; rest remains deep blue */
+    background: #0a1f44 url('/images/GradientBG.png') no-repeat top center;
+    background-size: 100% auto; /* don't stretch vertically into grey */
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+    z-index: 2;
+}
+
+.dt-about-us-content {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 5.5rem 2rem 6rem;
+}
+
+.dt-about-us-header {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.dt-about-us-title {
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-size: clamp(3rem,6vw,5rem);
+    margin: 0;
+}
+
+.dt-about-us-subtitle {
+    font-size: clamp(1.2rem,2.5vw,1.8rem);
+    margin: 0;
+    font-weight: 300;
+}
+
+.dt-about-us-spacing {
+    height: 15rem;
+}
+
+.dt-about-us-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* Ensure hero text is readable */
+.dt-about-us-title, .dt-about-us-subtitle, .dt-about-us-description {
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,.35);
+}
+
+/* Decorative blobs */
+.dt-about-us-decorative {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.dt-about-decorative-left {
+    top: -2%;
+    left: -10%;
+    width: clamp(420px,36vw,560px);
+    height: auto;
+    opacity: .95;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,.3));
+}
+
+.dt-about-decorative-right {
+    position: absolute;
+    right: -10vw;
+    top: 58vh;
+    width: clamp(550px,45vw,750px);
+    height: auto;
+    opacity: .95;
+    z-index: 4;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,.3));
+}
+
+/* ===== Why Choose Us � Section 2 (Blue) ===== */
+.dt-why-choose-us {
+    background: url('/images/BlueBG.png') no-repeat center/cover;
+    padding: 17rem 1rem 17rem;
+    margin-top: -160px; /* seamless flow under Section 1 */
+    overflow: visible;
+    z-index: 1;
+}
+
+.dt-why-choose-us-title {
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-size: clamp(2.4rem,4.8vw,4rem);
+    color: #fff;
+    text-align: center;
+    margin: 0 0 2.25rem;
+    text-shadow: 0 2px 6px rgba(0,0,0,.35);
+}
+
+.dt-why-choose-us-grid {
+    max-width: 1160px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: clamp(1rem,2.2vw,2rem);
+    align-items: start;
+}
+
+.dt-why-choose-us-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dt-why-choose-us-card-border {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    aspect-ratio: 1/1.7;
+    margin: 0 auto;
+    background: url('/images/AboutUs3.png') no-repeat center/contain;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 6.5rem;
+    transform: scale(1.5);
+}
+
+.dt-why-choose-us-card-title {
+    font-family: "DM Serif Text", serif;
+    font-size: clamp(0.9rem,1vw + 0.8rem,1.3rem);
+    color: #fff;
+    margin: 0 0 .75rem;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0,0,0,.35);
+}
+
+.dt-why-choose-us-card-description {
+    color: #fff;
+    line-height: 1.65;
+    font-size: clamp(.75rem,.3vw + .7rem,.85rem);
+    text-align: center;
+    max-width: 28ch;
+    margin: 0;
+}
+
+@media (max-width:992px) {
+    .dt-why-choose-us-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dt-why-choose-us-card-border {
+        max-width: 520px;
+        transform: none;
+    }
+}
+
+/* ===== What We Offer � Section 3 (Grey) ===== */
+.dt-what-we-offer {
+    position: relative;
+    background: #BDC1C6;
+    overflow: visible;
+    padding: 10rem 1rem 10rem;
+    z-index: 0;
+}
+
+.dt-what-title {
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-size: clamp(2.4rem,4.8vw,4rem);
+    text-align: center;
+
+    margin: 0 0 10rem;
+    color: #0e1b3f;
+}
+
+/* Background art: AboutUs4 (left + divider), AboutUs5 (right peeking up) */
+.dt-what-we-offer .bg-left {
+    position: absolute;
+    right: 41vw;
+    top: 380px;
+    width: clamp(200px,20vw,300px);
+    height: clamp(200px,20vw,300px);
+    background: url('/images/AboutUs5.png') no-repeat center/contain;
+    opacity: .9;
+    pointer-events: none;
+}
+
+.dt-what-we-offer .bg-divider {
+    position: absolute;
+    right: 75vw;
+    top: 381px;
+    width: clamp(200px,20vw,300px);
+    height: clamp(200px,20vw,300px);
+    background: url('/images/AboutUs5.png') no-repeat center/contain;
+    opacity: .9;
+    pointer-events: none;
+}
+
+.dt-what-we-offer .bg-right {
+    position: absolute;
+    right: -0.5vw;
+    top: -300px;
+    width: clamp(500px,50vw,800px);
+    height: clamp(600px,60vw,1000px);
+    background: url('/images/AboutUs4.png') no-repeat right top/contain;
+    opacity: .95;
+    pointer-events: none;
+}
+
+.dt-what-grid {
+    position: relative;
+    z-index: 1;
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.25rem 4rem;
+}
+
+.dt-offer-item {
+    background: transparent;
+    padding: 0 0 0 2.25rem;
+    position: relative;
+}
+
+    .dt-offer-item::before {
+        content: attr(data-num);
+        position: absolute;
+        left: 0;
+        top: .2rem;
+        font-family: "DM Serif Text", serif;
+        font-size: 1.6rem;
+        color: #0e1b3f;
+    }
+
+.dt-offer-h {
+    font-weight: 600;
+    color: #0e1b3f;
+    margin: 0 0 .25rem;
+    font-size: 1.15rem;
+}
+
+.dt-offer-p {
+    margin: 0;
+    color: #1b294d;
+    line-height: 1.6;
+    font-size: .98rem;
+}
+
+@media (max-width:900px) {
+    .dt-what-grid {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+    }
+
+    .dt-what-we-offer .bg-divider {
+        display: none;
+    }
+
+    .dt-what-we-offer .bg-left {
+        left: -40px;
+        top: 40px;
+        width: 260px;
+        height: 260px;
+        opacity: .5;
+    }
+
+    .dt-what-we-offer .bg-right {
+        right: -14vw;
+        top: -70px;
+        width: 58vw;
+    }
+}
+
+
+.dt-hero {
+    background: linear-gradient(to bottom,#0a1f44 0%,#1e90ff 100%);
+    color: #fff;
+    overflow: hidden;
+}
+
+.dt-stats {
+    background: #d9d9d9;
+    position: relative;
+}
+
+.dt-stats-inner {
+    position: relative;
+    padding: 3rem 1rem;
+}
+
+.dt-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 2rem;
+}
+
+.dt-stat-card {
+    background: #e6e6e6;
+    border-radius: 4px;
+    padding: 2.25rem 1rem;
+    text-align: center;
+}
+
+@media (max-width:992px) {
+    .dt-stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Contact page bits kept for compatibility */
+.dt-contact {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(to bottom,#0a1f44 0%, #0D2688 50%, #BDC1C6 100%);
+    background-size: cover;
+    overflow: hidden;
+}
+
+.dt-contact-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+    padding: 2rem 1rem 1rem;
+}
+
+@media (max-width:992px) {
+    .dt-contact-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 
@@ -83,450 +424,143 @@ body {
 
 
 .dt-hero-bg {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.0));
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.0));
 }
 
-.dt-hero-gradient { 
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(60% 60% at 70% 35%, rgba(255,255,255,0.15), rgba(0,0,0,0) 60%);
-  pointer-events: none;
+.dt-hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(60% 60% at 70% 35%, rgba(255,255,255,0.15), rgba(0,0,0,0) 60%);
+    pointer-events: none;
 }
 
-.dt-hero-overlay { 
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.15) 100%);
-  pointer-events: none;
+.dt-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.15) 100%);
+    pointer-events: none;
 }
 
 .dt-hero-inner {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  align-items: center;
-  gap: 2rem;
-  padding: 4rem 1rem 5rem;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    padding: 4rem 1rem 5rem;
 }
 
 .dt-hero-title {
-  font-family: "DM Serif Text", serif;
-  font-weight: 400;
-  font-size: clamp(2rem, 4vw + 1rem, 3.25rem);
-  line-height: 1.15;
-  margin: 0 0 1rem 0;
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 4vw + 1rem, 3.25rem);
+    line-height: 1.15;
+    margin: 0 0 1rem 0;
 }
 
 .dt-hero-subtitle {
-  max-width: 52ch;
-  margin: 0 0 1.5rem 0;
-  color: #e7eef6;
+    max-width: 52ch;
+    margin: 0 0 1.5rem 0;
+    color: #e7eef6;
 }
 
 .dt-btn-primary {
-  display: inline-block;
-  padding: 0.65rem 1.5rem;
-  border: 2px solid #ffffff;
-  color: #111;
-  background: #fff;
-  border-radius: 4px;
-  text-decoration: none;
+    display: inline-block;
+    padding: 0.65rem 1.5rem;
+    border: 2px solid #ffffff;
+    color: #111;
+    background: #fff;
+    border-radius: 4px;
+    text-decoration: none;
 }
 
 .dt-hero-image {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
-.dt-hero-image img {
-  width: min(520px, 90%);
-  height: auto;
-  filter: drop-shadow(0 8px 32px rgba(0,0,0,0.35));
-}
+    .dt-hero-image img {
+        width: min(520px, 90%);
+        height: auto;
+        filter: drop-shadow(0 8px 32px rgba(0,0,0,0.35));
+    }
 
 @media (max-width: 992px) {
-  .dt-hero-inner {
-    grid-template-columns: 1fr;
-    text-align: left;
-  }
-  .dt-hero-image {
-    order: -1;
-    margin-bottom: 1rem;
-  }
+    .dt-hero-inner {
+        grid-template-columns: 1fr;
+        text-align: left;
+    }
+
+    .dt-hero-image {
+        order: -1;
+        margin-bottom: 1rem;
+    }
 }
 
 /* Stats Section */
 .dt-stats {
-  background: rgb(217,217,217);
-  position: relative;
+    background: rgb(217,217,217);
+    position: relative;
 }
 
 .dt-stats-pattern {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: clamp(220px, 28vw, 420px);
-  background-image: url('/images/WhiteWeb.png');
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: left bottom;
-  opacity: 0.9;
-  pointer-events: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: clamp(220px, 28vw, 420px);
+    background-image: url('/images/WhiteWeb.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left bottom;
+    opacity: 0.9;
+    pointer-events: none;
 }
 
 .dt-stats-inner {
-  position: relative;
-  padding: 3rem 1rem;
+    position: relative;
+    padding: 3rem 1rem;
 }
 
 .dt-stats-heading {
-  text-align: center;
-  font-weight: 700;
-  margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 2rem;
 }
 
 .dt-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
 }
 
 .dt-stat-card {
-  background: #e6e6e6;
-  border-radius: 4px;
-  padding: 2.25rem 1rem;
-  text-align: center;
+    background: #e6e6e6;
+    border-radius: 4px;
+    padding: 2.25rem 1rem;
+    text-align: center;
 }
 
 .dt-stat-number {
-  color: #243b7b;
-  font-weight: 700;
-  font-size: clamp(1.75rem, 2.5vw + 1rem, 2.5rem);
-  margin-bottom: 0.5rem;
+    color: #243b7b;
+    font-weight: 700;
+    font-size: clamp(1.75rem, 2.5vw + 1rem, 2.5rem);
+    margin-bottom: 0.5rem;
 }
 
 .dt-stat-label {
-  color: #222;
+    color: #222;
 }
 
 @media (max-width: 992px) {
-  .dt-stats-grid {
-    grid-template-columns: 1fr;
-  }
+    .dt-stats-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
-/* About Us Page Styles */
-.dt-about-us {
-  position: relative;
-  min-height: 100vh;
-  background: url('/images/BlueBG.png') no-repeat center center;
-  background-size: cover;
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
-}
 
-.dt-about-us-bg {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
-              radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
-  pointer-events: none;
-}
 
-.dt-about-us-gradient-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 80vh;
-  background: url('/images/GradientBG.png') no-repeat center center;
-  background-size: cover;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.dt-about-bg-pattern {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 300px;
-  height: 300px;
-  background: url('/images/BlackPatterns.png') no-repeat;
-  background-size: contain;
-  opacity: 0.1;
-  transform: rotate(15deg);
-}
-
-/* Large decorative images on left and right */
-.dt-about-us-decorative {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.dt-about-decorative-left {
-  position: absolute;
-  top: 0%;
-  left: -10%;
-  width: 560px;
-  height: auto;
-  opacity: 0.9;
-  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
-}
-
-.dt-about-decorative-right {
-  position: absolute;
-  bottom: -10%;
-  right: -12%;
-  width: 550px;
-  height: auto;
-  opacity: 0.9;
-  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
-}
-
-.dt-about-us-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 4rem 2rem 2rem;
-}
-
-.dt-about-us-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.dt-about-us-title {
-  font-family: "DM Serif Text", serif;
-  font-size: clamp(3rem, 6vw, 5rem);
-  font-weight: 400;
-  color: #ffffff;
-  margin: 0;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.dt-about-us-spacing {
-  height: 8rem;
-}
-
-.dt-about-us-subtitle {
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-  color: #ffffff;
-  margin: 0;
-  font-weight: 300;
-}
-
-.dt-about-us-body {
-  margin-bottom: 3rem;
-}
-
-.dt-about-us-text {
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-.dt-about-us-description {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #ffffff;
-  margin: 0;
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-/* Responsive Design */
-@media (max-width: 1400px) {
-  .dt-about-decorative-left {
-    width: 500px;
-    left: -8%;
-  }
-  
-  .dt-about-decorative-right {
-    width: 450px;
-    right: -10%;
-    bottom: 0%;
-  }
-}
-
-@media (max-width: 1200px) {
-  .dt-about-decorative-left {
-    width: 400px;
-    left: -5%;
-  }
-  
-  .dt-about-decorative-right {
-    width: 350px;
-    right: -7%;
-    bottom: 0%;
-  }
-}
-
-@media (max-width: 768px) {
-  .dt-about-us {
-    padding: 0;
-  }
-  
-  .dt-about-us-content {
-    padding: 2rem 1rem;
-    max-width: 100%;
-  }
-  
-  .dt-about-decorative-left,
-  .dt-about-decorative-right {
-    display: none; 
-  }
-  
-  .dt-about-bg-pattern {
-    width: 200px;
-    height: 200px;
-  }
-  
-  .dt-about-us-description {
-    text-align: left;
-  }
-}
-
-@media (max-width: 480px) {
-  .dt-about-us-title {
-    font-size: 2.5rem;
-  }
-  
-  .dt-about-us-subtitle {
-    font-size: 1.2rem;
-  }
-  
-  .dt-about-us-description {
-    font-size: 1rem;
-  }
-}
-
-/* Why Choose Us Section */
-.dt-why-choose-us {
-  position: relative;
-  min-height: 80vh;
-  background: url('/images/BlueBG.png') no-repeat center center;
-  background-size: cover;
-  overflow: hidden;
-  padding: 2rem 1rem 4rem 1rem;
-  margin-top: -20vh;
-}
-
-.dt-why-choose-us-bg {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
-              radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
-  pointer-events: none;
-}
-
-.dt-why-choose-us-content {
-  position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.dt-why-choose-us-title {
-  font-family: "DM Serif Text", serif;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 400;
-  color: #ffffff;
-  text-align: center;
-  margin: 0 0 0.1rem 0;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.dt-why-choose-us-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  align-items: start;
-  margin-top: -2rem;
-}
-
-.dt-why-choose-us-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.dt-why-choose-us-card-border {
-  background: url('/images/AboutUs3.png') no-repeat center center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  padding: 7rem 6rem;
-  min-height: 1000px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  width: 100%;
-  max-width: 1100px;
-  margin-left: -1cm;
-}
-
-.dt-why-choose-us-card-title {
-  font-family: "DM Serif Text", serif;
-  font-size: 1.4rem;
-  font-weight: 400;
-  color: #ffffff;
-  margin: 0 0 1rem 0;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.dt-why-choose-us-card-description {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #ffffff;
-  margin: 0;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-}
-
-/* Responsive Design for Why Choose Us */
-@media (max-width: 992px) {
-  .dt-why-choose-us-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  
-  .dt-why-choose-us-card-border {
-    max-width: 1200px;
-    min-height: 950px;
-    margin-left: -1cm;
-  }
-}
-
-@media (max-width: 768px) {
-  .dt-why-choose-us {
-    padding: 2rem 1rem;
-  }
-  
-  .dt-why-choose-us-title {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-  }
-  
-  .dt-why-choose-us-card-border {
-    padding: 6rem 5rem;
-    min-height: 900px;
-    margin-left: -1cm;
-  }
-  
-  .dt-why-choose-us-card-title {
-    font-size: 1.2rem;
-  }
-  
-  .dt-why-choose-us-card-description {
-    font-size: 0.9rem;
-  }
-}
 
 /* Contact Page */
 .dt-contact {
@@ -540,70 +574,70 @@ body {
 }
 
 .dt-contact-top-gradient {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 38vh;
-  background: linear-gradient(180deg, #0a1430 0%, rgba(10,20,48,0.65) 45%, rgba(10,20,48,0.0) 100%);
-  z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 38vh;
+    background: linear-gradient(180deg, #0a1430 0%, rgba(10,20,48,0.65) 45%, rgba(10,20,48,0.0) 100%);
+    z-index: 0;
 }
 
 .dt-contact-pattern-right {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  width: clamp(40px, 8vw, 120px);
-  height: clamp(40px, 8vw, 120px);
-  background: url('/images/TransparentLogo.png') no-repeat center center;
-  background-size: contain;
-  opacity: 0.65;
-  z-index: 1;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    width: clamp(40px, 8vw, 120px);
+    height: clamp(40px, 8vw, 120px);
+    background: url('/images/TransparentLogo.png') no-repeat center center;
+    background-size: contain;
+    opacity: 0.65;
+    z-index: 1;
 }
 
 .dt-contact-blob {
-  position: absolute;
-  left: 50%;
-  top: 62%;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  pointer-events: none;
+    position: absolute;
+    left: 50%;
+    top: 62%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
 }
 
-.dt-contact-blob img {
-  width: min(650px, 48vw);
-  height: auto;
-  opacity: 0.9;
-}
+    .dt-contact-blob img {
+        width: min(650px, 48vw);
+        height: auto;
+        opacity: 0.9;
+    }
 
 .dt-contact-content {
-  position: relative;
-  z-index: 2;
+    position: relative;
+    z-index: 2;
 }
 
 .dt-contact-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 2rem;
-  align-items: start;
-  padding: 2rem 1rem 1rem 1rem;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+    padding: 2rem 1rem 1rem 1rem;
 }
 
 .dt-contact-heading {
-  padding-top: 1rem;
+    padding-top: 1rem;
 }
 
 .dt-contact-title {
-  font-family: "DM Serif Text", serif;
-  color: #ffffff;
-  font-size: clamp(2.25rem, 3.5vw, 3rem);
-  margin: 0 0 0.25rem 0;
+    font-family: "DM Serif Text", serif;
+    color: #ffffff;
+    font-size: clamp(2.25rem, 3.5vw, 3rem);
+    margin: 0 0 0.25rem 0;
 }
 
 .dt-contact-subtitle {
-  color: #dfe7f5;
-  margin: 0;
-  font-size: clamp(1rem, 2vw, 1.25rem);
+    color: #dfe7f5;
+    margin: 0;
+    font-size: clamp(1rem, 2vw, 1.25rem);
 }
 
 .dt-contact-form {
@@ -615,42 +649,43 @@ body {
     width: 70%;
     max-width: 420px;
     margin: 2rem auto 0 18%;
-   
 }
 
 .dt-input.form-control,
 .dt-input.form-select {
-  background: #e9eaed;
-  border: none;
-  border-radius: 10px;
-  padding: 0.9rem 1rem;
+    background: #e9eaed;
+    border: none;
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
 }
 
-.dt-input.form-control:focus,
-.dt-input.form-select:focus {
-  box-shadow: none;
-  outline: 2px solid #aeb7d0;
-}
+    .dt-input.form-control:focus,
+    .dt-input.form-select:focus {
+        box-shadow: none;
+        outline: 2px solid #aeb7d0;
+    }
 
 .dt-btn-submit {
-  background: #18254a;
-  color: #ffffff;
-  padding: 0.7rem 1.5rem;
-  border-radius: 12px;
+    background: #18254a;
+    color: #ffffff;
+    padding: 0.7rem 1.5rem;
+    border-radius: 12px;
 }
 
-.dt-btn-submit:hover {
-  background: #0f1a39;
-  color: #fff;
-}
+    .dt-btn-submit:hover {
+        background: #0f1a39;
+        color: #fff;
+    }
 
 @media (max-width: 992px) {
-  .dt-contact-grid {
-    grid-template-columns: 1fr;
-  }
-  .dt-contact-heading {
-    order: -1;
-  }
+    .dt-contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dt-contact-heading {
+        order: -1;
+    }
+
     .dt-contact-form {
         width: 90%;
         max-width: 100%;
@@ -660,7 +695,7 @@ body {
     .dt-contact-logo {
         top: 5%;
         width: 150px;
-        opacity: 0.5; 
+        opacity: 0.5;
     }
 }
 
@@ -672,7 +707,6 @@ body {
 
 .services-section {
     background: linear-gradient(to bottom, #01082E 0%, BDC1C6 100%);
-
 }
 
 .card-title {
@@ -687,5 +721,63 @@ font-color {
 }
 
 .card-service {
+}
 
+/* =========================
+   GLOBAL: full-width canvas
+   ========================= */
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Use your existing helper to force full-bleed across any Bootstrap container */
+.dt-full-bleed {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+/* ===== ABOUT PAGE FIXES (appended; does not affect other pages) ===== */
+
+/* Make hero a stacking context */
+.dt-about-us {
+    position: relative;
+}
+
+/* Put hero content above the decorative images */
+.dt-about-us-content {
+    position: relative;
+    z-index: 6;
+}
+
+/* Keep blobs below content but above the next section�s background */
+.dt-about-us-decorative {
+    z-index: 3;
+}
+
+.dt-about-decorative-right {
+    z-index: 4;
+    bottom: -140px;
+}
+
+/* Tighten seam so section 2 tucks under the hero */
+@media (min-width: 993px) {
+    .dt-why-choose-us {
+        margin-top: -180px; /* adjust -170 ~ -190px to taste */
+        position: relative;
+        z-index: 1;
+    }
+}
+
+/* Ensure the cards never get hidden by overlaps */
+.dt-why-choose-us .dt-why-choose-us-grid,
+.dt-why-choose-us .dt-why-choose-us-card-border {
+    position: relative;
+    z-index: 2;
 }

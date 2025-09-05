@@ -1,22 +1,27 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewData["Title"] - DragoTactical</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/DragoTactical.styles.css" asp-append-version="true" />
 </head>
 <body>
+    <!-- NAV -->
     <header>
-        <nav class="navbar navbar-expand-sm dt-navbar border-bottom mb-3">
-            <div class="container-fluid d-flex align-items-center justify-content-between">
+        <nav class="navbar navbar-expand-sm dt-navbar border-bottom mb-0">
+            <div class="container-fluid d-flex align-items-center justify-content-between px-3">
 
-               
                 <div class="d-flex align-items-center">
                     <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
                         <img src="~/images/DragoLogo.png" alt="Drago Tactical" class="dt-navbar-logo" />
@@ -38,33 +43,28 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="Home" asp-action="AboutUs">About Us</a>
                             </li>
-                            
                         </ul>
                     </div>
                 </div>
 
-              
                 <div class="dt-navbar-pattern d-none d-sm-block">
                     <img src="~/images/BlackPatterns.png" alt="Pattern" />
                 </div>
             </div>
         </nav>
-
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+
+    <!-- MAIN (full width) -->
+    <div class="container-fluid px-0">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
 
-   @*  <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - DragoTactical - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer> *@
+    @RenderSection("Scripts", required: false)
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
