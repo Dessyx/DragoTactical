@@ -7,10 +7,6 @@
 	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>  
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\images\" />
-  </ItemGroup>
-
 
 
 </Project>

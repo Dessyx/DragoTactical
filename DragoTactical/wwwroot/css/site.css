@@ -76,11 +76,11 @@ body {
 
 
 .dt-hero {
-  background: radial-gradient(80% 80% at 65% 30%, rgba(255,255,255,0.12), rgba(255,255,255,0) 60%),
-              linear-gradient(180deg, #113a78 0%, #14386b 60%, #153563 100%);
-  color: #fff;
-  overflow: hidden;
+    background: linear-gradient(to bottom, #0a1f44 0%, #1e90ff 100%);
+    color: #fff;
+    overflow: hidden;
 }
+
 
 .dt-hero-bg {
   position: absolute;
@@ -378,7 +378,7 @@ body {
   
   .dt-about-decorative-left,
   .dt-about-decorative-right {
-    display: none; /* Hide decorative images on mobile for cleaner layout */
+    display: none; 
   }
   
   .dt-about-bg-pattern {
@@ -526,5 +526,141 @@ body {
   .dt-why-choose-us-card-description {
     font-size: 0.9rem;
   }
+}
+
+/* Contact Page */
+.dt-contact {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #0a1f44 0%, #0D2688 50%, BDC1C6 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0;
+    overflow: hidden;
+}
+
+.dt-contact-top-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 38vh;
+  background: linear-gradient(180deg, #0a1430 0%, rgba(10,20,48,0.65) 45%, rgba(10,20,48,0.0) 100%);
+  z-index: 0;
+}
+
+.dt-contact-pattern-right {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  width: clamp(40px, 8vw, 120px);
+  height: clamp(40px, 8vw, 120px);
+  background: url('/images/TransparentLogo.png') no-repeat center center;
+  background-size: contain;
+  opacity: 0.65;
+  z-index: 1;
+}
+
+.dt-contact-blob {
+  position: absolute;
+  left: 50%;
+  top: 62%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.dt-contact-blob img {
+  width: min(650px, 48vw);
+  height: auto;
+  opacity: 0.9;
+}
+
+.dt-contact-content {
+  position: relative;
+  z-index: 2;
+}
+
+.dt-contact-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+  padding: 2rem 1rem 1rem 1rem;
+}
+
+.dt-contact-heading {
+  padding-top: 1rem;
+}
+
+.dt-contact-title {
+  font-family: "DM Serif Text", serif;
+  color: #ffffff;
+  font-size: clamp(2.25rem, 3.5vw, 3rem);
+  margin: 0 0 0.25rem 0;
+}
+
+.dt-contact-subtitle {
+  color: #dfe7f5;
+  margin: 0;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+.dt-contact-form {
+    background: transparent;
+    border-radius: 12px;
+    padding: 1.25rem;
+    backdrop-filter: none;
+    box-shadow: none;
+    width: 70%;
+    max-width: 420px;
+    margin: 2rem auto 0 18%;
+   
+}
+
+.dt-input.form-control,
+.dt-input.form-select {
+  background: #e9eaed;
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+}
+
+.dt-input.form-control:focus,
+.dt-input.form-select:focus {
+  box-shadow: none;
+  outline: 2px solid #aeb7d0;
+}
+
+.dt-btn-submit {
+  background: #18254a;
+  color: #ffffff;
+  padding: 0.7rem 1.5rem;
+  border-radius: 12px;
+}
+
+.dt-btn-submit:hover {
+  background: #0f1a39;
+  color: #fff;
+}
+
+@media (max-width: 992px) {
+  .dt-contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .dt-contact-heading {
+    order: -1;
+  }
+    .dt-contact-form {
+        width: 90%;
+        max-width: 100%;
+        margin: 1.5rem auto;
+    }
+
+    .dt-contact-logo {
+        top: 5%;
+        width: 150px;
+        opacity: 0.5; 
+    }
 }
 
