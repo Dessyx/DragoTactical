@@ -664,3 +664,8 @@ body {
     }
 }
 
+/* Physical Services Section */
+.bg-physical-services {
+    background: linear-gradient(to bottom right, #01082E 0%, #014687 34%);
+    height: 400px;
+}
