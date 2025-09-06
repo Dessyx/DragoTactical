@@ -81,9 +81,9 @@ body {
 /* ===== About Us � Section 1 (Gradient hero) ===== */
 .dt-about-us {
     min-height: 92vh;
-    /* show gradient art at the top; rest remains deep blue */
+   
     background: #0a1f44 url('/images/GradientBG.png') no-repeat top center;
-    background-size: 100% auto; /* don't stretch vertically into grey */
+    background-size: 100% auto; 
     overflow: visible;
     margin: 0;
     padding: 0;
@@ -126,13 +126,13 @@ body {
     text-justify: inter-word;
 }
 
-/* Ensure hero text is readable */
+
 .dt-about-us-title, .dt-about-us-subtitle, .dt-about-us-description {
     color: #fff;
     text-shadow: 0 2px 4px rgba(0,0,0,.35);
 }
 
-/* Decorative blobs */
+
 .dt-about-us-decorative {
     position: absolute;
     inset: 0;
@@ -164,7 +164,7 @@ body {
 .dt-why-choose-us {
     background: url('/images/BlueBG.png') no-repeat center/cover;
     padding: 17rem 1rem 17rem;
-    margin-top: -160px; /* seamless flow under Section 1 */
+    margin-top: -160px; 
     overflow: visible;
     z-index: 1;
 }
@@ -238,7 +238,7 @@ body {
     }
 }
 
-/* ===== What We Offer � Section 3 (Grey) ===== */
+/* ===== What We Offer � Section 3 */
 .dt-what-we-offer {
     position: relative;
     background: #BDC1C6;
@@ -257,7 +257,7 @@ body {
     color: #0e1b3f;
 }
 
-/* Background art: AboutUs4 (left + divider), AboutUs5 (right peeking up) */
+
 .dt-what-we-offer .bg-left {
     position: absolute;
     right: 41vw;
@@ -723,9 +723,7 @@ font-color {
 .card-service {
 }
 
-/* =========================
-   GLOBAL: full-width canvas
-   ========================= */
+
 html, body {
     width: 100%;
     margin: 0;
@@ -733,7 +731,7 @@ html, body {
     overflow-x: hidden;
 }
 
-/* Use your existing helper to force full-bleed across any Bootstrap container */
+
 .dt-full-bleed {
     width: 100vw;
     position: relative;
@@ -743,20 +741,18 @@ html, body {
     margin-right: -50vw;
 }
 
-/* ===== ABOUT PAGE FIXES (appended; does not affect other pages) ===== */
 
-/* Make hero a stacking context */
 .dt-about-us {
     position: relative;
 }
 
-/* Put hero content above the decorative images */
+
 .dt-about-us-content {
     position: relative;
     z-index: 6;
 }
 
-/* Keep blobs below content but above the next section�s background */
+
 .dt-about-us-decorative {
     z-index: 3;
 }
@@ -766,23 +762,23 @@ html, body {
     bottom: -140px;
 }
 
-/* Tighten seam so section 2 tucks under the hero */
+
 @media (min-width: 993px) {
     .dt-why-choose-us {
-        margin-top: -180px; /* adjust -170 ~ -190px to taste */
+        margin-top: -180px; 
         position: relative;
         z-index: 1;
     }
 }
 
-/* Ensure the cards never get hidden by overlaps */
+
 .dt-why-choose-us .dt-why-choose-us-grid,
 .dt-why-choose-us .dt-why-choose-us-card-border {
     position: relative;
     z-index: 2;
 }
 
-/* ===== Cyber Services Page ===== */
+
 .dt-cyber-services {
     min-height: 100vh;
     background: url('/images/CyberBG.png') no-repeat center top;
@@ -878,5 +874,66 @@ html, body {
     color: #fff;
     font-size: 1.2rem;
     text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    text-align: center;
+}
+
+.dt-mission {
+    background: rgb(217,217,217);
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    padding: 0;
+}
+
+.dt-mission-inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.dt-mission-left {
+    background: #0a1f44; 
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-radius: 50px 0 0 50px; 
+    clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);
+    flex: 0 0 40%;
+    position: relative;
+}
+
+.dt-mission-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.dt-mission-bg {
+    width: 60px;
+    height: auto;
+    opacity: 0.5;
+}
+
+.dt-mission-lock {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 35px;
+    height: auto;
+    transform: translate(-50%, -50%);
+}
+
+.dt-mission-title {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #fff;
+}
+
+.dt-mission-right {
+    flex: 1;
+    padding: 1.5rem;
+    font-size: 1rem;
+    color: #000;
     text-align: center;
 }
