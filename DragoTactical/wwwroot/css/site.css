@@ -1,4 +1,4 @@
-/* ===== Base / Bootstrap tweaks ===== */
+/* ===== Base / Bootstrap  ===== */
 html {
     font-size: 14px;
     position: relative;
@@ -25,7 +25,7 @@ body {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-/* ===== Navbar ===== */
+/* ========================================= Navbar ========================================= */
 .dt-navbar {
     background: #d9d9d9;
     padding: 0 1rem;
@@ -68,7 +68,6 @@ body {
     }
 }
 
-/* ===== Full-bleed helper (escapes Bootstrap container width) ===== */
 .dt-full-bleed {
     width: 100vw;
     position: relative;
@@ -78,7 +77,9 @@ body {
     margin-right: -50vw;
 }
 
-/* ===== About Us � Section 1 (Gradient hero) ===== */
+
+
+/* ================================== About Us � Section 1 (Gradient hero) ========================================= */
 .dt-about-us {
     min-height: 92vh;
    
@@ -356,12 +357,56 @@ body {
     }
 }
 
+/*============================================= Home page css ================================= */
 
 .dt-hero {
-    background: linear-gradient(to bottom,#0a1f44 0%,#1e90ff 100%);
+    background: linear-gradient(to bottom, #23235A 0%, #014687 34%);
     color: #fff;
-    overflow: hidden;
+    overflow: visible;
 }
+
+/* Logo Container */
+.dt-hero-logo {
+    position: relative;
+    width: 250px; 
+    height: 250px;
+    margin-left: auto; 
+    margin-right: 20px; 
+}
+
+   
+    .dt-hero-logo .logo-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%; 
+        height: 100%;
+        animation: rotateBall 5s linear infinite;
+        transform-origin: center;
+    }
+
+   
+    .dt-hero-logo .logo-main {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+
+@keyframes rotateBall {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
 
 .dt-stats {
     background: #d9d9d9;
@@ -384,7 +429,17 @@ body {
     border-radius: 4px;
     padding: 2.25rem 1rem;
     text-align: center;
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
 }
+
+    .dt-stat-card:hover {
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.6); 
+        transform: translateY(-5px); 
+    }
+
+        .dt-stat-card:hover .dt-stat-number {
+            color: #00ffff; 
+        }
 
 @media (max-width:992px) {
     .dt-stats-grid {
@@ -392,7 +447,7 @@ body {
     }
 }
 
-/* Contact page bits kept for compatibility */
+
 .dt-contact {
     position: relative;
     min-height: 100vh;
@@ -467,13 +522,15 @@ body {
 
 .dt-btn-primary {
     display: inline-block;
-    padding: 0.65rem 1.5rem;
-    border: 2px solid #ffffff;
+    padding: 0.45rem 1.5rem;
+    border: 0,5px solid #000; 
     color: #111;
     background: #fff;
-    border-radius: 4px;
+    border-radius: 0px; 
     text-decoration: none;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
 }
+
 
 .dt-hero-image {
     display: flex;
@@ -543,11 +600,15 @@ body {
 }
 
 .dt-stat-number {
-    color: #243b7b;
-    font-weight: 700;
-    font-size: clamp(1.75rem, 2.5vw + 1rem, 2.5rem);
-    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 2rem;
+    background: linear-gradient(to bottom, #0083FF 0%, #01082E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
 }
+
 
 .dt-stat-label {
     color: #222;
@@ -560,9 +621,473 @@ body {
 }
 
 
+/* Physical Services Section */
+.bg-physical-services {
+    background: linear-gradient(to bottom right, #01082E 0%, #014687 34%);
+    height: 400px;
+}
+
+.services-section {
+    background: linear-gradient(to bottom, #01082E 0%, BDC1C6 100%);
+}
+
+.card-title {
+    font-family: "DM Sans", 'Sans Serif Collection';
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+font-color {
+    color: #004D8F;
+}
+
+.card-service {
+}
 
 
-/* Contact Page */
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+
+.dt-full-bleed {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+
+.dt-about-us {
+    position: relative;
+}
+
+
+.dt-about-us-content {
+    position: relative;
+    z-index: 6;
+}
+
+
+.dt-about-us-decorative {
+    z-index: 3;
+}
+
+.dt-about-decorative-right {
+    z-index: 4;
+    bottom: -140px;
+}
+
+
+@media (min-width: 993px) {
+    .dt-why-choose-us {
+        margin-top: -180px;
+        position: relative;
+        z-index: 1;
+    }
+}
+
+
+.dt-why-choose-us .dt-why-choose-us-grid,
+.dt-why-choose-us .dt-why-choose-us-card-border {
+    position: relative;
+    z-index: 2;
+}
+
+
+.dt-cyber-services {
+    min-height: 100vh;
+    background: url('/images/CyberBG.png') no-repeat center top;
+    background-size: cover;
+    background-attachment: scroll;
+    position: relative;
+    padding: 0;
+}
+
+.dt-cyber-services-content {
+    text-align: center;
+    color: #fff;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    max-width: 600px;
+    margin: 2rem auto;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dt-cyber-services-title {
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin: 0 0 1rem 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
+.dt-cyber-services-subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    margin: 0;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    opacity: 0.9;
+}
+
+.dt-cyber-services-section {
+    padding: 4rem 0;
+    margin: 2rem 0;
+}
+
+    .dt-cyber-services-section h2 {
+        font-family: "DM Serif Text", serif;
+        color: #fff;
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    }
+
+    .dt-cyber-services-section p {
+        color: #fff;
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        text-shadow: 0 2px 4px rgba(0,0,0,.5);
+        opacity: 0.9;
+    }
+
+.dt-test-content {
+    height: 200vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .dt-test-content h1 {
+        color: #fff;
+        font-family: "DM Serif Text", serif;
+        font-size: 3rem;
+        text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    }
+
+.dt-test-content-bottom {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+    .dt-test-content-bottom h2 {
+        color: #fff;
+        font-family: "DM Serif Text", serif;
+        font-size: 2.5rem;
+        text-shadow: 0 2px 4px rgba(0,0,0,.5);
+        margin-bottom: 1rem;
+    }
+
+    .dt-test-content-bottom p {
+        color: #fff;
+        font-size: 1.2rem;
+        text-shadow: 0 2px 4px rgba(0,0,0,.5);
+        text-align: center;
+    }
+
+.dt-mission {
+    background: rgb(217,217,217);
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    padding: 0;
+}
+
+.dt-mission-inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.dt-mission-left {
+    background: #0a1f44;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-radius: 50px 0 0 50px;
+    clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);
+    flex: 0 0 40%;
+    position: relative;
+    height: 136px;
+}
+
+.dt-mission-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.dt-mission-bg {
+    width: 60px;
+    height: auto;
+    opacity: 0.5;
+}
+
+.dt-mission-lock {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 35px;
+    height: auto;
+    transform: translate(-50%, -50%);
+}
+
+.dt-mission-title {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #fff;
+}
+
+.dt-mission-right {
+    flex: 1;
+    padding: 1.5rem;
+    font-size: 1rem;
+    color: #000;
+    text-align: center;
+}
+
+.dt-services {
+    background: #BDC1C6;
+    padding: 4rem 2rem;
+    position: relative;
+}
+
+.dt-services-heading {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 3rem;
+    color: #000;
+}
+
+.dt-services-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    justify-content: center; 
+    position: relative;
+}
+
+.dt-service-card {
+    background: linear-gradient(180deg, #0D2688 0%, #01082E 100%);
+    color: #fff;
+    width: 45%;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    max-width: 700px;
+}
+
+   
+    .dt-service-card:nth-child(odd) {
+        margin-left: auto; 
+    }
+
+    .dt-service-card:nth-child(even) {
+        margin-right: auto; 
+    }
+
+ 
+    .dt-service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+
+.dt-services-grid::before {
+    content: "";
+    background: url('~/images/SecurityIcon.png') no-repeat center;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: -100px; 
+    top: 0; 
+}
+
+.dt-services-grid::after {
+    content: "";
+    background: url('~/images/Camera.png') no-repeat center;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    right: -100px; 
+    bottom: 0; 
+}
+
+.service-external-icon {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    z-index: 1;
+}
+
+.left-icon {
+    left: 0; 
+    top: 50px; 
+}
+
+.right-icon {
+    right: 0; 
+    bottom: 50px; 
+}
+
+    .dt-service-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .dt-service-card p {
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+    }
+
+.dt-btn-book {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.dt-service-icon {
+    margin-bottom: 1rem;
+}
+
+    .dt-service-icon img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 1rem;
+    }
+
+
+/* CTA */
+.dt-cta {
+    background: #BDC1C6;
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+    .dt-cta h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+.dt-btn-contact {
+    border: 2px solid #000;
+    background: transparent;
+    color: #000;
+    padding: 0.5rem 2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Comments */
+.dt-comments {
+    background: #BDC1C6;
+    padding: 3rem 1rem;
+    display: flex;
+    gap: 2rem;
+}
+
+.dt-comments-label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #000;
+}
+
+.dt-comments-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.dt-comment {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.dt-comment-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+/* Footer */
+.dt-footer {
+    background: #2F2F2F;
+    color: #fff;
+    padding: 2.5rem 2rem;
+}
+
+.dt-footer-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.dt-footer-logo img {
+    max-width: 200px;
+}
+
+.dt-footer-links {
+    display: flex;
+    gap: 3rem;
+}
+
+    .dt-footer-links h4 {
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+    }
+
+    .dt-footer-links ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .dt-footer-links ul li {
+            margin-bottom: 0.5rem;
+        }
+
+    .dt-footer-links a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+.dt-footer-bottom {
+    text-align: center;
+    border-top: 1px solid #444;
+    padding-top: 1rem;
+    font-size: 0.9rem;
+}
+
+
+/* ========================================== Contact Page =========================================*/
 .dt-contact {
     position: relative;
     min-height: 100vh;
@@ -699,410 +1224,3 @@ body {
     }
 }
 
-/* Physical Services Section */
-.bg-physical-services {
-    background: linear-gradient(to bottom right, #01082E 0%, #014687 34%);
-    height: 400px;
-}
-
-.services-section {
-    background: linear-gradient(to bottom, #01082E 0%, BDC1C6 100%);
-}
-
-.card-title {
-    font-family: "DM Sans", 'Sans Serif Collection';
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
-}
-
-font-color {
-    color: #004D8F;
-}
-
-.card-service {
-}
-
-
-html, body {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-
-
-.dt-full-bleed {
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-}
-
-
-.dt-about-us {
-    position: relative;
-}
-
-
-.dt-about-us-content {
-    position: relative;
-    z-index: 6;
-}
-
-
-.dt-about-us-decorative {
-    z-index: 3;
-}
-
-.dt-about-decorative-right {
-    z-index: 4;
-    bottom: -140px;
-}
-
-
-@media (min-width: 993px) {
-    .dt-why-choose-us {
-        margin-top: -180px; 
-        position: relative;
-        z-index: 1;
-    }
-}
-
-
-.dt-why-choose-us .dt-why-choose-us-grid,
-.dt-why-choose-us .dt-why-choose-us-card-border {
-    position: relative;
-    z-index: 2;
-}
-
-
-.dt-cyber-services {
-    min-height: 100vh;
-    background: url('/images/CyberBG.png') no-repeat center top;
-    background-size: cover;
-    background-attachment: scroll;
-    position: relative;
-    padding: 0;
-}
-
-.dt-cyber-services-content {
-    text-align: center;
-    color: #fff;
-    padding: 2rem;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
-    max-width: 600px;
-    margin: 2rem auto;
-    min-height: 50vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.dt-cyber-services-title {
-    font-family: "DM Serif Text", serif;
-    font-weight: 400;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    margin: 0 0 1rem 0;
-    text-shadow: 0 2px 4px rgba(0,0,0,.5);
-}
-
-.dt-cyber-services-subtitle {
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    margin: 0;
-    font-weight: 300;
-    text-shadow: 0 2px 4px rgba(0,0,0,.5);
-    opacity: 0.9;
-}
-
-.dt-cyber-services-section {
-    padding: 4rem 0;
-    margin: 2rem 0;
-}
-
-.dt-cyber-services-section h2 {
-    font-family: "DM Serif Text", serif;
-    color: #fff;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,.5);
-}
-
-.dt-cyber-services-section p {
-    color: #fff;
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    text-shadow: 0 2px 4px rgba(0,0,0,.5);
-    opacity: 0.9;
-}
-
-.dt-test-content {
-    height: 200vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.dt-test-content h1 {
-    color: #fff;
-    font-family: "DM Serif Text", serif;
-    font-size: 3rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,.5);
-}
-
-.dt-test-content-bottom {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-}
-
-.dt-test-content-bottom h2 {
-    color: #fff;
-    font-family: "DM Serif Text", serif;
-    font-size: 2.5rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,.5);
-    margin-bottom: 1rem;
-}
-
-.dt-test-content-bottom p {
-    color: #fff;
-    font-size: 1.2rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,.5);
-    text-align: center;
-}
-
-.dt-mission {
-    background: rgb(217,217,217);
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
-    padding: 0;
-}
-
-.dt-mission-inner {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.dt-mission-left {
-    background: #0a1f44; 
-    color: white;
-    display: flex;
-    align-items: center;
-    padding: 1rem 2rem;
-    border-radius: 50px 0 0 50px; 
-    clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);
-    flex: 0 0 40%;
-    position: relative;
-}
-
-.dt-mission-icon {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-right: 1rem;
-}
-
-.dt-mission-bg {
-    width: 60px;
-    height: auto;
-    opacity: 0.5;
-}
-
-.dt-mission-lock {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 35px;
-    height: auto;
-    transform: translate(-50%, -50%);
-}
-
-.dt-mission-title {
-    font-size: 1.5rem;
-    margin: 0;
-    color: #fff;
-}
-
-.dt-mission-right {
-    flex: 1;
-    padding: 1.5rem;
-    font-size: 1rem;
-    color: #000;
-    text-align: center;
-}
-
-.dt-services {
-    background: #BDC1C6; 
-    padding: 4rem 2rem;
-    position: relative;
-}
-
-.dt-services-heading {
-    text-align: center;
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 3rem;
-    color: #000;
-}
-
-.dt-services-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-}
-
-.dt-service-card {
-    background: linear-gradient(180deg, #0D2688 0%, #01082E 100%);
-    color: #fff;
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-    max-width: 700px;
-}
-
-    .dt-service-card h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .dt-service-card p {
-        margin-bottom: 1.5rem;
-        line-height: 1.5;
-    }
-
-.dt-btn-book {
-    background: #000;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.dt-service-icon {
-    margin-bottom: 1rem;
-}
-
-    .dt-service-icon img {
-        width: 60px;
-        height: auto;
-    }
-
-
-/* CTA */
-.dt-cta {
-    background: #BDC1C6;
-    text-align: center;
-    padding: 3rem 1rem;
-}
-
-    .dt-cta h2 {
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
-    }
-
-.dt-btn-contact {
-    border: 2px solid #000;
-    background: transparent;
-    color: #000;
-    padding: 0.5rem 2rem;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* Comments */
-.dt-comments {
-    background: #BDC1C6;
-    padding: 3rem 1rem;
-    display: flex;
-    gap: 2rem;
-}
-
-.dt-comments-label {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #000;
-}
-
-.dt-comments-list {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.dt-comment {
-    background: #fff;
-    border-radius: 10px;
-    padding: 1rem 1.5rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-.dt-comment-icon {
-    font-size: 1.2rem;
-    flex-shrink: 0;
-}
-
-/* Footer */
-.dt-footer {
-    background: #2F2F2F;
-    color: #fff;
-    padding: 2.5rem 2rem;
-}
-
-.dt-footer-top {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.dt-footer-logo img {
-    max-width: 200px;
-}
-
-.dt-footer-links {
-    display: flex;
-    gap: 3rem;
-}
-
-    .dt-footer-links h4 {
-        margin-bottom: 0.75rem;
-        font-size: 1rem;
-    }
-
-    .dt-footer-links ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-        .dt-footer-links ul li {
-            margin-bottom: 0.5rem;
-        }
-
-    .dt-footer-links a {
-        color: #fff;
-        text-decoration: none;
-    }
-
-.dt-footer-bottom {
-    text-align: center;
-    border-top: 1px solid #444;
-    padding-top: 1rem;
-    font-size: 0.9rem;
-}
