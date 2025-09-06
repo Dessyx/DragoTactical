@@ -937,3 +937,61 @@ html, body {
     color: #000;
     text-align: center;
 }
+
+.dt-services {
+    background: #BDC1C6; 
+    padding: 4rem 2rem;
+    position: relative;
+}
+
+.dt-services-heading {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 3rem;
+    color: #000;
+}
+
+.dt-services-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.dt-service-card {
+    background: linear-gradient(180deg, #0D2688 0%, #01082E 100%);
+    color: #fff;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    max-width: 700px;
+}
+
+    .dt-service-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .dt-service-card p {
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+    }
+
+.dt-btn-book {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.dt-service-icon {
+    margin-bottom: 1rem;
+}
+
+    .dt-service-icon img {
+        width: 60px;
+        height: auto;
+    }
