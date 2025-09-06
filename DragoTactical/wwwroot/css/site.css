@@ -781,3 +781,102 @@ html, body {
     position: relative;
     z-index: 2;
 }
+
+/* ===== Cyber Services Page ===== */
+.dt-cyber-services {
+    min-height: 100vh;
+    background: url('/images/CyberBG.png') no-repeat center top;
+    background-size: cover;
+    background-attachment: scroll;
+    position: relative;
+    padding: 0;
+}
+
+.dt-cyber-services-content {
+    text-align: center;
+    color: #fff;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    max-width: 600px;
+    margin: 2rem auto;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dt-cyber-services-title {
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin: 0 0 1rem 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
+.dt-cyber-services-subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    margin: 0;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    opacity: 0.9;
+}
+
+.dt-cyber-services-section {
+    padding: 4rem 0;
+    margin: 2rem 0;
+}
+
+.dt-cyber-services-section h2 {
+    font-family: "DM Serif Text", serif;
+    color: #fff;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
+.dt-cyber-services-section p {
+    color: #fff;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    opacity: 0.9;
+}
+
+.dt-test-content {
+    height: 200vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dt-test-content h1 {
+    color: #fff;
+    font-family: "DM Serif Text", serif;
+    font-size: 3rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
+.dt-test-content-bottom {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.dt-test-content-bottom h2 {
+    color: #fff;
+    font-family: "DM Serif Text", serif;
+    font-size: 2.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    margin-bottom: 1rem;
+}
+
+.dt-test-content-bottom p {
+    color: #fff;
+    font-size: 1.2rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    text-align: center;
+}
