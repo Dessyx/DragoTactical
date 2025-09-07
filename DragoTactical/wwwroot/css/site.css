@@ -362,125 +362,49 @@ body {
 
 /*============================================= Home page css ================================= */
 
+:root {
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --spacing-xxl: 4rem;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --spacing-sm: 0.75rem;
+        --spacing-md: 1rem;
+        --spacing-lg: 1.5rem;
+        --spacing-xl: 2rem;
+        --spacing-xxl: 2.5rem;
+    }
+}
+
+html, body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.dt-full-bleed {
+    width: 100%;
+    max-width: 100vw;
+}
+
+/* Hero Section */
 .dt-hero {
     background: linear-gradient(to bottom, #23235A 0%, #014687 34%);
     color: #fff;
-    overflow: visible;
-}
-
-/* Logo Container */
-.dt-hero-logo {
-    position: relative;
-    width: 250px; 
-    height: 250px;
-    margin-left: auto; 
-    margin-right: 20px; 
-}
-
-   
-    .dt-hero-logo .logo-bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%; 
-        height: 100%;
-        animation: rotateBall 5s linear infinite;
-        transform-origin: center;
-    }
-
-   
-    .dt-hero-logo .logo-main {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-
-@keyframes rotateBall {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-
-
-
-.dt-stats {
-    background: #d9d9d9;
-    position: relative;
-    margin: 0;
-}
-
-.dt-stats-inner {
-    position: relative;
-    padding: 3rem 1rem;
-}
-
-.dt-stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3,minmax(0,1fr));
-    gap: 2rem;
-}
-
-.dt-stat-card {
-    background: #e6e6e6;
-    border-radius: 4px;
-    padding: 2.25rem 1rem;
-    text-align: center;
-    transition: box-shadow 0.4s ease, transform 0.4s ease;
-}
-
-    .dt-stat-card:hover {
-        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.6); 
-        transform: translateY(-5px); 
-    }
-
-        .dt-stat-card:hover .dt-stat-number {
-            color: #00ffff; 
-        }
-
-@media (max-width:992px) {
-    .dt-stats-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-.dt-contact {
-    position: relative;
-    min-height: 100vh;
-    background: linear-gradient(to bottom,#0a1f44 0%, #0D2688 50%, #BDC1C6 100%);
-    background-size: cover;
     overflow: hidden;
+    position: relative;
 }
-
-.dt-contact-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: 2rem;
-    align-items: start;
-    padding: 2rem 1rem 1rem;
-}
-
-@media (max-width:992px) {
-    .dt-contact-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-.dt-hero {
-    background: linear-gradient(to bottom, #0a1f44 0%, #1e90ff 100%);
-    color: #fff;
-    overflow: hidden;
-}
-
 
 .dt-hero-bg {
     position: absolute;
@@ -507,13 +431,15 @@ body {
     grid-template-columns: 1.2fr 1fr;
     align-items: center;
     gap: 2rem;
-    padding: 4rem 1rem 5rem;
+    padding: var(--spacing-xxl) var(--spacing-sm) 5rem;
+    position: relative;
+    z-index: 1;
 }
 
 .dt-hero-title {
     font-family: "DM Serif Text", serif;
     font-weight: 400;
-    font-size: clamp(2rem, 4vw + 1rem, 3.25rem);
+    font-size: clamp(1.8rem, 5vw, 3.25rem);
     line-height: 1.15;
     margin: 0 0 1rem 0;
 }
@@ -522,19 +448,62 @@ body {
     max-width: 52ch;
     margin: 0 0 1.5rem 0;
     color: #e7eef6;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    line-height: 1.5;
 }
 
 .dt-btn-primary {
     display: inline-block;
-    padding: 0.45rem 1.5rem;
-    border: 0,5px solid #000; 
+    padding: 12px 24px;
+    min-height: 44px;
+    border: 0.5px solid #000;
     color: #111;
     background: #fff;
-    border-radius: 0px; 
+    border-radius: 0px;
     text-decoration: none;
     box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    touch-action: manipulation;
+    font-size: 1rem;
+    line-height: 1.2;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Logo Container with BlueBall */
+.dt-hero-logo {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+    .dt-hero-logo .logo-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        animation: rotateBall 5s linear infinite;
+        transform-origin: center;
+    }
+
+    .dt-hero-logo .logo-main {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+@keyframes rotateBall {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
 
 .dt-hero-image {
     display: flex;
@@ -547,39 +516,26 @@ body {
         filter: drop-shadow(0 8px 32px rgba(0,0,0,0.35));
     }
 
-@media (max-width: 992px) {
-    .dt-hero-inner {
-        grid-template-columns: 1fr;
-        text-align: left;
-    }
-
-    .dt-hero-image {
-        order: -1;
-        margin-bottom: 1rem;
-    }
-}
-
 /* Stats Section */
 .dt-stats {
     background: rgb(217,217,217);
     position: relative;
-    padding: 0; 
+    padding: 0;
 }
-
-
 
 .dt-stats-bg {
     position: absolute;
-    top: 0; 
-    left: 0; 
-    width: 350px; 
+    top: 0;
+    left: 0;
+    width: 350px;
     height: 350px;
-    z-index: 0; 
+    z-index: 0;
     pointer-events: none;
 }
+
 .dt-stats-inner {
     position: relative;
-    padding: 4rem 2rem;
+    padding: var(--spacing-xxl) var(--spacing-lg);
     z-index: 1;
 }
 
@@ -587,6 +543,7 @@ body {
     text-align: center;
     font-weight: 700;
     margin-bottom: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
 .dt-stats-grid {
@@ -600,330 +557,41 @@ body {
     border-radius: 4px;
     padding: 2.25rem 1rem;
     text-align: center;
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
 }
+
+    .dt-stat-card:hover {
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.6);
+        transform: translateY(-5px);
+    }
+
+        .dt-stat-card:hover .dt-stat-number {
+            color: #00ffff;
+        }
 
 .dt-stat-number {
     font-weight: bold;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
     background: linear-gradient(to bottom, #0083FF 0%, #01082E 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
+    transition: color 0.3s ease;
 }
-
 
 .dt-stat-label {
     color: #222;
+    font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
-@media (max-width: 992px) {
-    .dt-stats-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-/* Physical Services Section */
-.bg-physical-services {
-    background: linear-gradient(to bottom, #01082E 5%, #014687 34%);
-    height: 450px;
-}
-
-.phc-title {
-    font-family: "DM Serif Text", serif;
-    font-weight: 400;
-    font-size: 5rem;
-    line-height: 1.75;
-    padding-top: 50px;
-}
-
-.services-section {
-    background: linear-gradient(to bottom, #7D89B0 1%, #BDC1C6 40%);
-    padding: 2rem;
-}
-
-.phs-desc {
-    font-family: "DM Sans", sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    text-align: center;
-    font-size: 60px;
-}
-
-.hero-desc {
-    padding-top: 100px;
-    font-family: "DM Serif Text", serif;
-    font-weight: 400;
-    line-height: 2;
-}
-
-.card-title {
-    font-family: "DM Serif Text", serif;
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin-top: 100px;
-    padding-bottom: 50px;
-    line-height: 1.75;
-    color: #004D8F;
-}
-
-.container-card {
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 80%;
-    margin-bottom: 40px;
-}
-
-.row-gutters {
-    margin-right: 0;
-    margin-left: 0;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.card-body {
-    border-radius: 15px;
-    text-align: center;
-    padding: 20px;
-    margin-bottom: 90px;
-    background-color: #D9D9D9;
-    backdrop-filter: blur(10px);
-    min-height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "DM Sans", sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    box-shadow: 0 4px 4px rgba(0, 107, 135, 255);
-}
-
-.card-body:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-.col-md-6 {
-    padding-left: 100px;
-    padding-right: 100px;
-}
-
-.form-title {
-    margin-top: 90px;
-    padding-bottom: 250px;
-    font-family: "DM Serif Text", serif;
-}
-
-.contact-section {
-    background: linear-gradient(to bottom, #BDC1C6 16%, #004D8F);
-}
-
-.physical-contact {
-    padding-left: 400px;
-    padding-right: 400px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-
-
-/*---------*/
-
-html, body {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-
-
-.dt-full-bleed {
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-}
-
-
-.dt-about-us {
-    position: relative;
-}
-
-
-.dt-about-us-content {
-    position: relative;
-    z-index: 6;
-}
-
-
-.dt-about-us-decorative {
-    z-index: 3;
-}
-
-.dt-about-decorative-right {
-    z-index: 4;
-    bottom: -140px;
-}
-
-
-@media (min-width: 993px) {
-    .dt-why-choose-us {
-        margin-top: -180px;
-        position: relative;
-        z-index: 1;
-    }
-}
-
-
-.dt-why-choose-us .dt-why-choose-us-grid,
-.dt-why-choose-us .dt-why-choose-us-card-border {
-    position: relative;
-    z-index: 2;
-}
-
-
-.dt-cyber-services {
-    min-height: 100vh;
-    background: url('/images/CyberBG.png') no-repeat center top;
-    background-size: cover;
-    background-attachment: scroll;
-    position: relative;
-    padding: 0;
-}
-
-.dt-cyber-services-content {
-    text-align: center;
-    color: #fff;
-    padding: 2rem;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
-    max-width: 600px;
-    margin: 2rem auto;
-    min-height: 50vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.dt-cyber-services-title {
-    font-family: "DM Serif Text", serif;
-    font-weight: 400;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    margin: 0 0 1rem 0;
-    text-shadow: 0 2px 4px rgba(0,0,0,.5);
-}
-
-.dt-cyber-services-subtitle {
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    margin: 0;
-    font-weight: 300;
-    text-shadow: 0 2px 4px rgba(0,0,0,.5);
-    opacity: 0.9;
-}
-
-.dt-cyber-services-section {
-    padding: 4rem 0;
-    margin: 2rem 0;
-}
-
-    .dt-cyber-services-section h2 {
-        font-family: "DM Serif Text", serif;
-        color: #fff;
-        font-size: clamp(1.8rem, 3vw, 2.5rem);
-        margin-bottom: 1rem;
-        text-shadow: 0 2px 4px rgba(0,0,0,.5);
-    }
-
-    .dt-cyber-services-section p {
-        color: #fff;
-        font-size: clamp(1rem, 2vw, 1.2rem);
-        text-shadow: 0 2px 4px rgba(0,0,0,.5);
-        opacity: 0.9;
-    }
-
-.dt-test-content {
-    height: 200vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-    .dt-test-content h1 {
-        color: #fff;
-        font-family: "DM Serif Text", serif;
-        font-size: 3rem;
-        text-shadow: 0 2px 4px rgba(0,0,0,.5);
-    }
-
-.dt-test-content-bottom {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-}
-
-    .dt-test-content-bottom h2 {
-        color: #fff;
-        font-family: "DM Serif Text", serif;
-        font-size: 2.5rem;
-        text-shadow: 0 2px 4px rgba(0,0,0,.5);
-        margin-bottom: 1rem;
-    }
-
-    .dt-test-content-bottom p {
-        color: #fff;
-        font-size: 1.2rem;
-        text-shadow: 0 2px 4px rgba(0,0,0,.5);
-        text-align: center;
-    }
-
+/* Mission Statement Section */
 .dt-mission {
     background: rgb(217,217,217);
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
     padding: 0;
 }
-
-
-.dt-mission-inner {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    height: 100px;
-    max-width: none; 
-    padding-left: 0; 
-    margin-left: 0; 
-}
-
-.dt-mission-left {
-    background: #0a1f44;
-    color: white;
-    display: flex;
-    align-items: center;
-    padding: 0 1rem 0 2rem;
-    border-radius: 0px 0 0 0px;
-    clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);
-    flex: 0 0 40%;
-    position: relative;
-    height: 100px;
-    overflow: hidden;
-    gap: 1rem;
-    .dt-mission
-
-{
-    background: rgb(217,217,217);
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
-    padding: 0;
-}
-
 
 .dt-mission-inner {
     display: flex;
@@ -943,12 +611,11 @@ html, body {
     padding: 0 1rem 0 2rem;
     border-radius: 0px 0 0 0px;
     clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);
-    flex: 0 0 40%;
+    flex: 0 0 60%;
     position: relative;
     height: 100px;
     overflow: hidden;
     gap: 1rem;
-    flex: 0 0 60%;
 }
 
 .dt-mission-icon {
@@ -956,7 +623,7 @@ html, body {
     display: flex;
     align-items: center;
     margin-right: 1rem;
-    opacity: 0.8; 
+    opacity: 0.8;
     flex-shrink: 0;
 }
 
@@ -978,7 +645,7 @@ html, body {
 }
 
 .dt-mission-title {
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
     margin: 0;
     color: #fff;
     gap: 0.5rem;
@@ -990,65 +657,21 @@ html, body {
 .dt-mission-right {
     flex: 1;
     padding: 1.5rem;
-    font-size: 1rem;
-    color: #000;
-    text-align: center;
-}
-}
-
-.dt-mission-icon {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-right: 1rem;
-    opacity: 0.8; 
-    flex-shrink: 0;
-}
-
-.dt-mission-bg {
-    position: absolute;
-    left: 1rem; 
-    top: 50%;
-    transform: translateY(-50%); 
-    width: 80px; 
-    height: auto;
-    opacity: 0.3; 
-    z-index: 1;
-}
-
-.dt-mission-lock {
-    width: 32px;
-    height: auto;
-    flex-shrink: 0;
-}
-
-.dt-mission-title {
-    font-size: 1.5rem;
-    margin: 0;
-    color: #fff;
-    gap: 0.5rem;
-    padding-left: 1rem;
-    z-index: 2;
-    white-space: nowrap;
-}
-
-.dt-mission-right {
-    flex: 1;
-    padding: 1.5rem;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     color: #000;
     text-align: center;
 }
 
+/* Services Section */
 .dt-services {
     background: #BDC1C6;
-    padding: 4rem 2rem;
+    padding: var(--spacing-xxl) var(--spacing-lg);
     position: relative;
 }
 
 .dt-services-heading {
     text-align: center;
-    font-size: 1.8rem;
+    font-size: clamp(1.5rem, 4vw, 1.8rem);
     font-weight: bold;
     margin-bottom: 3rem;
     color: #000;
@@ -1058,8 +681,10 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
-    justify-content: center; 
+    justify-content: center;
     position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .dt-service-card {
@@ -1067,45 +692,35 @@ html, body {
     color: #fff;
     width: 45%;
     border-radius: 20px;
-    padding: 2rem;
+    padding: var(--spacing-lg);
     box-shadow: 0 6px 16px rgba(0,0,0,0.3);
     max-width: 700px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-   
     .dt-service-card:nth-child(odd) {
-        margin-left: auto; 
+        margin-left: auto;
     }
 
     .dt-service-card:nth-child(even) {
-        margin-right: auto; 
+        margin-right: auto;
     }
 
- 
     .dt-service-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     }
 
-.dt-services-grid::before {
-    content: "";
-    background: url('~/images/SecurityIcon.png') no-repeat center;
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    left: -100px; 
-    top: 0; 
-}
+    .dt-service-card h3 {
+        font-size: clamp(1.3rem, 3vw, 1.5rem);
+        margin-bottom: 1rem;
+    }
 
-.dt-services-grid::after {
-    content: "";
-    background: url('~/images/Camera.png') no-repeat center;
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    right: -100px; 
-    bottom: 0; 
-}
+    .dt-service-card p {
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+    }
 
 .service-external-icon {
     position: absolute;
@@ -1115,33 +730,26 @@ html, body {
 }
 
 .left-icon {
-    left: 300px; 
-    top: 180px; 
+    left: 300px;
+    top: 180px;
 }
 
 .right-icon {
-    right: 0px; 
-    bottom: 50px; 
+    right: 0px;
+    bottom: 50px;
 }
-
-    .dt-service-card h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .dt-service-card p {
-        margin-bottom: 1.5rem;
-        line-height: 1.5;
-    }
 
 .dt-btn-book {
     background: #000;
     color: #fff;
     border: none;
-    padding: 0.5rem 1.5rem;
+    padding: 12px 24px;
+    min-height: 44px;
     border-radius: 4px;
     cursor: pointer;
     font-weight: 600;
+    touch-action: manipulation;
+    transition: transform 0.2s ease;
 }
 
 .dt-service-icon {
@@ -1154,16 +762,15 @@ html, body {
         margin-bottom: 1rem;
     }
 
-
-/* CTA */
+/* CTA Section */
 .dt-cta {
     background: #BDC1C6;
     text-align: center;
-    padding: 3rem 1rem;
+    padding: var(--spacing-xl) var(--spacing-sm);
 }
 
     .dt-cta h2 {
-        font-size: 1.8rem;
+        font-size: clamp(1.5rem, 4vw, 1.8rem);
         margin-bottom: 1.5rem;
     }
 
@@ -1171,22 +778,26 @@ html, body {
     border: 2px solid #000;
     background: transparent;
     color: #000;
-    padding: 0.5rem 2rem;
+    padding: 12px 32px;
+    min-height: 44px;
     font-weight: bold;
     cursor: pointer;
+    touch-action: manipulation;
+    font-size: 1rem;
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-/* Comments */
+/* Comments Section */
 .dt-comments-wrapper {
     position: relative;
-    background: #BDC1C6; 
+    background: #BDC1C6;
 }
 
 .dt-comments {
-    padding: 4rem 2rem;
+    padding: var(--spacing-xxl) var(--spacing-lg);
     display: flex;
     gap: 2rem;
-    max-width: calc(100% - 300px); 
+    max-width: calc(100% - 300px);
     position: relative;
     z-index: 2;
 }
@@ -1195,7 +806,7 @@ html, body {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: clamp(1.3rem, 3vw, 1.5rem);
     color: #000;
     white-space: nowrap;
     flex-shrink: 0;
@@ -1210,7 +821,7 @@ html, body {
 
 .dt-comment {
     background: #fff;
-    border-radius: 20px; 
+    border-radius: 20px;
     padding: 1.5rem 2rem;
     display: flex;
     align-items: flex-start;
@@ -1233,7 +844,7 @@ html, body {
 
 .dt-comment p {
     margin: 0;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     line-height: 1.4;
     color: #333;
 }
@@ -1248,36 +859,14 @@ html, body {
     object-fit: cover;
     z-index: 1;
     pointer-events: none;
-    opacity: 0.8; 
-}
-
-@media (max-width: 992px) {
-    .dt-comments {
-        max-width: 100%;
-        flex-direction: column;
-    }
-
-    .dt-comments-label {
-        writing-mode: horizontal-tb;
-        transform: none;
-        text-align: center;
-        margin-bottom: 1rem;
-    }
-
-    .mixed-web {
-        position: relative;
-        width: 100%;
-        height: 200px;
-        margin-top: 2rem;
-        transform: scaleX(-1);
-    }
+    opacity: 0.8;
 }
 
 /* Footer */
 .dt-footer {
     background: #2F2F2F;
     color: #fff;
-    padding: 3rem 2rem 2rem;
+    padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-lg);
     position: relative;
 }
 
@@ -1361,22 +950,316 @@ html, body {
     color: #ccc;
 }
 
+/* Cyber Services Section */
+.dt-cyber-services {
+    min-height: 100vh;
+    background: url('/images/CyberBG.png') no-repeat center top;
+    background-size: cover;
+    background-attachment: scroll;
+    position: relative;
+    padding: 0;
+}
+
+.dt-cyber-services-content {
+    text-align: center;
+    color: #fff;
+    padding: var(--spacing-lg);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    max-width: 600px;
+    margin: var(--spacing-lg) auto;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dt-cyber-services-title {
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin: 0 0 1rem 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
+.dt-cyber-services-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    margin: 0;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    opacity: 0.9;
+}
+
+/* Contact Section */
+.dt-contact {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(to bottom,#0a1f44 0%, #0D2688 50%, #BDC1C6 100%);
+    background-size: cover;
+    overflow: hidden;
+}
+
+.dt-contact-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+    padding: var(--spacing-lg) var(--spacing-sm) var(--spacing-sm);
+}
+
+
+.dt-btn-primary:focus,
+.dt-btn-book:focus,
+.dt-btn-contact:focus {
+    outline: 2px solid #0066cc;
+    outline-offset: 2px;
+}
+
+
+@media (hover: hover) {
+    .dt-btn-primary:hover,
+    .dt-btn-book:hover {
+        transform: translateY(-2px);
+    }
+
+    .dt-btn-contact:hover {
+        background-color: #000;
+        color: #fff;
+    }
+}
+
+
+
+/* Extra Small devices */
+@media (max-width: 575px) {
+    .dt-hero-inner {
+        padding: var(--spacing-lg) var(--spacing-sm) var(--spacing-xl);
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+        text-align: center;
+    }
+
+    .dt-hero-logo {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+    }
+
+    .dt-service-card {
+        width: 100% !important;
+        margin: 0 auto !important;
+        max-width: none;
+    }
+
+    .service-external-icon {
+        display: none;
+    }
+
+    .dt-stats-bg {
+        width: 200px;
+        height: 200px;
+    }
+
+    .dt-btn-primary,
+    .dt-btn-book,
+    .dt-btn-contact {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
+        text-align: center;
+    }
+}
+
+/* Small devices */
+@media (min-width: 576px) and (max-width: 767px) {
+    .dt-hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .dt-hero-logo {
+        margin: 0 auto;
+    }
+
+    .dt-stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .dt-service-card {
+        width: 90% !important;
+        margin: 0 auto !important;
+    }
+}
+
+/* Medium devices (tablets, 768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .dt-hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .dt-hero-logo {
+        margin: 0 auto;
+    }
+
+    .dt-service-card {
+        width: 80% !important;
+        margin: 0 auto !important;
+    }
+
+    .service-external-icon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .left-icon {
+        left: 50px;
+    }
+
+    .right-icon {
+        right: 50px;
+    }
+}
+
+/* Large devices and up (desktops, 992px and up) */
+@media (max-width: 992px) {
+    .dt-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dt-contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dt-services-grid {
+        gap: 1.5rem;
+    }
+
+    .dt-service-card {
+        width: 100% !important;
+        margin: 0 auto !important;
+        max-width: 600px;
+    }
+
+    .service-external-icon {
+        display: none;
+    }
+}
+
+/* Mobile Mission Section */
+@media (max-width: 768px) {
+    .dt-mission-inner {
+        flex-direction: column;
+        height: auto;
+        padding: var(--spacing-sm);
+    }
+
+    .dt-mission-left {
+        clip-path: none;
+        flex: 1;
+        width: 100%;
+        border-radius: 8px 8px 0 0;
+        padding: var(--spacing-sm);
+        text-align: center;
+        height: auto;
+        justify-content: center;
+    }
+
+    .dt-mission-bg {
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none;
+        width: 60px;
+        opacity: 0.5;
+    }
+
+    .dt-mission-title {
+        padding-left: 0;
+        white-space: normal;
+    }
+
+    .dt-mission-right {
+        padding: var(--spacing-sm);
+        text-align: left;
+    }
+}
+
+/* Mobile Comments Section */
+@media (max-width: 992px) {
+    .dt-comments {
+        max-width: 100%;
+        flex-direction: column;
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
+
+    .dt-comments-label {
+        writing-mode: horizontal-tb;
+        transform: none;
+        text-align: center;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .mixed-web {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        margin-top: var(--spacing-lg);
+        transform: scaleX(-1);
+    }
+}
+
+/* Mobile Footer */
 @media (max-width: 768px) {
     .dt-footer-top {
         flex-direction: column;
         text-align: center;
-        gap: 2rem;
+        gap: var(--spacing-lg);
     }
 
     .dt-footer-links {
         justify-content: center;
-        gap: 2rem;
+        gap: var(--spacing-lg);
     }
 
     .dt-footer::before {
         display: none;
     }
 }
+
+/* Mobile Cyber Services */
+@media (max-width: 768px) {
+    .dt-cyber-services {
+        background-position: center;
+        background-size: cover;
+        min-height: 60vh;
+    }
+
+    .dt-cyber-services-content {
+        margin: var(--spacing-sm) auto;
+        padding: var(--spacing-sm);
+    }
+}
+
+
+.skip-to-main {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #000;
+    color: #fff;
+    padding: 8px;
+    text-decoration: none;
+    transition: top 0.3s;
+    z-index: 1000;
+}
+
+    .skip-to-main:focus {
+        top: 6px;
+    }
 
 /* ========================================== Contact Page =========================================*/
 .dt-contact {
