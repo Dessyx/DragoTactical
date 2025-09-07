@@ -1796,6 +1796,7 @@ html, body {
     padding-bottom: 50px;
     line-height: 1.75;
     color: #004D8F;
+    font-size: 50px;
 }
 
 .container-card {
@@ -1841,13 +1842,58 @@ html, body {
 }
 
 .form-title {
-    margin-top: 90px;
+    margin-top: 200px;
     padding-bottom: 250px;
     font-family: "DM Serif Text", serif;
+    font-size: 50px;
 }
 
 .contact-section {
     background: linear-gradient(to bottom, #BDC1C6 16%, #004D8F);
+}
+
+.phy-form-control, .phy-form-select {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.5rem;
+    width: 500px;
+    height: 40px;
+}
+
+.phy-form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.phy-form-control:focus, .phy-form-select:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: none;
+}
+
+.phy-btn-primary {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+    .phy-btn-primary:hover {
+        background: rgba(255, 255, 255, 0.16);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+.physical-contact {
+    margin-top: -20px;
+}
+
+.phy-form-select option {
+    background-color: #0b1c3e;
+    color: white;
 }
 
 .physical-contact {
@@ -1857,6 +1903,7 @@ html, body {
     margin-bottom: 15px;
 }
 
+/* Hero Section Decor */
 .circuit1 {
     position: absolute;
     width: 300px;
@@ -1885,5 +1932,74 @@ img .circuit2 {
     vertical-align:bottom;
 }
 
+
+/* -------- Physical Services Section Decor --------- */
+.phy-bg-decor .wavy-element{
+    position: absolute; 
+    top: 20%;
+    left: 10%;
+    width: 500px;
+    height: 500px;
+    z-index: 0; 
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.phy-bg-decor .wavy-element2 {
+    position: absolute;
+    top: 60%;
+    left: 10%;
+    width: 500px;
+    height: 500px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.phy-bg-decor .wavy-element3 {
+    position: absolute;
+    top: 25%;
+    left: 55%;
+    width: 400px;
+    height: 400px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.phy-bg-decor .wavy-element4 {
+    position: absolute;
+    top: 60%;
+    left: 55%;
+    width: 500px;
+    height: 500px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* Physical Service Contact Decor */
+
+.black-circuit {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.black-circuit2 {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 0;
+    left: 70%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
 
 /* ========================================== || Physical Services End || =========================================*/

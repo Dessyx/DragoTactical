@@ -4,12 +4,13 @@
 
 <!-- Hero Section -->
 <header class="bg-physical-services text-white position-relative overflow-hidden">
-
-
     <div class="hero-section-text px-4 text-center">
+
+        <!-- Circuit decor for the top hero section -->
         <div class="circuit-box">
             <img src="~/images/WhiteCircuit.png" class="circuit1" alt="Circuit design">
         </div>
+
         <h1 class="phc-title lh-lg display-4 mb-5 mt-3">
             Physical Services
         </h1>
@@ -18,6 +19,7 @@
             Taking your Physical Security for Granted?
         </p>    
         
+        <!-- Circuit decor for the bottom hero section -->
         <div>
             <img src="~/images/InvertedWhiteCircuit.png" class="circuit2" alt="Circuit design">
         </div>
@@ -42,11 +44,20 @@
             </div>
         </div>
 
-        <h2 class="card-title text-center fw-bold fs-2 mb-5">
+        <h2 class="card-title text-center fw-bold mb-5">
             Our  Services
         </h2>     
-        
+       
         <div class="container-card mx-auto">
+
+            <!-- Services Decor -->
+            <div class="phy-bg-decor">
+                <img src="~/images/Wavy1.png" class="wavy-element" alt="Wavy design">
+                <img src="~/images/Wavy2.png" class="wavy-element2" alt="Wavy design">
+                <img src="~/images/Wavy3.png" class="wavy-element3" alt="Wavy design">
+                <img src="~/images/Wavy4.png" class="wavy-element4" alt="Wavy design">
+            </div>
+
             <div class="row row-gutters">
                 <div class="col-md-6 d-flex flex-column">
                     <div class="card-body">
@@ -95,46 +106,54 @@
 
 <!-- Contact Form Section -->
 <section class="contact-section py-5 position-relative overflow-hidden">
-    <h2 class="form-title text-black text-center fw-bold mb-5">
-        Contact Us
-    </h2>
 
-    <p>
-        Ready to take control of your physical security? Contact us today for a consultation.
-    </p>
+    <div> 
+        <img src="~/images/BlackCircuitDown.png" class="black-circuit" alt="Circuit design"/>
 
-    <div class="physical-contact container mx-auto justify-content-center" ">
-        <form class="bg-transparent" method="post" action="#" novalidate>
+        <h2 class="form-title text-black text-center fw-bold mb-5">
+            Contact Us
+        </h2>
+
+        <img src="~/images/BlackCircuitUp.png" class="black-circuit2" alt="Circuit design" />
+    </div>
+
+    <div class="physical-contact container mx-auto justify-content-center">
+        <form class="phy-form" method="post" action="#" novalidate>
             <div class="row g-3">
-              <div class="col-sm-12 d-flex flex-column-12">
-                <input class="form-control dt-input" type="text" placeholder="Name" required />
-              </div>
                 <div class="col-sm-12 d-flex flex-column-12">
-                <input class="form-control dt-input" type="text" placeholder="Surname" required />
-              </div>
+                    <input class="phy-form-control phy-input" type="text" placeholder="Name" required />
+                </div>
+
                 <div class="col-sm-12 d-flex flex-column-12">
-                <input class="form-control dt-input" type="email" placeholder="Email" required />
-              </div>
+                    <input class="phy-form-control phy-input" type="text" placeholder="Surname" required />
+                </div>
+
                 <div class="col-sm-12 d-flex flex-column-12">
-                <input class="form-control dt-input" type="tel" placeholder="Phone Number" required />
-              </div>
+                    <input class="phy-form-control phy-input" type="email" placeholder="Email" required />
+                </div>
+
                 <div class="col-sm-12 d-flex flex-column-12">
-                <select class="form-select dt-input">
-                  <option selected>Services of Interest</option>
-                  <option>Risk Analysis & Security Audits</option>
-                  <option>On-Site Security Personnel/VIP Protection</option>
-                  <option>Surveillance Systems</option>
-                  <option>Access Control Solutions</option>
-                  <option>Alarm and Emergency Respone Systems</option>
-                  <option>Project Management</option>
-                  <option>Security Consulting</option>
-                  <option>Vehicle & Perimeter Security</option>
-                </select>
-              </div>
+                    <input class="phy-form-control phy-input" type="tel" placeholder="Phone Number" required />
+                </div>
+
+                <div class="col-sm-12 d-flex flex-column-12">
+                    <label for="physical-services" class="form-label"/>
+                    <select class="phy-form-select rounded-3" id="services">
+                        <option selected disabled>Services</option>
+                        <option>Risk Analysis & Security Audits</option>
+                        <option>On-Site Security Personnel/VIP Protection</option>
+                        <option>Surveillance Systems</option>
+                        <option>Access Control Solutions</option>
+                        <option>Alarm and Emergency Respone Systems</option>
+                        <option>Project Management</option>
+                        <option>Security Consulting</option>
+                        <option>Vehicle & Perimeter Security</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="mt-3 d-flex justify-content-center">
-              <button type="submit" class="btn dt-btn-submit">Submit</button>
+            <div class="mt-3 d-flex text-center justify-content-center">
+              <button type="submit" class="btn phy-btn-primary rounded-pill px-5">Submit</button>
             </div>
         </form>
     </div>
