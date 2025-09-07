@@ -85,11 +85,15 @@ body {
 /* ================================== About Us � Section 1 (Gradient hero) ========================================= */
 .dt-about-us {
     min-height: 92vh;
-   
-    background: #0a1f44 url('/images/GradientBG.png') no-repeat top center;
-    background-size: 100% auto; 
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: auto;
+    margin-left: 0;
+    margin-right: 0;
+    background: #0a1f44 url('/images/GradientBG.png') no-repeat center center;
+    background-size: cover; 
     overflow: visible;
-    margin: 0;
     padding: 0;
     z-index: 2;
 }
@@ -107,35 +111,40 @@ body {
 
 .dt-about-us-title {
     font-family: "DM Serif Text", serif;
-    font-weight: 400;
-    font-size: clamp(3rem,6vw,5rem);
-    margin: 0;
+    font-weight: 500;
+    font-size: clamp(4rem,6vw,22rem);
+    margin: 15px;
 }
 
 .dt-about-us-subtitle {
     font-size: clamp(1.2rem,2.5vw,1.8rem);
-    margin: 0;
-    font-weight: 300;
+    margin: 7px;
+    font-weight: 500;
 }
 
 .dt-about-us-spacing {
-    height: 15rem;
+    height: 8.5rem;
 }
+
 
 .dt-about-us-description {
     font-size: 1.1rem;
     line-height: 1.8;
     margin: 0;
-    text-align: justify;
-    text-justify: inter-word;
+    text-align: center;
+    font-weight: 420;
 }
 
 
-.dt-about-us-title, .dt-about-us-subtitle, .dt-about-us-description {
-    color: #fff;
+.dt-about-us-title {
+    color: #ffffff;
     text-shadow: 0 2px 4px rgba(0,0,0,.35);
 }
 
+.dt-about-us-subtitle, .dt-about-us-description {
+    color: #004D8F;
+    text-shadow: 0 2px 4px rgba(0,0,0,.35);
+}
 
 .dt-about-us-decorative {
     position: absolute;
@@ -145,9 +154,10 @@ body {
 }
 
 .dt-about-decorative-left {
-    top: -2%;
-    left: -10%;
-    width: clamp(420px,36vw,560px);
+    position: absolute;
+    top: -10%;
+    left: -7%;
+    width: clamp(420px,36vw,760px);
     height: auto;
     opacity: .95;
     filter: drop-shadow(0 8px 16px rgba(0,0,0,.3));
@@ -167,7 +177,7 @@ body {
 /* ===== Why Choose Us � Section 2 (Blue) ===== */
 .dt-why-choose-us {
     background: url('/images/BlueBG.png') no-repeat center/cover;
-    padding: 17rem 1rem 17rem;
+    padding: 17rem 1rem 7rem;
     margin-top: -160px; 
     overflow: visible;
     z-index: 1;
@@ -203,7 +213,7 @@ body {
     width: 100%;
     max-width: 1100px;
     aspect-ratio: 1/1.7;
-    margin: 0 auto;
+    margin: 0 auto 0 -4rem;
     background: url('/images/AboutUs3.png') no-repeat center/contain;
     display: flex;
     flex-direction: column;
@@ -217,18 +227,19 @@ body {
     font-family: "DM Serif Text", serif;
     font-size: clamp(0.9rem,1vw + 0.8rem,1.3rem);
     color: #fff;
-    margin: 0 0 .75rem;
+    margin: -1rem auto 0 1rem;
     text-align: center;
     text-shadow: 0 2px 4px rgba(0,0,0,.35);
 }
 
 .dt-why-choose-us-card-description {
     color: #fff;
-    line-height: 1.65;
+    line-height: 1.2;
     font-size: clamp(.75rem,.3vw + .7rem,.85rem);
     text-align: center;
+    margin: 0 auto 0 0.9rem;
     max-width: 28ch;
-    margin: 0;
+   
 }
 
 @media (max-width:992px) {
@@ -248,13 +259,13 @@ body {
     background: #BDC1C6;
     overflow: visible;
     padding: 10rem 1rem 10rem;
-    z-index: 0;
+    z-index: 2;
 }
 
 .dt-what-title {
     font-family: "DM Serif Text", serif;
     font-weight: 400;
-    font-size: clamp(2.4rem,4.8vw,4rem);
+    font-size: clamp(3rem,5.5vw,5rem);
     text-align: center;
 
     margin: 0 0 10rem;
@@ -267,7 +278,7 @@ body {
     right: 41vw;
     top: 380px;
     width: clamp(200px,20vw,300px);
-    height: clamp(200px,20vw,300px);
+    height: clamp(200px,20vw,500px);
     background: url('/images/AboutUs5.png') no-repeat center/contain;
     opacity: .9;
     pointer-events: none;
@@ -278,7 +289,7 @@ body {
     right: 75vw;
     top: 381px;
     width: clamp(200px,20vw,300px);
-    height: clamp(200px,20vw,300px);
+    height: clamp(200px,20vw,500px);
     background: url('/images/AboutUs5.png') no-repeat center/contain;
     opacity: .9;
     pointer-events: none;
@@ -287,12 +298,13 @@ body {
 .dt-what-we-offer .bg-right {
     position: absolute;
     right: -0.5vw;
-    top: -300px;
-    width: clamp(500px,50vw,800px);
-    height: clamp(600px,60vw,1000px);
+    top: -180px;
+    width: clamp(400px,40vw,650px);
+    height: clamp(480px,48vw,800px);
     background: url('/images/AboutUs4.png') no-repeat right top/contain;
     opacity: .95;
     pointer-events: none;
+    z-index: 2;
 }
 
 .dt-what-grid {
@@ -315,7 +327,7 @@ body {
         content: attr(data-num);
         position: absolute;
         left: 0;
-        top: .2rem;
+        top: -0.35rem;
         font-family: "DM Serif Text", serif;
         font-size: 1.6rem;
         color: #0e1b3f;
@@ -325,14 +337,14 @@ body {
     font-weight: 600;
     color: #0e1b3f;
     margin: 0 0 .25rem;
-    font-size: 1.15rem;
+    font-size: 1.4rem;
 }
 
 .dt-offer-p {
     margin: 0;
     color: #1b294d;
     line-height: 1.6;
-    font-size: .98rem;
+    font-size: 1.15rem;
 }
 
 @media (max-width:900px) {
@@ -2003,3 +2015,226 @@ img .circuit2 {
 }
 
 /* ========================================== || Physical Services End || =========================================*/
+
+/* ========================================== About Us Mobile Responsive =========================================*/
+
+/* Mobile phones (max-width: 768px) */
+@media (max-width: 768px) {
+    /* About Us Section 1 - Mobile */
+    .dt-about-us {
+        min-height: 70vh;
+        padding: 2rem 0;
+    }
+    
+    .dt-about-us-content {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+    
+    .dt-about-us-title {
+        font-size: clamp(2.5rem, 8vw, 3.5rem);
+        margin: 1rem 0;
+    }
+    
+    .dt-about-us-subtitle {
+        font-size: clamp(1rem, 4vw, 1.3rem);
+        margin: 0.5rem 0 1.5rem;
+    }
+    
+    .dt-about-us-spacing {
+        height: 3rem;
+    }
+    
+    .dt-about-us-description {
+        font-size: 1rem;
+        line-height: 1.6;
+        padding: 0 1rem;
+    }
+    
+    /* Decorative images - Mobile */
+    .dt-about-decorative-left {
+        top: -5%;
+        left: -15%;
+        width: clamp(200px, 50vw, 300px);
+        opacity: 0.7;
+    }
+    
+    .dt-about-decorative-right {
+        right: -20vw;
+        top: 40vh;
+        width: clamp(300px, 60vw, 400px);
+        opacity: 0.7;
+    }
+    
+    /* Why Choose Us Section - Mobile */
+    .dt-why-choose-us {
+        padding: 8rem 1rem 4rem;
+        margin-top: -80px;
+    }
+    
+    .dt-why-choose-us-title {
+        font-size: clamp(2rem, 6vw, 2.8rem);
+        margin-bottom: 2rem;
+    }
+    
+    .dt-why-choose-us-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .dt-why-choose-us-card-border {
+        max-width: 100%;
+        transform: none;
+        padding: 3rem 2rem;
+        margin: 0 auto;
+    }
+    
+    .dt-why-choose-us-card-title {
+        font-size: clamp(1rem, 3vw, 1.2rem);
+        margin: 0 0 1rem;
+    }
+    
+    .dt-why-choose-us-card-description {
+        font-size: clamp(0.85rem, 2.5vw, 1rem);
+        line-height: 1.4;
+        margin: 0;
+        max-width: none;
+    }
+    
+    /* What We Offer Section - Mobile */
+    .dt-what-we-offer {
+        padding: 4rem 1rem;
+    }
+    
+    .dt-what-title {
+        font-size: clamp(2rem, 6vw, 2.8rem);
+        margin-bottom: 3rem;
+    }
+    
+    .dt-what-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .dt-offer-item {
+        padding: 0 0 0 3rem;
+    }
+    
+    .dt-offer-item::before {
+        font-size: 1.4rem;
+        top: -0.2rem;
+    }
+    
+    .dt-offer-h {
+        font-size: clamp(1.1rem, 3vw, 1.3rem);
+        margin-bottom: 0.5rem;
+    }
+    
+    .dt-offer-p {
+        font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+        line-height: 1.5;
+    }
+    
+    /* Background decorative images - Mobile */
+    .dt-what-we-offer .bg-left,
+    .dt-what-we-offer .bg-divider {
+        display: none;
+    }
+    
+    .dt-what-we-offer .bg-right {
+        right: -10vw;
+        top: -50px;
+        width: 70vw;
+        height: 60vh;
+        opacity: 0.6;
+    }
+}
+
+/* Tablets (768px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* About Us Section 1 - Tablet */
+    .dt-about-us {
+        min-height: 80vh;
+    }
+    
+    .dt-about-us-content {
+        max-width: 90%;
+        padding: 4rem 2rem;
+    }
+    
+    .dt-about-us-title {
+        font-size: clamp(3rem, 6vw, 4rem);
+    }
+    
+    .dt-about-us-subtitle {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+    }
+    
+    .dt-about-us-spacing {
+        height: 6rem;
+    }
+    
+    /* Decorative images - Tablet */
+    .dt-about-decorative-left {
+        top: -8%;
+        left: -12%;
+        width: clamp(300px, 40vw, 450px);
+    }
+    
+    .dt-about-decorative-right {
+        right: -15vw;
+        top: 50vh;
+        width: clamp(400px, 50vw, 600px);
+    }
+    
+    /* Why Choose Us Section - Tablet */
+    .dt-why-choose-us {
+        padding: 12rem 1rem 8rem;
+        margin-top: -120px;
+    }
+    
+    .dt-why-choose-us-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .dt-why-choose-us-card-border {
+        max-width: 600px;
+        transform: scale(1.2);
+        padding: 4rem 3rem;
+    }
+    
+    /* What We Offer Section - Tablet */
+    .dt-what-we-offer {
+        padding: 6rem 1rem;
+    }
+    
+    .dt-what-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem 3rem;
+    }
+    
+    .dt-what-we-offer .bg-right {
+        right: -5vw;
+        top: -150px;
+        width: 50vw;
+        height: 70vh;
+    }
+}
+
+/* Large screens (1025px and up) - ensure proper scaling */
+@media (min-width: 1025px) {
+    .dt-about-us-content {
+        max-width: 980px;
+    }
+    
+    .dt-why-choose-us-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .dt-what-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.25rem 4rem;
+    }
+}
