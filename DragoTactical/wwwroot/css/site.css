@@ -1306,3 +1306,356 @@ html, body {
     }
 }
 
+/* ========================================== Cyber Security Services Page =========================================*/
+.dt-cyber-services {
+    min-height: 100vh;
+    background: url('/images/CyberBG.png') no-repeat center top;
+    background-size: cover;
+    background-attachment: scroll;
+    position: relative;
+    padding: 0;
+}
+
+/* Cyber Threat Section */
+.dt-cyber-threat-section {
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.dt-cyber-threat-title {
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    margin: 0 0 2rem 0;
+    color: #fff;
+}
+
+.dt-cyber-threat-hero {
+    height: 350px;
+    background: url('/images/19.png') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+.dt-cyber-threat-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    text-align: center;
+    color: #fff;
+    padding: 0 2rem;
+    transform: translateY(-30px);
+}
+
+    .dt-cyber-threat-content p {
+        font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+        line-height: 1.6;
+        margin: 0;
+        font-weight: 300;
+        opacity: 0.95;
+    }
+
+@media (max-width: 768px) {
+    .dt-cyber-threat-section {
+        padding: 2rem 1rem;
+    }
+
+    .dt-cyber-threat-hero {
+        height: 500px;
+    }
+
+    .dt-cyber-threat-content {
+        padding: 0 1.5rem;
+    }
+}
+
+/* Cyber Services Grid */
+.dt-cyber-services-grid {
+    padding: 0 2rem;
+    max-width: 1600px;
+    margin: -440px auto 0;
+}
+
+.dt-cyber-grid-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: -1000px;
+    justify-content: center;
+}
+
+.dt-cyber-grid-row-single {
+    justify-content: center;
+}
+
+.dt-cyber-grid-item {
+    flex: 1;
+    max-width: 700px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.dt-cyber-grid-row-single .dt-cyber-grid-item {
+    max-width: 700px;
+}
+
+.dt-cyber-grid-image {
+    width: 100%;
+    height: 1500px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .dt-cyber-grid-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+.dt-cyber-grid-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-35%, -70%);
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+    color: #fff;
+    z-index: 10;
+}
+
+.dt-cyber-grid-text {
+    max-width: 60%;
+}
+
+.dt-cyber-grid-title {
+    font-family: "DM Serif Text", serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-weight: 400;
+    margin: 0 0 1rem 0;
+    color: #fff;
+}
+
+.dt-cyber-grid-paragraph {
+    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+    line-height: 1.6;
+    margin: 0;
+    color: #fff;
+    opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+    .dt-cyber-services-grid {
+        padding: 2rem 1rem;
+    }
+
+    .dt-cyber-grid-row {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .dt-cyber-grid-item {
+        max-width: 100%;
+    }
+
+    .dt-cyber-grid-image {
+        height: 300px;
+    }
+}
+
+.dt-cyber-services-content {
+    text-align: center;
+    color: #fff;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    max-width: 600px;
+    margin: 2rem auto;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dt-cyber-services-title {
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin: 0 0 1rem 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
+.dt-cyber-services-subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    margin: 0;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    opacity: 0.9;
+}
+
+.dt-cyber-services-section {
+    padding: 4rem 0;
+    margin: 2rem 0;
+}
+
+    .dt-cyber-services-section h2 {
+        font-family: "DM Serif Text", serif;
+        color: #fff;
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    }
+
+    .dt-cyber-services-section p {
+        color: #fff;
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        text-shadow: 0 2px 4px rgba(0,0,0,.5);
+        opacity: 0.9;
+    }
+
+.dt-test-content {
+    height: 200vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .dt-test-content h1 {
+        color: #fff;
+        font-family: "DM Serif Text", serif;
+        font-size: 3rem;
+        text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    }
+
+.dt-test-content-bottom {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+    .dt-test-content-bottom h2 {
+        color: #fff;
+        font-family: "DM Serif Text", serif;
+        font-size: 2.5rem;
+        text-shadow: 0 2px 4px rgba(0,0,0,.5);
+        margin-bottom: 1rem;
+    }
+
+    .dt-test-content-bottom p {
+        color: #fff;
+        font-size: 1.2rem;
+        text-shadow: 0 2px 4px rgba(0,0,0,.5);
+        text-align: center;
+    }
+
+/* Cyber Services Contact Form */
+.dt-cyber-contact-section {
+    padding: 2rem 0;
+    margin: 600px 0 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.dt-cyber-contact-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.dt-cyber-contact-title {
+    font-family: "DM Serif Text", serif;
+    color: #fff;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    text-align: center;
+}
+
+.dt-cyber-contact-subtitle {
+    color: #fff;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    text-align: center;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.dt-cyber-contact-form {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+    padding: 2rem;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dt-cyber-input.form-control,
+.dt-cyber-input.form-select {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+    .dt-cyber-input.form-control:focus,
+    .dt-cyber-input.form-select:focus {
+        box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+        outline: none;
+        background: rgba(255, 255, 255, 1);
+    }
+
+    .dt-cyber-input.form-control::placeholder {
+        color: #666;
+        opacity: 0.8;
+    }
+
+.dt-cyber-btn-submit {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: #ffffff;
+    padding: 0.8rem 2.5rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+}
+
+    .dt-cyber-btn-submit:hover {
+        background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
+    }
+
+    .dt-cyber-btn-submit:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 10px rgba(30, 58, 138, 0.3);
+    }
+
+@media (max-width: 768px) {
+    .dt-cyber-contact-form {
+        padding: 1.5rem;
+        margin: 0 1rem;
+    }
+
+    .dt-cyber-contact-content {
+        padding: 0 1rem;
+    }
+}
