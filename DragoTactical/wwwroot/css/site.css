@@ -59,10 +59,21 @@ body {
         text-decoration: none;
     }
 
+.dt-navbar-pattern {
+    height: 50px; 
+    margin: 0;
+    padding: 0;
+}
+
 .dt-navbar-pattern img {
     height: 50px;
     width: auto;
     display: block;
+    height: 100%; 
+ 
+    margin: 0;
+    padding: 0;
+    object-fit: cover; 
 }
 
 @media (max-width: 992px) {
@@ -620,10 +631,10 @@ html, body {
     color: white;
     display: flex;
     align-items: center;
-    padding: 0 1rem 0 2rem;
+    padding: 0 1rem 0 0;
     border-radius: 0px 0 0 0px;
     clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);
-    flex: 0 0 60%;
+    flex: 0 0 50%;
     position: relative;
     height: 100px;
     overflow: hidden;
@@ -640,20 +651,19 @@ html, body {
 }
 
 .dt-mission-bg {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 80px;
-    height: auto;
-    opacity: 0.3;
-    z-index: 1;
+    max-height: 100%; 
+    width: auto; 
+    margin: 0;
+    padding: 0;
+    display: block;
+    object-fit: contain; 
 }
 
 .dt-mission-lock {
-    width: 32px;
-    height: auto;
+    width: 57px;
+    height: 52px;
     flex-shrink: 0;
+    margin-left: 1rem;
 }
 
 .dt-mission-title {
@@ -736,19 +746,21 @@ html, body {
 
 .service-external-icon {
     position: absolute;
-    width: 150px;
-    height: 150px;
     z-index: 1;
 }
 
 .left-icon {
     left: 300px;
-    top: 180px;
+    top: 140px;
+    width: 250px;
+    height: 250px;
 }
 
 .right-icon {
     right: 0px;
     bottom: 50px;
+    width: 350px;
+    height: 350px;
 }
 
 .dt-btn-book {
@@ -775,16 +787,48 @@ html, body {
     }
 
 /* CTA Section */
+
+:root {
+    --spacing-xl: 3rem;
+    --spacing-sm: 1rem;
+}
 .dt-cta {
     background: #BDC1C6;
     text-align: center;
     padding: var(--spacing-xl) var(--spacing-sm);
 }
 
-    .dt-cta h2 {
-        font-size: clamp(1.5rem, 4vw, 1.8rem);
-        margin-bottom: 1.5rem;
+.dt-cta-inner {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+    .dt-cta-inner::before,
+    .dt-cta-inner::after {
+        content: '';
+        display: block;
+        height: 3px;
+        background: #8A8F95;
+        border-radius: 2px;
+        margin: 0 auto;
     }
+
+    .dt-cta-inner::before {
+        width: min(100%, 600px);
+        margin-bottom: 2rem;
+    }
+
+    .dt-cta-inner::after {
+        width: min(100%, 600px);
+        margin-top: 2rem;
+    }
+
+.dt-cta h2 {
+    font-size: clamp(1.5rem, 4vw, 1.8rem);
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+}
 
 .dt-btn-contact {
     border: 2px solid #000;
@@ -799,6 +843,9 @@ html, body {
     transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
+    .dt-btn-contact:hover {
+        transform: translateY(-1px);
+    }
 /* Comments Section */
 .dt-comments-wrapper {
     position: relative;
