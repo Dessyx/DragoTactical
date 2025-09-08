@@ -717,12 +717,12 @@ html, body {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 1200px; /* adjust based on your image size */
-    height: 800px; /* adjust based on your image size */
+    width: 1200px; 
+    height: 800px; 
     background: url('../images/Wavy5.png') no-repeat center/cover;
-    opacity: 0.2; /* adjust for visibility */
+    opacity: 0.2; 
     z-index: 0;
-    pointer-events: none; /* so it doesn't interfere with clicks */
+    pointer-events: none; 
 }
 
 .dt-service-card {
