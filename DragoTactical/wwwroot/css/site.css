@@ -31,9 +31,11 @@ body {
 /* ========================================= Navbar ========================================= */
 .dt-navbar {
     background: #d9d9d9;
-    padding: 0 1rem;
+    padding: 0 1rem 0 1rem;
     background-position: right center;
     background-size: auto 100%;
+    overflow: visible;
+    position: relative;
 }
 
 .dt-navbar-logo {
@@ -60,20 +62,27 @@ body {
     }
 
 .dt-navbar-pattern {
-    height: 50px; 
-    margin: 0;
+    height: 140px; 
+    margin: -30px;
     padding: 0;
+    margin-right: -2.5rem;
+    position: relative;
+    z-index: 10;
 }
 
 .dt-navbar-pattern img {
-    height: 50px;
+    height: 60px;
     width: auto;
     display: block;
     height: 100%; 
- 
     margin: 0;
     padding: 0;
     object-fit: cover; 
+}
+
+
+.dt-navbar .container-fluid {
+    padding-right: 0 !important;
 }
 
 @media (max-width: 992px) {
@@ -1513,12 +1522,43 @@ html, body {
 
 /* ========================================== Cyber Security Services Page =========================================*/
 .dt-cyber-services {
-    min-height: 100vh;
+    min-height: 425vh;
     background: url('/images/CyberBG.png') no-repeat center top;
-    background-size: cover;
+    background-size: 100% 100%;
     background-attachment: scroll;
     position: relative;
     padding: 0;
+}
+
+/* BlueTech Decorative Images */
+.dt-cyber-bluetech-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: clamp(120px, 12vw, 220px);
+    height: clamp(120px, 12vw, 220px);
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.dt-cyber-bluetech-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: clamp(120px, 12vw, 220px);
+    height: clamp(120px, 12vw, 220px);
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.dt-cyber-bluetech-left img,
+.dt-cyber-bluetech-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
 
 /* Cyber Threat Section */
@@ -1564,7 +1604,7 @@ html, body {
         font-size: clamp(0.95rem, 1.8vw, 1.2rem);
         line-height: 1.6;
         margin: 0;
-        font-weight: 300;
+        font-weight: 400;
         opacity: 0.95;
     }
 
@@ -1585,8 +1625,8 @@ html, body {
 /* Cyber Services Grid */
 .dt-cyber-services-grid {
     padding: 0 2rem;
-    max-width: 1600px;
-    margin: -440px auto 0;
+    max-width: 1400px;
+    margin: -500px auto 0;
 }
 
 .dt-cyber-grid-row {
@@ -1631,7 +1671,7 @@ html, body {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-35%, -70%);
+    transform: translate(-35%, -65%);
     width: 100%;
     padding: 2rem;
     text-align: center;
@@ -1767,10 +1807,79 @@ html, body {
         text-align: center;
     }
 
+/* The Road Ahead Section */
+.dt-road-ahead-section {
+    padding: 4rem 2rem;
+    margin-top: 30rem;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.dt-road-ahead-decorative-left {
+    position: absolute;
+    left: 15%;
+    top: 65%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 300px;
+    opacity: 0.8;
+    z-index: 1;
+    pointer-events: none;
+}
+
+    .dt-road-ahead-decorative-left img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+.dt-road-ahead-decorative-right {
+    position: absolute;
+    right: 16%;
+    top: 65%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 300px;
+    opacity: 0.8;
+    z-index: 1;
+    pointer-events: none;
+}
+
+    .dt-road-ahead-decorative-right img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+.dt-road-ahead-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.dt-road-ahead-title {
+    font-family: "DM Serif Text", serif;
+    color: #fff;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
+.dt-road-ahead-paragraph {
+    color: #fff;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    line-height: 1.6;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    opacity: 0.9;
+}
+
 /* Cyber Services Contact Form */
 .dt-cyber-contact-section {
     padding: 2rem 0;
-    margin: 600px 0 2rem;
+    margin: 120px 0 2rem;
     position: relative;
     z-index: 2;
 }
@@ -1863,7 +1972,25 @@ html, body {
     .dt-cyber-contact-content {
         padding: 0 1rem;
     }
+
+    /* BlueTech images mobile responsive */
+    .dt-cyber-bluetech-left,
+    .dt-cyber-bluetech-right {
+        width: clamp(80px, 15vw, 140px);
+        height: clamp(80px, 15vw, 140px);
+        top: 0;
+        opacity: 0.7;
+    }
+
+    .dt-cyber-bluetech-left {
+        left: 0;
+    }
+
+    .dt-cyber-bluetech-right {
+        right: 0;
+    }
 }
+
 
 /* ========================================== Physical Services Page =========================================*/
 .bg-physical-services {
