@@ -11,7 +11,7 @@
                 Be proactive, use our Cyber Security Professionals and Physical Security Operators
                 to empower your organization.
             </p>
-            <a class="dt-btn-primary" href="#">Get Protected</a>
+            <a class="dt-btn-primary" href="/Home/CyberServices">Get Protected</a>
         </div>
 
         <!-- Logo Container with BlueBall -->
@@ -83,7 +83,10 @@
                
                 <h3>Cybersecurity</h3>
                 <p>From risk assessments and penetration testing to cloud security and incident response, we ensure that your IT infrastructure is resilient against cyberattacks.</p>
-                <button class="dt-btn-book">Book</button>
+                <form action="/Home/CyberServices">
+                    <button type="submit" class="dt-btn-book">Book</button>
+                </form>
+
             </div>
 
             <!-- Physical Security -->
@@ -91,7 +94,10 @@
                 
                 <h3>Physical Security</h3>
                 <p>Our certified personnel both armed and unarmed provide on-site security, VIP protection, surveillance systems, access control, and emergency response to protect your physical assets.</p>
-                <button class="dt-btn-book">Book</button>
+                <form action="/Home/PhysicalServices">
+                    <button type="submit" class="dt-btn-book">Book</button>
+                </form>
+
             </div>
 
             <!-- Risk Management -->
@@ -99,7 +105,9 @@
               
                 <h3>Risk Management</h3>
                 <p>We specialize in bridging the gap between digital and physical security, creating a holistic protection framework through risk audits, consulting, and project management.</p>
-                <button class="dt-btn-book">Book</button>
+                <form action="/Home/PhysicalServices">
+                    <button type="submit" class="dt-btn-book">Book</button>
+                </form>
             </div>
 
             <!-- Consultancy -->
@@ -107,7 +115,9 @@
                
                 <h3>Consultancy</h3>
                 <p>With offerings like Virtual Cyber Assistants (VCA) and Virtual CISOs (Chief Information Security Officers), we provide flexible, strategic guidance that fits your organization’s unique security needs.</p>
-                <button class="dt-btn-book">Book</button>
+                <form action="/Home/CyberServices">
+                    <button type="submit" class="dt-btn-book">Book</button>
+                </form>
             </div>
         </div>
 
@@ -122,7 +132,9 @@
 <section class="dt-cta">
     <div class="dt-cta-inner">
         <h2>Don't wait for a breach —<br />secure your business today.</h2>
-        <button class="dt-btn-contact">Contact</button>
+        <form action="/Home/ContactUs">
+            <button type="submit" class="dt-btn-book">Book</button>
+        </form>
     </div>
 </section>
 
@@ -154,21 +166,22 @@
 <footer class="dt-footer">
     <div class="dt-footer-top">
         <div class="dt-footer-logo">
-            <img src="~/images/TransparentLogo.png" alt="Drago Tactical Logo" />
+            <img src="~/images/DragoTactical.png" alt="Drago Tactical Logo" class="main-logo" />
+            <img src="~/images/TransparentLogo.png" alt="Transparent Logo" class="transparent-logo" />
         </div>
         <div class="dt-footer-links">
             <div>
                 <h4>Our Services</h4>
                 <ul>
-                    <li><a href="#">Physical</a></li>
-                    <li><a href="#">Cyber</a></li>
+                    <li><a href="/Home/PhysicalServices">Physical</a></li>
+                    <li><a href="/Home/CyberServices">Cyber</a></li>
                 </ul>
             </div>
             <div>
                 <h4>Our Company</h4>
                 <ul>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="/Home/AboutUs">About</a></li>
+                    <li><a href="/Home/ContactUs">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -177,3 +190,4 @@
         <p>Copyright © 2025 DragoTactical Cyber. All Rights Reserved.</p>
     </div>
 </footer>
+

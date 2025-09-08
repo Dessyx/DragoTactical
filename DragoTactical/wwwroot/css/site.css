@@ -451,7 +451,7 @@ html, body {
 
 .dt-hero-inner {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1fr 1.2fr;
     align-items: center;
     gap: 2rem;
     padding: var(--spacing-xxl) var(--spacing-sm) 5rem;
@@ -462,16 +462,17 @@ html, body {
 .dt-hero-title {
     font-family: "DM Serif Text", serif;
     font-weight: 400;
-    font-size: clamp(1.8rem, 5vw, 3.25rem);
+    font-size: clamp(1.4rem, 4vw, 2.75rem);
     line-height: 1.15;
     margin: 0 0 1rem 0;
+    white-space: nowrap;
 }
 
 .dt-hero-subtitle {
     max-width: 52ch;
     margin: 0 0 1.5rem 0;
     color: #e7eef6;
-    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    font-size: clamp(0.8rem, 2vw, 1rem);
     line-height: 1.5;
 }
 
@@ -494,10 +495,10 @@ html, body {
 /* Logo Container with BlueBall */
 .dt-hero-logo {
     position: relative;
-    width: 250px;
-    height: 250px;
+    width: 330px;
+    height: 330px;
     margin-left: auto;
-    margin-right: 20px;
+    margin-right: 30px;
 }
 
     .dt-hero-logo .logo-bg {
@@ -512,8 +513,8 @@ html, body {
 
     .dt-hero-logo .logo-main {
         position: absolute;
+        left: -10px;
         top: 0;
-        left: 0;
         width: 100%;
         height: 100%;
     }
@@ -709,6 +710,21 @@ html, body {
     margin: 0 auto;
 }
 
+/* Add a wavy background behind the services */
+.dt-services::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1200px; /* adjust based on your image size */
+    height: 800px; /* adjust based on your image size */
+    background: url('../images/Wavy5.png') no-repeat center/cover;
+    opacity: 0.2; /* adjust for visibility */
+    z-index: 0;
+    pointer-events: none; /* so it doesn't interfere with clicks */
+}
+
 .dt-service-card {
     background: linear-gradient(180deg, #0D2688 0%, #01082E 100%);
     color: #fff;
@@ -718,6 +734,7 @@ html, body {
     box-shadow: 0 6px 16px rgba(0,0,0,0.3);
     max-width: 700px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1;
 }
 
     .dt-service-card:nth-child(odd) {
@@ -767,9 +784,22 @@ html, body {
     background: #000;
     color: #fff;
     border: none;
-    padding: 12px 24px;
+    padding: 10px 30px;
     min-height: 44px;
-    border-radius: 4px;
+    border-radius: 0px;
+    cursor: pointer;
+    font-weight: 600;
+    touch-action: manipulation;
+    transition: transform 0.2s ease;
+}
+
+.dt-btn-book:hover {
+    background: white;
+    color: black;
+    border: none;
+    padding: 10px 30px;
+    min-height: 44px;
+    border-radius: 0px;
     cursor: pointer;
     font-weight: 600;
     touch-action: manipulation;
@@ -911,14 +941,15 @@ html, body {
 .mixed-web {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 85px;
     bottom: 0;
     width: 500px;
-    height: 100%;
+    height: 500px;
     object-fit: cover;
     z-index: 1;
     pointer-events: none;
     opacity: 0.8;
+    transform: scaleY(-1);
 }
 
 /* Footer */
@@ -954,19 +985,41 @@ html, body {
 }
 
 .dt-footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 1rem; 
     flex: 0 0 auto;
 }
 
     .dt-footer-logo img {
-        max-width: 250px;
+        max-width: 200px; 
         height: auto;
     }
+
+.main-logo {
+    order: 1;
+    width: 300px; 
+    max-width: 100%; 
+    height: auto; 
+}
+
+.transparent-logo {
+    order: 2;
+    width: 200px; 
+    max-width: 100%; 
+    height: auto; 
+    opacity: 0.8; 
+}
+
 
 .dt-footer-links {
     display: flex;
     gap: 4rem;
     flex: 1;
-    justify-content: flex-end;
+    justify-content: center; 
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
 
     .dt-footer-links > div {
@@ -1321,6 +1374,7 @@ html, body {
     }
 
 /* ========================================== Contact Page =========================================*/
+
 .dt-contact {
     position: relative;
     min-height: 100vh;
