@@ -248,7 +248,7 @@ body {
 /* ===== Why Choose Us � Section 2 (Blue) ===== */
 .dt-why-choose-us {
     background: url('/images/BlueBG.png') no-repeat center/cover;
-    padding: 17rem 1rem 7rem;
+    padding: 12rem 1rem 7rem;
     margin-top: -160px; 
     overflow: visible;
     z-index: 1;
@@ -260,7 +260,7 @@ body {
     font-size: clamp(2.4rem,4.8vw,4rem);
     color: #fff;
     text-align: center;
-    margin: 0 0 2.25rem;
+    margin: 0 0 4rem;
     text-shadow: 0 2px 6px rgba(0,0,0,.35);
 }
 
@@ -269,7 +269,7 @@ body {
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    gap: clamp(1rem,2.2vw,2rem);
+    gap: clamp(2rem,4vw,3rem);
     align-items: start;
 }
 
@@ -282,35 +282,50 @@ body {
 .dt-why-choose-us-card-border {
     position: relative;
     width: 100%;
-    max-width: 1100px;
-    aspect-ratio: 1/1.7;
-    margin: 0 auto 0 -4rem;
-    background: url('/images/AboutUs3.png') no-repeat center/contain;
+    max-width: 450px;
+    height: 400px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 8rem 6.5rem;
-    transform: scale(1.5);
+    padding: 2.5rem 1.5rem;
+    transform: scale(0.9);
+    border: 3px solid transparent;
+    border-radius: 20px;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) padding-box,
+        linear-gradient(135deg, #00ffff, #3b82f6, #00ffff) border-box;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.5),
+        0 0 40px rgba(59, 130, 246, 0.3),
+        inset 0 0 20px rgba(0, 255, 255, 0.1);
 }
 
 .dt-why-choose-us-card-title {
     font-family: "DM Serif Text", serif;
-    font-size: clamp(0.9rem,1vw + 0.8rem,1.3rem);
+    font-size: clamp(1.1rem,1.2vw + 1rem,1.6rem);
     color: #fff;
-    margin: -1rem auto 0 1rem;
+    margin: 0 auto 0.8rem auto;
     text-align: center;
     text-shadow: 0 2px 4px rgba(0,0,0,.35);
+    position: relative;
+    z-index: 2;
+    max-width: 80%;
+    line-height: 1.3;
 }
 
 .dt-why-choose-us-card-description {
     color: #fff;
-    line-height: 1.2;
-    font-size: clamp(.75rem,.3vw + .7rem,.85rem);
+    line-height: 1.4;
+    font-size: clamp(0.95rem,0.4vw + 0.9rem,1.15rem);
     text-align: center;
-    margin: 0 auto 0 0.9rem;
-    max-width: 28ch;
-   
+    margin: 0 auto;
+    max-width: 70%;
+    position: relative;
+    z-index: 2;
+    padding: 0 0.5rem;
 }
 
 @media (max-width:992px) {
@@ -319,8 +334,37 @@ body {
     }
 
     .dt-why-choose-us-card-border {
-        max-width: 520px;
+        max-width: 380px;
+        height: 350px;
         transform: none;
+        margin: 0 auto;
+        padding: 2rem 1.25rem;
+        align-items: center;
+        border: 2px solid transparent;
+        border-radius: 15px;
+        background: 
+            linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) padding-box,
+            linear-gradient(135deg, #00ffff, #3b82f6, #00ffff) border-box;
+        box-shadow: 
+            0 0 15px rgba(0, 255, 255, 0.4),
+            0 0 30px rgba(59, 130, 246, 0.2);
+    }
+
+    .dt-why-choose-us-card-title {
+        max-width: 75%;
+        font-size: clamp(1.1rem, 2.8vw, 1.4rem);
+        line-height: 1.25;
+        text-align: center;
+        margin: 0 auto 0.6rem auto;
+    }
+
+    .dt-why-choose-us-card-description {
+        max-width: 65%;
+        font-size: clamp(0.95rem, 2.3vw, 1.15rem);
+        line-height: 1.35;
+        padding: 0 0.4rem;
+        text-align: center;
+        margin: 0 auto;
     }
 }
 
@@ -1284,82 +1328,92 @@ html, body {
 
     /* Cyber Services - Tablet optimizations */
     .dt-cyber-threat-section {
-        padding: 2rem 1rem;
+        padding: 3rem 2rem;
     }
 
     .dt-cyber-threat-title {
-        font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-        margin-bottom: 1.5rem;
+        font-size: clamp(2rem, 4vw, 2.6rem);
+        margin-bottom: 2.5rem;
+        line-height: 1.4;
     }
 
     .dt-cyber-threat-hero {
-        height: 350px;
-        margin-bottom: 1.5rem;
+        height: 220px;
+        margin-bottom: 3rem;
     }
 
-    .dt-cyber-threat-content p {
-        font-size: clamp(0.8rem, 2.2vw, 1rem);
+    .dt-cyber-threat-content {
+        padding: 2rem 1.5rem;
         max-width: 85%;
     }
 
+    .dt-cyber-threat-content p {
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+        max-width: 100%;
+        line-height: 1.7;
+    }
+
     .dt-cyber-services-grid {
-        padding: 0 0.5rem;
-        margin-top: -80px;
+        padding: 0 2rem;
+        margin-top: 2rem;
     }
 
     .dt-cyber-grid-row {
         flex-direction: column;
-        gap: 0.3rem;
-        margin-bottom: 0.3rem;
+        gap: 3.5rem;
+        margin-bottom: 4rem;
     }
 
     .dt-cyber-grid-image {
-        height: 250px;
+        height: 300px;
     }
 
     .dt-cyber-grid-content {
-        transform: translate(-50%, -50%);
-        padding: 0.8rem;
-        left: 50%;
-        top: 50%;
+        padding: 2.5rem 2rem;
     }
 
     .dt-cyber-grid-text {
-        max-width: 40%;
+        max-width: 100%;
         text-align: center;
-        margin-left: 15%;
     }
 
     .dt-cyber-grid-title {
-        font-size: clamp(0.8rem, 3vw, 1.1rem);
-        margin-bottom: 0.4rem;
-        line-height: 1.1;
+        font-size: clamp(1.3rem, 3.5vw, 1.6rem);
+        margin-bottom: 1.5rem;
+        line-height: 1.4;
         text-align: center;
     }
 
     .dt-cyber-grid-paragraph {
-        font-size: clamp(0.65rem, 2.5vw, 0.8rem);
-        line-height: 1.3;
+        font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+        line-height: 1.6;
         text-align: center;
     }
 
     .dt-road-ahead-section {
-        padding: 2rem 1rem;
-        margin-top: 10rem;
+        padding: 4rem 2rem;
+        margin-top: 3rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
     }
 
     .dt-road-ahead-title {
-        font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-        margin-bottom: 1rem;
+        font-size: clamp(2rem, 4.2vw, 2.4rem);
+        margin-bottom: 2rem;
+        word-wrap: break-word;
+        line-height: 1.4;
     }
 
     .dt-road-ahead-content {
-        left: 12%;
+        max-width: 85%;
+        padding: 0 1.5rem;
     }
 
     .dt-road-ahead-paragraph {
-        font-size: clamp(0.8rem, 2.2vw, 1rem);
-        max-width: 85%;
+        font-size: clamp(1rem, 2.5vw, 1.1rem);
+        max-width: 100%;
+        word-wrap: break-word;
+        line-height: 1.7;
     }
 
     .dt-cyber-contact-section {
@@ -1370,6 +1424,262 @@ html, body {
     .dt-cyber-contact-form {
         padding: 1.5rem;
         margin: 0 0.5rem;
+    }
+}
+
+/* Tablet specific overrides - more aggressive */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .dt-cyber-threat-section {
+        padding: 4rem 2.5rem !important;
+    }
+
+    .dt-cyber-threat-title {
+        font-size: clamp(2.2rem, 4.5vw, 2.8rem) !important;
+        margin-bottom: 2.5rem !important;
+        line-height: 1.4 !important;
+    }
+
+    .dt-cyber-threat-hero {
+        height: 250px !important;
+        margin-bottom: 3.5rem !important;
+    }
+
+    .dt-cyber-threat-content {
+        padding: 2.5rem 2rem !important;
+        max-width: 80% !important;
+    }
+
+    .dt-cyber-threat-content p {
+        font-size: clamp(1.1rem, 2.8vw, 1.3rem) !important;
+        line-height: 1.8 !important;
+    }
+
+    .dt-cyber-services-grid {
+        padding: 0 2.5rem !important;
+        margin-top: 2.5rem !important;
+    }
+
+    .dt-cyber-grid-row {
+        gap: 4rem !important;
+        margin-bottom: 4.5rem !important;
+    }
+
+    .dt-cyber-grid-image {
+        height: 350px !important;
+    }
+
+    .dt-cyber-grid-content {
+        padding: 3rem 2.5rem !important;
+    }
+
+    .dt-cyber-grid-title {
+        font-size: clamp(1.4rem, 3.8vw, 1.8rem) !important;
+        margin-bottom: 1.8rem !important;
+        line-height: 1.4 !important;
+    }
+
+    .dt-cyber-grid-paragraph {
+        font-size: clamp(1rem, 3vw, 1.2rem) !important;
+        line-height: 1.7 !important;
+    }
+
+    .dt-road-ahead-section {
+        padding: 4.5rem 2.5rem !important;
+        margin-top: 3.5rem !important;
+        margin-left: 2.5rem !important;
+        margin-right: 2.5rem !important;
+    }
+
+    .dt-road-ahead-title {
+        font-size: clamp(2.2rem, 4.5vw, 2.6rem) !important;
+        margin-bottom: 2.2rem !important;
+        line-height: 1.4 !important;
+    }
+
+    .dt-road-ahead-content {
+        max-width: 80% !important;
+        padding: 0 2rem !important;
+    }
+
+    .dt-road-ahead-paragraph {
+        font-size: clamp(1.1rem, 2.8vw, 1.2rem) !important;
+        line-height: 1.8 !important;
+    }
+}
+
+/* iPad/Tablet specific optimizations */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .dt-road-ahead-section {
+        padding: 4rem 2.5rem;
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
+    }
+
+    .dt-road-ahead-content {
+        max-width: 80%;
+        padding: 0 2rem;
+    }
+
+    .dt-road-ahead-title {
+        font-size: clamp(2.2rem, 4vw, 2.6rem);
+        line-height: 1.4;
+    }
+
+    .dt-road-ahead-paragraph {
+        font-size: clamp(1.1rem, 2.2vw, 1.2rem);
+        line-height: 1.7;
+    }
+
+    .dt-cyber-threat-section {
+        padding: 4rem 2.5rem;
+    }
+
+    .dt-cyber-threat-content {
+        max-width: 80%;
+        padding: 2rem 2rem;
+    }
+
+    .dt-cyber-threat-content p {
+        font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+        line-height: 1.7;
+    }
+
+    .dt-cyber-services-grid {
+        padding: 0 2.5rem;
+    }
+
+    .dt-cyber-grid-content {
+        padding: 2.5rem 2rem;
+    }
+
+    .dt-cyber-grid-title {
+        font-size: clamp(1.4rem, 3vw, 1.7rem);
+        line-height: 1.4;
+    }
+
+    .dt-cyber-grid-paragraph {
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+        line-height: 1.6;
+    }
+}
+
+/* iPad Air specific (820px width) */
+@media (min-width: 820px) and (max-width: 820px) {
+    .dt-cyber-threat-hero {
+        height: 280px !important;
+    }
+
+    .dt-cyber-grid-image {
+        height: 380px !important;
+    }
+
+    .dt-cyber-grid-content {
+        padding: 3.5rem 2.5rem !important;
+    }
+
+    .dt-cyber-grid-title {
+        font-size: clamp(1.5rem, 4vw, 1.9rem) !important;
+        margin-bottom: 2rem !important;
+    }
+
+    .dt-cyber-grid-paragraph {
+        font-size: clamp(1.1rem, 3.2vw, 1.3rem) !important;
+        line-height: 1.8 !important;
+    }
+}
+
+/* iPad Pro specific (1024px width) */
+@media (min-width: 1024px) and (max-width: 1024px) {
+    .dt-cyber-threat-hero {
+        height: 350px !important;
+    }
+
+    .dt-cyber-grid-image {
+        height: 500px !important;
+    }
+
+    .dt-cyber-grid-content {
+        padding: 4.5rem 3.5rem !important;
+    }
+
+    .dt-cyber-grid-title {
+        font-size: clamp(1.6rem, 4.2vw, 2rem) !important;
+        margin-bottom: 2.5rem !important;
+    }
+
+    .dt-cyber-grid-paragraph {
+        font-size: clamp(1.2rem, 3.5vw, 1.4rem) !important;
+        line-height: 1.8 !important;
+    }
+
+    .dt-road-ahead-section {
+        padding: 5rem 3rem !important;
+        margin-top: 4rem !important;
+        margin-left: 3rem !important;
+        margin-right: 3rem !important;
+    }
+
+    .dt-road-ahead-content {
+        max-width: 75% !important;
+        padding: 0 2.5rem !important;
+    }
+
+    .dt-road-ahead-title {
+        font-size: clamp(2.4rem, 5vw, 2.8rem) !important;
+        margin-bottom: 2.5rem !important;
+        line-height: 1.4 !important;
+    }
+
+    .dt-road-ahead-paragraph {
+        font-size: clamp(1.2rem, 3vw, 1.3rem) !important;
+        line-height: 1.8 !important;
+    }
+}
+
+/* iPad Pro broader range (1024px and up to 1366px) */
+@media (min-width: 1024px) and (max-width: 1366px) {
+    .dt-cyber-threat-hero {
+        height: 380px !important;
+    }
+
+    .dt-cyber-grid-image {
+        height: 550px !important;
+    }
+
+    .dt-cyber-grid-content {
+        padding: 5rem 4rem !important;
+    }
+
+    .dt-cyber-grid-title {
+        font-size: clamp(1.7rem, 4.5vw, 2.1rem) !important;
+        margin-bottom: 2.8rem !important;
+    }
+
+    .dt-cyber-grid-paragraph {
+        font-size: clamp(1.3rem, 3.8vw, 1.5rem) !important;
+        line-height: 1.8 !important;
+    }
+
+    .dt-road-ahead-section {
+        padding: 5.5rem 3.5rem !important;
+        margin-top: 4.5rem !important;
+        margin-left: 3.5rem !important;
+        margin-right: 3.5rem !important;
+    }
+
+    .dt-road-ahead-content {
+        max-width: 70% !important;
+        padding: 0 3rem !important;
+    }
+
+    .dt-road-ahead-title {
+        font-size: clamp(2.5rem, 5.2vw, 2.9rem) !important;
+        margin-bottom: 2.8rem !important;
+    }
+
+    .dt-road-ahead-paragraph {
+        font-size: clamp(1.3rem, 3.2vw, 1.4rem) !important;
+        line-height: 1.8 !important;
     }
 }
 
@@ -1827,7 +2137,7 @@ html, body {
 
 /* Cyber Threat Section */
 .dt-cyber-threat-section {
-    padding: 3rem 2rem;
+    padding: 3rem 2rem 4rem;
     text-align: center;
 }
 
@@ -1840,9 +2150,8 @@ html, body {
 }
 
 .dt-cyber-threat-hero {
-    height: 350px;
-    background: url('/images/19.png') no-repeat center center;
-    background-size: cover;
+    height: 180px;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
     position: relative;
     display: flex;
     align-items: center;
@@ -1851,54 +2160,55 @@ html, body {
     overflow: hidden;
     max-width: 900px;
     margin: 0 auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 
 .dt-cyber-threat-content {
     position: relative;
     z-index: 2;
-    max-width: 600px;
+    max-width: 80%;
     text-align: center;
     color: #fff;
-    padding: 0 2rem;
-    transform: translateY(-30px);
+    padding: 1rem;
 }
 
     .dt-cyber-threat-content p {
-        font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+        font-size: clamp(0.9rem, 1.8vw, 1.2rem);
         line-height: 1.6;
         margin: 0;
         font-weight: 400;
         opacity: 0.95;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        word-wrap: break-word;
     }
 
 @media (max-width: 768px) {
     .dt-cyber-threat-section {
-        padding: 1.5rem 0.5rem;
+        padding: 3rem 0.5rem 3rem;
     }
 
     .dt-cyber-threat-title {
         font-size: clamp(1.4rem, 5vw, 2rem);
-        margin-bottom: -7rem;
+        margin-bottom: 1rem;
         line-height: 1.1;
     }
 
     .dt-cyber-threat-hero {
-        height: 450px;
-        margin-bottom: -9rem;
+        height: 140px;
+        margin-bottom: 2rem;
     }
 
     .dt-cyber-threat-content {
-        padding: 0 1rem;
-        left: 4.5%;
-        transform: translateY(-10px);
+        padding: 1rem 0.8rem;
+        max-width: 90%;
     }
 
     .dt-cyber-threat-content p {
-        font-size: clamp(0.7rem, 2.5vw, 0.9rem);
-        line-height: 1.4;
+        font-size: clamp(0.8rem, 2.5vw, 1rem);
+        line-height: 1.5;
         margin: 0;
-        max-width: 90%;
+        word-wrap: break-word;
     }
 }
 
@@ -1906,13 +2216,13 @@ html, body {
 .dt-cyber-services-grid {
     padding: 0 2rem;
     max-width: 1400px;
-    margin: -500px auto 0;
+    margin: -100px auto 0;
 }
 
 .dt-cyber-grid-row {
     display: flex;
-    gap: 0.5rem;
-    margin-bottom: -1000px;
+    gap: 2rem;
+    margin-bottom: 3rem;
     justify-content: center;
 }
 
@@ -1922,37 +2232,51 @@ html, body {
 
 .dt-cyber-grid-item {
     flex: 1;
+    width: 100%;
     max-width: 700px;
     position: relative;
     overflow: hidden;
     z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+}
+
+.dt-cyber-grid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .dt-cyber-grid-row-single .dt-cyber-grid-item {
+    width: 100%;
     max-width: 700px;
 }
 
 .dt-cyber-grid-image {
     width: 100%;
-    height: 1500px;
+    height: 280px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
     .dt-cyber-grid-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
+        display: none;
     }
 
 .dt-cyber-grid-content {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-35%, -65%);
-    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 2rem;
     text-align: center;
     color: #fff;
@@ -1960,15 +2284,18 @@ html, body {
 }
 
 .dt-cyber-grid-text {
-    max-width: 60%;
+    max-width: 100%;
+    position: relative;
+    z-index: 2;
 }
 
 .dt-cyber-grid-title {
     font-family: "DM Serif Text", serif;
     font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-    font-weight: 400;
-    margin: 0 0 1rem 0;
+    font-weight: 500;
+    margin: 0 0 1.5rem 0;
     color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .dt-cyber-grid-paragraph {
@@ -1977,54 +2304,78 @@ html, body {
     margin: 0;
     color: #fff;
     opacity: 0.95;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Desktop specific styles */
+@media (min-width: 1024px) {
+    .dt-cyber-services-grid {
+        margin: -50px auto 0;
+        padding: 0 3rem;
+    }
+
+    .dt-cyber-grid-row {
+        gap: 3rem;
+        margin-bottom: 4rem;
+    }
+
+    .dt-cyber-grid-image {
+        height: 320px;
+    }
+
+    .dt-cyber-grid-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .dt-cyber-grid-text {
+        max-width: 85%;
+        margin: 0 auto;
+    }
 }
 
 @media (max-width: 768px) {
     .dt-cyber-services-grid {
         padding: 0.5rem 0.3rem;
-        margin-top: -70px;
+        margin-top: 2rem;
     }
 
     .dt-cyber-grid-row {
         flex-direction: column;
-        gap: 0.2rem;
-        margin-bottom: 0.2rem;
+        gap: 2rem;
+        margin-bottom: 2.5rem;
     }
 
     .dt-cyber-grid-item {
+        width: 100%;
         max-width: 100%;
-        margin-bottom: -6rem;
+        margin-bottom: 0;
     }
 
     .dt-cyber-grid-image {
-        height: 265px;
-        border-radius: 6px;
+        height: 180px;
+        border-radius: 8px;
         overflow: hidden;
     }
 
     .dt-cyber-grid-content {
-        transform: translate(-50%, -50%);
-        padding: 0.1rem;
-        left: 50%;
-        top: 43%;
+        padding: 1rem 0.8rem;
     }
 
     .dt-cyber-grid-text {
-        max-width: 40%;
+        max-width: 100%;
         text-align: center;
-        margin-left: 28%;
     }
 
     .dt-cyber-grid-title {
-        font-size: clamp(0.7rem, 2.8vw, 0.9rem);
-        margin-bottom: 0.3rem;
-        line-height: 1.1;
+        font-size: clamp(1rem, 3.5vw, 1.2rem);
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
         text-align: center;
     }
 
     .dt-cyber-grid-paragraph {
-        font-size: clamp(0.6rem, 2.2vw, 0.75rem);
-        line-height: 1.2;
+        font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+        line-height: 1.4;
         text-align: center;
     }
 }
@@ -2121,62 +2472,72 @@ html, body {
 /* The Road Ahead Section */
 .dt-road-ahead-section {
     padding: 4rem 2rem;
-    margin-top: 30rem;
+    margin-top: 4rem;
     text-align: center;
     position: relative;
     z-index: 2;
+    background: #BDC1C6;
+    border-radius: 12px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
 }
 
 @media (max-width: 768px) {
     .dt-road-ahead-section {
-        padding: 0.5rem 0.3rem;
-        margin-top: 1rem;
+        padding: 2rem 1rem;
+        margin-top: 2rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
 
     .dt-road-ahead-title {
-        font-size: clamp(1rem, 3.5vw, 1.4rem);
-        margin-bottom: 0.5rem;
-        line-height: 1.1;
-      
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        margin-bottom: 1rem;
+        line-height: 1.2;
+        word-wrap: break-word;
     }
 
     .dt-road-ahead-content {
-        left: 5%;
+        max-width: 95%;
+        padding: 0 0.5rem;
     }
 
     .dt-road-ahead-paragraph {
-        font-size: clamp(0.6rem, 2.2vw, 0.75rem);
-        line-height: 1.3;
-        max-width: 85%;
+        font-size: clamp(0.85rem, 3vw, 1rem);
+        line-height: 1.5;
+        max-width: 100%;
+        word-wrap: break-word;
     }
 
     .dt-road-ahead-decorative-left,
     .dt-road-ahead-decorative-right {
-        width: 100px !important;
-        height: 100px !important;
+        width: 60px !important;
+        height: 60px !important;
         opacity: 0.6;
     }
 
     .dt-road-ahead-decorative-left {
-        left: 30% !important;
-        top: 50% !important;
-        transform: none !important;
+        left: 15% !important;
+        top: 30% !important;
+        transform: translateY(-50%) !important;
     }
 
     .dt-road-ahead-decorative-right {
-        right: -7% !important;
-        top: 50% !important;
-        transform: none !important;
+        right: 15% !important;
+        top: 30% !important;
+        transform: translateY(-50%) !important;
     }
 }
 
 .dt-road-ahead-decorative-left {
     position: absolute;
-    left: 15%;
-    top: 65%;
+    left: 20%;
+    top: 30%;
     transform: translateY(-50%);
-    width: 300px;
-    height: 300px;
+    width: 120px;
+    height: 120px;
     opacity: 0.8;
     z-index: 1;
     pointer-events: none;
@@ -2190,11 +2551,11 @@ html, body {
 
 .dt-road-ahead-decorative-right {
     position: absolute;
-    right: 16%;
-    top: 65%;
+    right: 20%;
+    top: 30%;
     transform: translateY(-50%);
-    width: 300px;
-    height: 300px;
+    width: 120px;
+    height: 120px;
     opacity: 0.8;
     z-index: 1;
     pointer-events: none;
@@ -2215,19 +2576,21 @@ html, body {
 
 .dt-road-ahead-title {
     font-family: "DM Serif Text", serif;
-    color: #fff;
-    font-size: clamp(2rem, 4vw, 3rem);
+    color: #0e1b3f;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     margin-bottom: 1.5rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    text-shadow: 0 2px 4px rgba(0,0,0,.3);
+    word-wrap: break-word;
 }
 
 .dt-road-ahead-paragraph {
-    color: #fff;
-    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: #1b294d;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
     line-height: 1.6;
     margin: 0;
-    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    text-shadow: 0 1px 2px rgba(0,0,0,.2);
     opacity: 0.9;
+    word-wrap: break-word;
 }
 
 /* Cyber Services Contact Form */
@@ -3574,37 +3937,52 @@ img .circuit2 {
 
         /* Why Choose Us Section - Mobile */
         .dt-why-choose-us {
-            padding: 4rem 0.5rem 2rem;
+            padding: 6rem 0.5rem 2rem;
             margin-top: -40px;
         }
 
         .dt-why-choose-us-title {
             font-size: clamp(1.5rem, 5vw, 2.2rem);
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
         }
 
         .dt-why-choose-us-grid {
             grid-template-columns: 1fr;
-            gap: 1rem;
+            gap: 2rem;
         }
 
         .dt-why-choose-us-card-border {
-            max-width: 95%;
+            max-width: 85%;
+            height: 300px;
             transform: none;
-            padding: 1.5rem 1rem;
+            padding: 1.25rem 0.75rem;
             margin: 0 auto;
+            align-items: center;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) padding-box,
+                linear-gradient(135deg, #00ffff, #3b82f6, #00ffff) border-box;
+            box-shadow: 
+                0 0 12px rgba(0, 255, 255, 0.4),
+                0 0 25px rgba(59, 130, 246, 0.2);
         }
 
         .dt-why-choose-us-card-title {
-            font-size: clamp(0.9rem, 2.8vw, 1.1rem);
-            margin: 0 0 0.5rem;
+            font-size: clamp(1.05rem, 3vw, 1.3rem);
+            margin: 0 auto 0.5rem auto;
+            text-align: center;
+            max-width: 80%;
+            line-height: 1.2;
         }
 
         .dt-why-choose-us-card-description {
-            font-size: clamp(0.75rem, 2.2vw, 0.9rem);
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             line-height: 1.3;
-            margin: 0;
-            max-width: 90%;
+            margin: 0 auto;
+            max-width: 70%;
+            text-align: center;
+            padding: 0 0.3rem;
         }
 
         /* What We Offer Section - Mobile */
@@ -3703,30 +4081,52 @@ img .circuit2 {
 
         /* Why Choose Us Section - Tablet */
         .dt-why-choose-us {
-            padding: 6rem 1rem 4rem;
+            padding: 8rem 1rem 4rem;
             margin-top: -60px;
+        }
+
+        .dt-why-choose-us-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 2.5rem;
         }
 
         .dt-why-choose-us-grid {
             grid-template-columns: 1fr;
-            gap: 1.5rem;
+            gap: 2.5rem;
         }
 
         .dt-why-choose-us-card-border {
-            max-width: 500px;
-            transform: scale(1.1);
-            padding: 2.5rem 2rem;
+            max-width: 380px;
+            height: 320px;
+            transform: scale(0.9);
+            padding: 1.75rem 1.25rem;
+            margin: 0 auto;
+            align-items: center;
+            border: 2px solid transparent;
+            border-radius: 18px;
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) padding-box,
+                linear-gradient(135deg, #00ffff, #3b82f6, #00ffff) border-box;
+            box-shadow: 
+                0 0 18px rgba(0, 255, 255, 0.4),
+                0 0 35px rgba(59, 130, 246, 0.2);
         }
 
         .dt-why-choose-us-card-title {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            margin: 0 0 0.8rem;
+            font-size: clamp(1.15rem, 2.7vw, 1.45rem);
+            margin: 0 auto 0.8rem auto;
+            text-align: center;
+            max-width: 78%;
+            line-height: 1.25;
         }
 
         .dt-why-choose-us-card-description {
-            font-size: clamp(0.8rem, 2vw, 0.95rem);
-            line-height: 1.3;
-            max-width: 85%;
+            font-size: clamp(1rem, 2.3vw, 1.2rem);
+            line-height: 1.35;
+            max-width: 68%;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 0.4rem;
         }
 
         /* What We Offer Section - Tablet */
@@ -3782,4 +4182,5 @@ img .circuit2 {
             gap: 2.25rem 4rem;
         }
     }
+}
 
