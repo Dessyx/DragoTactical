@@ -13,29 +13,31 @@
                 <p class="dt-contact-subtitle">Let us reach out</p>
             </div>
 
-            <form class="dt-contact-form" method="post" action="#" novalidate id="contactForm">
+            <!-- CSRF protected -->
+            <form class="dt-contact-form" method="post" asp-controller="Contact" asp-action="Submit" id="contactForm" novalidate>
+                @Html.AntiForgeryToken()
                 <div class="row g-3">
                     <div class="col-12">
-                        <input class="form-control dt-input" type="text" placeholder="First Name*" required
-                               pattern="[A-Za-z\s]{2,50}" title="Only letters allowed (2-50 characters)" />
+                        <input class="form-control dt-input" name="FirstName" type="text" placeholder="First Name*" required
+                               pattern="^[A-Za-z\s]{2,50}$" title="Only letters allowed (2-50 characters)" />
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-input" type="text" placeholder="Last Name*" required
-                               pattern="[A-Za-z\s]{2,50}" title="Only letters allowed (2-50 characters)" />
+                        <input class="form-control dt-input" name="LastName" type="text" placeholder="Last Name*" required
+                               pattern="^[A-Za-z\s]{2,50}$" title="Only letters allowed (2-50 characters)" />
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-input" type="email" placeholder="Email*" required />
+                        <input class="form-control dt-input" name="Email" type="email" placeholder="Email*" required />
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-input" type="tel" placeholder="Phone*" required
-                               pattern="\+?[0-9\s\-]{7,15}" title="Enter a valid phone number" />
+                        <input class="form-control dt-input" name="Phone" type="tel" placeholder="Phone*" required
+                               pattern="^\+?[0-9\s\-]{7,15}$" title="Enter a valid phone number" />
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-input" type="text" placeholder="Company name (Optional)"
-                               pattern="[^<>]*" title="No invalid characters allowed" />
+                        <input class="form-control dt-input" name="Company" type="text" placeholder="Company name (Optional)"
+                               pattern="^[^<>]{0,100}$" title="No invalid characters allowed" />
                     </div>
                     <div class="col-12">
-                        <select class="form-select dt-input" required>
+                        <select class="form-select dt-input" name="Location" required>
                             <option value="">Location</option>
                             <option>South Africa</option>
                             <option>United Kingdom</option>
@@ -45,7 +47,7 @@
                         </select>
                     </div>
                     <div class="col-12">
-                        <select class="form-select dt-input" required>
+                        <select class="form-select dt-input" name="Service" required>
                             <option value="">Services of Interest</option>
                             <option>Penetration Testing</option>
                             <option>Incident Response</option>
@@ -56,8 +58,8 @@
                         </select>
                     </div>
                     <div class="col-12">
-                        <textarea class="form-control dt-input" rows="4" placeholder="Message – Please provide a description of your enquiry"
-                                  required pattern="[^<>]*" title="No invalid characters allowed"></textarea>
+                        <textarea class="form-control dt-input" name="Message" rows="4" placeholder="Message – Please provide a description of your enquiry"
+                                  required pattern="^[^<>]{10,1000}$" title="No invalid characters allowed (10-1000 characters)"></textarea>
                     </div>
                 </div>
 
@@ -80,23 +82,21 @@
         const inputs = this.querySelectorAll('input, textarea, select');
 
         inputs.forEach(input => {
-          
             input.value = input.value.trim();
 
-           
             if (/<|>/.test(input.value)) {
                 alert('Please remove invalid characters like < or > from your input.');
                 valid = false;
             }
 
-            
             if (!input.checkValidity()) {
+                input.reportValidity();
                 valid = false;
             }
+
+            input.value = input.value.replace(/[<>]/g, '');
         });
 
-        if (!valid) {
-            e.preventDefault();
-        }
+        if (!valid) e.preventDefault();
     });
 </script>

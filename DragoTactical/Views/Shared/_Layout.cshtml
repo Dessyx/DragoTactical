@@ -20,14 +20,18 @@
 <body>
     <!-- NAV -->
     <header>
-        <nav class="navbar navbar-expand-sm dt-navbar border-bottom mb-0">
+        <nav class="navbar navbar-expand-lg dt-navbar border-bottom mb-0">
             <div class="container-fluid d-flex align-items-center justify-content-between px-3">
 
+                <!-- Left side: logo + nav links -->
                 <div class="d-flex align-items-center">
+                    <!-- Logo -->
                     <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
                         <img src="~/images/DragoLogo.png" alt="Drago Tactical" class="dt-navbar-logo" />
                     </a>
-                    <div class="navbar-collapse collapse d-sm-inline-flex">
+
+                    <!-- Nav links (collapse on small screens) -->
+                    <div class="collapse navbar-collapse" id="dtNavbar">
                         <ul class="navbar-nav dt-navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -48,12 +52,23 @@
                     </div>
                 </div>
 
-                <div class="dt-navbar-pattern d-none d-sm-block">
-                    <img src="~/images/BlackCircuitUp.png" alt="Pattern" />
+                <!-- Right side: hamburger toggle + pattern -->
+                <div class="d-flex align-items-center">
+                    <!-- Hamburger toggle (mobile only) -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dtNavbar"
+                            aria-controls="dtNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!-- Pattern (hide on mobile) -->
+                    <div class="dt-navbar-pattern d-none d-lg-block">
+                        <img src="~/images/BlackCircuitUp.png" alt="Pattern" />
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
+
 
     <!-- MAIN (full width) -->
     <div class="container-fluid px-0">

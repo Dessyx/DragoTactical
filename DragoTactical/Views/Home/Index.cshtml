@@ -1,6 +1,14 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "_Layout"; 
 }
+
+<!-- Security headers -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; frame-ancestors 'none';">  @* Prevents clickjacking *@
+<meta http-equiv="X-Content-Type-Options" content="nosniff"> 
+<meta http-equiv="X-Frame-Options" content="DENY">  @* Further clickjacking protection *@
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin"> @* Prevents referrer leaks *@
+<meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=()">
 
 <!-- Hero Section -->
 <section class="dt-full-bleed dt-hero">
@@ -11,51 +19,48 @@
                 Be proactive, use our Cyber Security Professionals and Physical Security Operators
                 to empower your organization.
             </p>
-            <a class="dt-btn-primary" href="/Home/CyberServices">Get Protected</a>
+            <a class="dt-btn-primary" href="/Home/CyberServices" rel="noopener noreferrer">Get Protected</a>
         </div>
-
-        <!-- Logo Container with BlueBall -->
         <div class="dt-hero-logo">
-            <img src="~/images/BlueBall.png" alt="Background Shape" class="logo-bg" />
-            <img src="~/images/TransparentLogo.png" alt="Drago Tactical Transparent Logo" class="logo-main" />
+            <img src="~/images/BlueBall.png" alt="Background Shape" class="logo-bg" loading="lazy" />
+            <img src="~/images/TransparentLogo.png" alt="Drago Tactical Transparent Logo" class="logo-main" loading="lazy" />
         </div>
     </div>
 
-    <div class="dt-hero-overlay"></div>
-    <div class="dt-hero-gradient"></div>
-    <div class="dt-hero-bg"></div>
+    <div class="dt-hero-overlay" aria-hidden="true"></div>
+    <div class="dt-hero-gradient" aria-hidden="true"></div>
+    <div class="dt-hero-bg" aria-hidden="true"></div>
 </section>
-
 
 <!-- Stats Section -->
 <section class="dt-full-bleed dt-stats">
-    <img src="~/images/blueTech.png" alt="Blue Tech" class="dt-stats-bg" />
+    <img src="~/images/blueTech.png" alt="Blue Tech Background" class="dt-stats-bg" loading="lazy" />
     <div class="dt-stats-inner container">
         <h2 class="dt-stats-heading">Cybersecurity with DragoTactical</h2>
         <div class="dt-stats-grid">
-            <div class="dt-stat-card">
+            <div class="dt-stat-card" aria-label="24/7 Threat Monitoring">
                 <div class="dt-stat-number">24/7</div>
                 <div class="dt-stat-label">Threat Monitoring</div>
             </div>
-            <div class="dt-stat-card">
+            <div class="dt-stat-card" aria-label="99.9% Uptime Guarantee">
                 <div class="dt-stat-number">99.9%</div>
                 <div class="dt-stat-label">Uptime Guarantee</div>
             </div>
-            <div class="dt-stat-card">
+            <div class="dt-stat-card" aria-label="1000+ Vulnerabilities Prevented">
                 <div class="dt-stat-number">1,000 +</div>
                 <div class="dt-stat-label">Vulnerabilities Prevented</div>
             </div>
         </div>
     </div>
-    <div class="dt-stats-pattern"></div>
+    <div class="dt-stats-pattern" aria-hidden="true"></div>
 </section>
 
 <!-- Mission Statement Section -->
 <section class="dt-full-bleed dt-mission">
     <div class="dt-mission-inner container">
         <div class="dt-mission-left">
-            <img src="~/images/WhiteWeb.png" alt="Web" class="dt-mission-bg" />
-            <img src="~/images/Lock.png" alt="Lock" class="dt-mission-lock" />
+            <img src="~/images/WhiteWeb.png" alt="Decorative Web" class="dt-mission-bg" loading="lazy" />
+            <img src="~/images/Lock.png" alt="Security Lock" class="dt-mission-lock" loading="lazy" />
             <h3 class="dt-mission-title">Our Mission</h3>
         </div>
 
@@ -69,70 +74,62 @@
     </div>
 </section>
 
-
+<!-- Services Section -->
 <section class="dt-full-bleed dt-services">
     <div class="container">
         <h2 class="dt-services-heading">What do our Services include?</h2>
 
-        <!-- Security Icon  -->
-        <img src="~/images/SecurityIcon.png" alt="Security Icon" class="service-external-icon left-icon">
+        <!-- Security Icon -->
+        <img src="~/images/SecurityIcon.png" alt="Security Icon" class="service-external-icon left-icon" loading="lazy">  @* For DoS mitigation *@
 
         <div class="dt-services-grid">
-            <!-- Cybersecurity -->
             <div class="dt-service-card">
-               
                 <h3>Cybersecurity</h3>
                 <p>From risk assessments and penetration testing to cloud security and incident response, we ensure that your IT infrastructure is resilient against cyberattacks.</p>
-                <form action="/Home/CyberServices">
+                <form asp-controller="Home" asp-action="CyberServices" method="get" autocomplete="off">  @* For sensitive forms *@
+                    @Html.AntiForgeryToken()  @* Prevent CRSF attacks *@
                     <button type="submit" class="dt-btn-book">Book</button>
                 </form>
-
             </div>
 
-            <!-- Physical Security -->
             <div class="dt-service-card">
-                
                 <h3>Physical Security</h3>
                 <p>Our certified personnel both armed and unarmed provide on-site security, VIP protection, surveillance systems, access control, and emergency response to protect your physical assets.</p>
-                <form action="/Home/PhysicalServices">
+                <form asp-controller="Home" asp-action="PhysicalServices" method="get" autocomplete="off">
+                    @Html.AntiForgeryToken()
                     <button type="submit" class="dt-btn-book">Book</button>
                 </form>
-
             </div>
 
-            <!-- Risk Management -->
             <div class="dt-service-card">
-              
                 <h3>Risk Management</h3>
                 <p>We specialize in bridging the gap between digital and physical security, creating a holistic protection framework through risk audits, consulting, and project management.</p>
-                <form action="/Home/PhysicalServices">
+                <form asp-controller="Home" asp-action="PhysicalServices" method="get" autocomplete="off">
+                    @Html.AntiForgeryToken()
                     <button type="submit" class="dt-btn-book">Book</button>
                 </form>
             </div>
 
-            <!-- Consultancy -->
             <div class="dt-service-card">
-               
                 <h3>Consultancy</h3>
                 <p>With offerings like Virtual Cyber Assistants (VCA) and Virtual CISOs (Chief Information Security Officers), we provide flexible, strategic guidance that fits your organization’s unique security needs.</p>
-                <form action="/Home/CyberServices">
+                <form asp-controller="Home" asp-action="CyberServices" method="get" autocomplete="off">
+                    @Html.AntiForgeryToken()
                     <button type="submit" class="dt-btn-book">Book</button>
                 </form>
             </div>
         </div>
 
-        <!-- Camera Icon  -->
-        <img src="~/images/Camera.png" alt="Camera Icon" class="service-external-icon right-icon">
+        <img src="~/images/Camera.png" alt="Camera Icon" class="service-external-icon right-icon" loading="lazy">
     </div>
 </section>
-
-
 
 <!-- Call to Action -->
 <section class="dt-cta">
     <div class="dt-cta-inner">
         <h2>Don't wait for a breach —<br />secure your business today.</h2>
-        <form action="/Home/ContactUs">
+        <form asp-controller="Home" asp-action="ContactUs" method="get" autocomplete="off">
+            @Html.AntiForgeryToken()
             <button type="submit" class="dt-btn-book">Book</button>
         </form>
     </div>
@@ -158,30 +155,29 @@
         </div>
     </section>
 
-    <img src="~/images/MixedWeb.png" alt="Mixed Web" class="mixed-web" />
+    <img src="~/images/MixedWeb.png" alt="Mixed Web Graphic" class="mixed-web" loading="lazy" />
 </div>
-
 
 <!-- Footer -->
 <footer class="dt-footer">
     <div class="dt-footer-top">
         <div class="dt-footer-logo">
-            <img src="~/images/DragoTactical.png" alt="Drago Tactical Logo" class="main-logo" />
-            <img src="~/images/TransparentLogo.png" alt="Transparent Logo" class="transparent-logo" />
+            <img src="~/images/DragoTactical.png" alt="Drago Tactical Logo" class="main-logo" loading="lazy" />
+            <img src="~/images/TransparentLogo.png" alt="Transparent Logo" class="transparent-logo" loading="lazy" />
         </div>
         <div class="dt-footer-links">
             <div>
                 <h4>Our Services</h4>
                 <ul>
-                    <li><a href="/Home/PhysicalServices">Physical</a></li>
-                    <li><a href="/Home/CyberServices">Cyber</a></li>
+                    <li><a href="/Home/PhysicalServices" rel="noopener noreferrer">Physical</a></li>
+                    <li><a href="/Home/CyberServices" rel="noopener noreferrer">Cyber</a></li>
                 </ul>
             </div>
             <div>
                 <h4>Our Company</h4>
                 <ul>
-                    <li><a href="/Home/AboutUs">About</a></li>
-                    <li><a href="/Home/ContactUs">Contact</a></li>
+                    <li><a href="/Home/AboutUs" rel="noopener noreferrer">About</a></li>
+                    <li><a href="/Home/ContactUs" rel="noopener noreferrer">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -190,4 +186,3 @@
         <p>Copyright © 2025 DragoTactical Cyber. All Rights Reserved.</p>
     </div>
 </footer>
-

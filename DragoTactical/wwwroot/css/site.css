@@ -101,7 +101,58 @@ body {
 }
 
 
+/* Toggler styles */
+.navbar-toggler {
+    border: none;
+    background: transparent;
+}
 
+.navbar-toggler-icon {
+    width: 24px;
+    height: 2px;
+    background-color: #000;
+    display: block;
+    position: relative;
+}
+
+    .navbar-toggler-icon::before,
+    .navbar-toggler-icon::after {
+        content: "";
+        width: 24px;
+        height: 2px;
+        background-color: #000;
+        position: absolute;
+        left: 0;
+        transition: 0.3s;
+    }
+
+    .navbar-toggler-icon::before {
+        top: -6px;
+    }
+
+    .navbar-toggler-icon::after {
+        top: 6px;
+    }
+
+/* Collapse on smaller devices */
+@media (max-width: 992px) {
+    .dt-navbar-nav {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-left: 0;
+        padding: 1rem 0;
+    }
+
+    .dt-navbar .nav-link {
+        font-size: 1.1rem;
+        text-align: center;
+        padding: 0.5rem;
+    }
+
+    .dt-navbar-pattern {
+        display: none !important; 
+    }
+}
 /* ================================== About Us � Section 1 (Gradient hero) ========================================= */
 .dt-about-us {
     min-height: 92vh;
