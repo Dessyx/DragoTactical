@@ -2475,24 +2475,53 @@ html, body {
     background: linear-gradient(to bottom, #BDC1C6 16%, #004D8F);
 }
 
-.phy-form-control, .phy-form-select {
-    background-color: rgba(255, 255, 255, 0.1);
+.phy-form-control {
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid white;
     border-radius: 0.5rem;
     width: 500px;
-    height: 40px;
+    height: 60px;
+    background: transparent;
+    font-size: 16px;
+    font-family: "DM Sans", sans-serif;
+    outline: none;
+    background-position: right 20px center;
+}
+
+.phy-form-select {
+    width: 500px;
+    padding: 16px 20px;
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.7)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 20px;
+    padding-right: 50px;
 }
 
 .phy-form-control::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.phy-input {
+    padding: 16px 20px; 
 }
 
 .phy-form-control:focus, .phy-form-select:focus {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-    border-color: rgba(255, 255, 255, 0.7);
-    box-shadow: none;
+    background-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .phy-btn-primary {
@@ -2503,16 +2532,12 @@ html, body {
 
     .phy-btn-primary:hover {
         background: rgba(255, 255, 255, 0.16);
-        border-radius: 16px;
+        border-radius: 20px;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
         border: 1px solid rgba(255, 255, 255, 0.3);
     }
-
-.physical-contact {
-    margin-top: -20px;
-}
 
 .phy-form-select option {
     background-color: #0b1c3e;
@@ -2524,6 +2549,7 @@ html, body {
     padding-right: 400px;
     border-radius: 10px;
     margin-bottom: 15px;
+    margin-top: auto;
 }
 
 /* Hero Section Decor */
@@ -2531,8 +2557,8 @@ html, body {
     position: absolute;
     width: 300px;
     height: 300px;
-    top: 0;
-    left: 0;
+    top: -2%;
+    left: -1%;
     z-index: 0;
     pointer-events: none;
 }
@@ -2542,7 +2568,7 @@ html, body {
     width: 300px;
     height: 300px;
     top: 36%;
-    left: 80%;
+    left: 81%;
     z-index: 0;
     pointer-events: none;
 }
@@ -2608,7 +2634,7 @@ img .circuit2 {
     width: 500px;
     height: 500px;
     top: 0;
-    left: 0;
+    left: -6%;
     z-index: 0;
     pointer-events: none;
     opacity: 0.7;
@@ -2619,276 +2645,340 @@ img .circuit2 {
     width: 500px;
     height: 500px;
     top: 0;
-    left: 70%;
+    left: 73%;
     z-index: 0;
     pointer-events: none;
     opacity: 0.7;
 }
 
-/* ========================================== || Physical Services End || =========================================*/
+.circle-circuit {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 70%;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
 
-/* ========================================== About Us Mobile Responsive =========================================*/
+.circle-circuit2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 70%;
+    left: 74%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
 
-/* Mobile phones (max-width: 768px) */
-@media (max-width: 768px) {
-    /* About Us Section 1 - Mobile */
-    .dt-about-us {
-        min-height: 60vh;
-        padding: 1rem 0;
+.copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 40px;
+}
+
+.phy-form {
+    animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
-    
-    .dt-about-us-content {
-        max-width: 100%;
-        margin: 0 auto;
-        padding: 1rem 0.5rem;
-    }
-    
-    .dt-about-us-title {
-        font-size: clamp(2rem, 7vw, 3rem);
-        margin: 0.5rem 0;
-    }
-    
-    .dt-about-us-subtitle {
-        font-size: clamp(0.9rem, 3.5vw, 1.1rem);
-        margin: 0.3rem 0 1rem;
-    }
-    
-    .dt-about-us-spacing {
-        height: 2rem;
-    }
-    
-    .dt-about-us-description {
-        font-size: 0.9rem;
-        line-height: 1.5;
-        padding: 0 0.5rem;
-        max-width: 90%;
-        margin: 0 auto;
-    }
-    
-    /* Decorative images - Mobile */
-    .dt-about-decorative-left {
-        top: -5%;
-        left: -15%;
-        width: clamp(200px, 50vw, 300px);
-        opacity: 0.7;
-    }
-    
-    .dt-about-decorative-right {
-        right: -20vw;
-        top: 40vh;
-        width: clamp(300px, 60vw, 400px);
-        opacity: 0.7;
-    }
-    
-    /* Why Choose Us Section - Mobile */
-    .dt-why-choose-us {
-        padding: 4rem 0.5rem 2rem;
-        margin-top: -40px;
-    }
-    
-    .dt-why-choose-us-title {
-        font-size: clamp(1.5rem, 5vw, 2.2rem);
-        margin-bottom: 1rem;
-    }
-    
-    .dt-why-choose-us-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .dt-why-choose-us-card-border {
-        max-width: 95%;
-        transform: none;
-        padding: 1.5rem 1rem;
-        margin: 0 auto;
-    }
-    
-    .dt-why-choose-us-card-title {
-        font-size: clamp(0.9rem, 2.8vw, 1.1rem);
-        margin: 0 0 0.5rem;
-    }
-    
-    .dt-why-choose-us-card-description {
-        font-size: clamp(0.75rem, 2.2vw, 0.9rem);
-        line-height: 1.3;
-        margin: 0;
-        max-width: 90%;
-    }
-    
-    /* What We Offer Section - Mobile */
-    .dt-what-we-offer {
-        padding: 2rem 0.5rem;
-    }
-    
-    .dt-what-title {
-        font-size: clamp(1.5rem, 5vw, 2.2rem);
-        margin-bottom: 1.5rem;
-    }
-    
-    .dt-what-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .dt-offer-item {
-        padding: 0 0 0 2rem;
-    }
-    
-    .dt-offer-item::before {
-        font-size: 1.2rem;
-        top: -0.1rem;
-    }
-    
-    .dt-offer-h {
-        font-size: clamp(1rem, 2.8vw, 1.2rem);
-        margin-bottom: 0.3rem;
-    }
-    
-    .dt-offer-p {
-        font-size: clamp(0.85rem, 2.2vw, 1rem);
-        line-height: 1.4;
-        max-width: 90%;
-    }
-    
-    /* Background decorative images - Mobile */
-    .dt-what-we-offer .bg-left,
-    .dt-what-we-offer .bg-divider {
-        display: none;
-    }
-    
-    .dt-what-we-offer .bg-right {
-        right: -10vw;
-        top: -50px;
-        width: 70vw;
-        height: 60vh;
-        opacity: 0.6;
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-/* Tablets (768px to 1024px) */
-@media (min-width: 769px) and (max-width: 1024px) {
-    /* About Us Section 1 - Tablet */
-    .dt-about-us {
-        min-height: 70vh;
-    }
-    
-    .dt-about-us-content {
-        max-width: 85%;
-        padding: 2.5rem 1.5rem;
-    }
-    
-    .dt-about-us-title {
-        font-size: clamp(2.5rem, 5vw, 3.5rem);
-    }
-    
-    .dt-about-us-subtitle {
-        font-size: clamp(1rem, 2.8vw, 1.3rem);
-    }
-    
-    .dt-about-us-spacing {
-        height: 4rem;
-    }
-    
-    .dt-about-us-description {
-        font-size: 1rem;
-        line-height: 1.5;
-        max-width: 85%;
-        margin: 0 auto;
-    }
-    
-    /* Decorative images - Tablet */
-    .dt-about-decorative-left {
-        top: -8%;
-        left: -12%;
-        width: clamp(300px, 40vw, 450px);
-    }
-    
-    .dt-about-decorative-right {
-        right: -15vw;
-        top: 50vh;
-        width: clamp(400px, 50vw, 600px);
-    }
-    
-    /* Why Choose Us Section - Tablet */
-    .dt-why-choose-us {
-        padding: 6rem 1rem 4rem;
-        margin-top: -60px;
-    }
-    
-    .dt-why-choose-us-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .dt-why-choose-us-card-border {
-        max-width: 500px;
-        transform: scale(1.1);
-        padding: 2.5rem 2rem;
-    }
-    
-    .dt-why-choose-us-card-title {
-        font-size: clamp(1rem, 2.5vw, 1.2rem);
-        margin: 0 0 0.8rem;
-    }
-    
-    .dt-why-choose-us-card-description {
-        font-size: clamp(0.8rem, 2vw, 0.95rem);
-        line-height: 1.3;
-        max-width: 85%;
-    }
-    
-    /* What We Offer Section - Tablet */
-    .dt-what-we-offer {
-        padding: 3rem 1rem;
-    }
-    
-    .dt-what-title {
-        font-size: clamp(2rem, 4vw, 2.5rem);
-        margin-bottom: 2rem;
-    }
-    
-    .dt-what-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5rem 2rem;
-    }
-    
-    .dt-offer-item {
-        padding: 0 0 0 2.5rem;
-    }
-    
-    .dt-offer-h {
-        font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-        margin-bottom: 0.4rem;
-    }
-    
-    .dt-offer-p {
-        font-size: clamp(0.9rem, 2vw, 1rem);
-        line-height: 1.4;
-        max-width: 90%;
-    }
-    
-    .dt-what-we-offer .bg-right {
-        right: -5vw;
-        top: -100px;
-        width: 45vw;
-        height: 60vh;
-    }
-}
-
-/* Large screens (1025px and up) - ensure proper scaling */
-@media (min-width: 1025px) {
-    .dt-about-us-content {
-        max-width: 980px;
-    }
-    
-    .dt-why-choose-us-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .dt-what-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 2.25rem 4rem;
+    /* Responsive design */
+    @media (max-width: 480px) {
+        .physical-contact {
+        padding: 30px 20px;
+        margin: 10px;
     }
 
-}
+    .phy-form-control,
+    .phy-form-select {
+        padding: 14px 18px;
+        font-size: 16px;
+    }
+
+    /* ========================================== || Physical Services End || =========================================*/
+
+    /* ========================================== About Us Mobile Responsive =========================================*/
+
+    /* Mobile phones (max-width: 768px) */
+    @media (max-width: 768px) {
+        /* About Us Section 1 - Mobile */
+        .dt-about-us {
+            min-height: 60vh;
+            padding: 1rem 0;
+        }
+
+        .dt-about-us-content {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 1rem 0.5rem;
+        }
+
+        .dt-about-us-title {
+            font-size: clamp(2rem, 7vw, 3rem);
+            margin: 0.5rem 0;
+        }
+
+        .dt-about-us-subtitle {
+            font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+            margin: 0.3rem 0 1rem;
+        }
+
+        .dt-about-us-spacing {
+            height: 2rem;
+        }
+
+        .dt-about-us-description {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            padding: 0 0.5rem;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        /* Decorative images - Mobile */
+        .dt-about-decorative-left {
+            top: -5%;
+            left: -15%;
+            width: clamp(200px, 50vw, 300px);
+            opacity: 0.7;
+        }
+
+        .dt-about-decorative-right {
+            right: -20vw;
+            top: 40vh;
+            width: clamp(300px, 60vw, 400px);
+            opacity: 0.7;
+        }
+
+        /* Why Choose Us Section - Mobile */
+        .dt-why-choose-us {
+            padding: 4rem 0.5rem 2rem;
+            margin-top: -40px;
+        }
+
+        .dt-why-choose-us-title {
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            margin-bottom: 1rem;
+        }
+
+        .dt-why-choose-us-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .dt-why-choose-us-card-border {
+            max-width: 95%;
+            transform: none;
+            padding: 1.5rem 1rem;
+            margin: 0 auto;
+        }
+
+        .dt-why-choose-us-card-title {
+            font-size: clamp(0.9rem, 2.8vw, 1.1rem);
+            margin: 0 0 0.5rem;
+        }
+
+        .dt-why-choose-us-card-description {
+            font-size: clamp(0.75rem, 2.2vw, 0.9rem);
+            line-height: 1.3;
+            margin: 0;
+            max-width: 90%;
+        }
+
+        /* What We Offer Section - Mobile */
+        .dt-what-we-offer {
+            padding: 2rem 0.5rem;
+        }
+
+        .dt-what-title {
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .dt-what-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .dt-offer-item {
+            padding: 0 0 0 2rem;
+        }
+
+            .dt-offer-item::before {
+                font-size: 1.2rem;
+                top: -0.1rem;
+            }
+
+        .dt-offer-h {
+            font-size: clamp(1rem, 2.8vw, 1.2rem);
+            margin-bottom: 0.3rem;
+        }
+
+        .dt-offer-p {
+            font-size: clamp(0.85rem, 2.2vw, 1rem);
+            line-height: 1.4;
+            max-width: 90%;
+        }
+
+        /* Background decorative images - Mobile */
+        .dt-what-we-offer .bg-left,
+        .dt-what-we-offer .bg-divider {
+            display: none;
+        }
+
+        .dt-what-we-offer .bg-right {
+            right: -10vw;
+            top: -50px;
+            width: 70vw;
+            height: 60vh;
+            opacity: 0.6;
+        }
+    }
+
+    /* Tablets (768px to 1024px) */
+    @media (min-width: 769px) and (max-width: 1024px) {
+        /* About Us Section 1 - Tablet */
+        .dt-about-us {
+            min-height: 70vh;
+        }
+
+        .dt-about-us-content {
+            max-width: 85%;
+            padding: 2.5rem 1.5rem;
+        }
+
+        .dt-about-us-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+        }
+
+        .dt-about-us-subtitle {
+            font-size: clamp(1rem, 2.8vw, 1.3rem);
+        }
+
+        .dt-about-us-spacing {
+            height: 4rem;
+        }
+
+        .dt-about-us-description {
+            font-size: 1rem;
+            line-height: 1.5;
+            max-width: 85%;
+            margin: 0 auto;
+        }
+
+        /* Decorative images - Tablet */
+        .dt-about-decorative-left {
+            top: -8%;
+            left: -12%;
+            width: clamp(300px, 40vw, 450px);
+        }
+
+        .dt-about-decorative-right {
+            right: -15vw;
+            top: 50vh;
+            width: clamp(400px, 50vw, 600px);
+        }
+
+        /* Why Choose Us Section - Tablet */
+        .dt-why-choose-us {
+            padding: 6rem 1rem 4rem;
+            margin-top: -60px;
+        }
+
+        .dt-why-choose-us-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .dt-why-choose-us-card-border {
+            max-width: 500px;
+            transform: scale(1.1);
+            padding: 2.5rem 2rem;
+        }
+
+        .dt-why-choose-us-card-title {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            margin: 0 0 0.8rem;
+        }
+
+        .dt-why-choose-us-card-description {
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
+            line-height: 1.3;
+            max-width: 85%;
+        }
+
+        /* What We Offer Section - Tablet */
+        .dt-what-we-offer {
+            padding: 3rem 1rem;
+        }
+
+        .dt-what-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            margin-bottom: 2rem;
+        }
+
+        .dt-what-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem 2rem;
+        }
+
+        .dt-offer-item {
+            padding: 0 0 0 2.5rem;
+        }
+
+        .dt-offer-h {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            margin-bottom: 0.4rem;
+        }
+
+        .dt-offer-p {
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            line-height: 1.4;
+            max-width: 90%;
+        }
+
+        .dt-what-we-offer .bg-right {
+            right: -5vw;
+            top: -100px;
+            width: 45vw;
+            height: 60vh;
+        }
+    }
+
+    /* Large screens (1025px and up) - ensure proper scaling */
+    @media (min-width: 1025px) {
+        .dt-about-us-content {
+            max-width: 980px;
+        }
+
+        .dt-why-choose-us-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .dt-what-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 2.25rem 4rem;
+        }
+    }
 

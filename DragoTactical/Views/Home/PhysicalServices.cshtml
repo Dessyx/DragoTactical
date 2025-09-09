@@ -119,42 +119,47 @@
 
     <div class="physical-contact container mx-auto justify-content-center">
         <form class="phy-form" method="post" action="#" novalidate>
-            <div class="row g-3">
-                <div class="col-sm-12 d-flex flex-column-12">
-                    <input class="phy-form-control phy-input" type="text" placeholder="Name" required />
-                </div>
+            <div class="form-group col-sm-12 d-flex flex-column-12">
+                <input class="phy-form-control phy-input" type="text" placeholder="Name" required />
+            </div>
 
-                <div class="col-sm-12 d-flex flex-column-12">
-                    <input class="phy-form-control phy-input" type="text" placeholder="Surname" required />
-                </div>
+            <div class="form-group col-sm-12 d-flex flex-column-12">
+                <input class="phy-form-control phy-input" type="text" placeholder="Surname" required />
+            </div>
 
-                <div class="col-sm-12 d-flex flex-column-12">
-                    <input class="phy-form-control phy-input" type="email" placeholder="Email" required />
-                </div>
+            <div class="form-group col-sm-12 d-flex flex-column-12">
+                <input class="phy-form-control phy-input" type="email" placeholder="Email" required />
+            </div>
 
-                <div class="col-sm-12 d-flex flex-column-12">
-                    <input class="phy-form-control phy-input" type="tel" placeholder="Phone Number" required />
-                </div>
+            <div class="form-group col-sm-12 d-flex flex-column-12">
+                <input class="phy-form-control phy-input" type="tel" placeholder="Phone Number" required />
+            </div>
 
-                <div class="col-sm-12 d-flex flex-column-12">
-                    <label for="physical-services" class="form-label"/>
-                    <select class="phy-form-select rounded-3" id="services">
-                        <option selected disabled>Services</option>
-                        <option>Risk Analysis & Security Audits</option>
-                        <option>On-Site Security Personnel/VIP Protection</option>
-                        <option>Surveillance Systems</option>
-                        <option>Access Control Solutions</option>
-                        <option>Alarm and Emergency Respone Systems</option>
-                        <option>Project Management</option>
-                        <option>Security Consulting</option>
-                        <option>Vehicle & Perimeter Security</option>
-                    </select>
-                </div>
+            <div class="form-group col-sm-12 d-flex flex-column-12">
+                <select class="phy-form-select " id="services" required>
+                    <option disabled selected>Services</option>
+                    <option>Risk Analysis & Security Audits</option>
+                    <option>On-Site Security Personnel/VIP Protection</option>
+                    <option>Surveillance Systems</option>
+                    <option>Access Control Solutions</option>
+                    <option>Alarm and Emergency Respone Systems</option>
+                    <option>Project Management</option>
+                    <option>Security Consulting</option>
+                    <option>Vehicle & Perimeter Security</option>
+                </select>
             </div>
 
             <div class="mt-3 d-flex text-center justify-content-center">
               <button type="submit" class="btn phy-btn-primary rounded-pill px-5">Submit</button>
             </div>
         </form>
+    </div>
+
+    <div>
+        <img src="~/images/CircuitCircleLeft.png" class="circle-circuit" alt="Circuit design"/>
+
+        <p class="copyright">Copyright © 2025 DragoTactical Cyber. All Rights Reserved.</p>
+
+        <img src="~/images/CircuitCircleRight.png" class="circle-circuit2" alt="Circuit design" />
     </div>
 </section>
