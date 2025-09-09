@@ -166,13 +166,15 @@ body {
     background-size: cover; 
     overflow: visible;
     padding: 0;
-    z-index: 2;
+    z-index: 1;
 }
 
 .dt-about-us-content {
     max-width: 980px;
     margin: 0 auto;
     padding: 5.5rem 2rem 6rem;
+    position: relative;
+    z-index: 2;
 }
 
 .dt-about-us-header {
@@ -202,8 +204,47 @@ body {
     font-size: 1.1rem;
     line-height: 1.8;
     margin: 0;
-    text-align: center;
+    text-align: left;
     font-weight: 420;
+}
+
+/* About Us Body Layout */
+.dt-about-us-body {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.dt-about-us-columns {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    align-items: start;
+    position: relative;
+}
+
+.dt-about-us-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* About Us Dividers - COMPLETELY HIDDEN */
+.dt-about-us-divider-left,
+.dt-about-us-divider-center {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Force single column layout for all devices */
+.dt-about-us-columns {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+}
+
+.dt-about-us-description {
+    text-align: center !important;
 }
 
 
@@ -221,7 +262,7 @@ body {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    z-index: 3;
+    z-index: -2;
 }
 
 .dt-about-decorative-left {
@@ -231,6 +272,7 @@ body {
     width: clamp(420px,36vw,760px);
     height: auto;
     opacity: .95;
+    z-index: -1;
     filter: drop-shadow(0 8px 16px rgba(0,0,0,.3));
 }
 
@@ -241,8 +283,9 @@ body {
     width: clamp(550px,45vw,750px);
     height: auto;
     opacity: .95;
-    z-index: 4;
+    z-index: -2;
     filter: drop-shadow(0 8px 16px rgba(0,0,0,.3));
+    pointer-events: none;
 }
 
 /* ===== Why Choose Us � Section 2 (Blue) ===== */
@@ -252,7 +295,10 @@ body {
     margin-top: -160px; 
     overflow: visible;
     z-index: 1;
+    position: relative;
 }
+
+/* Removed - decorative image back to About Us section */
 
 .dt-why-choose-us-title {
     font-family: "DM Serif Text", serif;
@@ -388,38 +434,33 @@ body {
 }
 
 
-.dt-what-we-offer .bg-left {
+/* Custom CSS dividers for What We Offer section - Bigger and darker */
+.dt-what-we-offer::before {
+    content: '';
     position: absolute;
-    right: 41vw;
-    top: 380px;
-    width: clamp(200px,20vw,300px);
-    height: clamp(200px,20vw,500px);
-    background: url('/images/AboutUs5.png') no-repeat center/contain;
-    opacity: .9;
+    top: 15%;
+    left: 3%;
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #3b82f6, #00ffff);
+    border-radius: 50%;
+    opacity: 0.5;
+    z-index: 1;
     pointer-events: none;
 }
 
-.dt-what-we-offer .bg-divider {
+.dt-what-we-offer::after {
+    content: '';
     position: absolute;
-    right: 75vw;
-    top: 381px;
-    width: clamp(200px,20vw,300px);
-    height: clamp(200px,20vw,500px);
-    background: url('/images/AboutUs5.png') no-repeat center/contain;
-    opacity: .9;
+    top: 55%;
+    right: 3%;
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(135deg, #00ffff, #3b82f6);
+    border-radius: 50%;
+    opacity: 0.5;
+    z-index: 1;
     pointer-events: none;
-}
-
-.dt-what-we-offer .bg-right {
-    position: absolute;
-    right: -0.5vw;
-    top: -180px;
-    width: clamp(400px,40vw,650px);
-    height: clamp(480px,48vw,800px);
-    background: url('/images/AboutUs4.png') no-repeat right top/contain;
-    opacity: .95;
-    pointer-events: none;
-    z-index: 2;
 }
 
 .dt-what-grid {
@@ -448,6 +489,32 @@ body {
         color: #0e1b3f;
     }
 
+/* Long dividers for What We Offer section */
+.dt-what-left-divider {
+    position: absolute;
+    left: -20px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #3b82f6, #00ffff);
+    border-radius: 2px;
+    opacity: 0.7;
+    z-index: 1;
+}
+
+.dt-what-center-divider {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, #00ffff, #3b82f6);
+    border-radius: 2px;
+    opacity: 0.6;
+    z-index: 1;
+    transform: translateX(-50%);
+}
+
 .dt-offer-h {
     font-weight: 600;
     color: #0e1b3f;
@@ -468,22 +535,21 @@ body {
         gap: 1.75rem;
     }
 
-    .dt-what-we-offer .bg-divider {
-        display: none;
+    /* Custom dividers - Mobile - Bigger and darker */
+    .dt-what-we-offer::before {
+        width: 80px;
+        height: 80px;
+        top: 10%;
+        left: 2%;
+        opacity: 0.4;
     }
 
-    .dt-what-we-offer .bg-left {
-        left: -40px;
-        top: 40px;
-        width: 260px;
-        height: 260px;
-        opacity: .5;
-    }
-
-    .dt-what-we-offer .bg-right {
-        right: -14vw;
-        top: -70px;
-        width: 58vw;
+    .dt-what-we-offer::after {
+        width: 90px;
+        height: 90px;
+        top: 60%;
+        right: 2%;
+        opacity: 0.4;
     }
 }
 
@@ -2095,7 +2161,7 @@ html, body {
 
 /* ========================================== Cyber Security Services Page =========================================*/
 .dt-cyber-services {
-    min-height: 425vh;
+    min-height: 200vh;
     background: url('/images/CyberBG.png') no-repeat center top;
     background-size: 100% 100%;
     background-attachment: scroll;
@@ -2519,22 +2585,22 @@ html, body {
     }
 
     .dt-road-ahead-decorative-left {
-        left: 15% !important;
-        top: 30% !important;
+        left: 30% !important;
+        top: 28% !important;
         transform: translateY(-50%) !important;
     }
 
     .dt-road-ahead-decorative-right {
-        right: 15% !important;
-        top: 30% !important;
+        right: 30% !important;
+        top: 28% !important;
         transform: translateY(-50%) !important;
     }
 }
 
 .dt-road-ahead-decorative-left {
     position: absolute;
-    left: 20%;
-    top: 30%;
+    left: 30%;
+    top: 28%;
     transform: translateY(-50%);
     width: 120px;
     height: 120px;
@@ -2551,8 +2617,8 @@ html, body {
 
 .dt-road-ahead-decorative-right {
     position: absolute;
-    right: 20%;
-    top: 30%;
+    right: 30%;
+    top: 28%;
     transform: translateY(-50%);
     width: 120px;
     height: 120px;
@@ -3920,6 +3986,16 @@ img .circuit2 {
             margin: 0 auto;
         }
 
+        /* About Us Mobile Layout */
+        .dt-about-us-body {
+            max-width: 100%;
+            padding: 0 1rem;
+        }
+
+        .dt-about-us-column {
+            margin-bottom: 1rem;
+        }
+
         /* Decorative images - Mobile */
         .dt-about-decorative-left {
             top: -5%;
@@ -4004,10 +4080,18 @@ img .circuit2 {
             padding: 0 0 0 2rem;
         }
 
-            .dt-offer-item::before {
-                font-size: 1.2rem;
-                top: -0.1rem;
-            }
+    .dt-offer-item::before {
+        font-size: 1.2rem;
+        top: -0.1rem;
+    }
+
+    /* Long dividers - Mobile - HIDDEN */
+    .dt-what-left-divider,
+    .dt-what-center-divider {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
 
         .dt-offer-h {
             font-size: clamp(1rem, 2.8vw, 1.2rem);
@@ -4027,11 +4111,7 @@ img .circuit2 {
         }
 
         .dt-what-we-offer .bg-right {
-            right: -10vw;
-            top: -50px;
-            width: 70vw;
-            height: 60vh;
-            opacity: 0.6;
+            display: none;
         }
     }
 
@@ -4064,6 +4144,12 @@ img .circuit2 {
             line-height: 1.5;
             max-width: 85%;
             margin: 0 auto;
+        }
+
+        /* About Us Tablet Layout */
+        .dt-about-us-body {
+            max-width: 90%;
+            padding: 0 1.5rem;
         }
 
         /* Decorative images - Tablet */
@@ -4159,11 +4245,29 @@ img .circuit2 {
             max-width: 90%;
         }
 
-        .dt-what-we-offer .bg-right {
-            right: -5vw;
-            top: -100px;
-            width: 45vw;
-            height: 60vh;
+        /* Long dividers - Tablet - HIDDEN */
+        .dt-what-left-divider,
+        .dt-what-center-divider {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+        }
+
+        /* Custom dividers - Tablet - Bigger and darker */
+        .dt-what-we-offer::before {
+            width: 100px;
+            height: 100px;
+            top: 12%;
+            left: 2%;
+            opacity: 0.45;
+        }
+
+        .dt-what-we-offer::after {
+            width: 110px;
+            height: 110px;
+            top: 58%;
+            right: 2%;
+            opacity: 0.45;
         }
     }
 
@@ -4180,6 +4284,23 @@ img .circuit2 {
         .dt-what-grid {
             grid-template-columns: 1fr 1fr;
             gap: 2.25rem 4rem;
+        }
+
+        /* Custom dividers - Desktop */
+        .dt-what-we-offer::before {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 5%;
+            opacity: 0.3;
+        }
+
+        .dt-what-we-offer::after {
+            width: 100px;
+            height: 100px;
+            top: 60%;
+            right: 5%;
+            opacity: 0.3;
         }
     }
 }
