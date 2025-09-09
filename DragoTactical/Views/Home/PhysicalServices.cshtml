@@ -120,19 +120,22 @@
     <div class="physical-contact container mx-auto justify-content-center">
         <form class="phy-form" method="post" action="#" novalidate>
             <div class="form-group col-sm-12 d-flex flex-column-12">
-                <input class="phy-form-control phy-input" type="text" placeholder="Name" required />
+                <input class="phy-form-control phy-input" type="text" placeholder="Name" required minlength="2" maxlength="50"
+                       pattern="^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$" />
             </div>
 
             <div class="form-group col-sm-12 d-flex flex-column-12">
-                <input class="phy-form-control phy-input" type="text" placeholder="Surname" required />
+                <input class="phy-form-control phy-input" type="text" placeholder="Surname" required minlength="2" maxlength="50"
+                       pattern="^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$" />
             </div>
 
             <div class="form-group col-sm-12 d-flex flex-column-12">
-                <input class="phy-form-control phy-input" type="email" placeholder="Email" required />
+                <input class="phy-form-control phy-input" type="email" placeholder="Email" required maxlength="254" pattern='^[a-zA-Z0-9._%+-]+@@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$' />
             </div>
 
             <div class="form-group col-sm-12 d-flex flex-column-12">
-                <input class="phy-form-control phy-input" type="tel" placeholder="Phone Number" required />
+                <input class="phy-form-control phy-input" type="tel" placeholder="Phone Number" required minlength="7" maxlength="15"
+                       pattern="^\+?[0-9\s\-()]{7,15}$" />
             </div>
 
             <div class="form-group col-sm-12 d-flex flex-column-12">
