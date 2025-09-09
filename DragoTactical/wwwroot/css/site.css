@@ -1150,49 +1150,6 @@ html, body {
     }
 }
 
-
-
-/* Extra Small devices */
-@media (max-width: 575px) {
-    .dt-hero-inner {
-        padding: var(--spacing-lg) var(--spacing-sm) var(--spacing-xl);
-        grid-template-columns: 1fr;
-        gap: var(--spacing-sm);
-        text-align: center;
-    }
-
-    .dt-hero-logo {
-        width: 150px;
-        height: 150px;
-        margin: 0 auto;
-    }
-
-    .dt-service-card {
-        width: 100% !important;
-        margin: 0 auto !important;
-        max-width: none;
-    }
-
-    .service-external-icon {
-        display: none;
-    }
-
-    .dt-stats-bg {
-        width: 200px;
-        height: 200px;
-    }
-
-    .dt-btn-primary,
-    .dt-btn-book,
-    .dt-btn-contact {
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-        display: block;
-        text-align: center;
-    }
-}
-
 /* Small devices */
 @media (min-width: 576px) and (max-width: 767px) {
     .dt-hero-inner {
@@ -1381,6 +1338,140 @@ html, body {
     .skip-to-main:focus {
         top: 6px;
     }
+
+/* Extra Small devices */
+@media (max-width: 575px) {
+    .dt-hero-inner {
+        padding: var(--spacing-lg) var(--spacing-sm) var(--spacing-xl);
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+        text-align: center;
+    }
+
+    .dt-hero-logo {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+    }
+
+    .dt-service-card {
+        width: 100% !important;
+        margin: 0 auto !important;
+        max-width: none;
+    }
+
+    .service-external-icon {
+        display: none;
+    }
+
+    .dt-stats-bg {
+        width: 200px;
+        height: 200px;
+    }
+
+    .dt-btn-primary,
+    .dt-btn-book,
+    .dt-btn-contact {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
+        text-align: center;
+    }
+}
+
+/* Tablet & Mobile  */
+@media (max-width: 992px) {
+    .dt-hero-subtitle {
+        text-align: center;
+        margin: 0 auto 1.5rem;
+    }
+
+    .dt-mission-inner {
+        flex-direction: column;
+        height: auto;
+        text-align: center;
+    }
+
+    .dt-mission-left {
+        width: 100%;
+        flex: none;
+        clip-path: none;
+        justify-content: center;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .dt-mission-bg {
+        width: 80%;
+        max-width: 250px;
+    }
+
+    .dt-mission-lock {
+        width: 40px;
+        height: auto;
+        margin: 0.5rem;
+    }
+
+    .dt-mission-title {
+        padding: 0;
+        white-space: normal;
+    }
+
+    .dt-mission-right {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    /* Comments section layout */
+    .dt-comments {
+        flex-direction: column;
+        max-width: 100%;
+        padding: var(--spacing-lg);
+        position: relative; 
+        z-index: 1;
+    }
+
+    .mixed-web {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.15; 
+        z-index: -1;
+    }
+
+    .dt-comments-label {
+        writing-mode: horizontal-tb;
+        transform: none;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Footer centering */
+    .dt-footer-top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .dt-footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .dt-footer-logo {
+        align-items: center;
+    }
+}
+
+
+
 
 /* ========================================== Contact Page =========================================*/
 
