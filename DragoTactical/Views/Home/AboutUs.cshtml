@@ -1,5 +1,123 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "About Us";
 }
+
+<!-- Security headers -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; frame-ancestors 'none';">  @* Prevents clickjacking *@
+<meta http-equiv="X-Content-Type-Options" content="nosniff"> 
+<meta http-equiv="X-Frame-Options" content="DENY">  @* Further clickjacking protection *@
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin"> @* Prevents referrer leaks *@
+<meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=()">
+
+<!-- SECTION 1: Gradient hero -->
+<section class="dt-full-bleed dt-about-us">
+    <div class="dt-about-us-decorative" aria-hidden="true">
+        <img src="~/images/BlueBall.png" alt="Decorative blue ball" class="dt-about-decorative-left" loading="lazy" />
+        <img src="~/images/AboutUs2.png" alt="Decorative about us graphic" class="dt-about-decorative-right" loading="lazy" />
+    </div>
+
+    <div class="dt-about-us-content">
+        <header class="dt-about-us-header">
+            <h1 class="dt-about-us-title">About Us</h1>
+            <div class="dt-about-us-spacing"></div>
+            <p class="dt-about-us-subtitle">Who are we?</p>
+        </header>
+
+        <div class="dt-about-us-body">
+            <!-- Left divider -->
+            <div class="dt-about-us-divider-left"></div>
+            
+            <!-- Two column layout -->
+            <div class="dt-about-us-columns">
+                <div class="dt-about-us-column">
+                    <p class="dt-about-us-description">
+                        At Drago Tactical, we are dedicated to redefining the future of security by integrating both cyber and physical protection into a single, seamless approach. Founded on expertise, innovation, and trust, our mission is to safeguard organizations against evolving threats in today's fast-paced world.
+                    </p>
+                </div>
+                
+                <!-- Center divider -->
+                <div class="dt-about-us-divider-center"></div>
+                
+                <div class="dt-about-us-column">
+                    <p class="dt-about-us-description">
+                        Our team is composed of highly trained professionals—cybersecurity specialists, physical security operators, and risk management experts—working together to protect your people, assets, and data. Whether in the digital space or on the ground, we deliver tailored security solutions that empower organizations to operate with confidence.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 2: Why Choose Us (Blue) -->
+<section class="dt-full-bleed dt-why-choose-us">
+    <h2 class="dt-why-choose-us-title">Why Choose Us</h2>
+    <div class="dt-why-choose-us-grid">
+        <div class="dt-why-choose-us-card">
+            <div class="dt-why-choose-us-card-border">
+                <h3 class="dt-why-choose-us-card-title">End-to-End Protection</h3>
+                <p class="dt-why-choose-us-card-description">
+                    We offer integrated solutions that address vulnerabilities across both digital and physical domains. This holistic approach makes us uniquely positioned to handle today’s complex threat landscape.
+                </p>
+            </div>
+        </div>
+
+        <div class="dt-why-choose-us-card">
+            <div class="dt-why-choose-us-card-border">
+                <h3 class="dt-why-choose-us-card-title">Commitment to Your Success</h3>
+                <p class="dt-why-choose-us-card-description">
+                    We go beyond protecting your assets—we work as your partner in building resilience. Our proactive approach ensures your organization is always one step ahead of emerging threats.
+                </p>
+            </div>
+        </div>
+
+        <div class="dt-why-choose-us-card">
+            <div class="dt-why-choose-us-card-border">
+                <h3 class="dt-why-choose-us-card-title">Expertise You Can Trust</h3>
+                <p class="dt-why-choose-us-card-description">
+                    Our trained professionals bring a level of skill and precision that ensures your security is never left to chance.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 3: What We Offer (Grey) -->
+<section class="dt-full-bleed dt-what-we-offer">
+    <h2 class="dt-what-title">What We Offer</h2>
+
+    <div class="dt-what-grid">
+        <!-- Left side divider -->
+        <div class="dt-what-left-divider"></div>
+        
+        <!-- Center divider between rows -->
+        <div class="dt-what-center-divider"></div>
+        
+        <div class="dt-offer-item" data-num="01">
+            <h3 class="dt-offer-h">Comprehensive Cybersecurity Services</h3>
+            <p class="dt-offer-p">
+                From risk assessments and penetration testing to cloud security and incident response, we ensure your IT infrastructure is resilient against cyberattacks.
+            </p>
+        </div>
+
+        <div class="dt-offer-item" data-num="03">
+            <h3 class="dt-offer-h">Integrated Risk Management</h3>
+            <p class="dt-offer-p">
+                We bridge the gap between digital and physical security, creating a holistic protection framework through risk audits, consulting, and project management.
+            </p>
+        </div>
+
+        <div class="dt-offer-item" data-num="02">
+            <h3 class="dt-offer-h">Physical Security Solutions</h3>
+            <p class="dt-offer-p">
+                Certified personnel—armed and unarmed—deliver on-site security, VIP protection, surveillance systems, access control, and emergency response to protect your physical assets.
+            </p>
+        </div>
+
+        <div class="dt-offer-item" data-num="04">
+            <h3 class="dt-offer-h">Tailored Consultancy Services</h3>
+            <p class="dt-offer-p">
+                With offerings like Virtual Cyber Assistants (VCA) and Virtual CISOs, we provide flexible, strategic guidance aligned to your organization's unique security needs.
+            </p>
+        </div>
+    </div>
+</section>

@@ -1,5 +1,211 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Cyber Services";
 }
+
+<!-- Security headers -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; frame-ancestors 'none';">  @* Prevents clickjacking *@
+<meta http-equiv="X-Content-Type-Options" content="nosniff"> 
+<meta http-equiv="X-Frame-Options" content="DENY">  @* Further clickjacking protection *@
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin"> @* Prevents referrer leaks *@
+<meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=()">
+
+<div class="dt-cyber-services">
+    <!-- BlueTech Decorative Images -->
+    <div class="dt-cyber-bluetech-left">
+        <img src="~/images/BlueTech.png" alt="BlueTech Left" loading="lazy" />
+    </div>
+    <div class="dt-cyber-bluetech-right">
+        <img src="~/images/BlueTechR.png" alt="BlueTech Right" loading="lazy" />
+    </div>
+    
+    <!-- Cyber Threat Section -->
+    <div class="dt-cyber-threat-section">
+        <h1 class="dt-cyber-threat-title">How big is your Cyber Threat Surface?</h1>
+        <div class="dt-cyber-threat-hero">
+            <div class="dt-cyber-threat-content">
+                <p>Cyber threats are no longer a distant risk. They're a daily reality. Every click, connection, and device opens a door that hackers can exploit. What was once small-scale crime has grown into a global threat capable of stealing billions, shutting down businesses, and even endangering national security. The question isn't if you'll face a cyber threat, but when.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cyber Services Grid -->
+    <div class="dt-cyber-services-grid">
+        <!-- First row -->
+        <div class="dt-cyber-grid-row">
+            <div class="dt-cyber-grid-item">
+                <div class="dt-cyber-grid-image">
+                    <img src="~/images/18.png" alt="Cyber Service 1" />
+                    <div class="dt-cyber-grid-content">
+                        <div class="dt-cyber-grid-text">
+                            <h3 class="dt-cyber-grid-title">Increasing Frequency of Attacks</h3>
+                            <p class="dt-cyber-grid-paragraph">Cyberattacks are becoming more frequent each year, with millions of attempts happening daily across the globe. From large corporations to small businesses and even individual users, no one is immune. Criminals exploit vulnerabilities in networks, software, and human behavior, making cyber threats a persistent and expanding danger.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dt-cyber-grid-item">
+                <div class="dt-cyber-grid-image">
+                    <img src="~/images/18.png" alt="Cyber Service 2" />
+                    <div class="dt-cyber-grid-content">
+                        <div class="dt-cyber-grid-text">
+                            <h3 class="dt-cyber-grid-title">Financial and Economic Impact</h3>
+                            <p class="dt-cyber-grid-paragraph">The financial cost of cybercrime is staggering. Organizations face expenses related to data breaches, ransomware payments, recovery processes, and legal consequences. According to global estimates, cybercrime could cost the world economy trillions of dollars annually. Beyond direct costs, businesses also suffer reputational damage, loss of customers, and disrupted operations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second row -->
+        <div class="dt-cyber-grid-row">
+            <div class="dt-cyber-grid-item">
+                <div class="dt-cyber-grid-image">
+                    <img src="~/images/18.png" alt="Cyber Service 3" />
+                    <div class="dt-cyber-grid-content">
+                        <div class="dt-cyber-grid-text">
+                            <h3 class="dt-cyber-grid-title">National Security Risks</h3>
+                            <p class="dt-cyber-grid-paragraph">Cyber threats are not limited to private companies, governments and critical infrastructure are also prime targets. Cyberattacks on power grids, healthcare systems, water supplies, and defense networks can have devastating consequences for public safety and national security. Nation-state actors increasingly use cyberattacks as tools of espionage, sabotage, and even warfare.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dt-cyber-grid-item">
+                <div class="dt-cyber-grid-image">
+                    <img src="~/images/18.png" alt="Cyber Service 4" />
+                    <div class="dt-cyber-grid-content">
+                        <div class="dt-cyber-grid-text">
+                            <h3 class="dt-cyber-grid-title">Evolving Techniques and Tools</h3>
+                            <p class="dt-cyber-grid-paragraph">Attackers are constantly evolving their methods. Traditional viruses and phishing emails have expanded into more advanced threats like ransomware-as-a-service, deepfakes, and AI-powered hacking. Cybercriminals can purchase tools on the dark web, lowering the barrier to entry and enabling more people to participate in cybercrime.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third row -->
+        <div class="dt-cyber-grid-row dt-cyber-grid-row-single">
+            <div class="dt-cyber-grid-item">
+                <div class="dt-cyber-grid-image">
+                    <img src="~/images/18.png" alt="Cyber Service 5" />
+                    <div class="dt-cyber-grid-content">
+                        <div class="dt-cyber-grid-text">
+                            <h3 class="dt-cyber-grid-title">Human Factor and Awareness</h3>
+                            <p class="dt-cyber-grid-paragraph">One of the biggest vulnerabilities is still the human factor. Employees clicking on malicious links, using weak passwords, or falling for social engineering schemes provide easy entry points for attackers. Despite increased awareness, many organizations still struggle with proper training and strong cybersecurity culture.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Road Ahead Section -->
+    <div class="dt-road-ahead-section">
+        <div class="dt-road-ahead-decorative-left">
+            <img src="~/images/RoundTechR.png" alt="Decorative Tech Left" loading="lazy" />
+        </div>
+        <div class="dt-road-ahead-decorative-right">
+            <img src="~/images/RoundTechL.png" alt="Decorative Tech Right" loading="lazy" />
+        </div>
+        <div class="dt-road-ahead-content">
+            <h2 class="dt-road-ahead-title">The Road Ahead</h2>
+            <p class="dt-road-ahead-paragraph">As our world becomes more digitally connected through cloud services, IoT devices, and artificial intelligence, the attack surface grows even larger. This means cyber threats will continue to escalate unless individuals, organizations, and governments invest in stronger security measures, regular monitoring, and international cooperation.</p>
+        </div>
+    </div>
+
+    <div class="dt-cyber-contact-section">
+        <div class="dt-cyber-contact-content">
+            <h2 class="dt-cyber-contact-title">Contact Us</h2>
+            <p class="dt-cyber-contact-subtitle">Ready to secure your digital infrastructure?</p>
+
+            <div class="security-warning">
+                This form is secured with CSRF protection and input validation. All data is sanitized before processing.
+            </div>
+            
+            <form class="dt-cyber-contact-form" method="post" asp-controller="Contact" asp-action="Submit" id="cyberContactForm" novalidate autocomplete="off">
+                @Html.AntiForgeryToken()  @* Prevent CSRF attacks *@
+                <div class="row g-3">
+                    <div class="col-12">
+                        <input class="form-control dt-cyber-input" name="FirstName" type="text" placeholder="First Name*" required 
+                               minlength="2" maxlength="50" pattern="^[A-Za-z\s]{2,50}$" 
+                               title="Only letters allowed (2-50 characters)" />
+                    </div>
+                    <div class="col-12">
+                        <input class="form-control dt-cyber-input" name="LastName" type="text" placeholder="Last Name*" required 
+                               minlength="2" maxlength="50" pattern="^[A-Za-z\s]{2,50}$" 
+                               title="Only letters allowed (2-50 characters)" />
+                    </div>
+                    <div class="col-12">
+                        <input class="form-control dt-cyber-input" name="Email" type="email" placeholder="Email*" required 
+                               maxlength="254" />
+                    </div>
+                    <div class="col-12">
+                        <input class="form-control dt-cyber-input" name="Phone" type="tel" placeholder="Phone*" required 
+                               minlength="7" maxlength="15" pattern="^\+?[0-9\s\-]{7,15}$" 
+                               title="Enter a valid phone number" />
+                    </div>
+                    <div class="col-12">
+                        <input class="form-control dt-cyber-input" name="Company" type="text" placeholder="Company name (Optional)" 
+                               maxlength="100" pattern="^[^<>]{0,100}$" 
+                               title="No invalid characters allowed" />
+                    </div>
+                    <div class="col-12">
+                        <select class="form-select dt-cyber-input" name="Location" required>
+                            <option value="">Location*</option>
+                            <option value="South Africa">South Africa</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="United States">United States</option>
+                            <option value="Europe">Europe</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <select class="form-select dt-cyber-input" name="Service" required>
+                            <option value="">Cyber Services of Interest*</option>
+                            <option value="Penetration Testing">Penetration Testing</option>
+                            <option value="Incident Response">Incident Response</option>
+                            <option value="Threat Hunting">Threat Hunting</option>
+                            <option value="Red Teaming">Red Teaming</option>
+                            <option value="Security Assessment">Security Assessment</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <textarea class="form-control dt-cyber-input" name="Message" rows="4" placeholder="Message– Please provide a description of your cyber security needs"
+                                  required maxlength="1000" pattern="^[^<>]{10,1000}$" 
+                                  title="No invalid characters allowed (10-1000 characters)"></textarea>
+                    </div>
+                </div>
+
+                <div class="mt-4 d-flex justify-content-center">
+                    <button type="submit" class="btn dt-cyber-btn-submit">Submit*</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Front-end security JS -->
+<script>
+    document.getElementById('cyberContactForm').addEventListener('submit', function(e) {
+        let valid = true;
+        const inputs = this.querySelectorAll('input, textarea, select');
+
+        inputs.forEach(input => {
+            input.value = input.value.trim();
+
+            if (/<|>/.test(input.value)) {
+                alert('Please remove invalid characters like < or > from your input.');
+                valid = false;
+            }
+
+            if (!input.checkValidity()) {
+                input.reportValidity();
+                valid = false;
+            }
+
+            input.value = input.value.replace(/[<>]/g, '');
+        });
+
+        if (!valid) e.preventDefault();
+    });
+</script>
