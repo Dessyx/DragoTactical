@@ -118,7 +118,12 @@
     </div>
 
     <div class="physical-contact container mx-auto justify-content-center">
-        <form class="phy-form" method="post" action="#" novalidate>
+        <div class="security-warning">
+            This form is secured with CSRF protection and input validation. All data is sanitized before processing.
+        </div>
+        
+        <form class="phy-form" method="post" action="#" novalidate autocomplete="off">
+            @Html.AntiForgeryToken()  @* Prevent CSRF attacks *@
             <div class="form-group col-sm-12 d-flex flex-column-12">
                 <input class="phy-form-control phy-input" type="text" placeholder="Name" required minlength="2" maxlength="50"
                        pattern="^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$" />

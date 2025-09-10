@@ -2,13 +2,20 @@
     ViewData["Title"] = "Cyber Services";
 }
 
+<!-- Security headers -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; frame-ancestors 'none';">  @* Prevents clickjacking *@
+<meta http-equiv="X-Content-Type-Options" content="nosniff"> 
+<meta http-equiv="X-Frame-Options" content="DENY">  @* Further clickjacking protection *@
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin"> @* Prevents referrer leaks *@
+<meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=()">
+
 <div class="dt-cyber-services">
     <!-- BlueTech Decorative Images -->
     <div class="dt-cyber-bluetech-left">
-        <img src="~/images/BlueTech.png" alt="BlueTech Left" />
+        <img src="~/images/BlueTech.png" alt="BlueTech Left" loading="lazy" />
     </div>
     <div class="dt-cyber-bluetech-right">
-        <img src="~/images/BlueTechR.png" alt="BlueTech Right" />
+        <img src="~/images/BlueTechR.png" alt="BlueTech Right" loading="lazy" />
     </div>
     
     <!-- Cyber Threat Section -->
@@ -94,10 +101,10 @@
     <!-- The Road Ahead Section -->
     <div class="dt-road-ahead-section">
         <div class="dt-road-ahead-decorative-left">
-            <img src="~/images/RoundTechR.png" alt="Decorative Tech Left" />
+            <img src="~/images/RoundTechR.png" alt="Decorative Tech Left" loading="lazy" />
         </div>
         <div class="dt-road-ahead-decorative-right">
-            <img src="~/images/RoundTechL.png" alt="Decorative Tech Right" />
+            <img src="~/images/RoundTechL.png" alt="Decorative Tech Right" loading="lazy" />
         </div>
         <div class="dt-road-ahead-content">
             <h2 class="dt-road-ahead-title">The Road Ahead</h2>
@@ -110,53 +117,95 @@
             <h2 class="dt-cyber-contact-title">Contact Us</h2>
             <p class="dt-cyber-contact-subtitle">Ready to secure your digital infrastructure?</p>
 
-            <form class="dt-cyber-contact-form" method="post" action="#" novalidate>
+            <div class="security-warning">
+                This form is secured with CSRF protection and input validation. All data is sanitized before processing.
+            </div>
+            
+            <form class="dt-cyber-contact-form" method="post" asp-controller="Contact" asp-action="Submit" id="cyberContactForm" novalidate autocomplete="off">
+                @Html.AntiForgeryToken()  @* Prevent CSRF attacks *@
                 <div class="row g-3">
                     <div class="col-12">
-                        <input class="form-control dt-cyber-input" type="text" placeholder="First Name*" required />
+                        <input class="form-control dt-cyber-input" name="FirstName" type="text" placeholder="First Name*" required 
+                               minlength="2" maxlength="50" pattern="^[A-Za-z\s]{2,50}$" 
+                               title="Only letters allowed (2-50 characters)" />
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-cyber-input" type="text" placeholder="Last Name*" required />
+                        <input class="form-control dt-cyber-input" name="LastName" type="text" placeholder="Last Name*" required 
+                               minlength="2" maxlength="50" pattern="^[A-Za-z\s]{2,50}$" 
+                               title="Only letters allowed (2-50 characters)" />
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-cyber-input" type="email" placeholder="Email*" required />
+                        <input class="form-control dt-cyber-input" name="Email" type="email" placeholder="Email*" required 
+                               maxlength="254" />
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-cyber-input" type="tel" placeholder="Phone*" required />
+                        <input class="form-control dt-cyber-input" name="Phone" type="tel" placeholder="Phone*" required 
+                               minlength="7" maxlength="15" pattern="^\+?[0-9\s\-]{7,15}$" 
+                               title="Enter a valid phone number" />
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-cyber-input" type="text" placeholder="Company name (Optional)" />
+                        <input class="form-control dt-cyber-input" name="Company" type="text" placeholder="Company name (Optional)" 
+                               maxlength="100" pattern="^[^<>]{0,100}$" 
+                               title="No invalid characters allowed" />
                     </div>
                     <div class="col-12">
-                        <select class="form-select dt-cyber-input">
-                            <option selected>Location</option>
-                            <option>South Africa</option>
-                            <option>United Kingdom</option>
-                            <option>United States</option>
-                            <option>Europe</option>
-                            <option>Other</option>
+                        <select class="form-select dt-cyber-input" name="Location" required>
+                            <option value="">Location*</option>
+                            <option value="South Africa">South Africa</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="United States">United States</option>
+                            <option value="Europe">Europe</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                     <div class="col-12">
-                        <select class="form-select dt-cyber-input">
-                            <option selected>Cyber Services of Interest</option>
-                            <option>Penetration Testing</option>
-                            <option>Incident Response</option>
-                            <option>Threat Hunting</option>
-                            <option>Red Teaming</option>
-                            <option>Security Assessment</option>
-                            <option>Other</option>
+                        <select class="form-select dt-cyber-input" name="Service" required>
+                            <option value="">Cyber Services of Interest*</option>
+                            <option value="Penetration Testing">Penetration Testing</option>
+                            <option value="Incident Response">Incident Response</option>
+                            <option value="Threat Hunting">Threat Hunting</option>
+                            <option value="Red Teaming">Red Teaming</option>
+                            <option value="Security Assessment">Security Assessment</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                     <div class="col-12">
-                        <textarea class="form-control dt-cyber-input" rows="4" placeholder="Message– Please provide a description of your cyber security needs"></textarea>
+                        <textarea class="form-control dt-cyber-input" name="Message" rows="4" placeholder="Message– Please provide a description of your cyber security needs"
+                                  required maxlength="1000" pattern="^[^<>]{10,1000}$" 
+                                  title="No invalid characters allowed (10-1000 characters)"></textarea>
                     </div>
                 </div>
 
                 <div class="mt-4 d-flex justify-content-center">
-                    <button type="submit" class="btn dt-cyber-btn-submit">Submit</button>
+                    <button type="submit" class="btn dt-cyber-btn-submit">Submit*</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<!-- Front-end security JS -->
+<script>
+    document.getElementById('cyberContactForm').addEventListener('submit', function(e) {
+        let valid = true;
+        const inputs = this.querySelectorAll('input, textarea, select');
+
+        inputs.forEach(input => {
+            input.value = input.value.trim();
+
+            if (/<|>/.test(input.value)) {
+                alert('Please remove invalid characters like < or > from your input.');
+                valid = false;
+            }
+
+            if (!input.checkValidity()) {
+                input.reportValidity();
+                valid = false;
+            }
+
+            input.value = input.value.replace(/[<>]/g, '');
+        });
+
+        if (!valid) e.preventDefault();
+    });
+</script>

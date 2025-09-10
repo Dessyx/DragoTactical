@@ -2,11 +2,18 @@
     ViewData["Title"] = "About Us";
 }
 
+<!-- Security headers -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; frame-ancestors 'none';">  @* Prevents clickjacking *@
+<meta http-equiv="X-Content-Type-Options" content="nosniff"> 
+<meta http-equiv="X-Frame-Options" content="DENY">  @* Further clickjacking protection *@
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin"> @* Prevents referrer leaks *@
+<meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=()">
+
 <!-- SECTION 1: Gradient hero -->
 <section class="dt-full-bleed dt-about-us">
     <div class="dt-about-us-decorative" aria-hidden="true">
-        <img src="~/images/BlueBall.png" alt="" class="dt-about-decorative-left" />
-        <img src="~/images/AboutUs2.png" alt="" class="dt-about-decorative-right" />
+        <img src="~/images/BlueBall.png" alt="Decorative blue ball" class="dt-about-decorative-left" loading="lazy" />
+        <img src="~/images/AboutUs2.png" alt="Decorative about us graphic" class="dt-about-decorative-right" loading="lazy" />
     </div>
 
     <div class="dt-about-us-content">
