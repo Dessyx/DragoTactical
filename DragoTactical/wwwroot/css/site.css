@@ -3416,7 +3416,7 @@ img .circuit2 {
             right: -10%;
         }
 
-        /* complex decorations on mobile are hidden */
+        /* complex decorations on mobile device are hidden */
         .phy-bg-decor {
             display: none;
         }
@@ -3454,7 +3454,7 @@ img .circuit2 {
                 max-width: 100%;
             }
 
-            /* Adjust text sizes for very small screens */
+            /* Adjusting text sizes for very small screens */
             .phc-title {
                 font-size: 1.7rem;
                 padding-top: 0.5rem;
@@ -3473,7 +3473,7 @@ img .circuit2 {
                 font-size: 1.7rem;
             }
 
-            /* Adjust padding for small screens */
+            /* Adjusting padding for small screens */
             .services-section,
             .contact-section {
                 padding: 1.5rem 0.5rem;
