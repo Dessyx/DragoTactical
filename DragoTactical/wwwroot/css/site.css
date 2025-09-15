@@ -2851,9 +2851,10 @@ html, body {
     line-height: 2;
     max-width: 90%; /* resp */ 
     margin-bottom: 2rem;
+    padding-left: 150px;
 }
 
-.card-title {
+.card-main-title {
     font-family: "DM Serif Text", serif;
     font-size: 1.5rem;
     font-weight: 400;
@@ -2864,10 +2865,28 @@ html, body {
     font-size: 50px;
 }
 
+.card-title {
+    font-family: "Domine", serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 4rem;
+    margin-top: 1.5rem;
+    color: black;
+}
+
+.physical-card-desc {
+    font-family: "DM Sans", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #004D85;
+}
+
 .container-card {
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 80%;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
     margin-bottom: 40px;
 }
 
@@ -2875,25 +2894,24 @@ html, body {
     margin-right: 0;
     margin-left: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap;     
 }
+
 
 .card-body {
     border-radius: 15px;
-    text-align: center;
-    padding: 20px;
+    height: 350px;
+    width: 450px;
     margin-bottom: 90px;
     background-color: #D9D9D9;
     backdrop-filter: blur(10px);
-    min-height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "DM Sans", sans-serif;
-    font-style: normal;
-    font-weight: 400;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     box-shadow: 0 4px 4px rgba(0, 107, 135, 255);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+
 }
 
     .card-body:hover {
@@ -3039,9 +3057,9 @@ img .circuit2 {
 .phy-bg-decor .wavy-element2 {
     position: absolute;
     top: 60%;
-    left: 10%;
-    width: 500px;
-    height: 500px;
+    left: 0;
+    width: 900px;
+    height: 700px;
     z-index: 0;
     pointer-events: none;
     opacity: 0.7;
@@ -3061,7 +3079,7 @@ img .circuit2 {
 .phy-bg-decor .wavy-element4 {
     position: absolute;
     top: 60%;
-    left: 55%;
+    left: 50%;
     width: 500px;
     height: 500px;
     z-index: 0;
@@ -3097,7 +3115,7 @@ img .circuit2 {
     position: absolute;
     width: 400px;
     height: 400px;
-    top: 70%;
+    top: 80%;
     left: 0;
     z-index: 0;
     pointer-events: none;
@@ -3108,7 +3126,7 @@ img .circuit2 {
     position: absolute;
     width: 400px;
     height: 400px;
-    top: 70%;
+    top: 80%;
     left: 74%;
     z-index: 0;
     pointer-events: none;
@@ -3158,9 +3176,9 @@ img .circuit2 {
         font-size: 16px;
     }
 
-    /* ========================================== || Physical Services End || =========================================*/
+/* ========================================== || Physical Services End || =========================================*/
 
-    /* ========================================== || Physical Services Responsiveness || ====================================*/
+/* ========================================== || Physical Services Responsiveness || ====================================*/
         /* ===== MOBILE FIRST RESPONSIVE CSS ===== */
 
         /* Base styles for all devices */
@@ -3182,7 +3200,7 @@ img .circuit2 {
         .phc-title {
             font-family: "DM Serif Text", serif;
             font-weight: 400;
-            font-size: 2rem; 
+            font-size: 2rem;
             line-height: 1.3;
             padding-top: 1rem;
             margin-bottom: 1rem;
@@ -3193,7 +3211,7 @@ img .circuit2 {
             font-family: "DM Serif Text", serif;
             font-weight: 400;
             line-height: 1.5;
-            font-size: 1.2rem; 
+            font-size: 1.2rem;
             max-width: 95%;
             margin: 0 auto 2rem;
             text-align: center;
@@ -3212,13 +3230,13 @@ img .circuit2 {
             font-style: normal;
             font-weight: 400;
             text-align: center;
-            font-size: 1rem; 
+            font-size: 1rem;
             margin-bottom: 2rem;
         }
 
         .card-title {
             font-family: "DM Serif Text", serif;
-            font-size: 2rem; 
+            font-size: 2rem;
             font-weight: 400;
             margin-top: 2rem;
             margin-bottom: 2rem;
@@ -3242,6 +3260,7 @@ img .circuit2 {
             .row-gutters > [class*="col-"] {
                 padding: 0 0.5rem;
                 margin-bottom: 1.5rem;
+                width: 100%; /* Default to full width for mobile */
             }
 
         .card-body {
@@ -3310,7 +3329,7 @@ img .circuit2 {
             color: white;
             border: 2px solid white;
             border-radius: 0.5rem;
-            width: 100%; 
+            width: 100%;
             height: 50px;
             background: transparent;
             font-size: 16px;
@@ -3397,7 +3416,7 @@ img .circuit2 {
             right: -10%;
         }
 
-        /* complex decorations on mobile are hidden */
+        /* complex decorations on mobile device are hidden */
         .phy-bg-decor {
             display: none;
         }
@@ -3418,8 +3437,63 @@ img .circuit2 {
             }
         }
 
+        /* ===== VERY SMALL SCREENS (1/4 laptop size ~320px) ===== */
+        @media (max-width: 360px) {
+            /* Hide all decorative elements */
+            .circuit1, .circuit2,
+            .phy-bg-decor,
+            .black-circuit, .black-circuit2,
+            .circle-circuit, .circle-circuit2 {
+                display: none !important;
+            }
+
+            /* Ensure single column layout */
+            .row-gutters > [class*="col-"] {
+                width: 100%;
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+
+            /* Adjusting text sizes for very small screens */
+            .phc-title {
+                font-size: 1.7rem;
+                padding-top: 0.5rem;
+            }
+
+            .hero-desc {
+                font-size: 1rem;
+                padding-top: 1rem;
+            }
+
+            .card-title {
+                font-size: 1.7rem;
+            }
+
+            .form-title {
+                font-size: 1.7rem;
+            }
+
+            /* Adjusting padding for small screens */
+            .services-section,
+            .contact-section {
+                padding: 1.5rem 0.5rem;
+            }
+
+            .container-card {
+                padding: 0 0.5rem;
+            }
+
+            .card-body {
+                padding: 1rem 0.8rem;
+            }
+        }
+
         /* ===== TABLET STYLES (768px+) ===== */
         @media (min-width: 768px) {
+            /* Show circuit decorations on tablet and larger */
+            .circuit1, .circuit2 {
+                display: block;
+            }
 
             .phc-title {
                 font-size: 3.5rem;
@@ -3455,6 +3529,9 @@ img .circuit2 {
                 .row-gutters > [class*="col-"] {
                     padding: 0 1rem;
                     margin-bottom: 2rem;
+                    width: 50%; /* Two columns on tablet */
+                    flex: 0 0 50%;
+                    max-width: 50%;
                 }
 
             .card-body {
@@ -3540,6 +3617,11 @@ img .circuit2 {
 
         /* ===== DESKTOP STYLES (1024px+) ===== */
         @media (min-width: 1024px) {
+            /* Show all decorative elements on desktop */
+            .phy-bg-decor,
+            .circle-circuit, .circle-circuit2 {
+                display: block;
+            }
 
             .bg-physical-services {
                 height: 100vh;
@@ -3583,6 +3665,9 @@ img .circuit2 {
                 .row-gutters > [class*="col-"] {
                     padding: 0 1.5rem;
                     margin-bottom: 2.5rem;
+                    width: 33.333333%; /* Three columns on desktop */
+                    flex: 0 0 33.333333%;
+                    max-width: 33.333333%;
                 }
 
             .card-body {
@@ -3735,6 +3820,11 @@ img .circuit2 {
 
         /* ===== LARGE DESKTOP STYLES (1440px+) ===== */
         @media (min-width: 1440px) {
+            .row-gutters > [class*="col-"] {
+                width: 25%; /* Four columns on large desktop */
+                flex: 0 0 25%;
+                max-width: 25%;
+            }
 
             .phc-title {
                 font-size: 5rem;
@@ -3749,11 +3839,11 @@ img .circuit2 {
             }
 
             .phs-desc {
-                font-size: 60px; 
+                font-size: 60px;
             }
 
             .card-title {
-                font-size: 50px; 
+                font-size: 50px;
                 margin-top: 100px;
                 padding-bottom: 50px;
             }
@@ -3888,7 +3978,7 @@ img .circuit2 {
         /* ===== ULTRA-WIDE SCREENS (1920px+) ===== */
         @media (min-width: 1920px) {
             .bg-physical-services {
-                height: 450px; 
+                height: 450px;
             }
 
             .hero-section-text {
