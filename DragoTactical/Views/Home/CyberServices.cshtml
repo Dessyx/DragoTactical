@@ -122,7 +122,21 @@
                 This form is secured with CSRF protection and input validation. All data is sanitized before processing.
             </div>
 
-            <form class="dt-cyber-contact-form" method="post" asp-controller="Contact" asp-action="Submit" id="cyberContactForm" novalidate autocomplete="off">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["ErrorMessage"]
+                </div>
+            }
+
+            <form class="dt-cyber-contact-form" method="post" action="/Contact/Submit" id="cyberContactForm" novalidate autocomplete="off">
                 @Html.AntiForgeryToken()  @* Prevent CSRF attacks *@
                 <div class="row g-3">
                     <div class="col-12">
@@ -140,12 +154,12 @@
                                maxlength="254" />
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-cyber-input" name="Phone" type="tel" placeholder="Phone*" required
+                        <input class="form-control dt-cyber-input" name="PhoneNumber" type="tel" placeholder="Phone*" required
                                minlength="7" maxlength="15" pattern="^\+?[0-9\s\-]{7,15}$"
                                title="Enter a valid phone number" />
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-cyber-input" name="Company" type="text" placeholder="Company name (Optional)"
+                        <input class="form-control dt-cyber-input" name="CompanyName" type="text" placeholder="Company name (Optional)"
                                maxlength="100" pattern="^[^<>]{0,100}$"
                                title="No invalid characters allowed" />
                     </div>
@@ -190,6 +204,9 @@
 <!-- Front-end security JS -->
 <script>
     document.getElementById('cyberContactForm').addEventListener('submit', function(e) {
+        console.log('Form submission started');
+        alert('Your form was submitted!');
+
         let valid = true;
         const inputs = this.querySelectorAll('input, textarea, select');
 
@@ -209,6 +226,11 @@
             input.value = input.value.replace(/[<>]/g, '');
         });
 
-        if (!valid) e.preventDefault();
+        if (!valid) {
+            e.preventDefault();
+            console.log('Form validation failed');
+        } else {
+            console.log('Form validation passed, submitting...');
+        }
     });
 </script>
