@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DragoTactical.Migrations
 {
     [DbContext(typeof(DragoTacticalDbContext))]
-    [Migration("20251005103525_InitSqlite")]
+    [Migration("20251005111604_InitSqlite")]
     partial class InitSqlite
     {
         /// <inheritdoc />
@@ -35,6 +35,18 @@ namespace DragoTactical.Migrations
                         .HasName("PK_Category");
 
                     b.ToTable("Category", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Physical Service"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Cybersecurity Service"
+                        });
                 });
 
             modelBuilder.Entity("DragoTactical.Models.FormSubmission", b =>
@@ -107,6 +119,104 @@ namespace DragoTactical.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Services", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ServiceId = 1,
+                            CategoryId = 1,
+                            ServiceName = "Risk Analysis & Security Audits"
+                        },
+                        new
+                        {
+                            ServiceId = 2,
+                            CategoryId = 1,
+                            ServiceName = "On-Site Security Personnel / VIP Protection"
+                        },
+                        new
+                        {
+                            ServiceId = 3,
+                            CategoryId = 1,
+                            ServiceName = "Surveillance Systems"
+                        },
+                        new
+                        {
+                            ServiceId = 4,
+                            CategoryId = 1,
+                            ServiceName = "Access Control Solutions"
+                        },
+                        new
+                        {
+                            ServiceId = 5,
+                            CategoryId = 1,
+                            ServiceName = "Alarm & Emergency Response Systems"
+                        },
+                        new
+                        {
+                            ServiceId = 6,
+                            CategoryId = 1,
+                            ServiceName = "Vehicle & Perimeter Security"
+                        },
+                        new
+                        {
+                            ServiceId = 7,
+                            CategoryId = 1,
+                            ServiceName = "Security Consulting"
+                        },
+                        new
+                        {
+                            ServiceId = 8,
+                            CategoryId = 1,
+                            ServiceName = "Project Management"
+                        },
+                        new
+                        {
+                            ServiceId = 9,
+                            CategoryId = 2,
+                            ServiceName = "Risk Assessment and Vulnerability Testing"
+                        },
+                        new
+                        {
+                            ServiceId = 10,
+                            CategoryId = 2,
+                            ServiceName = "Network Security"
+                        },
+                        new
+                        {
+                            ServiceId = 11,
+                            CategoryId = 2,
+                            ServiceName = "Data Protection & Encryption"
+                        },
+                        new
+                        {
+                            ServiceId = 12,
+                            CategoryId = 2,
+                            ServiceName = "Incident Response and Threat Mitigation"
+                        },
+                        new
+                        {
+                            ServiceId = 13,
+                            CategoryId = 2,
+                            ServiceName = "Penetration Testing & Ethical Hacking"
+                        },
+                        new
+                        {
+                            ServiceId = 14,
+                            CategoryId = 2,
+                            ServiceName = "Employee Training and Awareness"
+                        },
+                        new
+                        {
+                            ServiceId = 15,
+                            CategoryId = 2,
+                            ServiceName = "Cloud Security"
+                        },
+                        new
+                        {
+                            ServiceId = 16,
+                            CategoryId = 2,
+                            ServiceName = "Managed Security Services (MSSP) - Virtual Cyber Assistant / VCISO"
+                        });
                 });
 
             modelBuilder.Entity("DragoTactical.Models.Service", b =>

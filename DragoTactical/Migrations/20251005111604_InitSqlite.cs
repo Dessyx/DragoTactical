@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace DragoTactical.Migrations
 {
     /// <inheritdoc />
@@ -62,6 +64,38 @@ namespace DragoTactical.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Category",
                         principalColumn: "CategoryId");
+                });
+
+            migrationBuilder.InsertData(
+                table: "Category",
+                columns: new[] { "CategoryId", "CategoryName" },
+                values: new object[,]
+                {
+                    { 1, "Physical Service" },
+                    { 2, "Cybersecurity Service" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Services",
+                columns: new[] { "ServiceId", "CategoryId", "ServiceName" },
+                values: new object[,]
+                {
+                    { 1, 1, "Risk Analysis & Security Audits" },
+                    { 2, 1, "On-Site Security Personnel / VIP Protection" },
+                    { 3, 1, "Surveillance Systems" },
+                    { 4, 1, "Access Control Solutions" },
+                    { 5, 1, "Alarm & Emergency Response Systems" },
+                    { 6, 1, "Vehicle & Perimeter Security" },
+                    { 7, 1, "Security Consulting" },
+                    { 8, 1, "Project Management" },
+                    { 9, 2, "Risk Assessment and Vulnerability Testing" },
+                    { 10, 2, "Network Security" },
+                    { 11, 2, "Data Protection & Encryption" },
+                    { 12, 2, "Incident Response and Threat Mitigation" },
+                    { 13, 2, "Penetration Testing & Ethical Hacking" },
+                    { 14, 2, "Employee Training and Awareness" },
+                    { 15, 2, "Cloud Security" },
+                    { 16, 2, "Managed Security Services (MSSP) - Virtual Cyber Assistant / VCISO" }
                 });
 
             migrationBuilder.CreateIndex(
