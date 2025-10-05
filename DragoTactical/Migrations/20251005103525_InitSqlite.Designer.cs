@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DragoTactical.Migrations
 {
     [DbContext(typeof(DragoTacticalDbContext))]
-    [Migration("20251004154058_InitSqlite")]
+    [Migration("20251005103525_InitSqlite")]
     partial class InitSqlite
     {
         /// <inheritdoc />
