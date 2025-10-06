@@ -15,6 +15,84 @@ namespace DragoTactical.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> TestConnection()
+        {
+            try
+            {
+                var canConnect = await _dbContext.Database.CanConnectAsync();
+                var formCount = await _dbContext.FormSubmissions.CountAsync();
+
+                return Json(new
+                {
+                    canConnect = canConnect,
+                    formCount = formCount,
+                    message = "Database connection test successful"
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    canConnect = false,
+                    formCount = 0,
+                    error = ex.Message
+                });
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> TestSubmit([FromForm] FormSubmission model)
+        {
+            try
+            {
+                _logger.LogInformation("=== TEST SUBMIT STARTED ===");
+                _logger.LogInformation("Model received: {Model}", model != null ? "NOT NULL" : "NULL");
+
+                if (model != null)
+                {
+                    _logger.LogInformation("FirstName: '{FirstName}', Email: '{Email}', ServiceId: {ServiceId}",
+                        model.FirstName, model.Email, model.ServiceId);
+                }
+
+                // Test direct database save
+                if (model != null && !string.IsNullOrEmpty(model.FirstName) && !string.IsNullOrEmpty(model.Email))
+                {
+                    model.SubmissionDate = DateTime.UtcNow;
+                    _dbContext.FormSubmissions.Add(model);
+                    var result = await _dbContext.SaveChangesAsync();
+
+                    _logger.LogInformation("Test save result: {Result} records affected", result);
+
+                    return Json(new
+                    {
+                        success = true,
+                        message = $"Test submission saved successfully. {result} records affected.",
+                        submissionId = model.SubmissionId
+                    });
+                }
+
+                return Json(new
+                {
+                    success = false,
+                    message = "Model validation failed or model is null",
+                    modelNull = model == null,
+                    firstNameEmpty = model?.FirstName == null || string.IsNullOrEmpty(model.FirstName),
+                    emailEmpty = model?.Email == null || string.IsNullOrEmpty(model.Email)
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Test submit failed");
+                return Json(new
+                {
+                    success = false,
+                    error = ex.Message,
+                    stackTrace = ex.StackTrace
+                });
+            }
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Submit(FormSubmission model)
@@ -35,6 +113,10 @@ namespace DragoTactical.Controllers
 
                 _logger.LogInformation("Model received - FirstName: '{FirstName}', LastName: '{LastName}', Email: '{Email}', PhoneNumber: '{PhoneNumber}', CompanyName: '{CompanyName}', Location: '{Location}', ServiceId: {ServiceId}, Message: '{Message}'",
                     model.FirstName, model.LastName, model.Email, model.PhoneNumber, model.CompanyName, model.Location, model.ServiceId, model.Message);
+
+                // Additional debugging - checks if model properties are actually set
+                _logger.LogInformation("Model properties check - FirstName is null/empty: {IsEmpty}, Email is null/empty: {EmailEmpty}, ServiceId value: {ServiceIdValue}",
+                    string.IsNullOrEmpty(model.FirstName), string.IsNullOrEmpty(model.Email), model.ServiceId);
 
                 _logger.LogInformation("Raw form data - Keys: {Keys}", string.Join(", ", Request.Form.Keys));
                 foreach (var key in Request.Form.Keys)
@@ -58,6 +140,12 @@ namespace DragoTactical.Controllers
                 {
                     _logger.LogInformation("Model validation passed, attempting to save to database...");
 
+                    if (model.ServiceId.HasValue && model.ServiceId == 0)
+                    {
+                        _logger.LogInformation("Converting 'Other' service selection (ServiceId=0) to null");
+                        model.ServiceId = null;
+                    }
+
                     model.SubmissionDate = DateTime.UtcNow;
                     _logger.LogInformation("Submission date set to: {Date}", model.SubmissionDate);
 
@@ -73,7 +161,7 @@ namespace DragoTactical.Controllers
                         return Redirect(Request.Headers["Referer"].ToString() ?? "/");
                     }
 
-            
+
                     // Checks current count before adding
                     var currentCount = await _dbContext.FormSubmissions.CountAsync();
                     _logger.LogInformation("Current FormSubmissions count before adding: {Count}", currentCount);

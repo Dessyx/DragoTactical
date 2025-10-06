@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Database Debug";
+}
+
+<div class="container mt-5">
+    <h1>Database Debug Information</h1>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">
+            <strong>Error:</strong> @ViewBag.Error
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Database Connection</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Can Connect:</strong> @ViewBag.CanConnect</p>
+                        <p><strong>Form Submissions:</strong> @ViewBag.FormCount</p>
+                        <p><strong>Services:</strong> @ViewBag.ServiceCount</p>
+                        <p><strong>Categories:</strong> @ViewBag.CategoryCount</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Recent Form Submissions</h5>
+                    </div>
+                    <div class="card-body">
+                        @if (ViewBag.RecentSubmissions != null && ((List<DragoTactical.Models.FormSubmission>)ViewBag.RecentSubmissions).Any())
+                        {
+                            @foreach (var submission in (List<DragoTactical.Models.FormSubmission>)ViewBag.RecentSubmissions)
+                            {
+                                <div class="border-bottom pb-2 mb-2">
+                                    <p><strong>Name:</strong> @submission.FirstName @submission.LastName</p>
+                                    <p><strong>Email:</strong> @submission.Email</p>
+                                    <p><strong>Service:</strong> @(submission.Service?.ServiceName ?? "Other")</p>
+                                    <p><strong>Date:</strong> @submission.SubmissionDate</p>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p>No form submissions found.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="mt-4">
+        <a href="/Home/ContactUs" class="btn btn-primary">Test Contact Form</a>
+        <a href="/Home/CyberServices" class="btn btn-success">Test Cyber Services Form</a>
+        <a href="/Home/PhysicalServices" class="btn btn-warning">Test Physical Services Form</a>
+    </div>
+</div>

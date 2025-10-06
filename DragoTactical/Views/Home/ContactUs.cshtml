@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DragoTactical.Models.ContactUsViewModel
+@{
     ViewData["Title"] = "Contact Us";
 }
 
@@ -29,11 +30,11 @@
                         <input class="form-control dt-input" name="Email" type="email" placeholder="Email*" required />
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-input" name="Phone" type="tel" placeholder="Phone*" required
+                        <input class="form-control dt-input" name="PhoneNumber" type="tel" placeholder="Phone*" required
                                pattern="^\+?[0-9\s\-]{7,15}$" title="Enter a valid phone number" />
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-input" name="Company" type="text" placeholder="Company name (Optional)"
+                        <input class="form-control dt-input" name="CompanyName" type="text" placeholder="Company name (Optional)"
                                pattern="^[^<>]{0,100}$" title="No invalid characters allowed" />
                     </div>
                     <div class="col-12">
@@ -47,14 +48,21 @@
                         </select>
                     </div>
                     <div class="col-12">
-                        <select class="form-select dt-input" name="Service" required>
-                            <option value="">Services of Interest</option>
-                            <option>Penetration Testing</option>
-                            <option>Incident Response</option>
-                            <option>Threat Hunting</option>
-                            <option>Red Teaming</option>
-                            <option>Physical Security</option>
-                            <option>Other</option>
+                        <select class="form-select dt-input" name="ServiceId" required>
+                            <option value="">Services of Interest*</option>
+                            @if (Model?.AllServices != null)
+                            {
+                                @foreach (var category in Model.AllServices.GroupBy(s => s.Category.CategoryName))
+                                {
+                                    <optgroup label="@category.Key">
+                                        @foreach (var service in category)
+                                        {
+                                            <option value="@service.ServiceId">@service.ServiceName</option>
+                                        }
+                                    </optgroup>
+                                }
+                            }
+                            <option value="0">Other</option>
                         </select>
                     </div>
                     <div class="col-12">

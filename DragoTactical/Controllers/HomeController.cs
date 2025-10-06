@@ -46,7 +46,19 @@ namespace DragoTactical.Controllers
 
         public IActionResult ContactUs()
         {
-            return View();
+            var allServices = _dbContext.Services
+                .Include(s => s.Category)
+                .AsNoTracking()
+                .OrderBy(s => s.Category.CategoryName)
+                .ThenBy(s => s.ServiceName)
+                .ToList();
+
+            var viewModel = new ContactUsViewModel
+            {
+                AllServices = allServices
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult AboutUs()
@@ -55,6 +67,43 @@ namespace DragoTactical.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> DebugDatabase()
+        {
+            try
+            {
+                var canConnect = await _dbContext.Database.CanConnectAsync();
+                var formCount = await _dbContext.FormSubmissions.CountAsync();
+                var serviceCount = await _dbContext.Services.CountAsync();
+                var categoryCount = await _dbContext.Categories.CountAsync();
+
+                ViewBag.CanConnect = canConnect;
+                ViewBag.FormCount = formCount;
+                ViewBag.ServiceCount = serviceCount;
+                ViewBag.CategoryCount = categoryCount;
+
+                // Get recent form submissions
+                var recentSubmissions = await _dbContext.FormSubmissions
+                    .Include(f => f.Service)
+                    .OrderByDescending(f => f.SubmissionDate)
+                    .Take(5)
+                    .ToListAsync();
+
+                ViewBag.RecentSubmissions = recentSubmissions;
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View();
+            }
+        }
+
+        public IActionResult TestForm()
         {
             return View();
         }

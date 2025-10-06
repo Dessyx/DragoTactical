@@ -21,11 +21,8 @@ namespace DragoTactical.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                // SQLite local file
-                optionsBuilder.UseSqlite("Data Source=DragoTactical.db");
-            }
+            // Connection string is configured in Program.cs via dependency injection
+            // No need to configure here when using DI
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -58,6 +55,12 @@ namespace DragoTactical.Models
                 entity.Property(e => e.PhoneNumber).HasMaxLength(50);
                 entity.Property(e => e.SubmissionDate)
                       .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                entity.HasOne(d => d.Service)
+                      .WithMany()
+                      .HasForeignKey(d => d.ServiceId)
+                      .OnDelete(DeleteBehavior.SetNull)
+                      .HasConstraintName("FK_FormSubmission_Services");
             });
 
             // === Service Table ===
@@ -78,7 +81,7 @@ namespace DragoTactical.Models
                       .HasConstraintName("FK_Services_Category");
             });
 
-            
+
             modelBuilder.Entity<Category>().HasData(
                 new Category { CategoryId = 1, CategoryName = "Physical Service" },
                 new Category { CategoryId = 2, CategoryName = "Cybersecurity Service" }
