@@ -69,14 +69,11 @@ namespace DragoTactical.Controllers
                     if (!canConnect)
                     {
                         _logger.LogError("Cannot connect to database!");
-                        TempData["ErrorMessage"] = "Database connection failed. Please check if SQL Server is running.";
+                        TempData["ErrorMessage"] = "Database connection failed. Please check the SQLite database file path.";
                         return Redirect(Request.Headers["Referer"].ToString() ?? "/");
                     }
 
-                    // Checks if FormSubmissions table exists
-                    var tableExists = await _dbContext.Database.ExecuteSqlRawAsync("SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'FormSubmissions'") >= 0;
-                    _logger.LogInformation("FormSubmissions table exists: {TableExists}", tableExists);
-
+            
                     // Checks current count before adding
                     var currentCount = await _dbContext.FormSubmissions.CountAsync();
                     _logger.LogInformation("Current FormSubmissions count before adding: {Count}", currentCount);
