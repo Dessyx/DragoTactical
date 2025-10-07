@@ -77,10 +77,7 @@
             
             // Form submission validation
             form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
                 let isValid = true;
-                const formData = new FormData(form);
                 
                 // Validate each field
                 inputs.forEach(input => {
@@ -89,7 +86,10 @@
                     }
                 });
                 
-                if (isValid) {
+                if (!isValid) {
+                    e.preventDefault();
+                    showErrorMessage('Please correct the errors and try again.');
+                } else {
                     // Sanitize all inputs before submission
                     inputs.forEach(input => {
                         if (input.type !== 'password' && input.type !== 'file') {
@@ -97,12 +97,7 @@
                         }
                     });
                     
-                    // Show success message or submit form
-                    showSuccessMessage('Form submitted successfully!');
-                    // Uncomment the next line to actually submit the form
-                    // form.submit();
-                } else {
-                    showErrorMessage('Please correct the errors and try again.');
+                    // Allow natural submission (no preventDefault)
                 }
             });
         });
@@ -146,9 +141,13 @@
             errorMessage = 'Please enter a valid message (up to 1000 characters).';
         }
         // Select validation
-        else if (field.tagName === 'SELECT' && field.hasAttribute('required') && (!value || value === field.querySelector('option[disabled]').value)) {
-            isValid = false;
-            errorMessage = 'Please select an option.';
+        else if (field.tagName === 'SELECT' && field.hasAttribute('required')) {
+            const disabledOpt = field.querySelector('option[disabled]');
+            const placeholderValues = new Set(['', disabledOpt ? disabledOpt.value : '']);
+            if (!value || placeholderValues.has(value)) {
+                isValid = false;
+                errorMessage = 'Please select an option.';
+            }
         }
 
         // Apply validation styling
@@ -240,4 +239,4 @@
 
     // Expose sanitize function globally for use in other scripts
     window.sanitizeInput = sanitizeInput;
-})();
+})();})();
