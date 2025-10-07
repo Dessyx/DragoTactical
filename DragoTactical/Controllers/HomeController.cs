@@ -23,7 +23,7 @@ namespace DragoTactical.Controllers
 
         public IActionResult CyberServices()
         {
-            // CategoryId = 2 for Cyber services per provided data
+            
             var cyberServices = _dbContext.Services
                 .AsNoTracking()
                 .Where(s => s.CategoryId == 2)

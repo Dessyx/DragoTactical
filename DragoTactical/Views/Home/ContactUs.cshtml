@@ -14,6 +14,15 @@
                 <p class="dt-contact-subtitle">Let us reach out</p>
             </div>
 
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success" role="alert">@TempData["SuccessMessage"]</div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger" role="alert">@TempData["ErrorMessage"]</div>
+            }
+
             <!-- CSRF protected -->
             <form class="dt-contact-form" method="post" asp-controller="Contact" asp-action="Submit" id="contactForm" novalidate>
                 @Html.AntiForgeryToken()
@@ -39,17 +48,17 @@
                     </div>
                     <div class="col-12">
                         <select class="form-select dt-input" name="Location" required>
-                            <option value="">Location</option>
-                            <option>South Africa</option>
-                            <option>United Kingdom</option>
-                            <option>United States</option>
-                            <option>Europe</option>
-                            <option>Other</option>
+                            <option value="" disabled selected>Location*</option>
+                            <option value="South Africa">South Africa</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="United States">United States</option>
+                            <option value="Europe">Europe</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                     <div class="col-12">
                         <select class="form-select dt-input" name="ServiceId" required>
-                            <option value="">Services of Interest*</option>
+                            <option value="" disabled selected>Services of Interest*</option>
                             @if (Model?.AllServices != null)
                             {
                                 @foreach (var category in Model.AllServices.GroupBy(s => s.Category.CategoryName))
@@ -82,29 +91,3 @@
         <img src="~/images/BlueBall.png" alt="" />
     </div>
 </div>
-
-<!-- Front-end security JS -->
-<script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        let valid = true;
-        const inputs = this.querySelectorAll('input, textarea, select');
-
-        inputs.forEach(input => {
-            input.value = input.value.trim();
-
-            if (/<|>/.test(input.value)) {
-                alert('Please remove invalid characters like < or > from your input.');
-                valid = false;
-            }
-
-            if (!input.checkValidity()) {
-                input.reportValidity();
-                valid = false;
-            }
-
-            input.value = input.value.replace(/[<>]/g, '');
-        });
-
-        if (!valid) e.preventDefault();
-    });
-</script>

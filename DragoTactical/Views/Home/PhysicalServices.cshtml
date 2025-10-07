@@ -233,7 +233,7 @@
                 </div>
                 <div class="col-12">
                     <select class="form-select phy-input" name="Location" required>
-                        <option value="">Location*</option>
+                        <option value="" disabled selected>Location*</option>
                         <option value="South Africa">South Africa</option>
                         <option value="United Kingdom">United Kingdom</option>
                         <option value="United States">United States</option>
@@ -243,7 +243,7 @@
                 </div>
                 <div class="col-12">
                     <select class="form-select phy-input" name="ServiceId" required>
-                        <option value="">Physical Services of Interest*</option>
+                        <option value="" disabled selected>Physical Services of Interest*</option>
                         @if (Model != null)
                         {
                             foreach (var service in Model)
@@ -275,37 +275,3 @@
         <img src="~/images/CircuitCircleRight.png" class="circle-circuit2" alt="Circuit design" />
     </div>
 </section>
-
-<!-- Front-end security JS -->
-<script>
-    document.getElementById('physicalContactForm').addEventListener('submit', function(e) {
-        console.log('Physical form submission started');
-        alert('Your form was submitted!');
-
-        let valid = true;
-        const inputs = this.querySelectorAll('input, textarea, select');
-
-        inputs.forEach(input => {
-            input.value = input.value.trim();
-
-            if (/<|>/.test(input.value)) {
-                alert('Please remove invalid characters like < or > from your input.');
-                valid = false;
-            }
-
-            if (!input.checkValidity()) {
-                input.reportValidity();
-                valid = false;
-            }
-
-            input.value = input.value.replace(/[<>]/g, '');
-        });
-
-        if (!valid) {
-            e.preventDefault();
-            console.log('Physical form validation failed');
-        } else {
-            console.log('Physical form validation passed, submitting...');
-        }
-    });
-</script>

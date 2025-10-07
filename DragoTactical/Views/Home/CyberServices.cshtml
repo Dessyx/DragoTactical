@@ -8,7 +8,7 @@
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="X-Frame-Options" content="DENY">  @* Further clickjacking protection *@
 <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin"> @* Prevents referrer leaks *@
-<meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=()">
+<meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=())">
 
 <div class="dt-cyber-services">
     <!-- BlueTech Decorative Images -->
@@ -165,7 +165,7 @@
                     </div>
                     <div class="col-12">
                         <select class="form-select dt-cyber-input" name="Location" required>
-                            <option value="">Location*</option>
+                            <option value="" disabled selected>Location*</option>
                             <option value="South Africa">South Africa</option>
                             <option value="United Kingdom">United Kingdom</option>
                             <option value="United States">United States</option>
@@ -175,7 +175,7 @@
                     </div>
                     <div class="col-12">
                         <select class="form-select dt-cyber-input" name="ServiceId" required>
-                            <option value="">Cyber Services of Interest*</option>
+                            <option value="" disabled selected>Cyber Services of Interest*</option>
                             @if (Model != null)
                             {
                                 foreach (var service in Model)
@@ -202,35 +202,4 @@
 </div>
 
 <!-- Front-end security JS -->
-<script>
-    document.getElementById('cyberContactForm').addEventListener('submit', function(e) {
-        console.log('Form submission started');
-        alert('Your form was submitted!');
-
-        let valid = true;
-        const inputs = this.querySelectorAll('input, textarea, select');
-
-        inputs.forEach(input => {
-            input.value = input.value.trim();
-
-            if (/<|>/.test(input.value)) {
-                alert('Please remove invalid characters like < or > from your input.');
-                valid = false;
-            }
-
-            if (!input.checkValidity()) {
-                input.reportValidity();
-                valid = false;
-            }
-
-            input.value = input.value.replace(/[<>]/g, '');
-        });
-
-        if (!valid) {
-            e.preventDefault();
-            console.log('Form validation failed');
-        } else {
-            console.log('Form validation passed, submitting...');
-        }
-    });
-</script>
+<script src="~/js/security.js" defer></script>
