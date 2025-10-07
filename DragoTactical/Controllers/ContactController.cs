@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DragoTactical.Models;
 using Microsoft.EntityFrameworkCore;
+using DragoTactical.Services; 
 
 namespace DragoTactical.Controllers
 {
@@ -8,23 +9,21 @@ namespace DragoTactical.Controllers
     {
         private readonly DragoTacticalDbContext _dbContext;
         private readonly ILogger<ContactController> _logger;
+        private readonly IEmailSender _emailSender;
 
-        public ContactController(DragoTacticalDbContext dbContext, ILogger<ContactController> logger)
+        public ContactController(DragoTacticalDbContext dbContext, ILogger<ContactController> logger, IEmailSender emailSender)
         {
             _dbContext = dbContext;
             _logger = logger;
+            _emailSender = emailSender;
         }
 
-        private string GetReturnUrl()
-        {
-            var referer = Request.Headers["Referer"].ToString();
-            return string.IsNullOrWhiteSpace(referer) ? "/" : referer;
-        }
+        private string GetReturnUrl() => string.IsNullOrWhiteSpace(Request.Headers["Referer"].ToString()) ? "/" : Request.Headers["Referer"].ToString();
 
         private void LogModelStateErrors()
         {
             if (ModelState.IsValid) return;
-            _logger.LogWarning("=== MODEL STATE ERRORS ===");
+            _logger.LogWarning("Model State errors");
             foreach (var kvp in ModelState)
             {
                 var entry = kvp.Value;
@@ -35,20 +34,6 @@ namespace DragoTactical.Controllers
             }
         }
 
-        [HttpGet]
-        public async Task<IActionResult> TestConnection()
-        {
-            try
-            {
-                var canConnect = await _dbContext.Database.CanConnectAsync();
-                var formCount = await _dbContext.FormSubmissions.CountAsync();
-                return Json(new { canConnect, formCount, message = "Database connection test successful" });
-            }
-            catch (Exception ex)
-            {
-                return Json(new { canConnect = false, formCount = 0, error = ex.Message });
-            }
-        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -56,7 +41,7 @@ namespace DragoTactical.Controllers
         {
             const string successMsg = "Thank you for your submission! We'll get back to you soon.";
             var returnUrl = GetReturnUrl();
-            _logger.LogInformation("=== FORM SUBMISSION STARTED ===");
+            _logger.LogInformation(" Form Submission Started ");
 
             if (model == null)
             {
@@ -77,7 +62,7 @@ namespace DragoTactical.Controllers
 
             if (model.ServiceId == 0)
             {
-                model.ServiceId = null;
+                model.ServiceId = null; 
             }
 
             model.SubmissionDate = DateTime.UtcNow;
@@ -93,8 +78,33 @@ namespace DragoTactical.Controllers
                     return Redirect(returnUrl);
                 }
 
+                string? serviceName = null;
+                var sid = model.ServiceId; 
+                if (sid.HasValue)
+                {
+                    serviceName = await _dbContext.Services
+                        .Where(s => s.ServiceId == sid.Value)
+                        .Select(s => s.ServiceName)
+                        .FirstOrDefaultAsync();
+                }
+                serviceName = string.IsNullOrWhiteSpace(serviceName) ? "(Other / Not specified)" : serviceName;
+
+                var subject = serviceName;
+                var body = $"I am {model.FirstName} {model.LastName} situated in {model.Location}. I need help with {serviceName}. Message description: {model.Message}\n\nContact details: Email: {model.Email} Phone: {model.PhoneNumber}";
+
+                try
+                {
+                    await _emailSender.SendAsync(model.Email, subject, body);
+                }
+                catch (Exception mailEx)
+                {
+                    _logger.LogError(mailEx, "Failed to send notification email");
+                    TempData["ErrorMessage"] = "Submission saved, but email notification failed.";
+                    return Redirect(returnUrl);
+                }
+
                 TempData["SuccessMessage"] = successMsg;
-                _logger.LogInformation("Form submission stored (Id={Id})", model.SubmissionId);
+                _logger.LogInformation("Form submission stored (Id={Id}) and email sent", model.SubmissionId);
                 return Redirect(returnUrl);
             }
             catch (DbUpdateException dbEx)
@@ -117,7 +127,7 @@ namespace DragoTactical.Controllers
             }
             finally
             {
-                _logger.LogInformation("=== FORM SUBMISSION ENDED ===");
+                _logger.LogInformation(" Form Submission Ended");
             }
         }
     }
