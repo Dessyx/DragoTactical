@@ -11,6 +11,8 @@ public partial class Service
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int ServiceId { get; set; }
 
+    public string? Title { get; set; }
+
     public string ServiceName { get; set; } = null!;
 
     public int CategoryId { get; set; }
