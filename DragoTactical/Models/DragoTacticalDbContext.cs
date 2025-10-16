@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using DragoTactical.Services;
 
 namespace DragoTactical.Models
 {
@@ -47,12 +49,23 @@ namespace DragoTactical.Models
 
                 entity.ToTable("FormSubmission");
 
-                entity.Property(e => e.CompanyName).HasMaxLength(255);
-                entity.Property(e => e.Email).HasMaxLength(255);
-                entity.Property(e => e.FirstName).HasMaxLength(100);
-                entity.Property(e => e.LastName).HasMaxLength(100);
-                entity.Property(e => e.Location).HasMaxLength(255);
-                entity.Property(e => e.PhoneNumber).HasMaxLength(50);
+                // Configure value converters for field-level encryption of PII
+                var encryptOptional = new ValueConverter<string?, string?>(
+                    v => FieldEncryption.EncryptString(v),
+                    v => FieldEncryption.DecryptString(v)
+                );
+                var encryptRequired = new ValueConverter<string, string>(
+                    v => FieldEncryption.EncryptString(v)!,
+                    v => FieldEncryption.DecryptString(v)!
+                );
+
+                entity.Property(e => e.CompanyName).HasMaxLength(255).HasConversion(encryptOptional);
+                entity.Property(e => e.Email).HasMaxLength(255).HasConversion(encryptRequired);
+                entity.Property(e => e.FirstName).HasMaxLength(100).HasConversion(encryptRequired);
+                entity.Property(e => e.LastName).HasMaxLength(100).HasConversion(encryptRequired);
+                entity.Property(e => e.Location).HasMaxLength(255).HasConversion(encryptOptional);
+                entity.Property(e => e.PhoneNumber).HasMaxLength(50).HasConversion(encryptOptional);
+                entity.Property(e => e.Message).HasConversion(encryptOptional);
                 entity.Property(e => e.SubmissionDate)
                       .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -92,24 +105,24 @@ namespace DragoTactical.Models
 
             // Physical Services (CategoryId = 1)
             modelBuilder.Entity<Service>().HasData(
-                new Service { ServiceId = 1, CategoryId = 1, ServiceName = "Risk Analysis & Security Audits" },
-                new Service { ServiceId = 2, CategoryId = 1, ServiceName = "On-Site Security Personnel / VIP Protection" },
-                new Service { ServiceId = 3, CategoryId = 1, ServiceName = "Surveillance Systems" },
-                new Service { ServiceId = 4, CategoryId = 1, ServiceName = "Access Control Solutions" },
-                new Service { ServiceId = 5, CategoryId = 1, ServiceName = "Alarm & Emergency Response Systems" },
-                new Service { ServiceId = 6, CategoryId = 1, ServiceName = "Vehicle & Perimeter Security" },
-                new Service { ServiceId = 7, CategoryId = 1, ServiceName = "Security Consulting" },
-                new Service { ServiceId = 8, CategoryId = 1, ServiceName = "Project Management" },
+                new Service { ServiceId = 1, CategoryId = 1, ServiceName = "Risk Analysis & Security Audits", Description = "We identify your vulnerabilities before a threat does. Our experts conduct thorough assessments of your property and procedures to pinpoint risks and provide a clear, actionable plan to strengthen your defenses." },
+                new Service { ServiceId = 2, CategoryId = 1, ServiceName = "On-Site Security Personnel / VIP Protection", Description = "Professional, licensed and highly-trained officers whose presence acts as a deterrent and allows for immediate response to security incidents. Includes site security and specialized close-protection for high-profile individuals." },
+                new Service { ServiceId = 3, CategoryId = 1, ServiceName = "Surveillance Systems", Description = "Design, installation, and maintenance of CCTV and video analytics solutions that enable continuous monitoring, evidence recording, real-time observation, and post-incident investigations." },
+                new Service { ServiceId = 4, CategoryId = 1, ServiceName = "Access Control Solutions", Description = "Electronic keycards, biometrics, and tailored controls to secure entry points, manage visitor flow, and protect sensitive areas across your facilities." },
+                new Service { ServiceId = 5, CategoryId = 1, ServiceName = "Alarm & Emergency Response Systems", Description = "Integrated intrusion detection that triggers immediate alerts for breaches, fires, or emergencies, with options for linkage to rapid response teams or local authorities." },
+                new Service { ServiceId = 6, CategoryId = 1, ServiceName = "Vehicle & Perimeter Security", Description = "Robust first-line defenses including fencing, bollards, gate systems, and patrols to protect property boundaries and vehicle assets from unauthorized access." },
+                new Service { ServiceId = 7, CategoryId = 1, ServiceName = "Security Consulting", Description = "Strategic guidance from industry experts to analyze your unique challenges and develop comprehensive, long-term strategies that protect people, assets, and reputation." },
+                new Service { ServiceId = 8, CategoryId = 1, ServiceName = "Project Management", Description = "End-to-end delivery of security installations—from concept to completion—ensuring on-time, on-budget projects seamlessly integrated with your operations." },
 
                 // Cybersecurity Services (CategoryId = 2)
-                new Service { ServiceId = 9, CategoryId = 2, ServiceName = "Risk Assessment and Vulnerability Testing" },
-                new Service { ServiceId = 10, CategoryId = 2, ServiceName = "Network Security" },
-                new Service { ServiceId = 11, CategoryId = 2, ServiceName = "Data Protection & Encryption" },
-                new Service { ServiceId = 12, CategoryId = 2, ServiceName = "Incident Response and Threat Mitigation" },
-                new Service { ServiceId = 13, CategoryId = 2, ServiceName = "Penetration Testing & Ethical Hacking" },
-                new Service { ServiceId = 14, CategoryId = 2, ServiceName = "Employee Training and Awareness" },
-                new Service { ServiceId = 15, CategoryId = 2, ServiceName = "Cloud Security" },
-                new Service { ServiceId = 16, CategoryId = 2, ServiceName = "Managed Security Services (MSSP) - Virtual Cyber Assistant / VCISO" }
+                new Service { ServiceId = 9, CategoryId = 2, ServiceName = "Risk Assessment and Vulnerability Testing", Description = "Comprehensive identification of digital risks across networks, applications, and cloud assets with prioritized remediation plans to reduce exploitability." },
+                new Service { ServiceId = 10, CategoryId = 2, ServiceName = "Network Security", Description = "Segmented architectures, next‑gen firewalls, secure remote access, and continuous monitoring to prevent, detect, and contain network-borne threats." },
+                new Service { ServiceId = 11, CategoryId = 2, ServiceName = "Data Protection & Encryption", Description = "Encryption at rest and in transit, key management, data loss prevention, and governance controls to safeguard sensitive information throughout its lifecycle." },
+                new Service { ServiceId = 12, CategoryId = 2, ServiceName = "Incident Response and Threat Mitigation", Description = "24/7 response playbooks, triage, containment, forensics, and recovery to minimize impact and accelerate safe restoration after cyber incidents." },
+                new Service { ServiceId = 13, CategoryId = 2, ServiceName = "Penetration Testing & Ethical Hacking", Description = "Realistic adversary simulations that uncover exploitable weaknesses in web, infrastructure, and cloud, with actionable fixes mapped to risk." },
+                new Service { ServiceId = 14, CategoryId = 2, ServiceName = "Employee Training and Awareness", Description = "Role-based training and phishing simulations to reduce human-factor risk and build a sustained security culture across the organization." },
+                new Service { ServiceId = 15, CategoryId = 2, ServiceName = "Cloud Security", Description = "Secure cloud architectures, CSPM, IAM hardening, and workload protections to prevent misconfigurations and enforce least privilege in multi-cloud." },
+                new Service { ServiceId = 16, CategoryId = 2, ServiceName = "Managed Security Services (MSSP) - Virtual Cyber Assistant / VCISO", Description = "Ongoing monitoring, threat detection, and executive‑level security leadership as-a-service to continuously improve posture and meet compliance." }
             );
 
 
