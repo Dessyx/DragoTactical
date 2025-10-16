@@ -15,5 +15,7 @@ public partial class Service
 
     public int CategoryId { get; set; }
 
+    public string? Description { get; set; }
+
     public virtual Category Category { get; set; } = null!;
 }

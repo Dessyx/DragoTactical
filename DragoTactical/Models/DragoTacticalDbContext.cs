@@ -74,6 +74,9 @@ namespace DragoTactical.Models
                 entity.Property(e => e.ServiceName)
                       .HasMaxLength(255);
 
+                entity.Property(e => e.Description)
+                      .HasMaxLength(1000);
+
                 entity.HasOne(d => d.Category)
                       .WithMany(p => p.Services)
                       .HasForeignKey(d => d.CategoryId)
