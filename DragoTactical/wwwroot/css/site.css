@@ -503,6 +503,8 @@ body {
     border-radius: 2px;
     opacity: 0.7;
     z-index: 1;
+    display: none !important;
+    visibility: hidden !important;
 }
 
 .dt-what-center-divider {
@@ -515,7 +517,18 @@ body {
     border-radius: 2px;
     opacity: 0.6;
     z-index: 1;
+    display: none !important;
+    visibility: hidden !important;
     transform: translateX(-50%);
+}
+
+/* Show dividers only on desktop (1025px+) */
+@media (min-width: 1025px) {
+    .dt-what-left-divider,
+    .dt-what-center-divider {
+        display: block !important;
+        visibility: visible !important;
+    }
 }
 
 .dt-offer-h {
@@ -1517,11 +1530,15 @@ html, body {
     .dt-cyber-threat-content {
         padding: 2.5rem 2rem !important;
         max-width: 80% !important;
+        text-align: center !important;
+        margin: 0 auto !important;
     }
 
     .dt-cyber-threat-content p {
         font-size: clamp(1.1rem, 2.8vw, 1.3rem) !important;
         line-height: 1.8 !important;
+        text-align: center !important;
+        margin: 0 auto !important;
     }
 
     .dt-cyber-services-grid {
@@ -1540,17 +1557,29 @@ html, body {
 
     .dt-cyber-grid-content {
         padding: 3rem 2.5rem !important;
+        text-align: center !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .dt-cyber-grid-text {
+        text-align: center !important;
+        max-width: 100% !important;
     }
 
     .dt-cyber-grid-title {
         font-size: clamp(1.4rem, 3.8vw, 1.8rem) !important;
         margin-bottom: 1.8rem !important;
         line-height: 1.4 !important;
+        text-align: center !important;
     }
 
     .dt-cyber-grid-paragraph {
         font-size: clamp(1rem, 3vw, 1.2rem) !important;
         line-height: 1.7 !important;
+        text-align: center !important;
+        margin: 0 auto !important;
     }
 
     .dt-road-ahead-section {
@@ -1569,6 +1598,19 @@ html, body {
     .dt-road-ahead-content {
         max-width: 80% !important;
         padding: 0 2rem !important;
+    }
+
+    /* Road Ahead decorative images - Tablet spacing */
+    .dt-road-ahead-decorative-left {
+        left: 15% !important;
+        top: 20% !important;
+        width: 140px !important;
+    }
+
+    .dt-road-ahead-decorative-right {
+        right: 15% !important;
+        top: 20% !important;
+        width: 140px !important;
     }
 
     .dt-road-ahead-paragraph {
@@ -1598,6 +1640,51 @@ html, body {
     .dt-road-ahead-paragraph {
         font-size: clamp(1.1rem, 2.2vw, 1.2rem);
         line-height: 1.7;
+    }
+
+    /* Road Ahead decorative images - Landscape tablet spacing */
+    .dt-road-ahead-decorative-left {
+        left: 12% !important;
+        top: 18% !important;
+        width: 150px !important;
+    }
+
+    .dt-road-ahead-decorative-right {
+        right: 12% !important;
+        top: 18% !important;
+        width: 150px !important;
+    }
+
+    /* Text centering for landscape */
+    .dt-cyber-threat-content {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .dt-cyber-threat-content p {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .dt-cyber-grid-content {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dt-cyber-grid-text {
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .dt-cyber-grid-title {
+        text-align: center;
+    }
+
+    .dt-cyber-grid-paragraph {
+        text-align: center;
+        margin: 0 auto;
     }
 
     .dt-cyber-threat-section {
@@ -4526,6 +4613,28 @@ img .circuit2 {
 .dt-contact-form .dt-input.is-invalid + .invalid-feedback,
 .dt-contact-form select.dt-input.is-invalid + .invalid-feedback,
 .dt-contact-form textarea.dt-input.is-invalid + .invalid-feedback {
+    visibility: visible;
+}
+
+/* Physical Services form validation styles */
+.phy-form .invalid-feedback {
+    min-height: 1.25rem;
+}
+
+.phy-form .phy-input.is-invalid + .invalid-feedback,
+.phy-form select.phy-input.is-invalid + .invalid-feedback,
+.phy-form textarea.phy-input.is-invalid + .invalid-feedback {
+    visibility: visible;
+}
+
+/* Cyber Services form validation styles */
+.dt-cyber-contact-form .invalid-feedback {
+    min-height: 1.25rem;
+}
+
+.dt-cyber-contact-form .dt-cyber-input.is-invalid + .invalid-feedback,
+.dt-cyber-contact-form select.dt-cyber-input.is-invalid + .invalid-feedback,
+.dt-cyber-contact-form textarea.dt-cyber-input.is-invalid + .invalid-feedback {
     visibility: visible;
 }
 

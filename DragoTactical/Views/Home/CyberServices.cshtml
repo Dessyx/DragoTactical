@@ -143,25 +143,30 @@
                         <input class="form-control dt-cyber-input" name="FirstName" type="text" placeholder="First Name*" required
                                minlength="2" maxlength="50" pattern="^[A-Za-z\s]{2,50}$"
                                title="Only letters allowed (2-50 characters)" />
+                        <div class="invalid-feedback">First name is required (letters only, 2-50).</div>
                     </div>
                     <div class="col-12">
                         <input class="form-control dt-cyber-input" name="LastName" type="text" placeholder="Last Name*" required
                                minlength="2" maxlength="50" pattern="^[A-Za-z\s]{2,50}$"
                                title="Only letters allowed (2-50 characters)" />
+                        <div class="invalid-feedback">Last name is required (letters only, 2-50).</div>
                     </div>
                     <div class="col-12">
                         <input class="form-control dt-cyber-input" name="Email" type="email" placeholder="Email*" required
                                maxlength="254" />
+                        <div class="invalid-feedback">Please enter a valid email address.</div>
                     </div>
                     <div class="col-12">
                         <input class="form-control dt-cyber-input" name="PhoneNumber" type="tel" placeholder="Phone*" required
                                minlength="7" maxlength="15" pattern="^\+?[0-9\s\-]{7,15}$"
                                title="Enter a valid phone number" />
+                        <div class="invalid-feedback">Please enter a valid phone number.</div>
                     </div>
                     <div class="col-12">
                         <input class="form-control dt-cyber-input" name="CompanyName" type="text" placeholder="Company name (Optional)"
                                maxlength="100" pattern="^[^<>]{0,100}$"
                                title="No invalid characters allowed" />
+                        <div class="invalid-feedback">No angle brackets allowed.</div>
                     </div>
                     <div class="col-12">
                         <select class="form-select dt-cyber-input" name="Location" required>
@@ -172,6 +177,7 @@
                             <option value="Europe">Europe</option>
                             <option value="Other">Other</option>
                         </select>
+                        <div class="invalid-feedback">Location is required.</div>
                     </div>
                     <div class="col-12">
                         <select class="form-select dt-cyber-input" name="ServiceId" required>
@@ -185,11 +191,13 @@
                             }
                             <option value="0">Other</option>
                         </select>
+                        <div class="invalid-feedback">Please select a service.</div>
                     </div>
                     <div class="col-12">
                         <textarea class="form-control dt-cyber-input" name="Message" rows="4" placeholder="Message– Please provide a description of your cyber security needs"
                                   required maxlength="1000" pattern="^[^<>]{10,1000}$"
                                   title="No invalid characters allowed (10-1000 characters)"></textarea>
+                        <div class="invalid-feedback">Message is required (10-1000 chars, no angle brackets).</div>
                     </div>
                 </div>
 
@@ -201,5 +209,96 @@
     </div>
 </div>
 
-<!-- Front-end security JS -->
-<script src="~/js/security.js" defer></script>
+<!-- Front-end validation for Cyber Services form -->
+<script>
+    (function () {
+        const form = document.getElementById('cyberContactForm');
+        if (!form) return;
+        
+        const sanitize = (v) => v.replace(/[<>]/g, '').trim();
+
+        const validators = {
+            FirstName: (v) => /^[A-Za-z\s]{2,50}$/.test(v),
+            LastName: (v) => /^[A-Za-z\s]{2,50}$/.test(v),
+            Email: (v) => /.+@@.+\..+/.test(v),
+            PhoneNumber: (v) => /^\+?[0-9\s\-]{7,15}$/.test(v),
+            CompanyName: (v) => /^[^<>]{0,100}$/.test(v || ''),
+            Location: (v) => !!v,
+            ServiceId: (v) => !!v,
+            Message: (v) => /^[^<>]{10,1000}$/.test(v)
+        };
+
+        function setInvalid(input, message) {
+            input.classList.add('is-invalid');
+            const feedback = input.parentElement.querySelector('.invalid-feedback');
+            if (feedback) {
+                feedback.textContent = message;
+                feedback.style.visibility = 'visible';
+            }
+        }
+
+        function clearInvalid(input) {
+            input.classList.remove('is-invalid');
+            const feedback = input.parentElement.querySelector('.invalid-feedback');
+            if (feedback) {
+                feedback.style.visibility = 'hidden';
+            }
+        }
+
+        let hasSubmittedOnce = false;
+        
+        // Override the security.js input handler for this form
+        const inputs = form.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            // Remove any existing event listeners by cloning the input
+            const newInput = input.cloneNode(true);
+            input.parentNode.replaceChild(newInput, input);
+            
+            // Add our custom validation
+            newInput.addEventListener('input', function(e) {
+                if (hasSubmittedOnce) {
+                    const name = this.getAttribute('name');
+                    const val = sanitize(this.value);
+                    this.value = val;
+                    if (validators[name] && validators[name](val)) {
+                        clearInvalid(this);
+                    }
+                }
+            });
+        });
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            hasSubmittedOnce = true;
+            let allValid = true;
+
+            const fields = form.querySelectorAll('input[name], textarea[name], select[name]');
+            fields.forEach(field => {
+                field.value = sanitize(field.value);
+                clearInvalid(field);
+
+                const name = field.getAttribute('name');
+                const val = field.value;
+                const ok = validators[name] ? validators[name](val) : true;
+
+                if (!ok) {
+                    allValid = false;
+                    switch (name) {
+                        case 'FirstName': setInvalid(field, 'First name is required (letters only, 2-50).'); break;
+                        case 'LastName': setInvalid(field, 'Last name is required (letters only, 2-50).'); break;
+                        case 'Email': setInvalid(field, 'Please enter a valid email address.'); break;
+                        case 'PhoneNumber': setInvalid(field, 'Please enter a valid phone number.'); break;
+                        case 'CompanyName': setInvalid(field, 'No angle brackets allowed.'); break;
+                        case 'Location': setInvalid(field, 'Location is required.'); break;
+                        case 'ServiceId': setInvalid(field, 'Please select a service.'); break;
+                        case 'Message': setInvalid(field, 'Message is required (10-1000 chars, no angle brackets).'); break;
+                    }
+                }
+            });
+
+            if (allValid) {
+                form.submit();
+            }
+        });
+    })();
+</script>
