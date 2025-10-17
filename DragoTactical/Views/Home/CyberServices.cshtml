@@ -29,75 +29,32 @@
         </div>
     </div>
 
-    <!-- Cyber Services Grid -->
-    <div class="dt-cyber-services-grid">
-        <!-- First row -->
-        <div class="dt-cyber-grid-row">
-            <div class="dt-cyber-grid-item">
-                <div class="dt-cyber-grid-image">
-                    <img src="~/images/18.png" alt="Cyber Service 1" />
-                    <div class="dt-cyber-grid-content">
-                        <div class="dt-cyber-grid-text">
-                            <h3 class="dt-cyber-grid-title">Increasing Frequency of Attacks</h3>
-                            <p class="dt-cyber-grid-paragraph">Cyberattacks are becoming more frequent each year, with millions of attempts happening daily across the globe. From large corporations to small businesses and even individual users, no one is immune. Criminals exploit vulnerabilities in networks, software, and human behavior, making cyber threats a persistent and expanding danger.</p>
+    <!-- Services from database (simple list) -->
+    @if (Model != null && Model.Any())
+    {
+        <section class="dt-cyber-services-list container my-5">
+            <h2 class="text-center mb-4">Our Cybersecurity Services</h2>
+            <div class="row row-gutters">
+                @foreach (var service in Model)
+                {
+                    <div class="col-md-6 d-flex flex-column">
+                        <div class="card-body">
+                            <h3 class="dt-cyber-card-title">@service.Title</h3>
+                            <p class="dt-cyber-card-desc">
+                                @service.Description
+                            </p>
                         </div>
                     </div>
-                </div>
+                }
             </div>
-            <div class="dt-cyber-grid-item">
-                <div class="dt-cyber-grid-image">
-                    <img src="~/images/18.png" alt="Cyber Service 2" />
-                    <div class="dt-cyber-grid-content">
-                        <div class="dt-cyber-grid-text">
-                            <h3 class="dt-cyber-grid-title">Financial and Economic Impact</h3>
-                            <p class="dt-cyber-grid-paragraph">The financial cost of cybercrime is staggering. Organizations face expenses related to data breaches, ransomware payments, recovery processes, and legal consequences. According to global estimates, cybercrime could cost the world economy trillions of dollars annually. Beyond direct costs, businesses also suffer reputational damage, loss of customers, and disrupted operations.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </section>
+    }
+    else
+    {
+        <div class="text-center my-4">
+            <p>No services available at the moment.</p>
         </div>
-
-        <!-- Second row -->
-        <div class="dt-cyber-grid-row">
-            <div class="dt-cyber-grid-item">
-                <div class="dt-cyber-grid-image">
-                    <img src="~/images/18.png" alt="Cyber Service 3" />
-                    <div class="dt-cyber-grid-content">
-                        <div class="dt-cyber-grid-text">
-                            <h3 class="dt-cyber-grid-title">National Security Risks</h3>
-                            <p class="dt-cyber-grid-paragraph">Cyber threats are not limited to private companies, governments and critical infrastructure are also prime targets. Cyberattacks on power grids, healthcare systems, water supplies, and defense networks can have devastating consequences for public safety and national security. Nation-state actors increasingly use cyberattacks as tools of espionage, sabotage, and even warfare.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="dt-cyber-grid-item">
-                <div class="dt-cyber-grid-image">
-                    <img src="~/images/18.png" alt="Cyber Service 4" />
-                    <div class="dt-cyber-grid-content">
-                        <div class="dt-cyber-grid-text">
-                            <h3 class="dt-cyber-grid-title">Evolving Techniques and Tools</h3>
-                            <p class="dt-cyber-grid-paragraph">Attackers are constantly evolving their methods. Traditional viruses and phishing emails have expanded into more advanced threats like ransomware-as-a-service, deepfakes, and AI-powered hacking. Cybercriminals can purchase tools on the dark web, lowering the barrier to entry and enabling more people to participate in cybercrime.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Third row -->
-        <div class="dt-cyber-grid-row dt-cyber-grid-row-single">
-            <div class="dt-cyber-grid-item">
-                <div class="dt-cyber-grid-image">
-                    <img src="~/images/18.png" alt="Cyber Service 5" />
-                    <div class="dt-cyber-grid-content">
-                        <div class="dt-cyber-grid-text">
-                            <h3 class="dt-cyber-grid-title">Human Factor and Awareness</h3>
-                            <p class="dt-cyber-grid-paragraph">One of the biggest vulnerabilities is still the human factor. Employees clicking on malicious links, using weak passwords, or falling for social engineering schemes provide easy entry points for attackers. Despite increased awareness, many organizations still struggle with proper training and strong cybersecurity culture.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    }
 
     <!-- The Road Ahead Section -->
     <div class="dt-road-ahead-section">
