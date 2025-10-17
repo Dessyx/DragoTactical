@@ -4,7 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>  
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <UserSecretsId>cb788614-fad1-4527-92c8-71cf94fa9129</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +17,5 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
-
 
 </Project>
