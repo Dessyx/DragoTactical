@@ -1,7 +1,6 @@
 using System.Net;
 using System.Net.Mail;
 
-
 namespace DragoTactical.Services
 {
     public class SmtpEmailSender : IEmailSender
@@ -24,12 +23,29 @@ namespace DragoTactical.Services
             var to = section.GetValue<string>("To") ?? throw new InvalidOperationException("SMTP To missing");
             var enableSsl = section.GetValue<bool?>("EnableSsl") ?? true;
 
+            static string CleanHeader(string v) =>
+                string.IsNullOrEmpty(v) ? string.Empty : v.Replace("\r", "").Replace("\n", "").Trim();
+
+            var safeSubject = CleanHeader(subject);
+            if (safeSubject.Length > 200) safeSubject = safeSubject[..200];
+
             using var message = new MailMessage();
-            message.From = new MailAddress(user, fromEmail);
-            message.ReplyToList.Add(new MailAddress(fromEmail));
+           
+            message.From = new MailAddress(user, "DragoTactical Website");
+            
+            try
+            {
+                message.ReplyToList.Clear();
+                message.ReplyToList.Add(new MailAddress(fromEmail));
+            }
+            catch
+            {
+                _logger.LogWarning("Invalid reply-to email: {Email}", fromEmail);
+            }
+
             message.To.Add(new MailAddress(to));
-            message.Subject = subject;
-            message.Body = body;
+            message.Subject = safeSubject;
+            message.Body = body ?? string.Empty;
             message.IsBodyHtml = false;
 
             using var client = new SmtpClient(host, port)

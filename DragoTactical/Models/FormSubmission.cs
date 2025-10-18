@@ -24,14 +24,21 @@ public partial class FormSubmission
     [StringLength(255, ErrorMessage = "Email cannot exceed 255 characters")]
     public string Email { get; set; } = null!;
 
+    [StringLength(50)]
+    [RegularExpression(@"^\+?[0-9\s\-()]{7,15}$", ErrorMessage = "Invalid phone number")]
     public string? PhoneNumber { get; set; }
 
+    [StringLength(100)]
+    [RegularExpression(@"^[^<>]{0,100}$", ErrorMessage = "Invalid company name")]
     public string? CompanyName { get; set; }
 
+    [StringLength(100)]
     public string? Location { get; set; }
 
     public int? ServiceId { get; set; }
 
+    [StringLength(3000, ErrorMessage = "Message cannot exceed 3000 characters")]
+    [RegularExpression(@"^[^<>]{0,3000}$", ErrorMessage = "Invalid message")]
     public string? Message { get; set; }
 
     public DateTime SubmissionDate { get; set; }
