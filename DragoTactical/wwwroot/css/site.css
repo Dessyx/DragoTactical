@@ -3021,9 +3021,9 @@ html, body {
 .phc-title {
     font-family: "DM Serif Text", serif;
     font-weight: 400;
-    font-size: 5rem;
-    line-height: 1.75;
-    padding-top: 50px;
+    font-size: 8rem;
+    line-height: 0.9 !important;
+    padding-top: 20px;
     margin-bottom: 1.5rem;
 }
 
@@ -3038,10 +3038,11 @@ html, body {
     font-weight: 400;
     text-align: center;
     font-size: 60px;
+    padding-top: 10px;
 }
 
 .hero-desc {
-    padding-top: 100px;
+    padding-top: 20px;
     font-family: "DM Serif Text", serif;
     font-weight: 400;
     line-height: 2;
@@ -3213,8 +3214,8 @@ html, body {
     position: absolute;
     width: 300px;
     height: 300px;
-    top: -2%;
-    left: -1%;
+    top: 20px;
+    left: 20px;
     z-index: 0;
     pointer-events: none;
 }
@@ -3223,8 +3224,8 @@ html, body {
     position: absolute;
     width: 300px;
     height: 300px;
-    top: 36%;
-    left: 81%;
+    bottom: -15px;
+    right: -20px;
     z-index: 0;
     pointer-events: none;
 }
@@ -3290,7 +3291,7 @@ img .circuit2 {
     width: 500px;
     height: 500px;
     top: 0;
-    left: -6%;
+    left: -10%;
     z-index: 0;
     pointer-events: none;
     opacity: 0.7;
@@ -3301,7 +3302,7 @@ img .circuit2 {
     width: 500px;
     height: 500px;
     top: 0;
-    left: 73%;
+    right: -10%;
     z-index: 0;
     pointer-events: none;
     opacity: 0.7;
@@ -3396,9 +3397,9 @@ img .circuit2 {
         .phc-title {
             font-family: "DM Serif Text", serif;
             font-weight: 400;
-            font-size: 2rem;
-            line-height: 1.3;
-            padding-top: 1rem;
+            font-size: 3.5rem;
+            line-height: 0.9 !important;
+            padding-top: 0.5rem;
             margin-bottom: 1rem;
             text-align: center;
         }
@@ -3411,7 +3412,7 @@ img .circuit2 {
             max-width: 95%;
             margin: 0 auto 2rem;
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 0.5rem;
         }
 
         /* Services Section */
@@ -3426,8 +3427,9 @@ img .circuit2 {
             font-style: normal;
             font-weight: 400;
             text-align: center;
-            font-size: 1rem;
+            font-size: 0.9rem;
             margin-bottom: 2rem;
+            padding-top: 0.5rem;
         }
 
         .card-title {
@@ -3603,13 +3605,13 @@ img .circuit2 {
         }
 
         .circuit1 {
-            top: 10%;
-            left: -10%;
+            top: 20px;
+            left: 20px;
         }
 
         .circuit2 {
-            bottom: 10%;
-            right: -10%;
+            bottom: -150px;
+            right: 20px;
         }
 
         /* complex decorations on mobile device are hidden */
@@ -3692,19 +3694,21 @@ img .circuit2 {
             }
 
             .phc-title {
-                font-size: 3.5rem;
-                padding-top: 2rem;
+                font-size: 6rem;
+                line-height: 0.9 !important;
+                padding-top: 1rem;
                 margin-bottom: 1.5rem;
             }
 
             .hero-desc {
                 font-size: 1.5rem;
-                padding-top: 3rem;
+                padding-top: 1rem;
                 max-width: 80%;
             }
 
             .phs-desc {
                 font-size: 1.2rem;
+                padding-top: 0.5rem;
             }
 
             .card-title {
@@ -3775,13 +3779,13 @@ img .circuit2 {
             }
 
             .circuit1 {
-                top: 5%;
-                left: -5%;
+                top: 5px;
+                left: 20px;
             }
 
             .circuit2 {
-                bottom: 5%;
-                right: -5%;
+                bottom: -150px;
+                right: 20px;
             }
 
             /* Show some decorations on tablet */
@@ -3796,13 +3800,13 @@ img .circuit2 {
             }
 
             .black-circuit {
-                top: 10%;
-                left: 5%;
+                top: -2%;
+                left: -5%;
             }
 
             .black-circuit2 {
-                top: 10%;
-                right: 5%;
+                top: -2% !important;
+                right: -25% !important;
             }
 
             .copyright {
@@ -3824,14 +3828,15 @@ img .circuit2 {
             }
 
             .phc-title {
-                font-size: 4.5rem;
-                padding-top: 3rem;
+                font-size: 7rem;
+                line-height: 0.95 !important;
+                padding-top: 1.5rem;
                 margin-bottom: 2rem;
             }
 
             .hero-desc {
                 font-size: 1.8rem;
-                padding-top: 4rem;
+                padding-top: 1.5rem;
                 max-width: 70%;
             }
 
@@ -3841,6 +3846,7 @@ img .circuit2 {
 
             .phs-desc {
                 font-size: 1.5rem;
+                padding-top: 1rem;
             }
 
             .card-title {
@@ -3915,13 +3921,13 @@ img .circuit2 {
             }
 
             .circuit1 {
-                top: 2%;
-                left: -2%;
+                top: 20px;
+                left: 20px;
             }
 
             .circuit2 {
-                bottom: 2%;
-                right: -2%;
+                bottom: -150px;
+                right: 20px;
             }
 
             /* Show background decorations on desktop */
@@ -3979,13 +3985,13 @@ img .circuit2 {
             }
 
             .black-circuit {
-                top: 5%;
-                left: 2%;
+                top: -5%;
+                left: -3%;
             }
 
             .black-circuit2 {
-                top: 5%;
-                right: 2%;
+                top: -5% !important;
+                right: -20% !important;
             }
 
             .circle-circuit, .circle-circuit2 {
@@ -4023,19 +4029,21 @@ img .circuit2 {
             }
 
             .phc-title {
-                font-size: 5rem;
-                padding-top: 50px;
+                font-size: 8rem;
+                line-height: 0.95 !important;
+                padding-top: 20px;
                 margin-bottom: 1.5rem;
             }
 
             .hero-desc {
                 font-size: 2rem;
-                padding-top: 100px;
+                padding-top: 20px;
                 max-width: 60%;
             }
 
             .phs-desc {
                 font-size: 60px;
+                padding-top: 10px;
             }
 
             .card-title {
@@ -4084,16 +4092,16 @@ img .circuit2 {
             .circuit1 {
                 width: 300px;
                 height: 300px;
-                top: -2%;
-                left: -1%;
+                top: 20px;
+                left: 20px;
                 opacity: 0.7;
             }
 
             .circuit2 {
                 width: 300px;
                 height: 300px;
-                top: 36%;
-                left: 81%;
+                bottom: -150px;
+                right: 20px;
                 opacity: 0.7;
             }
 
@@ -4133,7 +4141,7 @@ img .circuit2 {
                 width: 500px;
                 height: 500px;
                 top: 0;
-                left: -6%;
+                left: -10%;
                 opacity: 0.7;
             }
 
@@ -4141,7 +4149,7 @@ img .circuit2 {
                 width: 500px;
                 height: 500px;
                 top: 0;
-                left: 73%;
+                right: -10%;
                 opacity: 0.7;
             }
 
@@ -4772,9 +4780,9 @@ textarea.form-control.is-invalid,
 .phc-title {
     font-family: "DM Serif Text", serif;
     font-weight: 400;
-    font-size: 2rem;
-    line-height: 1.3;
-    padding-top: 1rem;
+    font-size: 3.5rem;
+    line-height: 0.9 !important;
+    padding-top: 0.5rem;
     margin-bottom: 1rem;
     text-align: center;
 }
@@ -4790,21 +4798,22 @@ textarea.form-control.is-invalid,
     font-style: normal;
     font-weight: 400;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-bottom: 2rem;
+    padding-top: 0.5rem;
 }
 
-.hero-desc {
-    font-family: "DM Serif Text", serif;
-    font-weight: 400;
-    line-height: 1.5;
-    font-size: 1.2rem;
-    max-width: 95%;
-    margin: 0 auto 2rem;
-    text-align: center;
-    padding-top: 2rem;
-    padding-left: 0;
-}
+        .hero-desc {
+            font-family: "DM Serif Text", serif;
+            font-weight: 400;
+            line-height: 1.5;
+            font-size: 1rem;
+            max-width: 95%;
+            margin: 0 auto 2rem;
+            text-align: center;
+            padding-top: 0.5rem;
+            padding-left: 0;
+        }
 
 .card-main-title {
     font-family: "DM Serif Text", serif;
@@ -4992,8 +5001,8 @@ textarea.form-control.is-invalid,
     position: absolute;
     width: 300px;
     height: 300px;
-    top: -2%;
-    left: -1%;
+    top: 20px;
+    left: 20px;
     z-index: 0;
     pointer-events: none;
 }
@@ -5002,8 +5011,8 @@ textarea.form-control.is-invalid,
     position: absolute;
     width: 300px;
     height: 300px;
-    top: 36%;
-    left: 81%;
+    bottom: -15px;
+    right: -20px;
     z-index: 0;
     pointer-events: none;
 }
@@ -5202,14 +5211,15 @@ img .circuit2 {
     }
 
     .phc-title {
-        font-size: 3rem;
-        padding-top: 1.5rem;
+        font-size: 6rem;
+        line-height: 0.9 !important;
+        padding-top: 1rem;
         margin-bottom: 1.5rem;
     }
 
     .hero-desc {
         font-size: 1.4rem;
-        padding-top: 2.5rem;
+        padding-top: 1rem;
         padding-left: 0;
         max-width: 85%;
     }
@@ -5221,6 +5231,7 @@ img .circuit2 {
     .phs-desc {
         font-size: 1.1rem;
         margin-bottom: 2.5rem;
+        padding-top: 0.5rem;
     }
 
     .card-main-title {
@@ -5313,13 +5324,13 @@ img .circuit2 {
     }
 
     .circuit1 {
-        top: 5%;
+        top: 0%;
         left: -5%;
     }
 
     .circuit2 {
-        bottom: 10%;
-        right: -5%;
+        bottom: -15px !important;
+        right: -20px;
     }
 
     /* Show some decorations on tablet */
@@ -5334,13 +5345,13 @@ img .circuit2 {
     }
 
     .black-circuit {
-        top: 10%;
-        left: 5%;
+        top: -2%;
+        left: -5%;
     }
 
     .black-circuit2 {
-        top: 10%;
-        right: 5%;
+        top: -2% !important;
+        right: -25% !important;
     }
 
     .circle-circuit, .circle-circuit2 {
@@ -5383,14 +5394,15 @@ img .circuit2 {
     }
 
     .phc-title {
-        font-size: 4rem;
-        padding-top: 2rem;
+        font-size: 7rem;
+        line-height: 0.95 !important;
+        padding-top: 1.5rem;
         margin-bottom: 2rem;
     }
 
     .hero-desc {
         font-size: 1.6rem;
-        padding-top: 3rem;
+        padding-top: 1.5rem;
         padding-left: 0;
         max-width: 75%;
     }
@@ -5402,6 +5414,7 @@ img .circuit2 {
     .phs-desc {
         font-size: 1.3rem;
         margin-bottom: 3rem;
+        padding-top: 1rem;
     }
 
     .card-main-title {
@@ -5499,8 +5512,8 @@ img .circuit2 {
     }
 
     .circuit2 {
-        bottom: 5%;
-        right: -2%;
+        bottom: -15px !important;
+        right: -20px;
     }
 
     /* Show background decorations on desktop */
@@ -5558,13 +5571,13 @@ img .circuit2 {
     }
 
     .black-circuit {
-        top: 5%;
-        left: 2%;
+        top: -5%;
+        left: -3%;
     }
 
     .black-circuit2 {
-        top: 5%;
-        right: 2%;
+        top: -5% !important;
+        right: -20% !important;
     }
 
     .circle-circuit, .circle-circuit2 {
@@ -5601,14 +5614,15 @@ img .circuit2 {
     }
 
     .phc-title {
-        font-size: 4.5rem;
-        padding-top: 3rem;
+        font-size: 8rem;
+        line-height: 0.95 !important;
+        padding-top: 1.5rem;
         margin-bottom: 2rem;
     }
 
     .hero-desc {
         font-size: 1.8rem;
-        padding-top: 4rem;
+        padding-top: 1.5rem;
         padding-left: 0;
         max-width: 70%;
     }
@@ -5620,6 +5634,7 @@ img .circuit2 {
     .phs-desc {
         font-size: 1.5rem;
         margin-bottom: 3rem;
+        padding-top: 1rem;
     }
 
     .card-main-title {
@@ -5711,8 +5726,8 @@ img .circuit2 {
     .circuit2 {
         width: 300px;
         height: 300px;
-        bottom: 5%;
-        right: -1%;
+        bottom: -15px !important;
+        right: -20px;
         opacity: 0.7;
     }
 
@@ -5752,7 +5767,7 @@ img .circuit2 {
         width: 400px;
         height: 400px;
         top: 0;
-        left: -3%;
+        left: -10%;
         opacity: 0.6;
     }
 
@@ -5760,7 +5775,7 @@ img .circuit2 {
         width: 400px;
         height: 400px;
         top: 0;
-        right: -3%;
+        right: -10%;
         opacity: 0.6;
     }
 
@@ -5858,6 +5873,66 @@ img .circuit2 {
 @media (min-width: 1024px) {
     .container-responsive {
         padding: 0 3rem;
+    }
+}
+
+/* Override for tablet black-circuit2 positioning */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .contact-section .black-circuit2,
+    .black-circuit2 {
+        right: -2% !important;
+        left: auto !important;
+        transform: translateX(0) scaleY(-1) !important;
+        position: absolute !important;
+    }
+}
+
+/* Additional override with even higher specificity */
+@media (min-width: 768px) and (max-width: 1024px) {
+    section.contact-section .black-circuit2 {
+        right: -3% !important;
+        left: auto !important;
+        transform: scaleY(-1) !important;
+    }
+}
+
+/* Align bottom images for tablet view */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .circle-circuit,
+    .circle-circuit2 {
+        top: 85% !important;
+    }
+    
+    .circle-circuit {
+        left: -2% !important;
+        right: auto !important;
+    }
+    
+    .circle-circuit2 {
+        right: -2% !important;
+        left: auto !important;
+    }
+}
+
+/* Move Contact Us heading images to the right for desktop view */
+@media (min-width: 1025px) {
+    .black-circuit {
+        left: -8% !important;
+    }
+    
+    .black-circuit2 {
+        right: -12% !important;
+    }
+}
+
+/* Additional override for right image on desktop */
+@media (min-width: 1025px) {
+    .contact-section .black-circuit2,
+    section.contact-section .black-circuit2 {
+        right: -10% !important;
+        left: auto !important;
+        top: 2px !important;
+        transform: scaleY(-1) !important;
     }
 }
 
