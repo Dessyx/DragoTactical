@@ -14,14 +14,13 @@ builder.Services.AddDbContext<DragoTacticalDbContext>(options =>
 
 builder.Services.AddSingleton<IEmailSender, SmtpEmailSender>();
 builder.Services.AddScoped<IContactService, ContactService>();
-var app = builder.Build();
 
 builder.Services.AddRateLimiter(options =>
 {
     options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, IPAddress>(httpContext =>
     {
         IPAddress clientIp = httpContext.Connection.RemoteIpAddress ?? IPAddress.None;
-        return RateLimitPartition.GetFixedWindowLimiter(clientIp, _ => 
+        return RateLimitPartition.GetFixedWindowLimiter(clientIp, _ =>
         new FixedWindowRateLimiterOptions
         {
             PermitLimit = 20,
@@ -36,13 +35,15 @@ builder.Services.AddRateLimiter(options =>
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.Cookie.HttpOnly = true; 
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always; 
-    options.Cookie.SameSite = SameSiteMode.Strict; 
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.SameSite = SameSiteMode.Strict;
 
     options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
     options.SlidingExpiration = true;
 });
+
+var app = builder.Build();
 
 app.Use((ctx, next) =>
 {
