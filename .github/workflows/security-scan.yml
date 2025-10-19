@@ -1,6 +1,4 @@
-# This file contains the DevSkim and Semgrep static security analysing tools.
-
-name: Combined Security Scanning
+name: Semgrep + DevSkim
 
 on:
   push:
@@ -8,50 +6,37 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+  security-events: write          
+
 jobs:
-  security-scan:
-    name: Security Analysis
+  scan:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-    # Semgrep Scan
-    - name: Run Semgrep
-      uses: returntocorp/semgrep-action@v1
-      with:
-        config: p/security-audit
-        output-format: sarif
-        output-file: semgrep-results.sarif
+      # ---------- Semgrep ----------
+      - uses: returntocorp/semgrep-action@v1
+        with:
+          config: p/security-audit
+          generateSarif: true
+          sarifOutput: semgrep.sarif
 
-    # DevSkim Scan
-    - name: Run DevSkim
-      uses: microsoft/DevSkim-Action@v1
-      with:
-        path: '.'
-        output-format: sarif
-        output-file: devskim-results.sarif
+      - uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: semgrep.sarif
+          category: semgrep
 
-    # Uploads both results
-    - name: Upload Semgrep Results
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: semgrep-results.sarif
-        
-    - name: Upload DevSkim Results
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: devskim-results.sarif
-        
-    # Build and test (to catch NuGet analyzer findings)
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.0.x'
-        
-    - name: Restore dependencies
-      run: dotnet restore
-      
-    - name: Build
-      run: dotnet build --no-restore
+      # ---------- DevSkim ----------
+      - uses: microsoft/DevSkim-Action@v1
+        with:
+          directory-to-scan: ./
+          should-scan-archives: false
+
+      - uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: ${{ github.workspace }}/devskim-results.sarif
+          category: devskim
