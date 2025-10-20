@@ -30,26 +30,26 @@
                     <div class="col-12">
                         <input class="form-control dt-input" name="FirstName" type="text" placeholder="First Name*" required
                                pattern="^[A-Za-z\s]{2,50}$" />
-                        <div class="invalid-feedback">First name is required (letters only, 2-50).</div>
+                        <div class="invalid-feedback" id="firstName-error">First name must be at least 2 characters and contain only letters and spaces.</div>
                     </div>
                     <div class="col-12">
                         <input class="form-control dt-input" name="LastName" type="text" placeholder="Last Name*" required
                                pattern="^[A-Za-z\s]{2,50}$" />
-                        <div class="invalid-feedback">Last name is required (letters only, 2-50).</div>
+                        <div class="invalid-feedback" id="lastName-error">Last name must be at least 2 characters and contain only letters and spaces.</div>
                     </div>
                     <div class="col-12">
                         <input class="form-control dt-input" name="Email" type="email" placeholder="Email*" required />
-                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                        <div class="invalid-feedback" id="email-error">Email must contain &#64; symbol and valid domain (e.g., user&#64;example.com).</div>
                     </div>
                     <div class="col-12">
                         <input class="form-control dt-input" name="PhoneNumber" type="tel" placeholder="Phone*" required
-                               pattern="^\+?[0-9\s\-]{7,15}$" title="Enter a valid phone number" />
-                        <div class="invalid-feedback">Please enter a valid phone number.</div>
+                               pattern="^\+?[0-9\s\-]{10,15}$" title="Enter a valid phone number" />
+                        <div class="invalid-feedback" id="phone-error">Phone must be numbers only (10-15 digits, + allowed at start).</div>
                     </div>
                     <div class="col-12">
                         <input class="form-control dt-input" name="CompanyName" type="text" placeholder="Company name (Optional)"
                                pattern="^[^<>]{0,100}$" title="No invalid characters allowed" />
-                        <div class="invalid-feedback">No angle brackets allowed.</div>
+                        <div class="invalid-feedback" id="company-error">Company name cannot contain < or > characters.</div>
                     </div>
                     <div class="col-12">
                         <select class="form-select dt-input" name="Location" required>
@@ -60,7 +60,7 @@
                             <option value="Europe">Europe</option>
                             <option value="Other">Other</option>
                         </select>
-                        <div class="invalid-feedback">Location is required.</div>
+                        <div class="invalid-feedback" id="location-error">Please select your location from the dropdown.</div>
                     </div>
                     <div class="col-12">
                         <select class="form-select dt-input" name="ServiceId" required>
@@ -79,12 +79,12 @@
                             }
                             <option value="0">Other</option>
                         </select>
-                        <div class="invalid-feedback">Please select a service.</div>
+                        <div class="invalid-feedback" id="service-error">Please select a service from the dropdown.</div>
                     </div>
                     <div class="col-12">
                         <textarea class="form-control dt-input" name="Message" rows="4" placeholder="Message – Please provide a description of your enquiry"
                                   required pattern="^[^<>]{10,1000}$"></textarea>
-                        <div class="invalid-feedback">Message is required (10-1000 chars, no angle brackets).</div>
+                        <div class="invalid-feedback" id="message-error">Message must be 10-1000 characters and cannot contain < or > characters.</div>
                     </div>
                 </div>
 
@@ -101,78 +101,4 @@
 </div>
 
 <!-- Front-end validation (single-icon, inline messages; prevents layout shift) -->
-<script>
-    (function () {
-        const form = document.getElementById('contactForm');
-        const sanitize = (v) => v.replace(/[<>]/g, '').trim();
-
-        const validators = {
-            FirstName: (v) => /^[A-Za-z\s]{2,50}$/.test(v),
-            LastName: (v) => /^[A-Za-z\s]{2,50}$/.test(v),
-            Email: (v) => /.+@@.+\..+/.test(v),
-            PhoneNumber: (v) => /^\+?[0-9\s\-]{7,15}$/.test(v),
-            CompanyName: (v) => /^[^<>]{0,100}$/.test(v || ''),
-            Location: (v) => !!v,
-            ServiceId: (v) => !!v,
-            Message: (v) => /^[^<>]{10,1000}$/.test(v)
-        };
-
-        function setInvalid(input, message) {
-            input.classList.add('is-invalid');
-            const feedback = input.parentElement.querySelector('.invalid-feedback');
-            if (feedback) feedback.textContent = message;
-        }
-
-        function clearInvalid(input) {
-            input.classList.remove('is-invalid');
-        }
-
-        let hasSubmittedOnce = false;
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            hasSubmittedOnce = true;
-            let allValid = true;
-
-            const fields = form.querySelectorAll('input[name], textarea[name], select[name]');
-            fields.forEach(field => {
-                field.value = sanitize(field.value);
-                clearInvalid(field);
-
-                const name = field.getAttribute('name');
-                const val = field.value;
-                const ok = validators[name] ? validators[name](val) : true;
-
-                if (!ok) {
-                    allValid = false;
-                    switch (name) {
-                        case 'FirstName': setInvalid(field, 'First name is required (letters only, 2-50).'); break;
-                        case 'LastName': setInvalid(field, 'Last name is required (letters only, 2-50).'); break;
-                        case 'Email': setInvalid(field, 'Please enter a valid email address.'); break;
-                        case 'PhoneNumber': setInvalid(field, 'Please enter a valid phone number.'); break;
-                        case 'CompanyName': setInvalid(field, 'No angle brackets allowed.'); break;
-                        case 'Location': setInvalid(field, 'Location is required.'); break;
-                        case 'ServiceId': setInvalid(field, 'Please select a service.'); break;
-                        case 'Message': setInvalid(field, 'Message is required (10-1000 chars, no angle brackets).'); break;
-                    }
-                }
-            });
-
-            if (allValid) {
-                form.submit();
-            }
-        });
-
-        // After first submit attempt, validate as user fixes fields
-        form.addEventListener('input', function (e) {
-            if (!hasSubmittedOnce) return;
-            const target = e.target;
-            if (!target || !target.name) return;
-            const name = target.getAttribute('name');
-            const val = sanitize(target.value);
-            target.value = val;
-            if (validators[name] && validators[name](val)) {
-                clearInvalid(target);
-            }
-        }, true);
-    })();
-</script>
+<script src="~/js/form-validation.js"></script>

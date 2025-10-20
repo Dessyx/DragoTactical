@@ -210,25 +210,30 @@
                     <input class="form-control phy-input" name="FirstName" type="text" placeholder="First Name*" required
                            minlength="2" maxlength="50" pattern="^[A-Za-z\s]{2,50}$"
                            title="Only letters allowed (2-50 characters)" />
+                    <div class="invalid-feedback" id="firstName-error">First name must be at least 2 characters and contain only letters and spaces.</div>
                 </div>
                 <div class="col-12">
                     <input class="form-control phy-input" name="LastName" type="text" placeholder="Last Name*" required
                            minlength="2" maxlength="50" pattern="^[A-Za-z\s]{2,50}$"
                            title="Only letters allowed (2-50 characters)" />
+                    <div class="invalid-feedback" id="lastName-error">Last name must be at least 2 characters and contain only letters and spaces.</div>
                 </div>
                 <div class="col-12">
                     <input class="form-control phy-input" name="Email" type="email" placeholder="Email*" required
                            maxlength="254" />
+                    <div class="invalid-feedback" id="email-error">Email must contain &#64; symbol and valid domain (e.g., user&#64;example.com).</div>
                 </div>
                 <div class="col-12">
                     <input class="form-control phy-input" name="PhoneNumber" type="tel" placeholder="Phone*" required
-                           minlength="7" maxlength="15" pattern="^\+?[0-9\s\-]{7,15}$"
+                           minlength="10" maxlength="15" pattern="^\+?[0-9\s\-]{10,15}$"
                            title="Enter a valid phone number" />
+                    <div class="invalid-feedback" id="phone-error">Phone must be numbers only (10-15 digits, + allowed at start).</div>
                 </div>
                 <div class="col-12">
                     <input class="form-control phy-input" name="CompanyName" type="text" placeholder="Company name (Optional)"
                            maxlength="100" pattern="^[^<>]{0,100}$"
                            title="No invalid characters allowed" />
+                    <div class="invalid-feedback" id="company-error">Company name cannot contain < or > characters.</div>
                 </div>
                 <div class="col-12">
                     <select class="form-select phy-input" name="Location" required>
@@ -239,6 +244,7 @@
                         <option value="Europe">Europe</option>
                         <option value="Other">Other</option>
                     </select>
+                    <div class="invalid-feedback" id="location-error">Please select your location from the dropdown.</div>
                 </div>
                 <div class="col-12">
                     <select class="form-select phy-input" name="ServiceId" required>
@@ -252,11 +258,13 @@
                         }
                         <option value="0">Other</option>
                     </select>
+                    <div class="invalid-feedback" id="service-error">Please select a physical service from the dropdown.</div>
                 </div>
                 <div class="col-12">
                     <textarea class="form-control phy-input" name="Message" rows="4" placeholder="Message– Please provide a description of your physical security needs"
                               required maxlength="1000" pattern="^[^<>]{10,1000}$"
                               title="No invalid characters allowed (10-1000 characters)"></textarea>
+                    <div class="invalid-feedback" id="message-error">Message must be 10-1000 characters and cannot contain < or > characters.</div>
                 </div>
             </div>
 
@@ -274,3 +282,6 @@
         <img src="~/images/CircuitCircleRight.png" class="circle-circuit2" alt="Circuit design" />
     </div>
 </section>
+
+<!-- Front-end validation for Physical Services form -->
+<script src="~/js/form-validation.js"></script>
