@@ -503,6 +503,8 @@ body {
     border-radius: 2px;
     opacity: 0.7;
     z-index: 1;
+    display: none !important;
+    visibility: hidden !important;
 }
 
 .dt-what-center-divider {
@@ -515,7 +517,18 @@ body {
     border-radius: 2px;
     opacity: 0.6;
     z-index: 1;
+    display: none !important;
+    visibility: hidden !important;
     transform: translateX(-50%);
+}
+
+/* Show dividers only on desktop (1025px+) */
+@media (min-width: 1025px) {
+    .dt-what-left-divider,
+    .dt-what-center-divider {
+        display: block !important;
+        visibility: visible !important;
+    }
 }
 
 .dt-offer-h {
@@ -1239,8 +1252,7 @@ html, body {
 /* Cyber Services Section */
 .dt-cyber-services {
     min-height: 100vh;
-    background: url('/images/CyberBG.png') no-repeat center top;
-    background-size: cover;
+    background: linear-gradient(135deg, #0a0f1a 0%, #1e293b 25%, #1e40af 50%, #1e3a8a 75%, #0f0f23 100%);
     background-attachment: scroll;
     position: relative;
     padding: 0;
@@ -1517,11 +1529,15 @@ html, body {
     .dt-cyber-threat-content {
         padding: 2.5rem 2rem !important;
         max-width: 80% !important;
+        text-align: center !important;
+        margin: 0 auto !important;
     }
 
     .dt-cyber-threat-content p {
         font-size: clamp(1.1rem, 2.8vw, 1.3rem) !important;
         line-height: 1.8 !important;
+        text-align: center !important;
+        margin: 0 auto !important;
     }
 
     .dt-cyber-services-grid {
@@ -1540,17 +1556,29 @@ html, body {
 
     .dt-cyber-grid-content {
         padding: 3rem 2.5rem !important;
+        text-align: center !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .dt-cyber-grid-text {
+        text-align: center !important;
+        max-width: 100% !important;
     }
 
     .dt-cyber-grid-title {
         font-size: clamp(1.4rem, 3.8vw, 1.8rem) !important;
         margin-bottom: 1.8rem !important;
         line-height: 1.4 !important;
+        text-align: center !important;
     }
 
     .dt-cyber-grid-paragraph {
         font-size: clamp(1rem, 3vw, 1.2rem) !important;
         line-height: 1.7 !important;
+        text-align: center !important;
+        margin: 0 auto !important;
     }
 
     .dt-road-ahead-section {
@@ -1569,6 +1597,21 @@ html, body {
     .dt-road-ahead-content {
         max-width: 80% !important;
         padding: 0 2rem !important;
+    }
+
+    /* Road Ahead decorative images - Tablet spacing */
+    .dt-road-ahead-decorative-left {
+        left: 2% !important;
+        top: 50% !important;
+        width: 180px !important;
+        transform: translateY(-50%) !important;
+    }
+
+    .dt-road-ahead-decorative-right {
+        right: 2% !important;
+        top: 50% !important;
+        width: 180px !important;
+        transform: translateY(-50%) !important;
     }
 
     .dt-road-ahead-paragraph {
@@ -1598,6 +1641,53 @@ html, body {
     .dt-road-ahead-paragraph {
         font-size: clamp(1.1rem, 2.2vw, 1.2rem);
         line-height: 1.7;
+    }
+
+    /* Road Ahead decorative images - Landscape tablet spacing */
+    .dt-road-ahead-decorative-left {
+        left: 2% !important;
+        top: 50% !important;
+        width: 200px !important;
+        transform: translateY(-50%) !important;
+    }
+
+    .dt-road-ahead-decorative-right {
+        right: 2% !important;
+        top: 50% !important;
+        width: 200px !important;
+        transform: translateY(-50%) !important;
+    }
+
+    /* Text centering for landscape */
+    .dt-cyber-threat-content {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .dt-cyber-threat-content p {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .dt-cyber-grid-content {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dt-cyber-grid-text {
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .dt-cyber-grid-title {
+        text-align: center;
+    }
+
+    .dt-cyber-grid-paragraph {
+        text-align: center;
+        margin: 0 auto;
     }
 
     .dt-cyber-threat-section {
@@ -1862,8 +1952,7 @@ html, body {
 /* Mobile Cyber Services */
 @media (max-width: 768px) {
     .dt-cyber-services {
-        background-position: center;
-        background-size: cover;
+        background: linear-gradient(135deg, #0a0f1a 0%, #1e293b 25%, #1e40af 50%, #1e3a8a 75%, #0f0f23 100%);
         min-height: 60vh;
     }
 
@@ -2089,6 +2178,11 @@ html, body {
     padding: 2rem 1rem 1rem 1rem;
 }
 
+/* Ensure the right column (form) stays pinned to the right even when content changes */
+.dt-contact-grid > *:last-child {
+    justify-self: end;
+}
+
 .dt-contact-heading {
     padding-top: 1rem;
 }
@@ -2112,9 +2206,10 @@ html, body {
     padding: 1.25rem;
     backdrop-filter: none;
     box-shadow: none;
-    width: 70%;
-    max-width: 420px;
-    margin: 2rem auto 0 18%;
+    width: 100%;
+    max-width: 520px;
+    margin: 2rem 2rem 0 0; /* anchor to right side */
+    justify-self: end; /* keep right aligned inside grid */
 }
 
 .dt-input.form-control,
@@ -2153,9 +2248,10 @@ html, body {
     }
 
     .dt-contact-form {
-        width: 90%;
-        max-width: 100%;
-        margin: 1.5rem auto;
+        width: 100%;
+        max-width: 520px;
+        margin: 1.5rem auto 0 auto;
+        justify-self: center;
     }
 
     .dt-contact-logo {
@@ -2170,8 +2266,7 @@ html, body {
 /* ========================================== CYBER SERVICES PAGE ========================================== */
 .dt-cyber-services {
     min-height: 200vh;
-    background: url('/images/CyberBG.png') no-repeat center top;
-    background-size: 100% 100%;
+    background: linear-gradient(135deg, #0a0f1a 0%, #1e293b 25%, #1e40af 50%, #1e3a8a 75%, #0f0f23 100%);
     background-attachment: scroll;
     position: relative;
     padding: 0;
@@ -2209,10 +2304,37 @@ html, body {
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
 
+/* Cyber Content Wrapper - Medium Grey Background with Blue Gradient */
+.dt-cyber-content-wrapper {
+    background: linear-gradient(to bottom, #9ca3af 0%, #6b7280 50%, #4b5563 100%);
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+    min-height: 100vh;
+    border-bottom: 3px solid #3b82f6;
+}
+
+/* Blue Content Wrapper - Blue Background */
+.dt-blue-content-wrapper {
+    background: linear-gradient(135deg, #0a0f1a 0%, #1e293b 25%, #1e40af 50%, #1e3a8a 75%, #0f0f23 100%);
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+    min-height: 100vh;
+}
+
 /* Cyber Threat Section */
 .dt-cyber-threat-section {
     padding: 3rem 2rem 4rem;
     text-align: center;
+    background: transparent;
+    position: relative;
 }
 
 .dt-cyber-threat-title {
@@ -2221,6 +2343,13 @@ html, body {
     font-size: clamp(1.8rem, 3.5vw, 2.8rem);
     margin: 0 0 2rem 0;
     color: #fff;
+    background: linear-gradient(135deg, #3b82f6 0%, #1e40af 50%, #1d4ed8 100%);
+    padding: 1.5rem 3rem;
+    border-radius: 15px;
+    text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .dt-cyber-threat-hero {
@@ -2258,8 +2387,33 @@ html, body {
     }
 
 @media (max-width: 768px) {
+    .dt-cyber-content-wrapper {
+        background: linear-gradient(to bottom, #9ca3af 0%, #6b7280 50%, #4b5563 100%);
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        width: 100vw;
+        min-height: 100vh;
+        border-bottom: 3px solid #3b82f6;
+    }
+
+    .dt-blue-content-wrapper {
+        background: linear-gradient(135deg, #0a0f1a 0%, #1e293b 25%, #1e40af 50%, #1e3a8a 75%, #0f0f23 100%);
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        width: 100vw;
+        min-height: 100vh;
+    }
+
     .dt-cyber-threat-section {
         padding: 3rem 0.5rem 3rem;
+        background: transparent;
+        position: relative;
     }
 
     .dt-cyber-threat-title {
@@ -2289,8 +2443,18 @@ html, body {
 /* Cyber Services Grid */
 .dt-cyber-services-grid {
     padding: 0 2rem;
-    max-width: 1400px;
-    margin: -100px auto 0;
+    max-width: 100%;
+    width: 100vw;
+    margin: 0;
+    background: transparent;
+    border-radius: 0;
+    padding-top: 2rem;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    min-height: 100vh;
 }
 
 .dt-cyber-grid-row {
@@ -2384,8 +2548,17 @@ html, body {
 /* Desktop specific styles */
 @media (min-width: 1024px) {
     .dt-cyber-services-grid {
-        margin: -50px auto 0;
+        margin: 0;
         padding: 0 3rem;
+        width: 100vw;
+        max-width: 100%;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        min-height: 100vh;
+        background: transparent;
     }
 
     .dt-cyber-grid-row {
@@ -2410,7 +2583,16 @@ html, body {
 @media (max-width: 768px) {
     .dt-cyber-services-grid {
         padding: 0.5rem 0.3rem;
-        margin-top: 2rem;
+        margin-top: 0;
+        width: 100vw;
+        max-width: 100%;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        min-height: 100vh;
+        background: transparent;
     }
 
     .dt-cyber-grid-row {
@@ -2543,6 +2725,20 @@ html, body {
         text-align: center;
     }
 
+/* Transition section before Road Ahead */
+.dt-cyber-transition {
+    background: transparent;
+    height: 2rem;
+    width: 100vw;
+    margin: 0;
+    border-radius: 0;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
 /* The Road Ahead Section */
 .dt-road-ahead-section {
     padding: 4rem 2rem;
@@ -2550,12 +2746,12 @@ html, body {
     text-align: center;
     position: relative;
     z-index: 2;
-    background: #BDC1C6;
-    border-radius: 12px;
-    max-width: 1200px;
+    background: transparent;
+    border-radius: 0;
+    max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
-    overflow: hidden;
+    overflow: visible;
 }
 
 @media (max-width: 768px) {
@@ -2593,26 +2789,26 @@ html, body {
     }
 
     .dt-road-ahead-decorative-left {
-        left: 30% !important;
-        top: 28% !important;
+        left: 5% !important;
+        top: 50% !important;
         transform: translateY(-50%) !important;
     }
 
     .dt-road-ahead-decorative-right {
-        right: 30% !important;
-        top: 28% !important;
+        right: 5% !important;
+        top: 50% !important;
         transform: translateY(-50%) !important;
     }
 }
 
 .dt-road-ahead-decorative-left {
     position: absolute;
-    left: 30%;
-    top: 28%;
+    left: 2%;
+    top: 50%;
     transform: translateY(-50%);
-    width: 120px;
-    height: 120px;
-    opacity: 0.8;
+    width: 220px;
+    height: 220px;
+    opacity: 0.9;
     z-index: 1;
     pointer-events: none;
 }
@@ -2625,12 +2821,12 @@ html, body {
 
 .dt-road-ahead-decorative-right {
     position: absolute;
-    right: 30%;
-    top: 28%;
+    right: 2%;
+    top: 50%;
     transform: translateY(-50%);
-    width: 120px;
-    height: 120px;
-    opacity: 0.8;
+    width: 220px;
+    height: 220px;
+    opacity: 0.9;
     z-index: 1;
     pointer-events: none;
 }
@@ -2650,7 +2846,7 @@ html, body {
 
 .dt-road-ahead-title {
     font-family: "DM Serif Text", serif;
-    color: #0e1b3f;
+    color: #ffffff;
     font-size: clamp(1.8rem, 4vw, 2.5rem);
     margin-bottom: 1.5rem;
     text-shadow: 0 2px 4px rgba(0,0,0,.3);
@@ -2658,7 +2854,7 @@ html, body {
 }
 
 .dt-road-ahead-paragraph {
-    color: #1b294d;
+    color: #ffffff;
     font-size: clamp(0.9rem, 2vw, 1.1rem);
     line-height: 1.6;
     margin: 0;
@@ -2825,9 +3021,9 @@ html, body {
 .phc-title {
     font-family: "DM Serif Text", serif;
     font-weight: 400;
-    font-size: 5rem;
-    line-height: 1.75;
-    padding-top: 50px;
+    font-size: 8rem;
+    line-height: 0.9 !important;
+    padding-top: 20px;
     margin-bottom: 1.5rem;
 }
 
@@ -2842,10 +3038,11 @@ html, body {
     font-weight: 400;
     text-align: center;
     font-size: 60px;
+    padding-top: 10px;
 }
 
 .hero-desc {
-    padding-top: 100px;
+    padding-top: 20px;
     font-family: "DM Serif Text", serif;
     font-weight: 400;
     line-height: 2;
@@ -3017,8 +3214,8 @@ html, body {
     position: absolute;
     width: 300px;
     height: 300px;
-    top: -2%;
-    left: -1%;
+    top: 20px;
+    left: 20px;
     z-index: 0;
     pointer-events: none;
 }
@@ -3027,8 +3224,8 @@ html, body {
     position: absolute;
     width: 300px;
     height: 300px;
-    top: 36%;
-    left: 81%;
+    bottom: -15px;
+    right: -20px;
     z-index: 0;
     pointer-events: none;
 }
@@ -3094,7 +3291,7 @@ img .circuit2 {
     width: 500px;
     height: 500px;
     top: 0;
-    left: -6%;
+    left: -10%;
     z-index: 0;
     pointer-events: none;
     opacity: 0.7;
@@ -3105,7 +3302,7 @@ img .circuit2 {
     width: 500px;
     height: 500px;
     top: 0;
-    left: 73%;
+    right: -10%;
     z-index: 0;
     pointer-events: none;
     opacity: 0.7;
@@ -3200,9 +3397,9 @@ img .circuit2 {
         .phc-title {
             font-family: "DM Serif Text", serif;
             font-weight: 400;
-            font-size: 2rem;
-            line-height: 1.3;
-            padding-top: 1rem;
+            font-size: 3.5rem;
+            line-height: 0.9 !important;
+            padding-top: 0.5rem;
             margin-bottom: 1rem;
             text-align: center;
         }
@@ -3215,7 +3412,7 @@ img .circuit2 {
             max-width: 95%;
             margin: 0 auto 2rem;
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 0.5rem;
         }
 
         /* Services Section */
@@ -3230,8 +3427,9 @@ img .circuit2 {
             font-style: normal;
             font-weight: 400;
             text-align: center;
-            font-size: 1rem;
+            font-size: 0.9rem;
             margin-bottom: 2rem;
+            padding-top: 0.5rem;
         }
 
         .card-title {
@@ -3407,13 +3605,13 @@ img .circuit2 {
         }
 
         .circuit1 {
-            top: 10%;
-            left: -10%;
+            top: 20px;
+            left: 20px;
         }
 
         .circuit2 {
-            bottom: 10%;
-            right: -10%;
+            bottom: -150px;
+            right: 20px;
         }
 
         /* complex decorations on mobile device are hidden */
@@ -3496,19 +3694,21 @@ img .circuit2 {
             }
 
             .phc-title {
-                font-size: 3.5rem;
-                padding-top: 2rem;
+                font-size: 6rem;
+                line-height: 0.9 !important;
+                padding-top: 1rem;
                 margin-bottom: 1.5rem;
             }
 
             .hero-desc {
                 font-size: 1.5rem;
-                padding-top: 3rem;
+                padding-top: 1rem;
                 max-width: 80%;
             }
 
             .phs-desc {
                 font-size: 1.2rem;
+                padding-top: 0.5rem;
             }
 
             .card-title {
@@ -3579,13 +3779,13 @@ img .circuit2 {
             }
 
             .circuit1 {
-                top: 5%;
-                left: -5%;
+                top: 5px;
+                left: 20px;
             }
 
             .circuit2 {
-                bottom: 5%;
-                right: -5%;
+                bottom: -150px;
+                right: 20px;
             }
 
             /* Show some decorations on tablet */
@@ -3600,13 +3800,13 @@ img .circuit2 {
             }
 
             .black-circuit {
-                top: 10%;
-                left: 5%;
+                top: -2%;
+                left: -5%;
             }
 
             .black-circuit2 {
-                top: 10%;
-                right: 5%;
+                top: -2% !important;
+                right: -25% !important;
             }
 
             .copyright {
@@ -3628,14 +3828,15 @@ img .circuit2 {
             }
 
             .phc-title {
-                font-size: 4.5rem;
-                padding-top: 3rem;
+                font-size: 7rem;
+                line-height: 0.95 !important;
+                padding-top: 1.5rem;
                 margin-bottom: 2rem;
             }
 
             .hero-desc {
                 font-size: 1.8rem;
-                padding-top: 4rem;
+                padding-top: 1.5rem;
                 max-width: 70%;
             }
 
@@ -3645,6 +3846,7 @@ img .circuit2 {
 
             .phs-desc {
                 font-size: 1.5rem;
+                padding-top: 1rem;
             }
 
             .card-title {
@@ -3719,13 +3921,13 @@ img .circuit2 {
             }
 
             .circuit1 {
-                top: 2%;
-                left: -2%;
+                top: 20px;
+                left: 20px;
             }
 
             .circuit2 {
-                bottom: 2%;
-                right: -2%;
+                bottom: -150px;
+                right: 20px;
             }
 
             /* Show background decorations on desktop */
@@ -3783,13 +3985,13 @@ img .circuit2 {
             }
 
             .black-circuit {
-                top: 5%;
-                left: 2%;
+                top: -5%;
+                left: -3%;
             }
 
             .black-circuit2 {
-                top: 5%;
-                right: 2%;
+                top: -5% !important;
+                right: -20% !important;
             }
 
             .circle-circuit, .circle-circuit2 {
@@ -3827,19 +4029,21 @@ img .circuit2 {
             }
 
             .phc-title {
-                font-size: 5rem;
-                padding-top: 50px;
+                font-size: 8rem;
+                line-height: 0.95 !important;
+                padding-top: 20px;
                 margin-bottom: 1.5rem;
             }
 
             .hero-desc {
                 font-size: 2rem;
-                padding-top: 100px;
+                padding-top: 20px;
                 max-width: 60%;
             }
 
             .phs-desc {
                 font-size: 60px;
+                padding-top: 10px;
             }
 
             .card-title {
@@ -3888,16 +4092,16 @@ img .circuit2 {
             .circuit1 {
                 width: 300px;
                 height: 300px;
-                top: -2%;
-                left: -1%;
+                top: 20px;
+                left: 20px;
                 opacity: 0.7;
             }
 
             .circuit2 {
                 width: 300px;
                 height: 300px;
-                top: 36%;
-                left: 81%;
+                bottom: -150px;
+                right: 20px;
                 opacity: 0.7;
             }
 
@@ -3937,7 +4141,7 @@ img .circuit2 {
                 width: 500px;
                 height: 500px;
                 top: 0;
-                left: -6%;
+                left: -10%;
                 opacity: 0.7;
             }
 
@@ -3945,7 +4149,7 @@ img .circuit2 {
                 width: 500px;
                 height: 500px;
                 top: 0;
-                left: 73%;
+                right: -10%;
                 opacity: 0.7;
             }
 
@@ -4423,7 +4627,8 @@ img .circuit2 {
 }
 
 .invalid-feedback {
-    display: block;
+    display: block; /* reserve space to prevent layout shift */
+    visibility: hidden; /* hide text until invalid */
     width: 100%;
     margin-top: 0.25rem;
     font-size: 0.875em;
@@ -4500,3 +4705,1235 @@ img .circuit2 {
 
 /* ========================================== END SECURITY VALIDATION STYLES ========================================== */
 
+
+/* ========================================== CONTACT FORM UX FIXES ========================================== */
+/* Keep the contact form width stable and aligned, prevent shifting on errors */
+.dt-contact-form {
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+/* Reserve space for feedback to avoid layout jumps */
+.dt-contact-form .invalid-feedback {
+    min-height: 1.25rem;
+}
+
+/* Show message only when invalid */
+.dt-contact-form .dt-input.is-invalid + .invalid-feedback,
+.dt-contact-form select.dt-input.is-invalid + .invalid-feedback,
+.dt-contact-form textarea.dt-input.is-invalid + .invalid-feedback {
+    visibility: visible;
+}
+
+/* Physical Services form validation styles */
+.phy-form .invalid-feedback {
+    min-height: 1.25rem;
+}
+
+.phy-form .phy-input.is-invalid + .invalid-feedback,
+.phy-form select.phy-input.is-invalid + .invalid-feedback,
+.phy-form textarea.phy-input.is-invalid + .invalid-feedback {
+    visibility: visible;
+}
+
+/* Cyber Services form validation styles */
+.dt-cyber-contact-form .invalid-feedback {
+    min-height: 1.25rem;
+}
+
+.dt-cyber-contact-form .dt-cyber-input.is-invalid + .invalid-feedback,
+.dt-cyber-contact-form select.dt-cyber-input.is-invalid + .invalid-feedback,
+.dt-cyber-contact-form textarea.dt-cyber-input.is-invalid + .invalid-feedback {
+    visibility: visible;
+}
+
+/* Remove Bootstrap's default invalid background icons and padding that stack icons */
+.form-control.is-invalid,
+.was-validated .form-control:invalid,
+textarea.form-control.is-invalid,
+.form-select.is-invalid,
+.was-validated .form-select:invalid {
+    background-image: none !important;
+    padding-right: .75rem !important;
+    padding-left: .75rem !important;
+}
+
+.form-select.is-invalid,
+.was-validated .form-select:invalid {
+    background-position: right .75rem center !important;
+}
+
+/* ========================================== PHYSICAL SERVICES PAGE ========================================== */
+/* Mobile-first base styles */
+.bg-physical-services {
+    background: linear-gradient(to bottom, #01082E 5%, #014687 34%);
+    min-height: 60vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.phc-title {
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-size: 3.5rem;
+    line-height: 0.9 !important;
+    padding-top: 0.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.services-section {
+    background: linear-gradient(to bottom, #7D89B0 1%, #BDC1C6 40%);
+    padding: 2rem 1rem;
+    position: relative;
+}
+
+.phs-desc {
+    font-family: "DM Sans", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    padding-top: 0.5rem;
+}
+
+        .hero-desc {
+            font-family: "DM Serif Text", serif;
+            font-weight: 400;
+            line-height: 1.5;
+            font-size: 1rem;
+            max-width: 95%;
+            margin: 0 auto 2rem;
+            text-align: center;
+            padding-top: 0.5rem;
+            padding-left: 0;
+        }
+
+.card-main-title {
+    font-family: "DM Serif Text", serif;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0;
+    line-height: 1.3;
+    color: #004D8F;
+    text-align: center;
+}
+
+.card-title {
+    font-family: "Domine", serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    color: black;
+}
+
+.physical-card-desc {
+    font-family: "DM Sans", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #004D85;
+}
+
+.container-card {
+    padding: 0 1rem;
+    width: 100%;
+    margin: 0 auto 2rem;
+}
+
+.row-gutters {
+    margin: 0 -0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-body {
+    border-radius: 15px;
+    min-height: 200px;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    background-color: #D9D9D9;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 4px rgba(0, 107, 135, 0.3);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+}
+
+    .card-body:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    }
+
+.col-md-6 {
+    padding: 0 0.5rem;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.form-title {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0;
+    font-family: "DM Serif Text", serif;
+    font-size: 2rem;
+    text-align: center;
+    color: black;
+}
+
+.contact-form-heading {
+    font-family: "DM Serif Text", serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+    text-shadow: 0 2px 6px rgba(0,0,0,.5);
+    color: #ffffff !important;
+    opacity: 1;
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
+.contact-section {
+    background: linear-gradient(to bottom, #BDC1C6 16%, #004D8F);
+    padding: 3rem 1rem;
+    position: relative;
+}
+
+.phy-form-control {
+    color: white;
+    border: 2px solid white;
+    border-radius: 0.5rem;
+    width: 100%;
+    min-height: 50px;
+    background: transparent;
+    font-size: 16px;
+    font-family: "DM Sans", sans-serif;
+    outline: none;
+    padding: 12px 16px;
+}
+
+.phy-form-select {
+    width: 100%;
+    padding: 12px 16px;
+    min-height: 50px;
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.7)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 18px;
+    padding-right: 45px;
+}
+
+.phy-form-control::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.phy-input {
+    padding: 12px 16px; 
+}
+
+.phy-form-control:focus, .phy-form-select:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.phy-btn-primary {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 12px 2rem;
+    font-size: 1rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+    .phy-btn-primary:hover {
+        background: rgba(255, 255, 255, 0.16);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+    }
+
+.phy-form-select option {
+    background-color: #0b1c3e;
+    color: white;
+}
+
+.physical-contact {
+    max-width: 100%;
+    padding: 0 1rem;
+    border-radius: 10px;
+    margin: 2rem auto 0;
+}
+
+/* Hero Section Decor */
+.circuit1 {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 20px;
+    left: 20px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.circuit2 {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    bottom: -15px;
+    right: -20px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+img .circuit1 {
+    vertical-align:top;
+}
+
+img .circuit2 {
+    vertical-align:bottom;
+}
+
+/* -------- Physical Services Section Decor --------- */
+.phy-bg-decor .wavy-element{
+    position: absolute; 
+    top: 20%;
+    left: 10%;
+    width: 500px;
+    height: 500px;
+    z-index: 0; 
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.phy-bg-decor .wavy-element2 {
+    position: absolute;
+    top: 60%;
+    left: 0;
+    width: 900px;
+    height: 700px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.phy-bg-decor .wavy-element3 {
+    position: absolute;
+    top: 25%;
+    left: 55%;
+    width: 400px;
+    height: 400px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.phy-bg-decor .wavy-element4 {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* Physical Service Contact Decor */
+.black-circuit {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 0;
+    left: -6%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.black-circuit2 {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 0;
+    left: 73%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.circle-circuit {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 80%;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.circle-circuit2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 80%;
+    left: 74%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 200px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 40px;
+}
+
+.phy-form {
+    animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== RESPONSIVE DESIGN FOR PHYSICAL SERVICES ===== */
+
+/* ===== VERY SMALL SCREENS (1/4 laptop size ~320px) ===== */
+@media (max-width: 360px) {
+    /* Hide all decorative elements */
+    .circuit1, .circuit2,
+    .phy-bg-decor,
+    .black-circuit, .black-circuit2,
+    .circle-circuit, .circle-circuit2 {
+        display: none !important;
+    }
+
+    /* Ensure single column layout */
+    .row-gutters > [class*="col-"] {
+        width: 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    /* Adjusting text sizes for very small screens */
+    .phc-title {
+        font-size: 1.7rem;
+        padding-top: 0.5rem;
+    }
+
+    .hero-desc {
+        font-size: 1rem;
+        padding-top: 1rem;
+    }
+
+    .card-title {
+        font-size: 1.7rem;
+    }
+
+    .form-title {
+        font-size: 1.7rem;
+    }
+
+    /* Adjusting padding for small screens */
+    .services-section,
+    .contact-section {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .container-card {
+        padding: 0 0.5rem;
+    }
+
+    .card-body {
+        padding: 1rem 0.8rem;
+    }
+}
+
+/* ===== TABLET STYLES (768px+) ===== */
+@media (min-width: 768px) {
+    /* Show circuit decorations on tablet and larger */
+    .circuit1, .circuit2 {
+        display: block;
+    }
+
+    .bg-physical-services {
+        min-height: 70vh;
+        padding: 3rem 2rem;
+    }
+
+    .phc-title {
+        font-size: 6rem;
+        line-height: 0.9 !important;
+        padding-top: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-desc {
+        font-size: 1.4rem;
+        padding-top: 1rem;
+        padding-left: 0;
+        max-width: 85%;
+    }
+
+    .services-section {
+        padding: 3rem 2rem;
+    }
+
+    .phs-desc {
+        font-size: 1.1rem;
+        margin-bottom: 2.5rem;
+        padding-top: 0.5rem;
+    }
+
+    .card-main-title {
+        font-size: 2.5rem;
+        margin-top: 3rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .physical-card-desc {
+        font-size: 0.95rem;
+    }
+
+    .container-card {
+        width: 95%;
+        max-width: 1200px;
+        padding: 0 1.5rem;
+        margin: 0 auto 2rem;
+    }
+
+    .row-gutters {
+        margin: 0 -1rem;
+    }
+
+    .row-gutters > [class*="col-"] {
+        padding: 0 1rem;
+        margin-bottom: 2rem;
+        width: 50%; /* Two columns on tablet */
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .card-body {
+        padding: 2rem 1.5rem;
+        min-height: 250px;
+        width: 100%;
+    }
+
+    .card-body:hover {
+        transform: scale(1.03);
+    }
+
+    .contact-section {
+        padding: 4rem 2rem;
+    }
+
+    .form-title {
+        font-size: 2.5rem;
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    .contact-form-heading {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        margin-top: 1.5rem;
+        color: #ffffff !important;
+        text-shadow: 0 2px 8px rgba(0,0,0,.6);
+    }
+
+    .physical-contact {
+        max-width: 600px;
+        padding: 0 2rem;
+        margin: 2rem auto 0;
+    }
+
+    .phy-form {
+        max-width: 100%;
+    }
+
+    .phy-form-control, .phy-form-select {
+        min-height: 55px;
+        padding: 15px 20px;
+        font-size: 17px;
+    }
+
+    .phy-btn-primary {
+        padding: 15px 3rem;
+        font-size: 1.1rem;
+    }
+
+    .circuit1, .circuit2 {
+        width: 200px;
+        height: 200px;
+        opacity: 0.5;
+    }
+
+    .circuit1 {
+        top: 0%;
+        left: -5%;
+    }
+
+    .circuit2 {
+        bottom: -15px !important;
+        right: -20px;
+    }
+
+    /* Show some decorations on tablet */
+    .black-circuit, .black-circuit2 {
+        display: block;
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.4;
+    }
+
+    .black-circuit {
+        top: -2%;
+        left: -5%;
+    }
+
+    .black-circuit2 {
+        top: -2% !important;
+        right: -25% !important;
+    }
+
+    .circle-circuit, .circle-circuit2 {
+        display: block;
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.4;
+    }
+
+    .circle-circuit {
+        bottom: 10%;
+        left: 3%;
+    }
+
+    .circle-circuit2 {
+        bottom: 10%;
+        right: 3%;
+    }
+
+    .copyright {
+        font-size: 0.9rem;
+        padding-top: 4rem;
+    }
+}
+
+/* ===== DESKTOP STYLES (1024px+) ===== */
+@media (min-width: 1024px) {
+    /* Show all decorative elements on desktop */
+    .phy-bg-decor,
+    .circle-circuit, .circle-circuit2 {
+        display: block;
+    }
+
+    .bg-physical-services {
+        min-height: 80vh;
+        padding: 4rem 3rem;
+    }
+
+    .phc-title {
+        font-size: 7rem;
+        line-height: 0.95 !important;
+        padding-top: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-desc {
+        font-size: 1.6rem;
+        padding-top: 1.5rem;
+        padding-left: 0;
+        max-width: 75%;
+    }
+
+    .services-section {
+        padding: 4rem 3rem;
+    }
+
+    .phs-desc {
+        font-size: 1.3rem;
+        margin-bottom: 3rem;
+        padding-top: 1rem;
+    }
+
+    .card-main-title {
+        font-size: 3rem;
+        margin-top: 4rem;
+        margin-bottom: 3rem;
+    }
+
+    .card-title {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .physical-card-desc {
+        font-size: 1rem;
+    }
+
+    .container-card {
+        width: 90%;
+        max-width: 1400px;
+        padding: 0 2rem;
+        margin: 0 auto 3rem;
+    }
+
+    .row-gutters {
+        margin: 0 -1.5rem;
+    }
+
+    .row-gutters > [class*="col-"] {
+        padding: 0 1.5rem;
+        margin-bottom: 3rem;
+        width: 50%; /* Two columns on desktop */
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .card-body {
+        padding: 2.5rem 2rem;
+        min-height: 280px;
+        width: 100%;
+    }
+
+    .card-body:hover {
+        transform: scale(1.05);
+    }
+
+    .contact-section {
+        padding: 5rem 3rem;
+    }
+
+    .form-title {
+        font-size: 3rem;
+        margin-top: 4rem;
+        margin-bottom: 3rem;
+    }
+
+    .contact-form-heading {
+        font-size: 2.2rem;
+        margin-bottom: 2.5rem;
+        margin-top: 2rem;
+        color: #ffffff !important;
+        text-shadow: 0 2px 8px rgba(0,0,0,.6);
+    }
+
+    .physical-contact {
+        max-width: 700px;
+        padding: 0 2rem;
+        margin: 2rem auto 0;
+    }
+
+    .phy-form {
+        max-width: 100%;
+    }
+
+    .phy-form-control, .phy-form-select {
+        min-height: 60px;
+        padding: 16px 20px;
+        font-size: 17px;
+    }
+
+    .phy-btn-primary {
+        padding: 16px 4rem;
+        font-size: 1.1rem;
+    }
+
+    .circuit1, .circuit2 {
+        width: 250px;
+        height: 250px;
+        opacity: 0.6;
+    }
+
+    .circuit1 {
+        top: 2%;
+        left: -2%;
+    }
+
+    .circuit2 {
+        bottom: -15px !important;
+        right: -20px;
+    }
+
+    /* Show background decorations on desktop */
+    .phy-bg-decor {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+        .phy-bg-decor .wavy-element {
+            position: absolute;
+            top: 15%;
+            left: 8%;
+            width: 300px;
+            height: 300px;
+            opacity: 0.4;
+        }
+
+        .phy-bg-decor .wavy-element2 {
+            position: absolute;
+            top: 55%;
+            left: 8%;
+            width: 300px;
+            height: 300px;
+            opacity: 0.4;
+        }
+
+        .phy-bg-decor .wavy-element3 {
+            position: absolute;
+            top: 20%;
+            right: 15%;
+            width: 250px;
+            height: 250px;
+            opacity: 0.4;
+        }
+
+        .phy-bg-decor .wavy-element4 {
+            position: absolute;
+            top: 55%;
+            right: 10%;
+            width: 300px;
+            height: 300px;
+            opacity: 0.4;
+        }
+
+    .black-circuit, .black-circuit2 {
+        width: 300px;
+        height: 300px;
+        opacity: 0.5;
+    }
+
+    .black-circuit {
+        top: -5%;
+        left: -3%;
+    }
+
+    .black-circuit2 {
+        top: -5% !important;
+        right: -20% !important;
+    }
+
+    .circle-circuit, .circle-circuit2 {
+        display: block;
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    .circle-circuit {
+        bottom: 15%;
+        left: 5%;
+    }
+
+    .circle-circuit2 {
+        bottom: 15%;
+        right: 5%;
+    }
+
+    .copyright {
+        font-size: 1rem;
+        padding-top: 5rem;
+    }
+}
+
+/* ===== LARGE DESKTOP STYLES (1440px+) ===== */
+@media (min-width: 1440px) {
+    .bg-physical-services {
+        min-height: 85vh;
+        padding: 5rem 4rem;
+    }
+
+    .phc-title {
+        font-size: 8rem;
+        line-height: 0.95 !important;
+        padding-top: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-desc {
+        font-size: 1.8rem;
+        padding-top: 1.5rem;
+        padding-left: 0;
+        max-width: 70%;
+    }
+
+    .services-section {
+        padding: 5rem 4rem;
+    }
+
+    .phs-desc {
+        font-size: 1.5rem;
+        margin-bottom: 3rem;
+        padding-top: 1rem;
+    }
+
+    .card-main-title {
+        font-size: 3.5rem;
+        margin-top: 5rem;
+        margin-bottom: 4rem;
+    }
+
+    .card-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+
+    .physical-card-desc {
+        font-size: 1.05rem;
+    }
+
+    .container-card {
+        width: 85%;
+        max-width: 1600px;
+        padding: 0 3rem;
+        margin: 0 auto 4rem;
+    }
+
+    .row-gutters > [class*="col-"] {
+        padding: 0 2rem;
+        margin-bottom: 4rem;
+        width: 50%; /* Two columns on large desktop for better readability */
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .card-body {
+        padding: 3rem 2.5rem;
+        min-height: 320px;
+        width: 100%;
+    }
+
+    .contact-section {
+        padding: 6rem 4rem;
+    }
+
+    .form-title {
+        font-size: 3.5rem;
+        margin-top: 5rem;
+        margin-bottom: 3rem;
+        padding-bottom: 0;
+    }
+
+    .contact-form-heading {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        margin-top: 2.5rem;
+        color: #ffffff !important;
+        text-shadow: 0 2px 8px rgba(0,0,0,.6);
+    }
+
+    .physical-contact {
+        max-width: 800px;
+        padding: 0 3rem;
+        margin: 2rem auto 0;
+    }
+
+    .phy-form {
+        max-width: 100%;
+    }
+
+    .phy-form-control, .phy-form-select {
+        width: 100%;
+        min-height: 65px;
+        font-size: 18px;
+        padding: 18px 22px;
+    }
+
+    .phy-btn-primary {
+        padding: 18px 5rem;
+        font-size: 1.2rem;
+    }
+
+    /* Original decoration sizes for large desktop */
+    .circuit1 {
+        width: 300px;
+        height: 300px;
+        top: -2%;
+        left: -1%;
+        opacity: 0.7;
+    }
+
+    .circuit2 {
+        width: 300px;
+        height: 300px;
+        bottom: -15px !important;
+        right: -20px;
+        opacity: 0.7;
+    }
+
+    .phy-bg-decor .wavy-element {
+        top: 20%;
+        left: 10%;
+        width: 400px;
+        height: 400px;
+        opacity: 0.6;
+    }
+
+    .phy-bg-decor .wavy-element2 {
+        top: 60%;
+        left: 5%;
+        width: 500px;
+        height: 500px;
+        opacity: 0.6;
+    }
+
+    .phy-bg-decor .wavy-element3 {
+        top: 25%;
+        right: 10%;
+        width: 350px;
+        height: 350px;
+        opacity: 0.6;
+    }
+
+    .phy-bg-decor .wavy-element4 {
+        top: 60%;
+        right: 8%;
+        width: 400px;
+        height: 400px;
+        opacity: 0.6;
+    }
+
+    .black-circuit {
+        width: 400px;
+        height: 400px;
+        top: 0;
+        left: -10%;
+        opacity: 0.6;
+    }
+
+    .black-circuit2 {
+        width: 400px;
+        height: 400px;
+        top: 0;
+        right: -10%;
+        opacity: 0.6;
+    }
+
+    .circle-circuit {
+        width: 350px;
+        height: 350px;
+        bottom: 12%;
+        left: 2%;
+        opacity: 0.6;
+    }
+
+    .circle-circuit2 {
+        width: 350px;
+        height: 350px;
+        bottom: 12%;
+        right: 2%;
+        opacity: 0.6;
+    }
+
+    .copyright {
+        padding-top: 6rem;
+        font-size: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 40px;
+    }
+}
+
+/* ===== ULTRA-WIDE SCREENS (1920px+) ===== */
+@media (min-width: 1920px) {
+    .bg-physical-services {
+        height: 450px;
+    }
+
+    .hero-section-text {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .container-card {
+        max-width: 1200px;
+    }
+
+    .physical-contact {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+}
+
+/* ===== ACCESSIBILITY & PERFORMANCE ===== */
+@media (prefers-reduced-motion: reduce) {
+    .card-body:hover {
+        transform: none;
+    }
+
+    .phy-form {
+        animation: none;
+    }
+
+    .phy-form-control:focus, .phy-form-select:focus {
+        transform: none;
+    }
+}
+
+/* High contrast support */
+@media (prefers-contrast: high) {
+    .card-body {
+        border: 2px solid #000;
+    }
+
+    .phy-form-control, .phy-form-select {
+        border: 3px solid white;
+    }
+}
+
+/* ===== UTILITY CLASSES ===== */
+.text-responsive {
+    font-size: clamp(1rem, 2.5vw, 2rem);
+}
+
+.container-responsive {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+    .container-responsive {
+        padding: 0 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container-responsive {
+        padding: 0 3rem;
+    }
+}
+
+/* Override for tablet black-circuit2 positioning */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .contact-section .black-circuit2,
+    .black-circuit2 {
+        right: -2% !important;
+        left: auto !important;
+        transform: translateX(0) scaleY(-1) !important;
+        position: absolute !important;
+    }
+}
+
+/* Additional override with even higher specificity */
+@media (min-width: 768px) and (max-width: 1024px) {
+    section.contact-section .black-circuit2 {
+        right: -3% !important;
+        left: auto !important;
+        transform: scaleY(-1) !important;
+    }
+}
+
+/* Align bottom images for tablet view */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .circle-circuit,
+    .circle-circuit2 {
+        top: 85% !important;
+    }
+    
+    .circle-circuit {
+        left: -2% !important;
+        right: auto !important;
+    }
+    
+    .circle-circuit2 {
+        right: -2% !important;
+        left: auto !important;
+    }
+}
+
+/* Move Contact Us heading images to the right for desktop view */
+@media (min-width: 1025px) {
+    .black-circuit {
+        left: -8% !important;
+    }
+    
+    .black-circuit2 {
+        right: -12% !important;
+    }
+}
+
+/* Additional override for right image on desktop */
+@media (min-width: 1025px) {
+    .contact-section .black-circuit2,
+    section.contact-section .black-circuit2 {
+        right: -10% !important;
+        left: auto !important;
+        top: 2px !important;
+        transform: scaleY(-1) !important;
+    }
+}
+
+/* ========================================== END PHYSICAL SERVICES PAGE ========================================== */
