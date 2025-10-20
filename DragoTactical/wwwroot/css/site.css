@@ -1,3 +1,350 @@
+/* Prevent horizontal gaps caused by 100vw + scrollbar */
+html, body {
+  overflow-x: hidden;
+}
+/* Full-bleed utility: make section backgrounds and content span full viewport width */
+.dt-full-bleed {
+  position: relative;
+  width: 100vw !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: none !important;
+  overflow-x: clip;
+}
+
+/* Override container max-width for mission section */
+.dt-mission .container {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* Move mission description text much more to the left and 2px down, make it wider for fewer lines */
+.dt-mission-right {
+  transform: translateX(-80px) translateY(2px) !important;
+  width: 300% !important;
+  max-width: none !important;
+}
+
+.dt-mission-right p {
+  width: 100% !important;
+  max-width: none !important;
+  font-size: 0.6rem !important;
+  line-height: 1.3 !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+/* Force mission text expansion for all screen sizes */
+.dt-mission .dt-mission-right {
+  width: 300% !important;
+  max-width: none !important;
+}
+
+.dt-mission .dt-mission-right p {
+  width: 100% !important;
+  max-width: none !important;
+  font-size: 0.6rem !important;
+  line-height: 1.3 !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+/* Move Our Mission banner more right, text and lock image more left */
+.dt-mission-left {
+  padding-left: 20px !important;
+}
+
+.dt-mission-title {
+  margin-left: 20px !important;
+  font-size: 1.2rem !important;
+}
+
+.dt-mission-lock {
+  margin-left: 15px !important;
+}
+
+/* Additional targeting for the mission section */
+.dt-mission .dt-mission-left {
+  transform: translateX(-50px) !important;
+}
+
+.dt-mission .dt-mission-title {
+  transform: translateX(10px) !important;
+  font-size: 1.2rem !important;
+}
+
+.dt-mission .dt-mission-lock {
+  transform: translateX(5px) !important;
+}
+
+/* Responsive design for Our Mission section - truly compatible across all devices */
+
+/* Reset mission section for mobile-first approach */
+.dt-mission {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem 0.5rem;
+  min-height: auto;
+}
+
+.dt-mission-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.dt-mission-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0 !important;
+  transform: none !important;
+}
+
+.dt-mission-title {
+  font-size: 1.2rem !important;
+  margin: 0.3rem 0 !important;
+  transform: none !important;
+}
+
+.dt-mission-lock {
+  margin: 0.3rem 0 !important;
+  transform: none !important;
+  max-width: 30px !important;
+  max-height: 30px !important;
+}
+
+.dt-mission-right {
+  width: 100% !important;
+  max-width: 800px !important;
+  transform: none !important;
+  text-align: center;
+}
+
+.dt-mission-right p {
+  font-size: 0.6rem !important;
+  line-height: 1.3 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+
+/* Desktop and large screens (1025px+) */
+@media (min-width: 1025px) {
+  .dt-mission {
+    flex-direction: row;
+    text-align: left;
+    padding: 1.5rem 1rem;
+    min-height: auto;
+  }
+  
+  .dt-mission-inner {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  
+  .dt-mission-left {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0;
+    margin-right: 1rem;
+    padding-left: 20px !important;
+    transform: translateX(-50px) !important;
+  }
+  
+  .dt-mission-title {
+    font-size: 1.2rem !important;
+    margin-left: 20px !important;
+    transform: translateX(10px) !important;
+  }
+  
+  .dt-mission-lock {
+    margin-left: 15px !important;
+    transform: translateX(5px) !important;
+    max-width: 35px !important;
+    max-height: 35px !important;
+  }
+  
+  .dt-mission-right {
+    width: 300% !important;
+    max-width: none !important;
+    transform: translateX(-80px) translateY(2px) !important;
+    text-align: left;
+  }
+  
+  .dt-mission-right p {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* Large tablets (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .dt-mission {
+    flex-direction: row;
+    text-align: left;
+    padding: 1.25rem 0.75rem;
+    min-height: auto;
+  }
+  
+  .dt-mission-inner {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  
+  .dt-mission-left {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0;
+    margin-right: 1.5rem;
+    padding-left: 15px !important;
+    transform: translateX(-30px) !important;
+  }
+  
+  .dt-mission-title {
+    font-size: 1.3rem !important;
+    margin-left: 15px !important;
+    transform: translateX(5px) !important;
+  }
+  
+  .dt-mission-lock {
+    margin-left: 10px !important;
+    transform: translateX(2px) !important;
+  }
+  
+  .dt-mission-right {
+    width: 250% !important;
+    max-width: none !important;
+    transform: translateX(-40px) translateY(2px) !important;
+    text-align: left;
+  }
+  
+  .dt-mission-right p {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .dt-mission {
+    padding: 1rem 0.5rem;
+    min-height: auto;
+  }
+  
+  .dt-mission-title {
+    font-size: 1.25rem !important;
+  }
+  
+  .dt-mission-right p {
+    font-size: 0.5rem !important;
+    line-height: 1.3 !important;
+  }
+}
+
+/* Mobile devices (up to 480px) */
+@media (max-width: 480px) {
+  .dt-mission {
+    padding: 0.75rem 0.25rem;
+    min-height: auto;
+  }
+  
+  .dt-mission-title {
+    font-size: 0.6rem !important;
+  }
+  
+  .dt-mission-right p {
+    font-size: 0.45rem !important;
+    line-height: 1.2 !important;
+  }
+}
+
+/* Very small mobile devices (up to 320px) */
+@media (max-width: 320px) {
+  .dt-mission {
+    padding: 0.5rem 0.125rem;
+    min-height: auto;
+  }
+  
+  .dt-mission-title {
+    font-size: 1rem !important;
+  }
+  
+  .dt-mission-right p {
+    font-size: 0.4rem !important;
+    line-height: 1.1 !important;
+  }
+}
+
+/* Mirror section background to true viewport width to avoid visible gaps */
+.dt-full-bleed::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  background: inherit;      /* extend current background edge-to-edge */
+  z-index: -1;
+}
+
+/* Ensure inner containers remain centered within full-bleed sections */
+.dt-full-bleed > .container,
+.dt-full-bleed > .container-fluid,
+.dt-full-bleed .container {
+  max-width: 1200px; /* keep your site-wide content width; adjust if needed */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Make decorative/background elements inside full-bleed sections stretch edge-to-edge */
+.dt-full-bleed [aria-hidden="true"],
+.dt-full-bleed .dt-hero-bg,
+.dt-full-bleed .dt-hero-gradient,
+.dt-full-bleed .dt-hero-overlay,
+.dt-full-bleed .dt-stats-bg {
+  position: relative;
+  width: 100%;
+  display: block;
+}
+
+/* Fix hero images that are being affected by full-bleed rules */
+.dt-hero img {
+  width: auto !important;
+  height: auto !important;
+  max-width: 300px !important;
+  max-height: 300px !important;
+}
+
+/* Make transparent logo 350px and move it 4px higher */
+.dt-hero .logo-main {
+  max-width: 350px !important;
+  max-height: 350px !important;
+  margin-top: -4px !important;
+}
+
+/* Fix blue tech image in stats section - make it bigger and position correctly */
+.dt-stats .dt-stats-bg {
+  max-width: 300px !important;
+  max-height: 300px !important;
+  width: auto !important;
+  height: auto !important;
+  position: absolute !important;
+  top: -30px !important;
+  left: 50% !important;
+  transform: translateX(calc(-50% - 800px)) !important;
+  z-index: -1 !important;
+}
 /* ========================================== GLOBAL STYLES ========================================== */
 /* ===== Base / Bootstrap  ===== */
 html {
@@ -1472,6 +1819,34 @@ html, body {
         text-align: center;
     }
 
+    /* Ensure cyber services grid is centered on all iPad screens */
+    .dt-cyber-services-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .dt-cyber-grid-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .dt-cyber-grid-item {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
     .dt-road-ahead-section {
         padding: 4rem 2rem;
         margin-top: 3rem;
@@ -1506,6 +1881,39 @@ html, body {
     .dt-cyber-contact-form {
         padding: 1.5rem;
         margin: 0 0.5rem;
+    }
+
+    /* iPad Mini specific - Contact Us heading and text bigger */
+    .dt-cyber-contact-title {
+        font-size: clamp(2.5rem, 5vw, 3rem) !important;
+        margin-bottom: 2rem !important;
+        line-height: 1.3 !important;
+    }
+
+    .dt-cyber-contact-subtitle {
+        font-size: clamp(1.3rem, 3vw, 1.6rem) !important;
+        margin-bottom: 2rem !important;
+        line-height: 1.4 !important;
+    }
+
+    /* iPad Mini specific - Hide round tech images */
+    .dt-road-ahead-decorative-left {
+        display: none !important;
+    }
+
+    .dt-road-ahead-decorative-right {
+        display: none !important;
+    }
+}
+
+/* Samsung Galaxy Ultra sized screens - Hide round tech images */
+@media (min-width: 360px) and (max-width: 430px) and (orientation: portrait) {
+    .dt-road-ahead-decorative-left {
+        display: none !important;
+    }
+
+    .dt-road-ahead-decorative-right {
+        display: none !important;
     }
 }
 
@@ -1543,15 +1951,38 @@ html, body {
     .dt-cyber-services-grid {
         padding: 0 2.5rem !important;
         margin-top: 2.5rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     .dt-cyber-grid-row {
         gap: 4rem !important;
         margin-bottom: 4.5rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 900px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 
     .dt-cyber-grid-image {
         height: 350px !important;
+    }
+
+    .dt-cyber-grid-item {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 700px !important;
+        margin: 0 auto !important;
     }
 
     .dt-cyber-grid-content {
@@ -1595,22 +2026,24 @@ html, body {
     }
 
     .dt-road-ahead-content {
-        max-width: 80% !important;
+        max-width: 95% !important;
         padding: 0 2rem !important;
     }
 
     /* Road Ahead decorative images - Tablet spacing */
     .dt-road-ahead-decorative-left {
-        left: 2% !important;
-        top: 50% !important;
-        width: 180px !important;
+        left: -8% !important;
+        top: 60% !important;
+        width: 350px !important;
+        height: 350px !important;
         transform: translateY(-50%) !important;
     }
 
     .dt-road-ahead-decorative-right {
-        right: 2% !important;
-        top: 50% !important;
-        width: 180px !important;
+        right: -8% !important;
+        top: 60% !important;
+        width: 350px !important;
+        height: 350px !important;
         transform: translateY(-50%) !important;
     }
 
@@ -1666,6 +2099,36 @@ html, body {
         margin-right: 2.5rem;
     }
 
+    /* Ensure cyber services grid is centered in landscape mode */
+    .dt-cyber-services-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 2rem !important;
+    }
+
+    .dt-cyber-grid-row {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 800px !important;
+        margin: 0 auto !important;
+    }
+
+    .dt-cyber-grid-item {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 600px !important;
+        margin: 0 auto !important;
+    }
+
     .dt-road-ahead-content {
         max-width: 80%;
         padding: 0 2rem;
@@ -1683,16 +2146,18 @@ html, body {
 
     /* Road Ahead decorative images - Landscape tablet spacing */
     .dt-road-ahead-decorative-left {
-        left: 2% !important;
-        top: 50% !important;
-        width: 200px !important;
+        left: -12% !important;
+        top: 60% !important;
+        width: 400px !important;
+        height: 400px !important;
         transform: translateY(-50%) !important;
     }
 
     .dt-road-ahead-decorative-right {
-        right: 2% !important;
-        top: 50% !important;
-        width: 200px !important;
+        right: -12% !important;
+        top: 60% !important;
+        width: 400px !important;
+        height: 400px !important;
         transform: translateY(-50%) !important;
     }
 
@@ -1881,8 +2346,23 @@ html, body {
         margin-right: 3.5rem !important;
     }
 
+    /* Road Ahead decorative images - iPad Pro sizing */
+    .dt-road-ahead-decorative-left {
+        left: -15% !important;
+        top: 60% !important;
+        width: 450px !important;
+        height: 450px !important;
+    }
+
+    .dt-road-ahead-decorative-right {
+        right: -15% !important;
+        top: 60% !important;
+        width: 450px !important;
+        height: 450px !important;
+    }
+
     .dt-road-ahead-content {
-        max-width: 70% !important;
+        max-width: 90% !important;
         padding: 0 3rem !important;
     }
 
@@ -2891,8 +3371,8 @@ html, body {
 
     .dt-road-ahead-decorative-left,
     .dt-road-ahead-decorative-right {
-        width: 60px !important;
-        height: 60px !important;
+        width: 100px !important;
+        height: 100px !important;
         opacity: 0.6;
     }
 
@@ -2914,8 +3394,8 @@ html, body {
     left: 6%;
     top: calc(50% + 2px);
     transform: translateY(-50%);
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     opacity: 0.9;
     z-index: 1;
     pointer-events: none;
@@ -2932,8 +3412,8 @@ html, body {
     right: 6%;
     top: calc(50% + 2px);
     transform: translateY(-50%);
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     opacity: 0.9;
     z-index: 1;
     pointer-events: none;
