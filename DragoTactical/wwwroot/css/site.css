@@ -1841,6 +1841,16 @@ html, body {
         font-size: clamp(1.3rem, 3.2vw, 1.4rem) !important;
         line-height: 1.8 !important;
     }
+
+    /* iPad Pro range - nudge Our Mission heading left */
+    .dt-mission-left {
+        margin-left: 0.5rem !important;
+    }
+    .dt-mission-title {
+        margin-left: 1rem !important; /* was larger; bring closer to left */
+        padding-left: 0 !important;
+        text-align: left !important;
+    }
 }
 
 /* Large devices and up (desktops, 992px and up) */
@@ -1871,39 +1881,55 @@ html, body {
 /* Mobile Mission Section */
 @media (max-width: 768px) {
     .dt-mission-inner {
-        flex-direction: column;
-        height: auto;
-        padding: var(--spacing-sm);
+        flex-direction: row;
+        height: 40px;
+        padding: 0;
+        margin: 0.1rem 0;
     }
 
     .dt-mission-left {
         clip-path: none;
-        flex: 1;
-        width: 100%;
-        border-radius: 8px 8px 0 0;
-        padding: var(--spacing-sm);
+        flex: 0 0 40%;
+        width: 40%;
+        border-radius: 0;
+        padding: 0;
         text-align: center;
-        height: auto;
-        justify-content: center;
+        height: 40px;
+        justify-content: flex-end;
+        margin-left: 0;
+        padding-right: 0.5rem;
     }
 
     .dt-mission-bg {
-        position: relative;
-        left: 0;
-        top: 0;
-        transform: none;
-        width: 60px;
-        opacity: 0.5;
+        display: none;
+    }
+
+    .dt-mission-lock {
+        width: 25px;
+        height: 22px;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
     }
 
     .dt-mission-title {
         padding-left: 0;
-        white-space: normal;
+        white-space: nowrap;
+        text-align: center;
+        margin-left: 0;
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+        line-height: 1;
+        font-weight: bold;
     }
 
     .dt-mission-right {
-        padding: var(--spacing-sm);
+        flex: 0 0 60%;
+        padding: 0;
         text-align: left;
+        font-size: clamp(0.35rem, 0.8vw, 0.5rem);
+        line-height: 1.1;
+        margin-bottom: 0;
+        height: 40px;
+        overflow: hidden;
     }
 }
 
@@ -2038,9 +2064,10 @@ html, body {
         width: 100%;
         flex: none;
         clip-path: none;
-        justify-content: center;
+        justify-content: flex-start;
         height: auto;
         padding: 1rem;
+        margin-left: 1rem !important;
     }
 
     .dt-mission-bg {
@@ -2057,6 +2084,8 @@ html, body {
     .dt-mission-title {
         padding: 0;
         white-space: normal;
+        text-align: left;
+        margin-left: 2rem !important;
     }
 
     .dt-mission-right {
