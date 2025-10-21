@@ -51,7 +51,7 @@ public sealed class ContactService : IContactService
             var subject = serviceName;
             var body =
                 $"I am {model.FirstName} {model.LastName} situated in {model.Location}.\nI need help with {serviceName}. " +
-                $"\nMessage description: {model.Message}\n\nContact details:\nComapny name:{model.CompanyName}\nEmail:{model.Email}\nPhone: {model.PhoneNumber}\n";
+                $"\nMessage description: {model.Message}\n\nContact details:\nCompany name:{model.CompanyName}\nEmail:{model.Email}\nPhone: {model.PhoneNumber}\n";
 
            
             await _emailSender.SendAsync(model.Email, subject, body, ct);

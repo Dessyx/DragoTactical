@@ -19,18 +19,21 @@ namespace DragoTactical.Controllers
         private string GetReturnUrl()
         {
             var referer = Request.Headers["Referer"].ToString();
+            // Always default to home if referer is empty
             if (string.IsNullOrWhiteSpace(referer))
                 return Url.Content("~/");
 
             if (Uri.TryCreate(referer, UriKind.Absolute, out var uri))
             {
-                var currentHost = $"{Request.Scheme}://{Request.Host}";
-                if (referer.StartsWith(currentHost, StringComparison.OrdinalIgnoreCase))
-                    return uri.PathAndQuery; // keep only local path
-                return Url.Content("~/");
+                var currentHost = Request.Host.Host;
+                if (uri.Host.Equals(currentHost, StringComparison.OrdinalIgnoreCase))
+                {
+                    var localPath = uri.PathAndQuery;
+                    if (Url.IsLocalUrl(localPath))
+                        return localPath;
+                }
+            return Url.Content("~/");
             }
-
-          
             return Url.IsLocalUrl(referer) ? referer : Url.Content("~/");
         }
 

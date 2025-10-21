@@ -26,6 +26,9 @@ namespace DragoTactical.Services
             static string CleanHeader(string v) =>
                 string.IsNullOrEmpty(v) ? string.Empty : v.Replace("\r", "").Replace("\n", "").Trim();
 
+            static string SanitizeForLogging(string v) =>
+                string.IsNullOrEmpty(v) ? string.Empty : v.Replace("\r", "").Replace("\n", "").Trim();
+
             var safeSubject = CleanHeader(subject);
             if (safeSubject.Length > 200) safeSubject = safeSubject[..200];
 
@@ -40,7 +43,7 @@ namespace DragoTactical.Services
             }
             catch
             {
-                _logger.LogWarning("Invalid reply-to email: {Email}", fromEmail);
+                _logger.LogWarning("Invalid reply-to email: {Email}", SanitizeForLogging(fromEmail));
             }
 
             message.To.Add(new MailAddress(to));

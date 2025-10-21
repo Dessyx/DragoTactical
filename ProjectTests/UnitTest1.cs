@@ -90,13 +90,12 @@ namespace ProjectTests
             // Assert
             var redirect = Assert.IsType<RedirectResult>(result);
             Assert.Equal("/", redirect.Url);
-            Assert.Equal("Your submission was successful! We'll get back to you soon.", controller.TempData["SuccessMessage"]);
+            Assert.Equal("Thank you for your submission! We'll get back to you soon.", controller.TempData["SuccessMessage"]);
         }
 
         [Fact]
         public async Task Submit_SubmissionFailure()
         {
-            // Arrange
             var controller = GetController();
             var form = ValidForm();
 

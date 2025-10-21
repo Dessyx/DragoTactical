@@ -239,4 +239,4 @@
 
     // Expose sanitize function globally for use in other scripts
     window.sanitizeInput = sanitizeInput;
-})();})();
+})();
