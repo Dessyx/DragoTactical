@@ -1,10 +1,10 @@
-# 🛡️ DragoTactical - Comprehensive Security Solutions
+# 🛡️ DragoTactical
 
 Welcome to **DragoTactical**, a cutting-edge web application that bridges the gap between a stagnant company and a live interactive web application. The application we have built for our client provides comprehensive cybersecurity and physical security solutions to protect our clients organizations from both cyber and physical threats.
 
 ## 🌟 About DragoTactical
 
-DragoTactical is a professional security services company that offers a complete suite of protection solutions. Our website serves as both a marketing platform and a client engagement system, allowing potential clients to learn about our clients services and submit inquiries directly through our secure contact forms.
+DragoTactical is a professional security services company that offers a complete suite of protection solutions. Our website serves as both a marketing platform and a client engagement system, allowing potential clients to learn about DragoTacticals services and submit inquiries directly through our secure contact forms.
 
 ### What DragoTactical Offers
 
@@ -149,4 +149,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Built with ❤️ by Cybernetic Solutions**
 
-*Protecting your digital and physical assets with cutting-edge security solutions.*
+*Guardians of the Digital World!*
