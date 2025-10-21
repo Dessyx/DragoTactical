@@ -949,10 +949,10 @@ html, body {
     text-align: center;
 }
 
-/* Desktop view - move banner to the right */
+/* Desktop view - align banner to the left */
 @media (min-width: 1025px) {
     section.dt-mission .dt-mission-left {
-        margin-left: 12rem !important;
+        margin-left: 0 !important;
         padding-left: 0 !important;
     }
     
@@ -1002,13 +1002,13 @@ html, body {
     
     section.dt-mission .dt-mission-title {
         text-align: center !important;
-        margin-left: 13.5rem !important; /* moved 8 more times to the right for iPad Mini */
+        margin-left: 13.5rem !important; 
         padding: 0 !important;
         transform: translateX(13.5rem) !important;
     }
     
     section.dt-mission .dt-mission-lock {
-        margin-left: 12.5rem !important; /* moved 8 more times to the right for iPad Mini */
+        margin-left: 12.5rem !important; 
         transform: translateX(12.5rem) !important;
     }
 }
@@ -1017,12 +1017,12 @@ html, body {
 @media (min-width: 1025px) {
     .dt-mission-inner {
         padding-left: 0 !important;
-        margin-left: 3rem !important; /* moved more left for iPad Air */
+        margin-left: 0 !important;
         justify-content: flex-start !important;
     }
     
     .dt-mission-left {
-        margin-left: 3rem !important; /* moved more left for iPad Air */
+        margin-left: 0 !important;
         padding-left: 0 !important;
     }
 }
