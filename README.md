@@ -26,14 +26,14 @@ Before you begin, ensure you have the following installed on your development ma
 
 ### 📥 Installation
 
-Within the repository, click on the "<> Code" drop down on the far right next to the "Go to file" and "+" buttons.
-On the Local tab, click on the last option: "Download ZIP".
-Once the zip file has downloaded, open your local file explorer.
-Go to your Downloads.
-Click on the "DragoTactical.zip" folder, should be most recent in Downloads.
-Extract the files and store the project in the location of choice.
-Navigate to Visual Studio 2022 or Visual Studio Code.
-To open the project, click File > Open > Choose the project folder "DragoTactical".
+1. Within the repository, click on the "<> Code" drop down on the far right next to the "Go to file" and "+" buttons.
+2. On the Local tab, click on the last option: "Download ZIP".
+3. Once the zip file has downloaded, open your local file explorer.
+4. Go to your Downloads.
+5. Click on the "DragoTactical.zip" folder, should be most recent in Downloads.
+6. Extract the files and store the project in the location of choice.
+7. Navigate to Visual Studio 2022 or Visual Studio Code.
+8. To open the project, click File > Open > Choose the project folder "DragoTactical".
 
 ### 🔧 Build and Run
 
