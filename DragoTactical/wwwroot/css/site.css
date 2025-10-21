@@ -1486,15 +1486,23 @@ html, body {
 /* Small devices */
 @media (min-width: 576px) and (max-width: 767px) {
     .dt-hero-inner {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
         padding: 5rem 0.5rem 7rem;
+        gap: 2rem;
+    }
+
+    .dt-hero-content {
+        order: 1;
     }
 
     .dt-hero-logo {
+        order: 2;
         margin: 0 auto !important;
-        width: 10px !important;
-        height: 10px !important;
+        width: 180px !important;
+        height: 180px !important;
     }
 
         .dt-hero-logo .logo-bg {
@@ -1509,10 +1517,10 @@ html, body {
 
         .dt-hero-logo .logo-main {
             position: absolute;
-            left: -40px;
+            left: -11px;
             top: 0;
-            width: 100%;
-            height: 100%;
+            width: 120%;
+            height: 120%;
         }
 
     .dt-hero-title {
@@ -1601,16 +1609,31 @@ html, body {
 
 /* Mobile devices - override iPad styles */
 @media (max-width: 767px) {
+    .dt-hero-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 4rem 1rem 6rem;
+        gap: 2rem;
+    }
+
+    .dt-hero-content {
+        order: 1;
+    }
+
     .dt-hero-logo {
-        width: 10px !important;
-        height: 10px !important;
+        order: 2;
+        width: 160px !important;
+        height: 160px !important;
         margin: 0 auto !important;
     }
     
     .dt-hero-logo .logo-main {
-        left: -40px !important;
+        left: -11px !important;
+        width: 120% !important;
+        height: 120% !important;
     }
-}
 
     .dt-hero-title {
         font-size: clamp(1.5rem, 4vw, 2.2rem);
@@ -2447,15 +2470,22 @@ html, body {
 /* Extra Small devices */
 @media (max-width: 575px) {
     .dt-hero-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         padding: 6rem var(--spacing-sm) 8rem;
-        grid-template-columns: 1fr;
-        gap: var(--spacing-sm);
+        gap: 2rem;
         text-align: center;
     }
 
+    .dt-hero-content {
+        order: 1;
+    }
+
     .dt-hero-logo {
-        width: 10px !important;
-        height: 10px !important;
+        order: 2;
+        width: 140px !important;
+        height: 140px !important;
         margin: 0 auto !important;
     }
 
@@ -2471,10 +2501,10 @@ html, body {
 
         .dt-hero-logo .logo-main {
             position: absolute;
-            left: -40px;
+            left: -11px;
             top: 0;
-            width: 100%;
-            height: 100%;
+            width: 120%;
+            height: 120%;
         }
 
     .dt-service-card {
