@@ -1957,7 +1957,7 @@ html, body {
 
     /* Road Ahead decorative images - Tablet spacing */
     .dt-road-ahead-decorative-left {
-        left: -8% !important;
+        left: -12% !important;
         top: 60% !important;
         width: 350px !important;
         height: 350px !important;
@@ -1965,7 +1965,7 @@ html, body {
     }
 
     .dt-road-ahead-decorative-right {
-        right: -8% !important;
+        right: -12% !important;
         top: 60% !important;
         width: 350px !important;
         height: 350px !important;
@@ -2071,7 +2071,7 @@ html, body {
 
     /* Road Ahead decorative images - Landscape tablet spacing */
     .dt-road-ahead-decorative-left {
-        left: -12% !important;
+        left: -15% !important;
         top: 60% !important;
         width: 400px !important;
         height: 400px !important;
@@ -2079,7 +2079,7 @@ html, body {
     }
 
     .dt-road-ahead-decorative-right {
-        right: -12% !important;
+        right: -15% !important;
         top: 60% !important;
         width: 400px !important;
         height: 400px !important;
@@ -2309,14 +2309,14 @@ html, body {
 
     /* Road Ahead decorative images - iPad Pro sizing */
     .dt-road-ahead-decorative-left {
-        left: -15% !important;
+        left: -18% !important;
         top: 60% !important;
         width: 450px !important;
         height: 450px !important;
     }
 
     .dt-road-ahead-decorative-right {
-        right: -15% !important;
+        right: -18% !important;
         top: 60% !important;
         width: 450px !important;
         height: 450px !important;
@@ -3388,7 +3388,7 @@ html, body {
 
 .dt-road-ahead-decorative-left {
     position: absolute;
-    left: 6%;
+    left: -18%;
     top: calc(50% + 2px);
     transform: translateY(-50%);
     width: 400px;
@@ -3406,7 +3406,7 @@ html, body {
 
 .dt-road-ahead-decorative-right {
     position: absolute;
-    right: 6%;
+    right: -18%;
     top: calc(50% + 2px);
     transform: translateY(-50%);
     width: 400px;
@@ -3958,6 +3958,29 @@ img .circuit2 {
         font-size: 16px;
     }
 
+    /* Even spacing for form fields on mobile */
+    .phy-form .col-12 {
+        margin-bottom: 0.5px;
+    }
+
+    /* Reduced spacing between specific fields */
+    .phy-form .col-12:has(input[name="FirstName"]) {
+        margin-bottom: -12px;
+    }
+
+    .phy-form .col-12:has(input[name="LastName"]) {
+        margin-bottom: -12px;
+    }
+
+    .phy-form .col-12:has(input[name="Email"]) {
+        margin-bottom: -12px;
+    }
+
+    .phy-form .invalid-feedback {
+        margin-top: 0.5px;
+        margin-bottom: 0;
+    }
+
 /* ========================================== || Physical Services End || =========================================*/
 
 /* ========================================== || Physical Services Responsiveness || ====================================*/
@@ -4111,6 +4134,29 @@ img .circuit2 {
 
         .form-group {
             margin-bottom: 1.5rem;
+        }
+
+        /* Even spacing for form fields on mobile */
+        .phy-form .col-12 {
+            margin-bottom: 0.5px;
+        }
+
+        /* Reduced spacing between specific fields */
+        .phy-form .col-12:has(input[name="FirstName"]) {
+            margin-bottom: -12px;
+        }
+
+        .phy-form .col-12:has(input[name="LastName"]) {
+            margin-bottom: -12px;
+        }
+
+        .phy-form .col-12:has(input[name="Email"]) {
+            margin-bottom: -12px;
+        }
+
+        .phy-form .invalid-feedback {
+            margin-top: 0.5px;
+            margin-bottom: 0;
         }
 
         .phy-form-control, .phy-form-select {
