@@ -19,37 +19,43 @@ namespace ProjectTests
     public class ContactControllerTests
     {
         private static ContactController CreateController(
-            Mock<ILogger<ContactController>>? loggerMock = null,
-            Mock<IContactService>? contactServiceMock = null,
-            IUrlHelper? urlHelper = null,
-            ITempDataDictionary? tempData = null,
-            string? refererHeader = null,
-            string host = "example.com")
+        Mock<ILogger<ContactController>> loggerMock = null,
+        Mock<IContactService> contactServiceMock = null,
+        IUrlHelper urlHelper = null,
+        ITempDataDictionary tempData = null,
+        string refererHeader = null,
+        string host = "example.com")
         {
             loggerMock ??= new Mock<ILogger<ContactController>>();
             contactServiceMock ??= new Mock<IContactService>();
 
-            var controller = new ContactController(loggerMock.Object, contactServiceMock.Object);
-
-            controller.Url = urlHelper ?? Mock.Of<IUrlHelper>(u => u.Content("~/") == "/" && u.IsLocalUrl(It.IsAny<string> ()) == true);
-
-            var httpContext = new DefaultHttpContext();
-            if (refererHeader != null)
-            httpContext.Request.Headers["Referer"] = refererHeader;
-            httpContext.Request.Host = new HostString(host);
-
-            controller.ControllerContext = new ControllerContext
+            var controller = new ContactController(loggerMock.Object, contactServiceMock.Object)
             {
-                HttpContext = httpContext
+                ControllerContext = new ControllerContext
+                {
+                    HttpContext = new DefaultHttpContext
+                    {
+                        Request =
+                {
+                    Host = new HostString(host)
+                }
+                    }
+                }
             };
 
-            if (urlHelper != null)
-                controller.Url = urlHelper;
+            if (refererHeader != null)
+                controller.HttpContext.Request.Headers.Referer = refererHeader;
 
-            controller.TempData = tempData ?? new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
+            // give it a real Url-helper (or the one supplied by the caller)
+            controller.Url = urlHelper ?? Mock.Of<IUrlHelper>(u =>
+                                u.Content("~/") == "/" &&
+                                u.IsLocalUrl(It.IsAny<string>()) == true);
+
+            controller.TempData = tempData ?? new TempDataDictionary(controller.HttpContext,
+                                        Mock.Of<ITempDataProvider>());
 
             return controller;
-        }
+        } 
 
         [Fact]
         public async Task Submit_NullModel_Redirects()
