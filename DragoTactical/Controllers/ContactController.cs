@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DragoTactical.Models;
 using DragoTactical.Services;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace DragoTactical.Controllers
 {
@@ -53,6 +54,7 @@ namespace DragoTactical.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [EnableRateLimiting("FormSubmissions")]
         public async Task<IActionResult> Submit(FormSubmission model, CancellationToken ct)
         {
             const string successMsg = "Thank you for your submission! We'll get back to you soon.";
@@ -84,5 +86,7 @@ namespace DragoTactical.Controllers
             _logger.LogInformation("Form Submission Ended");
             return Redirect(returnUrl);
         }
+
+
     }
 }

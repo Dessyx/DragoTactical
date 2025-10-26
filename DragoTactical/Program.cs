@@ -1,6 +1,7 @@
 using DragoTactical.Models;
 using DragoTactical.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Threading.RateLimiting;
@@ -23,13 +24,23 @@ builder.Services.AddRateLimiter(options =>
         return RateLimitPartition.GetFixedWindowLimiter(clientIp, _ =>
         new FixedWindowRateLimiterOptions
         {
-            PermitLimit = 5,
+            PermitLimit = 100,
             Window = TimeSpan.FromMinutes(1),
             QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
             QueueLimit = 2,
             AutoReplenishment = true
         });
     });
+
+    options.AddFixedWindowLimiter("FormSubmissions", options =>
+    {
+        options.PermitLimit = 2; // 2 submissions per 5 minutes
+        options.Window = TimeSpan.FromMinutes(5);
+        options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        options.QueueLimit = 0;
+        options.AutoReplenishment = true;
+    });
+
     options.RejectionStatusCode = 429;
 });
 
