@@ -6,9 +6,13 @@ name: .NET CI Build and Scan
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
+
+permissions: 
+  contents: read
+  security-events: write
 
 jobs:
   build:
