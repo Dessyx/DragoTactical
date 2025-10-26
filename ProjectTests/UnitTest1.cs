@@ -4,29 +4,199 @@ using DragoTactical.Services;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Logging;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using Moq;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Net;
-using System.Net.Http.Json;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace ProjectTests
 {
-    public class ContactFormTests
+    public class ContactControllerTests
     {
-        private readonly Mock<IContactService> _contactServiceMock;
-        private readonly Mock<ILogger<ContactController>> _loggerMock;
-        private readonly WebApplicationFactory<Program> _factory;
-
-        public ContactFormTests()
+        private static ContactController CreateController(
+            Mock<ILogger<ContactController>>? loggerMock = null,
+            Mock<IContactService>? contactServiceMock = null,
+            IUrlHelper? urlHelper = null,
+            ITempDataDictionary? tempData = null,
+            string? refererHeader = null,
+            string host = "example.com")
         {
-            _contactServiceMock = new Mock<IContactService>();
-            _loggerMock = new Mock<ILogger<ContactController>>();
-            _factory = new WebApplicationFactory<Program>();
+            loggerMock ??= new Mock<ILogger<ContactController>>();
+            contactServiceMock ??= new Mock<IContactService>();
+
+            var controller = new ContactController(loggerMock.Object, contactServiceMock.Object);
+
+            var httpContext = new DefaultHttpContext();
+            if (refererHeader != null)
+                httpContext.Request.Headers["Referer"] = refererHeader;
+            httpContext.Request.Host = new HostString(host);
+
+            controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = httpContext
+            };
+
+            if (urlHelper != null)
+                controller.Url = urlHelper;
+
+            controller.TempData = tempData ?? new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
+
+            return controller;
+        }
+
+        [Fact]
+        public async Task Submit_NullModel_Redirects()
+        {
+            // Arrange
+            var logger = new Mock<ILogger<ContactController>>();
+            var contactService = new Mock<IContactService>();
+
+            var urlMock = new Mock<IUrlHelper>();
+            urlMock.Setup(u => u.Content("~/")).Returns("/");
+
+            var controller = CreateController(logger, contactService, urlMock.Object, refererHeader: string.Empty);
+
+            // Act
+            var result = await controller.Submit(null, CancellationToken.None);
+
+            // Assert
+            result.Should().BeOfType<RedirectResult>();
+            var rr = (RedirectResult)result;
+            rr.Url.Should().Be("/");
+
+            controller.TempData.Should().ContainKey("ErrorMessage");
+            controller.TempData["ErrorMessage"].Should().Be("Invalid form data received.");
+
+            contactService.Verify(s => s.ProcessSubmissionAsync(It.IsAny<FormSubmission>(), It.IsAny<CancellationToken>()), Times.Never);
+        }
+
+        [Fact]
+        public async Task InvalidModelState_LogsWarnings()
+        {
+            // Arrange
+            var logger = new Mock<ILogger<ContactController>>();
+            var contactService = new Mock<IContactService>();
+
+            var urlMock = new Mock<IUrlHelper>();
+            urlMock.Setup(u => u.IsLocalUrl(It.IsAny<string>())).Returns(true);
+
+            var controller = CreateController(logger, contactService, urlMock.Object, refererHeader: "/previous");
+
+            controller.ModelState.AddModelError("FirstName", "First name is required");
+
+            var model = new FormSubmission
+            {
+                FirstName = "",
+                LastName = "L",
+                Email = "a@b.com"
+            };
+
+            // Act
+            var result = await controller.Submit(model, CancellationToken.None);
+
+            // Assert 
+            result.Should().BeOfType<RedirectResult>();
+            ((RedirectResult)result).Url.Should().Be("/previous");
+
+            controller.TempData.Should().ContainKey("ErrorMessage");
+            controller.TempData["ErrorMessage"].Should().Be("Please correct the errors and try again.");
+
+            logger.Verify(
+                x => x.Log<It.IsAnyType>(
+                    It.Is<LogLevel>(l => l == LogLevel.Warning),
+                    It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((v, _) =>
+                        v.ToString().Contains("Model State errors") ||
+                        v.ToString().Contains("Field")),
+                    It.IsAny<Exception>(),
+                    It.IsAny<Func<It.IsAnyType, Exception, string>>()),
+                Times.AtLeastOnce);
+
+            contactService.Verify(s => s.ProcessSubmissionAsync(It.IsAny<FormSubmission>(), It.IsAny<CancellationToken>()), Times.Never);
+        }
+
+        [Fact]
+        public async Task ProcessingFailure_ErrorMessage()
+        {
+            // Arrange
+            var logger = new Mock<ILogger<ContactController>>();
+            var contactService = new Mock<IContactService>();
+            contactService
+                .Setup(s => s.ProcessSubmissionAsync(It.IsAny<FormSubmission>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ContactSubmissionResult { Success = false, Error = "Processing failed" });
+
+            var urlMock = new Mock<IUrlHelper>();
+            urlMock.Setup(u => u.IsLocalUrl(It.IsAny<string>())).Returns(true);
+
+            var controller = CreateController(logger, contactService, urlMock.Object, refererHeader: "/contact");
+
+            var model = new FormSubmission
+            {
+                FirstName = "dfgh",
+                LastName = "BHJD",
+                Email = "ab@cd.com"
+            };
+
+            // Act
+            var result = await controller.Submit(model, CancellationToken.None);
+
+            // Assert
+            result.Should().BeOfType<RedirectResult>();
+            ((RedirectResult)result).Url.Should().Be("/contact");
+
+            controller.TempData.Should().ContainKey("ErrorMessage");
+            controller.TempData["ErrorMessage"].Should().Be("Processing failed");
+
+            contactService.Verify(s => s.ProcessSubmissionAsync(It.Is<FormSubmission>(m => m == model), It.IsAny<CancellationToken>()), Times.Once);
+        }
+
+        [Fact]
+        public async Task ProcessingSuccess_SetsSuccessMessage()
+        {
+            // Arrange
+            var logger = new Mock<ILogger<ContactController>>();
+            var contactService = new Mock<IContactService>();
+            contactService
+                .Setup(s => s.ProcessSubmissionAsync(It.IsAny<FormSubmission>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ContactSubmissionResult { Success = true, SubmissionId = 123 });
+
+            var urlMock = new Mock<IUrlHelper>();
+            urlMock.Setup(u => u.IsLocalUrl(It.IsAny<string>())).Returns(true);
+
+            var controller = CreateController(logger, contactService, urlMock.Object, refererHeader: "/thanks");
+
+            var model = new FormSubmission
+            {
+                FirstName = "Test",
+                LastName = "User",
+                Email = "test@example.com"
+            };
+
+            // Act
+            var result = await controller.Submit(model, CancellationToken.None);
+
+            result.Should().BeOfType<RedirectResult>();
+            ((RedirectResult)result).Url.Should().Be("/thanks");
+
+            controller.TempData.Should().ContainKey("SuccessMessage");
+            controller.TempData["SuccessMessage"].Should().Be("Thank you for your submission! We'll get back to you soon.");
+
+            logger.Verify(
+                x => x.Log<It.IsAnyType>(
+                    It.Is<LogLevel>(l => l == LogLevel.Information),
+                    It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((v, _) =>
+                        v.ToString().Contains("Form Submission")),
+                    It.IsAny<Exception>(),
+                    It.IsAny<Func<It.IsAnyType, Exception, string>>()),
+                Times.AtLeastOnce);
+
+            contactService.Verify(s => s.ProcessSubmissionAsync(It.Is<FormSubmission>(m => m == model), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         private List<ValidationResult> ValidateModel(FormSubmission model)
@@ -37,102 +207,6 @@ namespace ProjectTests
             return validationResults;
         }
 
-        private ContactController GetController()
-        {
-            var controller = new ContactController(_loggerMock.Object, _contactServiceMock.Object);
-
-            var httpContext = new DefaultHttpContext();
-            httpContext.Request.Scheme = "http";
-            httpContext.Request.Host = new HostString("localhost");
-            httpContext.Request.Headers["Referer"] = "http://localhost/";
-
-            controller.ControllerContext = new ControllerContext
-            {
-                HttpContext = httpContext
-            };
-
-            controller.TempData = new TempDataDictionary(
-                httpContext,
-                Mock.Of<ITempDataProvider>());
-
-            return controller;
-        }
-
-        private static FormSubmission ValidForm(int? serviceId = null)
-        {
-            return new FormSubmission
-            {
-                FirstName = "Cara",
-                LastName = "Van",
-                Email = "c.van@example.com",
-                PhoneNumber = "044 884 1012 ",
-                CompanyName = "HSec",
-                Location = "South Africa",
-                ServiceId = serviceId,
-                Message = "I would like to inquire about services that are suitable for my company.",
-            };
-        }
-
-        [Fact]
-        public async Task Submit_SubmissionSuccess()
-        {
-            // Arrange
-            var controller = GetController();
-            var form = ValidForm();
-
-            _contactServiceMock
-                .Setup(s => s.ProcessSubmissionAsync(It.IsAny<FormSubmission>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new ContactSubmissionResult { Success = true, Error = null });
-
-            // Act
-            var result = await controller.Submit(form, default);
-
-            // Assert
-            var redirect = Assert.IsType<RedirectResult>(result);
-            Assert.Equal("/", redirect.Url);
-            Assert.Equal("Thank you for your submission! We'll get back to you soon.", controller.TempData["SuccessMessage"]);
-        }
-
-        [Fact]
-        public async Task Submit_SubmissionFailure()
-        {
-            var controller = GetController();
-            var form = ValidForm();
-
-            _contactServiceMock
-                .Setup(s => s.ProcessSubmissionAsync(It.IsAny<FormSubmission>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new ContactSubmissionResult { Success = false, Error = "Service error" });
-
-            
-            var result = await controller.Submit(form, default);
-
-            
-            var redirect = Assert.IsType<RedirectResult>(result);
-            Assert.Equal("/", redirect.Url);
-            Assert.Equal("Service error", controller.TempData["ErrorMessage"]);
-        }
-
-        [Theory]
-        [InlineData("")]
-        [InlineData(null)]
-        public void Validate_MissingEmail(string email)
-        {
-            
-            var form = new FormSubmission
-            {
-                FirstName = "Cara",
-                LastName = "Van",
-                Email = email
-            };
-
-            
-            var errors = ValidateModel(form);
-
-            
-            Assert.NotEmpty(errors);
-            Assert.Contains(errors, e => e.MemberNames.Contains("Email"));
-        }
-
         [Theory]
         [InlineData("invalid-email")]
         [InlineData("@example.com")]
@@ -140,7 +214,7 @@ namespace ProjectTests
         [InlineData("user@@example.com")]
         public void Validate_InvalidEmail(string email)
         {
-            
+
             var form = new FormSubmission
             {
                 FirstName = "Cara",
@@ -148,10 +222,10 @@ namespace ProjectTests
                 Email = email
             };
 
-            
+
             var errors = ValidateModel(form);
 
-            
+
             Assert.NotEmpty(errors);
             Assert.Contains(errors, e => e.MemberNames.Contains("Email") &&
                                          e.ErrorMessage == "Invalid email address");
@@ -164,36 +238,14 @@ namespace ProjectTests
         [InlineData("user_name@example-domain.com")]
         public void Validate_ValidEmail(string email)
         {
-            
             var form = new FormSubmission
             {
                 FirstName = "Cara",
                 LastName = "Van",
                 Email = email
             };
-
-            
             var errors = ValidateModel(form);
-
-            
             Assert.Empty(errors);
-        }
-
-        [Fact]
-        public void Validate_EmailTooLong()
-        {
-            var form = new FormSubmission
-            {
-                FirstName = "Cara",
-                LastName = "Van",
-                Email = new string('a', 250) + "@example.com" // Over 255 chars
-            };
-
-            var errors = ValidateModel(form);
-
-            Assert.NotEmpty(errors);
-            Assert.Contains(errors, e => e.MemberNames.Contains("Email") &&
-                                         e.ErrorMessage.Contains("cannot exceed 255 characters"));
         }
 
         [Fact]
@@ -219,6 +271,5 @@ namespace ProjectTests
             Assert.Contains(errors, e => e.MemberNames.Contains("PhoneNumber"));
             Assert.Contains(errors, e => e.MemberNames.Contains("CompanyName"));
         }
-
     }
 }

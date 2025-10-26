@@ -15,7 +15,6 @@ namespace DragoTactical.Controllers
             _logger = logger;
             _contactService = contactService;
         }
-
         
         private string GetReturnUrl()
         {
