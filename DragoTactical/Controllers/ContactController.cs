@@ -85,7 +85,5 @@ namespace DragoTactical.Controllers
             _logger.LogInformation("Form Submission Ended");
             return Redirect(returnUrl);
         }
-
-
     }
 }

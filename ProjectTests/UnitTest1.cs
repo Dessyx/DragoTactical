@@ -31,9 +31,11 @@ namespace ProjectTests
 
             var controller = new ContactController(loggerMock.Object, contactServiceMock.Object);
 
+            controller.Url = urlHelper ?? Mock.Of<IUrlHelper>(u => u.Content("~/") == "/" && u.IsLocalUrl(It.IsAny<string> ()) == true);
+
             var httpContext = new DefaultHttpContext();
             if (refererHeader != null)
-                httpContext.Request.Headers["Referer"] = refererHeader;
+            httpContext.Request.Headers["Referer"] = refererHeader;
             httpContext.Request.Host = new HostString(host);
 
             controller.ControllerContext = new ControllerContext
