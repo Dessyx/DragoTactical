@@ -1,0 +1,44 @@
+# Combined workflow: Builds .NET project, runs tests, and performs security scanning
+# Uses Security Code Scan and .NET Security Guard for vulnerability detection
+name: .NET CI Build, Test, and Security Scan
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  build-test-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      # Builds the project, which automatically runs the installed
+      # analyzers: Security Code Scan and .NET Security Guard
+      - name: Build and Scan for Security Issues
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run Tests
+        run: dotnet test --no-build --verbosity normal --configuration Release
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: security-scan.sarif
+          category: security-code-scan
+        if: always()
