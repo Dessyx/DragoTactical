@@ -23,6 +23,10 @@ namespace DragoTactical.Controllers
             if (string.IsNullOrWhiteSpace(referer))
                 return Url.Content("~/");
 
+            // If referer is a local path, return it directly
+            if (Url.IsLocalUrl(referer))
+                return referer;
+
             if (Uri.TryCreate(referer, UriKind.Absolute, out var uri))
             {
                 var currentHost = Request.Host.Host;
