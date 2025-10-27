@@ -29,27 +29,25 @@ namespace ProjectTests
             loggerMock ??= new Mock<ILogger<ContactController>>();
             contactServiceMock ??= new Mock<IContactService>();
 
+            var httpContext = new DefaultHttpContext();
+            httpContext.Request.Host = new HostString(host);
+
+            if (refererHeader != null)
+            {
+                // Ensure header is set the same way the controller reads it (Request.Headers["Referer"])
+                httpContext.Request.Headers["Referer"] = refererHeader;
+            }
+
             var controller = new ContactController(loggerMock.Object, contactServiceMock.Object)
             {
                 ControllerContext = new ControllerContext
                 {
-                    HttpContext = new DefaultHttpContext
-                    {
-                        Request =
-                {
-                    Host = new HostString(host)
-                }
-                    }
+                    HttpContext = httpContext
                 }
             };
 
-            if (refererHeader != null)
-                controller.HttpContext.Request.Headers.Referer = refererHeader;
-
-            // give it a real Url-helper (or the one supplied by the caller)
-            controller.Url = urlHelper ?? Mock.Of<IUrlHelper>(u =>
-                                u.Content("~/") == "/" &&
-                                u.IsLocalUrl(It.IsAny<string>()) == true);
+            // Ensure Url is not null 
+            controller.Url = urlHelper ?? FakeUrlHelper();
 
             controller.TempData = tempData ?? new TempDataDictionary(controller.HttpContext,
                                         Mock.Of<ITempDataProvider>());
