@@ -55,7 +55,15 @@ namespace ProjectTests
                                         Mock.Of<ITempDataProvider>());
 
             return controller;
-        } 
+        }
+
+        private static IUrlHelper FakeUrlHelper()
+        {
+            var mock = new Mock<IUrlHelper>();
+            mock.Setup(u => u.Content("~/")).Returns("/");
+            mock.Setup(u => u.IsLocalUrl(It.IsAny<string>())).Returns(true);
+            return mock.Object;
+        }
 
         [Fact]
         public async Task Submit_NullModel_Redirects()
@@ -93,7 +101,7 @@ namespace ProjectTests
             var urlMock = new Mock<IUrlHelper>();
             urlMock.Setup(u => u.IsLocalUrl(It.IsAny<string>())).Returns(true);
 
-            var controller = CreateController(logger, contactService, urlMock.Object, refererHeader: "/previous");
+            var controller = CreateController(logger, contactService, FakeUrlHelper(), refererHeader: "/previous");
 
             controller.ModelState.AddModelError("FirstName", "First name is required");
 
@@ -141,7 +149,7 @@ namespace ProjectTests
             var urlMock = new Mock<IUrlHelper>();
             urlMock.Setup(u => u.IsLocalUrl(It.IsAny<string>())).Returns(true);
 
-            var controller = CreateController(logger, contactService, urlMock.Object, refererHeader: "/contact");
+            var controller = CreateController(logger, contactService, FakeUrlHelper(), refererHeader: "/contact");
 
             var model = new FormSubmission
             {
@@ -176,7 +184,7 @@ namespace ProjectTests
             var urlMock = new Mock<IUrlHelper>();
             urlMock.Setup(u => u.IsLocalUrl(It.IsAny<string>())).Returns(true);
 
-            var controller = CreateController(logger, contactService, urlMock.Object, refererHeader: "/thanks");
+            var controller = CreateController(logger, contactService, FakeUrlHelper(), refererHeader: "/thanks");
 
             var model = new FormSubmission
             {
