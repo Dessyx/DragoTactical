@@ -36,9 +36,3 @@ jobs:
       - name: Run Tests
         run: dotnet test --no-build --verbosity normal --configuration Release
 
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: security-scan.sarif
-          category: security-code-scan
-        if: always()
