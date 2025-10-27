@@ -34,7 +34,6 @@ namespace ProjectTests
 
             if (refererHeader != null)
             {
-                // Ensure header is set the same way the controller reads it (Request.Headers["Referer"])
                 httpContext.Request.Headers["Referer"] = refererHeader;
             }
 
