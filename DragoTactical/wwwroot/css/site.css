@@ -2219,6 +2219,52 @@ html, body {
 
 /* iPad Pro specific (1024px width) */
 @media (min-width: 1024px) and (max-width: 1024px) {
+    /* About Us Section 1 - iPad Pro */
+    .dt-about-us-content {
+        max-width: 85% !important;
+        padding: 3.5rem 1.5rem 2.5rem !important;
+    }
+
+    .dt-about-us-title {
+        font-size: clamp(7rem, 10vw, 10rem) !important;
+    }
+
+    .dt-about-us-subtitle {
+        font-size: clamp(2.5rem, 6vw, 3.5rem) !important;
+    }
+
+    .dt-about-us-description {
+        font-size: 1.4rem !important;
+    }
+
+    /* Why Choose Us - iPad Pro */
+    .dt-why-choose-us {
+        padding: 10rem 1rem 7rem !important;
+        margin-top: -160px !important;
+    }
+
+    .dt-why-choose-us-title {
+        font-size: clamp(2.8rem, 5.5vw, 4.5rem) !important;
+        margin-bottom: 3.5rem !important;
+    }
+
+    .dt-why-choose-us-card-border {
+        max-width: 500px !important;
+        height: 450px !important;
+        padding: 3rem 2rem !important;
+    }
+
+    .dt-why-choose-us-card-title {
+        font-size: clamp(1.6rem, 2vw, 2.2rem) !important;
+        margin-bottom: 1.2rem !important;
+        max-width: 90% !important;
+    }
+
+    .dt-why-choose-us-card-description {
+        font-size: clamp(1.2rem, 1.5vw, 1.6rem) !important;
+        max-width: 85% !important;
+    }
+
     .dt-cyber-threat-hero {
         height: 350px !important;
     }
@@ -5068,34 +5114,34 @@ img .circuit2 {
 
     /* Tablets (768px to 1024px) */
     @media (min-width: 769px) and (max-width: 1024px) {
-        /* About Us Section 1 - Tablet */
-        .dt-about-us {
-            min-height: 70vh;
-        }
+    /* About Us Section 1 - Tablet */
+    .dt-about-us {
+        min-height: 70vh;
+    }
 
-        .dt-about-us-content {
-            max-width: 85%;
-            padding: 2.5rem 1.5rem;
-        }
+    .dt-about-us-content {
+        max-width: 85%;
+        padding: 3.5rem 1.5rem 2.5rem;
+    }
 
-        .dt-about-us-title {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-        }
+    .dt-about-us-title {
+        font-size: clamp(3rem, 6vw, 4.5rem);
+    }
 
-        .dt-about-us-subtitle {
-            font-size: clamp(1rem, 2.8vw, 1.3rem);
-        }
+    .dt-about-us-subtitle {
+        font-size: clamp(1.6rem, 4vw, 2.2rem);
+    }
 
-        .dt-about-us-spacing {
-            height: 4rem;
-        }
+    .dt-about-us-spacing {
+        height: 4rem;
+    }
 
-        .dt-about-us-description {
-            font-size: 1rem;
-            line-height: 1.5;
-            max-width: 85%;
-            margin: 0 auto;
-        }
+    .dt-about-us-description {
+        font-size: 1.05rem;
+        line-height: 1.5;
+        max-width: 85%;
+        margin: 0 auto;
+    }
 
         /* About Us Tablet Layout */
         .dt-about-us-body {
