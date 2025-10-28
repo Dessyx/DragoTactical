@@ -56,6 +56,18 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 var app = builder.Build();
 
+// Configure field encryption key from configuration
+try
+{
+    var encKey = builder.Configuration.GetValue<string>("Encryption:Key");
+    EncryptionConfig.SetKeyFromString(encKey);
+}
+catch (Exception ex)
+{
+    var tmpLogger = app.Services.GetRequiredService<ILogger<Program>>();
+    tmpLogger.LogWarning(ex, "Encryption key not configured correctly; field encryption disabled.");
+}
+
 app.Use((ctx, next) =>
 {
     ctx.Response.OnStarting(() =>

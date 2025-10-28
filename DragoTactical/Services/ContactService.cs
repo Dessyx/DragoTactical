@@ -20,7 +20,15 @@ public sealed class ContactService : IContactService
     {
         if (model == null) return new ContactSubmissionResult { Success = false, Error = "Invalid form data." };
 
-       
+        // Encrypt all string fields before persisting
+        var plainEmail = model.Email; // keep plaintext for email sending
+        model.FirstName = FieldEncryption.EncryptString(model.FirstName) ?? model.FirstName;
+        model.LastName = FieldEncryption.EncryptString(model.LastName) ?? model.LastName;
+        model.Email = FieldEncryption.EncryptString(model.Email) ?? model.Email;
+        model.PhoneNumber = FieldEncryption.EncryptString(model.PhoneNumber) ?? model.PhoneNumber;
+        model.CompanyName = FieldEncryption.EncryptString(model.CompanyName) ?? model.CompanyName;
+        model.Location = FieldEncryption.EncryptString(model.Location) ?? model.Location;
+        model.Message = FieldEncryption.EncryptString(model.Message) ?? model.Message;
         if (model.ServiceId == 0) model.ServiceId = null;
         model.SubmissionDate = DateTime.UtcNow;
 
@@ -47,14 +55,12 @@ public sealed class ContactService : IContactService
                     serviceName = name!;
             }
 
-          
             var subject = serviceName;
             var body =
-                $"I am {model.FirstName} {model.LastName} situated in {model.Location}.\nI need help with {serviceName}. " +
-                $"\nMessage description: {model.Message}\n\nContact details:\nCompany name:{model.CompanyName}\nEmail:{model.Email}\nPhone: {model.PhoneNumber}\n";
+                $"I am {FieldEncryption.DecryptString(model.FirstName)} {FieldEncryption.DecryptString(model.LastName)} situated in {FieldEncryption.DecryptString(model.Location)}.\nI need help with {serviceName}. " +
+                $"\nMessage description: {FieldEncryption.DecryptString(model.Message)}\n\nContact details:\nCompany name:{FieldEncryption.DecryptString(model.CompanyName)}\nEmail:{FieldEncryption.DecryptString(model.Email)}\nPhone: {FieldEncryption.DecryptString(model.PhoneNumber)}\n";
 
-           
-            await _emailSender.SendAsync(model.Email, subject, body, ct);
+            await _emailSender.SendAsync(plainEmail, subject, body, ct);
 
             _logger.LogInformation("Form submission stored (Id={Id}) and email sent", model.SubmissionId);
             return new ContactSubmissionResult { Success = true, SubmissionId = model.SubmissionId };
