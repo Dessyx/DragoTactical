@@ -27,14 +27,14 @@ builder.Services.AddRateLimiter(options =>
             PermitLimit = 100,
             Window = TimeSpan.FromMinutes(1),
             QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
-            QueueLimit = 2,
+            QueueLimit = 3,
             AutoReplenishment = true
         });
     });
 
     options.AddFixedWindowLimiter("FormSubmissions", options =>
     {
-        options.PermitLimit = 2; // 2 submissions per 5 minutes
+        options.PermitLimit = 3;  
         options.Window = TimeSpan.FromMinutes(5);
         options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
         options.QueueLimit = 0;

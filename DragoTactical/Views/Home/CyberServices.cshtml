@@ -18,6 +18,7 @@
     <div class="dt-cyber-bluetech-right">
         <img src="~/images/BlueTechR.png" alt="BlueTech Right" loading="lazy" />
     </div>
+    <
 
     <!-- Cyber Content Section with Light Grey Background -->
     <div class="dt-cyber-content-wrapper">
@@ -33,72 +34,26 @@
 
         <!-- Cyber Services Grid -->
         <div class="dt-cyber-services-grid">
-        <!-- First row -->
-        <div class="dt-cyber-grid-row">
-            <div class="dt-cyber-grid-item">
-                <div class="dt-cyber-grid-image">
-                    <img src="~/images/18.png" alt="Cyber Service 1" />
-                    <div class="dt-cyber-grid-content">
-                        <div class="dt-cyber-grid-text">
-                            <h3 class="dt-cyber-grid-title">Increasing Frequency of Attacks</h3>
-                            <p class="dt-cyber-grid-paragraph">Cyberattacks are becoming more frequent each year, with millions of attempts happening daily across the globe. From large corporations to small businesses and even individual users, no one is immune. Criminals exploit vulnerabilities in networks, software, and human behavior, making cyber threats a persistent and expanding danger.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="dt-cyber-grid-item">
-                <div class="dt-cyber-grid-image">
-                    <img src="~/images/18.png" alt="Cyber Service 2" />
-                    <div class="dt-cyber-grid-content">
-                        <div class="dt-cyber-grid-text">
-                            <h3 class="dt-cyber-grid-title">Financial and Economic Impact</h3>
-                            <p class="dt-cyber-grid-paragraph">The financial cost of cybercrime is staggering. Organizations face expenses related to data breaches, ransomware payments, recovery processes, and legal consequences. According to global estimates, cybercrime could cost the world economy trillions of dollars annually. Beyond direct costs, businesses also suffer reputational damage, loss of customers, and disrupted operations.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            @if (Model != null)
+            {
+                foreach (var service in Model)
+                {
 
-        <!-- Second row -->
-        <div class="dt-cyber-grid-row">
-            <div class="dt-cyber-grid-item">
-                <div class="dt-cyber-grid-image">
-                    <img src="~/images/18.png" alt="Cyber Service 3" />
-                    <div class="dt-cyber-grid-content">
-                        <div class="dt-cyber-grid-text">
-                            <h3 class="dt-cyber-grid-title">National Security Risks</h3>
-                            <p class="dt-cyber-grid-paragraph">Cyber threats are not limited to private companies, governments and critical infrastructure are also prime targets. Cyberattacks on power grids, healthcare systems, water supplies, and defense networks can have devastating consequences for public safety and national security. Nation-state actors increasingly use cyberattacks as tools of espionage, sabotage, and even warfare.</p>
+                    <div class="col-md-6 d-flex flex-column">
+                            <div class="dt-cyber-grid-item w-100">
+                        <div class="dt-cyber-grid-image">
+                            <img src="~/images/18.png" alt="@service.ServiceName" />
+                            <div class="dt-cyber-grid-content">
+                                <div class="dt-cyber-grid-text">
+                                    <h3 class="dt-cyber-grid-title">@service.Title</h3>
+                                    <p class="dt-cyber-grid-paragraph">@service.Description</p>
+                                </div>
+                            </div>
                         </div>
+                       </div>
                     </div>
-                </div>
-            </div>
-            <div class="dt-cyber-grid-item">
-                <div class="dt-cyber-grid-image">
-                    <img src="~/images/18.png" alt="Cyber Service 4" />
-                    <div class="dt-cyber-grid-content">
-                        <div class="dt-cyber-grid-text">
-                            <h3 class="dt-cyber-grid-title">Evolving Techniques and Tools</h3>
-                            <p class="dt-cyber-grid-paragraph">Attackers are constantly evolving their methods. Traditional viruses and phishing emails have expanded into more advanced threats like ransomware-as-a-service, deepfakes, and AI-powered hacking. Cybercriminals can purchase tools on the dark web, lowering the barrier to entry and enabling more people to participate in cybercrime.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Third row -->
-        <div class="dt-cyber-grid-row dt-cyber-grid-row-single">
-            <div class="dt-cyber-grid-item">
-                <div class="dt-cyber-grid-image">
-                    <img src="~/images/18.png" alt="Cyber Service 5" />
-                    <div class="dt-cyber-grid-content">
-                        <div class="dt-cyber-grid-text">
-                            <h3 class="dt-cyber-grid-title">Human Factor and Awareness</h3>
-                            <p class="dt-cyber-grid-paragraph">One of the biggest vulnerabilities is still the human factor. Employees clicking on malicious links, using weak passwords, or falling for social engineering schemes provide easy entry points for attackers. Despite increased awareness, many organizations still struggle with proper training and strong cybersecurity culture.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                }
+            }
         </div>
     </div>
 
@@ -165,9 +120,7 @@
                         <div class="invalid-feedback" id="email-error">Email must contain &#64; symbol and valid domain (e.g., user&#64;example.com).</div>
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-cyber-input" name="PhoneNumber" type="tel" placeholder="Phone*" required
-                               minlength="10" maxlength="15" pattern="^\+?[0-9\s\-]{10,15}$"
-                               title="Enter a valid phone number" />
+                        <input class="form-control dt-cyber-input" name="PhoneNumber" type="tel" placeholder="Phone*" required minlength="10" maxlength="15" pattern="^\+?[0-9\s\-]{10,15}$" title="Enter a valid phone number" />
                         <div class="invalid-feedback" id="phone-error">Phone must be numbers only (10-15 digits, + allowed at start).</div>
                     </div>
                     <div class="col-12">

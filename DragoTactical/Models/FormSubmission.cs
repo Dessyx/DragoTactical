@@ -37,8 +37,8 @@ public partial class FormSubmission
 
     public int? ServiceId { get; set; }
 
-    [StringLength(3000, ErrorMessage = "Message cannot exceed 3000 characters")]
-    [RegularExpression(@"^[^<>]{0,3000}$", ErrorMessage = "Invalid message")]
+    [StringLength(1000, ErrorMessage = "Message cannot exceed 1000 characters")]
+    [RegularExpression(@"^[^<>]{0,1000}$", ErrorMessage = "Invalid message")]
     public string? Message { get; set; }
 
     public DateTime SubmissionDate { get; set; }
