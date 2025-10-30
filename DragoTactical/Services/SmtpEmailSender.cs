@@ -16,12 +16,26 @@ namespace DragoTactical.Services
         public async Task SendAsync(string fromEmail, string subject, string body, CancellationToken ct = default)
         {
             var section = _config.GetSection("Smtp");
-            var host = section.GetValue<string>("Host") ?? throw new InvalidOperationException("SMTP Host missing");
+            var host = section.GetValue<string>("Host");
+            if (string.IsNullOrEmpty(host))
+            {
+                throw new InvalidOperationException("SMTP Host missing");
+            }
             var port = section.GetValue<int?>("Port") ?? 587;
-            var user = section.GetValue<string>("User") ?? throw new InvalidOperationException("SMTP User missing");
-            var pass = section.GetValue<string>("Password") ?? throw new InvalidOperationException("SMTP Password missing");
-            var to = section.GetValue<string>("To") ?? throw new InvalidOperationException("SMTP To missing");
+
+            var user = section.GetValue<string>("User");
+            if (string.IsNullOrEmpty(user))
+            {
+                throw new InvalidOperationException("SMTP User missing");
+            }
+            var pass = section.GetValue<string?>("Password");
+            var to = section.GetValue<string?>("To");
+            if (string.IsNullOrEmpty(to))
+            {
+                throw new InvalidOperationException("SMTP To address missing");
+            }
             var enableSsl = section.GetValue<bool?>("EnableSsl") ?? true;
+
 
             static string CleanHeader(string v) =>
                 string.IsNullOrEmpty(v) ? string.Empty : v.Replace("\r", "").Replace("\n", "").Trim();
@@ -33,9 +47,10 @@ namespace DragoTactical.Services
             if (safeSubject.Length > 200) safeSubject = safeSubject[..200];
 
             using var message = new MailMessage();
-           
-            message.From = new MailAddress(user, "DragoTactical Website");
+
             
+            message.From = new MailAddress(user, "DragoTactical Website");
+
             try
             {
                 message.ReplyToList.Clear();
