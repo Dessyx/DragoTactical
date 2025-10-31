@@ -71,8 +71,8 @@
             },
             Message: (v) => {
                 if (!v || v.length < 10) return { valid: false, message: 'Please enter a minimum of 10 characters.' };
-                if (v.length > 1000) return { valid: false, message: 'Please enter a minimum of 10 characters.' };
-                if (/[<>]/.test(v)) return { valid: false, message: 'Please enter a minimum of 10 characters.' };
+                if (v.length > 1000) return { valid: false, message: 'Message cannot exceed 1000 characters.' };
+                if (/[<>]/.test(v)) return { valid: false, message: 'Message cannot contain < or > characters.' };
                 return { valid: true };
             }
         };
@@ -238,7 +238,6 @@
                 
                 // For Message field, don't sanitize during typing to allow spaces
                 if (fieldName === 'Message') {
-                    // Only validate if field has been focused
                     if (messageFieldFocused) {
                         const val = this.value || ''; // Ensure we have a string
                         if (validators[fieldName]) {

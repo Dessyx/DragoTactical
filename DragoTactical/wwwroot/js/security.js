@@ -47,9 +47,9 @@
 
     // Validate message content
     function validateMessage(message) {
-        if (!message) return true; // Optional field
+        if (!message || message.length < 10) return false; 
         const messageRegex = /^[A-Za-z0-9À-ÖØ-öø-ÿ' -&.,!?@#$%^&*()_+={}[\]|\\:;""'<>,./~`\s]*$/;
-        return messageRegex.test(message) && message.length <= 1000;
+        return messageRegex.test(message) && message.length <= 1000 && !/[<>]/.test(message);
     }
 
     // Real-time form validation
@@ -105,7 +105,8 @@
 
     // Validate individual field
     function validateField(field) {
-        const value = field.value.trim();
+        const isMessageField = field.tagName === 'TEXTAREA' && (field.name === 'Message' || field.id === 'Message' || field.id === 'CyberMessage' || field.id === 'PhyMessage');
+        const value = isMessageField ? field.value : field.value.trim();
         const fieldName = field.name || field.placeholder || 'Field';
         let isValid = true;
         let errorMessage = '';
@@ -138,7 +139,13 @@
         // Message validation
         else if (field.tagName === 'TEXTAREA' && value && !validateMessage(value)) {
             isValid = false;
-            errorMessage = 'Please enter a valid message (up to 1000 characters).';
+            if (value.length < 10) {
+                errorMessage = 'Please enter a minimum of 10 characters.';
+            } else if (value.length > 1000) {
+                errorMessage = 'Message cannot exceed 1000 characters.';
+            } else {
+                errorMessage = 'Please enter a valid message.';
+            }
         }
         // Select validation
         else if (field.tagName === 'SELECT' && field.hasAttribute('required')) {
