@@ -27,31 +27,43 @@
                 @Html.AntiForgeryToken()
                 <div class="row g-3">
                     <div class="col-12">
-                        <input class="form-control dt-input" name="FirstName" type="text" placeholder="First Name*" required
+                        <label for="FirstName" class="form-label text-white">First Name <span class="text-danger">*</span></label>
+                        <small class="d-block text-white mb-2">Required. Letters and spaces only, 2-50 characters.</small>
+                        <input class="form-control dt-input" name="FirstName" type="text" id="FirstName" placeholder="First Name*" required
                                pattern="^[A-Za-z\s]{2,50}$" />
                         <div class="invalid-feedback" id="firstName-error">First name must be at least 2 characters and contain only letters and spaces.</div>
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-input" name="LastName" type="text" placeholder="Last Name*" required
+                        <label for="LastName" class="form-label text-white">Last Name <span class="text-danger">*</span></label>
+                        <small class="d-block text-white mb-2">Required. Letters and spaces only, 2-50 characters.</small>
+                        <input class="form-control dt-input" name="LastName" type="text" id="LastName" placeholder="Last Name*" required
                                pattern="^[A-Za-z\s]{2,50}$" />
                         <div class="invalid-feedback" id="lastName-error">Last name must be at least 2 characters and contain only letters and spaces.</div>
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-input" name="Email" type="email" placeholder="Email*" required />
+                        <label for="Email" class="form-label text-white">Email Address <span class="text-danger">*</span></label>
+                        <small class="d-block text-white mb-2">Required. Valid email format (e.g., user@example.com), maximum 254 characters.</small>
+                        <input class="form-control dt-input" name="Email" type="email" id="Email" placeholder="Email*" required />
                         <div class="invalid-feedback" id="email-error">Email must contain &#64; symbol and valid domain (e.g., user&#64;example.com).</div>
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-input" name="PhoneNumber" type="tel" placeholder="Phone*" required minlength="10" maxlength="15"
+                        <label for="PhoneNumber" class="form-label text-white">Phone Number <span class="text-danger">*</span></label>
+                        <small class="d-block text-white mb-2">Required. Minimum 10 digits, maximum 15 digits (e.g., +27 12 345 6789 or 0123456789).</small>
+                        <input class="form-control dt-input" name="PhoneNumber" type="tel" id="PhoneNumber" placeholder="Phone*" required minlength="10" maxlength="15"
                                pattern="^\+?[0-9\s\-]{10,15}$" title="Please enter a minimum of 10 digits." />
                         <div class="invalid-feedback" id="phone-error">Please enter a minimum of 10 digits.</div>
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-input" name="CompanyName" type="text" placeholder="Company name (Optional)"
+                        <label for="CompanyName" class="form-label text-white">Company Name</label>
+                        <small class="d-block text-white mb-2">Optional. Maximum 100 characters. No special characters (&lt; or &gt;) allowed.</small>
+                        <input class="form-control dt-input" name="CompanyName" type="text" id="CompanyName" placeholder="Company name (Optional)"
                                pattern="^[^<>]{0,100}$" title="No invalid characters allowed" />
                         <div class="invalid-feedback" id="company-error">Company name cannot contain < or > characters.</div>
                     </div>
                     <div class="col-12">
-                        <select class="form-select dt-input" name="Location" required>
+                        <label for="Location" class="form-label text-white">Location <span class="text-danger">*</span></label>
+                        <small class="d-block text-white mb-2">Required. Please select your province from the dropdown list.</small>
+                        <select class="form-select dt-input" name="Location" id="Location" required>
                             <option value="" disabled selected>Location*</option>
                             <option value="Eastern Cape">Eastern Cape</option>
                             <option value="Free State">Free State</option>
@@ -66,7 +78,9 @@
                         <div class="invalid-feedback" id="location-error">Please select your location from the dropdown.</div>
                     </div>
                     <div class="col-12">
-                        <select class="form-select dt-input" name="ServiceId" required>
+                        <label for="ServiceId" class="form-label text-white">Service of Interest <span class="text-danger">*</span></label>
+                        <small class="d-block text-white mb-2">Required. Please select a service from the dropdown list, or choose "Other" if your service is not listed.</small>
+                        <select class="form-select dt-input" name="ServiceId" id="ServiceId" required>
                             <option value="" disabled selected>Services of Interest*</option>
                             @if (Model?.AllServices != null)
                             {
@@ -85,8 +99,10 @@
                         <div class="invalid-feedback" id="service-error">Please select a service from the dropdown.</div>
                     </div>
                     <div class="col-12">
-                        <textarea class="form-control dt-input" name="Message" rows="4" placeholder="Message – Please provide a description of your enquiry"
-                                  required minlength="10" maxlength="1000" pattern="^[^<>]{10,1000}$"></textarea>
+                        <label for="Message" class="form-label text-white">Message <span class="text-danger">*</span></label>
+                        <small class="d-block text-white mb-2">Required. Minimum 10 characters, maximum 1000 characters. Please provide a description of your enquiry.</small>
+                        <textarea class="form-control dt-input" name="Message" id="Message" rows="4" placeholder="Message – Please provide a description of your enquiry"
+                                  required minlength="10" maxlength="1000"></textarea>
                         <div class="invalid-feedback" id="message-error">Please enter a minimum of 10 characters.</div>
                     </div>
                 </div>
