@@ -1,5 +1,5 @@
 // Form validation for all contact forms
-// Version: 2.1 - Fixed browser tooltip override
+// Version: 2.2 - Cleaned up and fixed error message display
 (function() {
     'use strict';
 
@@ -70,55 +70,97 @@
                 return { valid: true };
             },
             Message: (v) => {
-                if (!v) return { valid: false, message: 'Please enter a minimum of 10 characters.' };
-                if (v.length < 10) return { valid: false, message: 'Please enter a minimum of 10 characters.' };
-                if (v.length > 15) return { valid: false, message: 'Please enter a minimum of 10 characters.' };
+                if (!v || v.length < 10) return { valid: false, message: 'Please enter a minimum of 10 characters.' };
+                if (v.length > 1000) return { valid: false, message: 'Please enter a minimum of 10 characters.' };
+                if (/[<>]/.test(v)) return { valid: false, message: 'Please enter a minimum of 10 characters.' };
                 return { valid: true };
             }
         };
 
+        // Find the invalid-feedback element for an input
+        function findFeedbackElement(input) {
+            const fieldName = input.getAttribute('name');
+            if (!fieldName) return null;
+            
+            // Strategy 1: Look for feedback by ID pattern (most reliable)
+            // Format: fieldName-error (e.g., message-error, phone-error)
+            const feedbackId = fieldName.toLowerCase() + '-error';
+            const feedbackById = document.getElementById(feedbackId);
+            if (feedbackById && feedbackById.classList.contains('invalid-feedback')) {
+                return feedbackById;
+            }
+            
+            // Strategy 2: Look for immediate next sibling with class invalid-feedback
+            let sibling = input.nextElementSibling;
+            while (sibling) {
+                if (sibling.nodeType === Node.ELEMENT_NODE && sibling.classList && sibling.classList.contains('invalid-feedback')) {
+                    return sibling;
+                }
+                sibling = sibling.nextElementSibling;
+            }
+            
+            // Strategy 3: Look in the col-12 wrapper (most common structure)
+            const wrapper = input.closest('.col-12');
+            if (wrapper) {
+                // Get all children of the wrapper
+                const children = Array.from(wrapper.children);
+                const inputIndex = children.indexOf(input);
+                if (inputIndex !== -1) {
+                    // Look for invalid-feedback after the input
+                    for (let i = inputIndex + 1; i < children.length; i++) {
+                        if (children[i].classList && children[i].classList.contains('invalid-feedback')) {
+                            return children[i];
+                        }
+                    }
+                }
+                // Fallback: find first invalid-feedback in wrapper
+                const feedbacks = wrapper.querySelectorAll('.invalid-feedback');
+                if (feedbacks.length > 0) {
+                    return feedbacks[0];
+                }
+            }
+            
+            // Strategy 4: Look in parent element for direct siblings
+            const parent = input.parentElement;
+            if (parent) {
+                const children = Array.from(parent.children);
+                const inputIndex = children.indexOf(input);
+                if (inputIndex !== -1) {
+                    for (let i = inputIndex + 1; i < children.length; i++) {
+                        if (children[i].classList && children[i].classList.contains('invalid-feedback')) {
+                            return children[i];
+                        }
+                    }
+                }
+            }
+            
+            return null;
+        }
+
         function setInvalid(input, message) {
             input.classList.add('is-invalid');
             
-            // Find feedback element - try multiple strategies
-            let feedback = input.parentElement.querySelector('.invalid-feedback');
-            if (!feedback) {
-                const wrapper = input.closest('.col-12');
-                if (wrapper) {
-                    feedback = wrapper.querySelector('.invalid-feedback');
-                }
-            }
-            if (!feedback) {
-                feedback = input.parentElement.parentElement.querySelector('.invalid-feedback');
-            }
-            
+            const feedback = findFeedbackElement(input);
             if (feedback) {
                 feedback.textContent = message;
-                feedback.style.visibility = 'visible';
+                // Let CSS handle visibility, but ensure it's visible
                 feedback.style.display = 'block';
-                feedback.style.opacity = '1';
-                feedback.classList.add('d-block');
-                feedback.classList.remove('d-none');
+                feedback.style.visibility = 'visible';
             }
+            
             input.setCustomValidity(message);
         }
 
         function clearInvalid(input) {
             input.classList.remove('is-invalid');
-            const feedback = input.parentElement.querySelector('.invalid-feedback');
-            if (feedback) {
-                feedback.style.visibility = 'hidden';
-            } else {
-                // Fallback: try to find feedback in col-12 wrapper
-                const wrapper = input.closest('.col-12');
-                if (wrapper) {
-                    const fb = wrapper.querySelector('.invalid-feedback');
-                    if (fb) {
-                        fb.style.visibility = 'hidden';
-                    }
-                }
-            }
             input.setCustomValidity('');
+            
+            const feedback = findFeedbackElement(input);
+            if (feedback) {
+                // Reset to CSS default (hidden)
+                feedback.style.display = 'block';
+                feedback.style.visibility = 'hidden';
+            }
         }
 
         function showSecurityError(message) {
@@ -171,40 +213,52 @@
                 return false;
             }, true);
 
-            input.addEventListener('input', function(e) {
-                const name = this.getAttribute('name');
-                // For Message field, don't sanitize during typing to allow spaces
-                if (name === 'Message') {
-                    const val = this.value;
-                    // Always validate message field on every keystroke
-                    if (validators[name]) {
-                        const result = validators[name](val);
-                        if (!result.valid) {
-                            setInvalid(this, result.message);
-                            this.setCustomValidity(result.message);
-                        } else {
+            const name = input.getAttribute('name');
+            // Track if Message field has been focused (only for Message field)
+            let messageFieldFocused = name === 'Message' ? false : true; // Other fields always validate
+            
+            if (name === 'Message') {
+                input.addEventListener('focus', function(e) {
+                    messageFieldFocused = true;
+                    const fieldName = this.getAttribute('name');
+                    const val = this.value || ''; // Ensure we have a string
+                    if (validators[fieldName]) {
+                        const result = validators[fieldName](val);
+                        if (result.valid) {
                             clearInvalid(this);
-                            this.setCustomValidity('');
+                        } else {
+                            setInvalid(this, result.message);
                         }
-                    } else if (val.length < 10) {
-                        // Fallback validation if validator not found
-                        setInvalid(this, 'Please enter a minimum of 10 characters.');
-                        this.setCustomValidity('Please enter a minimum of 10 characters.');
-                    } else {
-                        clearInvalid(this);
-                        this.setCustomValidity('');
+                    }
+                });
+            }
+
+            input.addEventListener('input', function(e) {
+                const fieldName = this.getAttribute('name');
+                
+                // For Message field, don't sanitize during typing to allow spaces
+                if (fieldName === 'Message') {
+                    // Only validate if field has been focused
+                    if (messageFieldFocused) {
+                        const val = this.value || ''; // Ensure we have a string
+                        if (validators[fieldName]) {
+                            const result = validators[fieldName](val);
+                            if (result.valid) {
+                                clearInvalid(this);
+                            } else {
+                                setInvalid(this, result.message);
+                            }
+                        }
                     }
                 } else {
                     const val = sanitize(this.value);
                     this.value = val;
-                    if (validators[name]) {
-                        const result = validators[name](val);
+                    if (validators[fieldName]) {
+                        const result = validators[fieldName](val);
                         if (result.valid) {
                             clearInvalid(this);
-                            this.setCustomValidity('');
                         } else {
                             setInvalid(this, result.message);
-                            this.setCustomValidity(result.message);
                         }
                     }
                 }
@@ -212,32 +266,32 @@
             
             // Also validate on blur (when user leaves field)
             input.addEventListener('blur', function(e) {
-                const name = this.getAttribute('name');
+                const fieldName = this.getAttribute('name');
+                
                 // For Message field, only remove dangerous chars, don't trim
-                if (name === 'Message') {
-                    const val = sanitizeMessage(this.value);
-                    this.value = val;
-                    if (validators[name]) {
-                        const result = validators[name](val);
-                        if (result.valid) {
-                            clearInvalid(this);
-                            this.setCustomValidity('');
-                        } else {
-                            setInvalid(this, result.message);
-                            this.setCustomValidity(result.message);
+                if (fieldName === 'Message') {
+                    // Only validate if field has been focused
+                    if (messageFieldFocused) {
+                        const val = sanitizeMessage(this.value || '');
+                        this.value = val;
+                        if (validators[fieldName]) {
+                            const result = validators[fieldName](val);
+                            if (result.valid) {
+                                clearInvalid(this);
+                            } else {
+                                setInvalid(this, result.message);
+                            }
                         }
                     }
                 } else {
                     const val = sanitize(this.value);
                     this.value = val;
-                    if (validators[name]) {
-                        const result = validators[name](val);
+                    if (validators[fieldName]) {
+                        const result = validators[fieldName](val);
                         if (result.valid) {
                             clearInvalid(this);
-                            this.setCustomValidity('');
                         } else {
                             setInvalid(this, result.message);
-                            this.setCustomValidity(result.message);
                         }
                     }
                 }
@@ -253,6 +307,7 @@
                 const result = validators[name](val);
                 if (!result.valid) {
                     field.setCustomValidity(result.message);
+                    // Don't show error visually for Message field until user focuses it
                 } else {
                     field.setCustomValidity('');
                 }
