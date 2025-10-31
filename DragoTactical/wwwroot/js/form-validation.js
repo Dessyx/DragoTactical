@@ -3,6 +3,7 @@
 (function() {
     'use strict';
 
+    //------------------------------------------------------------------------------------------------------
     // Initialize validation for all forms
     function initializeFormValidation() {
         const forms = document.querySelectorAll('form[id$="ContactForm"], form[id="contactForm"], form.phy-form, form.dt-cyber-contact-form, form.dt-contact-form');
@@ -11,6 +12,8 @@
         });
     }
 
+    //------------------------------------------------------------------------------------------------------
+    // Setup form validation for a specific form
     function setupFormValidation(form) {
         const sanitize = (v) => {
             if (!v) return v;
@@ -77,20 +80,19 @@
             }
         };
 
+        //------------------------------------------------------------------------------------------------------
         // Find the invalid-feedback element for an input
+
         function findFeedbackElement(input) {
             const fieldName = input.getAttribute('name');
             if (!fieldName) return null;
             
-            // Strategy 1: Look for feedback by ID pattern (most reliable)
-            // Format: fieldName-error (e.g., message-error, phone-error)
             const feedbackId = fieldName.toLowerCase() + '-error';
             const feedbackById = document.getElementById(feedbackId);
             if (feedbackById && feedbackById.classList.contains('invalid-feedback')) {
                 return feedbackById;
             }
             
-            // Strategy 2: Look for immediate next sibling with class invalid-feedback
             let sibling = input.nextElementSibling;
             while (sibling) {
                 if (sibling.nodeType === Node.ELEMENT_NODE && sibling.classList && sibling.classList.contains('invalid-feedback')) {
@@ -99,14 +101,12 @@
                 sibling = sibling.nextElementSibling;
             }
             
-            // Strategy 3: Look in the col-12 wrapper (most common structure)
             const wrapper = input.closest('.col-12');
             if (wrapper) {
-                // Get all children of the wrapper
+
                 const children = Array.from(wrapper.children);
                 const inputIndex = children.indexOf(input);
                 if (inputIndex !== -1) {
-                    // Look for invalid-feedback after the input
                     for (let i = inputIndex + 1; i < children.length; i++) {
                         if (children[i].classList && children[i].classList.contains('invalid-feedback')) {
                             return children[i];
@@ -120,7 +120,7 @@
                 }
             }
             
-            // Strategy 4: Look in parent element for direct siblings
+            // Last resort: check parent element for direct siblings
             const parent = input.parentElement;
             if (parent) {
                 const children = Array.from(parent.children);
@@ -137,13 +137,13 @@
             return null;
         }
 
+        //------------------------------------------------------------------------------------------------------
         function setInvalid(input, message) {
             input.classList.add('is-invalid');
             
             const feedback = findFeedbackElement(input);
             if (feedback) {
                 feedback.textContent = message;
-                // Let CSS handle visibility, but ensure it's visible
                 feedback.style.display = 'block';
                 feedback.style.visibility = 'visible';
             }
@@ -151,18 +151,22 @@
             input.setCustomValidity(message);
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Clear invalid state from an input
         function clearInvalid(input) {
             input.classList.remove('is-invalid');
             input.setCustomValidity('');
             
             const feedback = findFeedbackElement(input);
             if (feedback) {
-                // Reset to CSS default (hidden)
+                // Hide the error message
                 feedback.style.display = 'block';
                 feedback.style.visibility = 'hidden';
             }
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Display security error message
         function showSecurityError(message) {
             const alertDiv = document.createElement('div');
             alertDiv.className = 'alert alert-danger';
@@ -171,7 +175,8 @@
             setTimeout(() => alertDiv.remove(), 5000);
         }
 
-        // Prevent browser's default validation messages - catch all invalid events
+        //------------------------------------------------------------------------------------------------------
+        // Prevent browser's default validation messages
         form.addEventListener('invalid', function(e) {
             e.preventDefault();
             e.stopPropagation();
@@ -188,7 +193,8 @@
             return false;
         }, true);
 
-        // Add real-time validation
+        //--------------------------------------------------------------------------------------------------------
+        // Add real-time validation to all form inputs
         const inputs = form.querySelectorAll('input, textarea, select');
         inputs.forEach(input => {
             // Remove title attribute to prevent browser tooltips
@@ -197,7 +203,6 @@
                 input.removeAttribute('title');
             }
 
-            // Prevent browser's native validation for individual fields
             input.addEventListener('invalid', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -214,14 +219,13 @@
             }, true);
 
             const name = input.getAttribute('name');
-            // Track if Message field has been focused (only for Message field)
-            let messageFieldFocused = name === 'Message' ? false : true; // Other fields always validate
+            let messageFieldFocused = name === 'Message' ? false : true;
             
             if (name === 'Message') {
                 input.addEventListener('focus', function(e) {
                     messageFieldFocused = true;
                     const fieldName = this.getAttribute('name');
-                    const val = this.value || ''; // Ensure we have a string
+                    const val = this.value || '';
                     if (validators[fieldName]) {
                         const result = validators[fieldName](val);
                         if (result.valid) {
@@ -236,10 +240,9 @@
             input.addEventListener('input', function(e) {
                 const fieldName = this.getAttribute('name');
                 
-                // For Message field, don't sanitize during typing to allow spaces
                 if (fieldName === 'Message') {
                     if (messageFieldFocused) {
-                        const val = this.value || ''; // Ensure we have a string
+                        const val = this.value || '';
                         if (validators[fieldName]) {
                             const result = validators[fieldName](val);
                             if (result.valid) {
@@ -263,13 +266,12 @@
                 }
             });
             
-            // Also validate on blur (when user leaves field)
+
             input.addEventListener('blur', function(e) {
                 const fieldName = this.getAttribute('name');
                 
-                // For Message field, only remove dangerous chars, don't trim
                 if (fieldName === 'Message') {
-                    // Only validate if field has been focused
+
                     if (messageFieldFocused) {
                         const val = sanitizeMessage(this.value || '');
                         this.value = val;
@@ -297,7 +299,8 @@
             });
         });
 
-        // Set initial custom validity for required fields to override browser defaults
+        //--------------------------------------------------------------------------------------------------------
+        // Set initial custom validity for required fields
         const allFields = form.querySelectorAll('input[name], textarea[name], select[name]');
         allFields.forEach(field => {
             const name = field.getAttribute('name');
@@ -306,7 +309,6 @@
                 const result = validators[name](val);
                 if (!result.valid) {
                     field.setCustomValidity(result.message);
-                    // Don't show error visually for Message field until user focuses it
                 } else {
                     field.setCustomValidity('');
                 }
@@ -315,6 +317,8 @@
             }
         });
 
+        //-------------------------------------------------------------------------------------------------------
+        // Handle form submission with validation
         form.addEventListener('submit', function (e) {
             e.preventDefault();
             
@@ -336,7 +340,6 @@
             const fields = form.querySelectorAll('input[name], textarea[name], select[name]');
             fields.forEach(field => {
                 const name = field.getAttribute('name');
-                // For Message field, only remove dangerous chars, don't trim
                 if (name === 'Message') {
                     field.value = sanitizeMessage(field.value);
                 } else {
@@ -366,6 +369,7 @@
         });
     }
 
+    //------------------------------------------------------------------------------------------------------------------
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
@@ -375,8 +379,9 @@
         setTimeout(initializeFormValidation, 100);
     }
 
-    // Also initialize after a short delay to ensure all scripts are loaded
+
     window.addEventListener('load', function() {
         setTimeout(initializeFormValidation, 200);
     });
 })();
+//-------------------------------------------------<<< Endof File >>>----------------------------------------------------

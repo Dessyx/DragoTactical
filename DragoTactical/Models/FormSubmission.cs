@@ -1,10 +1,12 @@
-﻿using System;
+﻿using System;                        // imports
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DragoTactical.Models;
 
+//------------------------------------------------------------------------------------------------------
+// Form Submission Model - Represents contact form submissions
 public partial class FormSubmission
 {
     [Key]
@@ -45,3 +47,4 @@ public partial class FormSubmission
 
     public virtual Service? Service { get; set; }
 }
+//-------------------------------------------------<<< Endof File >>>----------------------------------------------------

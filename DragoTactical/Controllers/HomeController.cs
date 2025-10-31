@@ -1,10 +1,12 @@
 using System.Diagnostics;
-using DragoTactical.Models;
+using DragoTactical.Models;        // imports
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DragoTactical.Controllers
 {
+    //------------------------------------------------------------------------------------------------------
+    // Home Controller - Handles main page views and navigation
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -16,14 +18,17 @@ namespace DragoTactical.Controllers
             _dbContext = dbContext;
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Home page
         public IActionResult Index()
         {
             return View();
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Cyber services page
         public IActionResult CyberServices()
         {
-            
             var cyberServices = _dbContext.Services
                 .AsNoTracking()
                 .Where(s => s.CategoryId == 2)
@@ -33,6 +38,8 @@ namespace DragoTactical.Controllers
             return View(cyberServices);
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Physical services page
         public IActionResult PhysicalServices()
         {
             var physicalServices = _dbContext.Services
@@ -44,6 +51,8 @@ namespace DragoTactical.Controllers
             return View(physicalServices);
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Contact us page with services dropdown
         public IActionResult ContactUs()
         {
             var allServices = _dbContext.Services
@@ -61,16 +70,22 @@ namespace DragoTactical.Controllers
             return View(viewModel);
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // About us page
         public IActionResult AboutUs()
         {
             return View();
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Privacy policy page
         public IActionResult Privacy()
         {
             return View();
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Debug database connection and data
         public async Task<IActionResult> DebugDatabase()
         {
             try
@@ -85,7 +100,6 @@ namespace DragoTactical.Controllers
                 ViewBag.ServiceCount = serviceCount;
                 ViewBag.CategoryCount = categoryCount;
 
-                // Get recent form submissions
                 var recentSubmissions = await _dbContext.FormSubmissions
                     .Include(f => f.Service)
                     .OrderByDescending(f => f.SubmissionDate)
@@ -103,11 +117,15 @@ namespace DragoTactical.Controllers
             }
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Test form page
         public IActionResult TestForm()
         {
             return View();
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Error page
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -115,3 +133,4 @@ namespace DragoTactical.Controllers
         }
     }
 }
+//-------------------------------------------------<<< Endof File >>>----------------------------------------------------

@@ -1,29 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DragoTactical.Models;
-using DragoTactical.Services;
+using DragoTactical.Services;   // imports
 using Microsoft.AspNetCore.RateLimiting;
 
 namespace DragoTactical.Controllers
 {
+    //------------------------------------------------------------------------------------------------------
+    // Contact Controller - Handles form submissions
+
     public class ContactController : Controller
     {
         private readonly ILogger<ContactController> _logger;
         private readonly IContactService _contactService;
 
+        //------------------------------------------------------------------------------------------------------
+        // Constructor
         public ContactController(ILogger<ContactController> logger, IContactService contactService)
         {
             _logger = logger;
             _contactService = contactService;
         }
         
+        //------------------------------------------------------------------------------------------------------
+        // Get return URL from referer header
         private string GetReturnUrl()
         {
             var referer = Request.Headers["Referer"].ToString();
-            // Always default to home if referer is empty
             if (string.IsNullOrWhiteSpace(referer))
                 return Url.Content("~/");
 
-            // If referer is a local path, return it directly
             if (Url.IsLocalUrl(referer))
                 return referer;
 
@@ -41,6 +46,8 @@ namespace DragoTactical.Controllers
             return Url.IsLocalUrl(referer) ? referer : Url.Content("~/");
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Log model state validation errors
         private void LogModelStateErrors()
         {
             if (ModelState.IsValid) return;
@@ -55,6 +62,8 @@ namespace DragoTactical.Controllers
             }
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Handle form submission
         [HttpPost]
         [ValidateAntiForgeryToken]
         [EnableRateLimiting("FormSubmissions")]
@@ -91,3 +100,4 @@ namespace DragoTactical.Controllers
         }
     }
 }
+//-------------------------------------------------<<< Endof File >>>----------------------------------------------------

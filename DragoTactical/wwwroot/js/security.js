@@ -2,6 +2,7 @@
 (function() {
     'use strict';
 
+    //------------------------------------------------------------------------------------------------------
     // XSS prevention - sanitize input
     function sanitizeInput(input) {
         if (typeof input !== 'string') return input;
@@ -20,31 +21,36 @@
             .trim();
     }
 
+    //------------------------------------------------------------------------------------------------------
     // Validate email format
     function validateEmail(email) {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
         return emailRegex.test(email);
     }
 
+    //------------------------------------------------------------------------------------------------------
     // Validate phone number
     function validatePhone(phone) {
         const phoneRegex = /^\+?[0-9\s\-()]{10,15}$/;
         return phoneRegex.test(phone);
     }
 
+    //------------------------------------------------------------------------------------------------------
     // Validate name (letters, spaces, hyphens, apostrophes only)
     function validateName(name) {
         const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/;
         return nameRegex.test(name) && name.length >= 2 && name.length <= 50;
     }
 
+    //------------------------------------------------------------------------------------------------------
     // Validate company name
     function validateCompany(company) {
-        if (!company) return true; // Optional field
+        if (!company) return true; // Optional 
         const companyRegex = /^[A-Za-z0-9À-ÖØ-öø-ÿ' -&.,]+$/;
         return companyRegex.test(company) && company.length <= 100;
     }
 
+    //------------------------------------------------------------------------------------------------------
     // Validate message content
     function validateMessage(message) {
         if (!message || message.length < 10) return false; 
@@ -52,6 +58,7 @@
         return messageRegex.test(message) && message.length <= 1000 && !/[<>]/.test(message);
     }
 
+    //------------------------------------------------------------------------------------------------------
     // Real-time form validation
     function setupFormValidation() {
         const forms = document.querySelectorAll('form[novalidate]');
@@ -60,13 +67,12 @@
             const inputs = form.querySelectorAll('input, textarea, select');
             
             inputs.forEach(input => {
-                // Add event listeners for real-time validation
                 input.addEventListener('blur', function() {
                     validateField(this);
                 });
                 
                 input.addEventListener('input', function() {
-                    // Clear previous error styling
+  
                     this.classList.remove('is-invalid');
                     const errorMsg = this.parentNode.querySelector('.invalid-feedback');
                     if (errorMsg) {
@@ -97,12 +103,13 @@
                         }
                     });
                     
-                    // Allow natural submission (no preventDefault)
+ 
                 }
             });
         });
     }
 
+    //------------------------------------------------------------------------------------------------------
     // Validate individual field
     function validateField(field) {
         const isMessageField = field.tagName === 'TEXTAREA' && (field.name === 'Message' || field.id === 'Message' || field.id === 'CyberMessage' || field.id === 'PhyMessage');
@@ -157,7 +164,7 @@
             }
         }
 
-        // Apply validation styling
+
         if (isValid) {
             field.classList.remove('is-invalid');
             field.classList.add('is-valid');
@@ -165,13 +172,13 @@
             field.classList.remove('is-valid');
             field.classList.add('is-invalid');
             
-            // Show error message
             showFieldError(field, errorMessage);
         }
 
         return isValid;
     }
 
+    //------------------------------------------------------------------------------------------------------
     // Show field error message
     function showFieldError(field, message) {
         // Remove existing error message
@@ -219,6 +226,7 @@
         }
     }
 
+    //------------------------------------------------------------------------------------------------------
     // Initialize security features when DOM is loaded
     document.addEventListener('DOMContentLoaded', function() {
         setupFormValidation();
@@ -247,3 +255,5 @@
     // Expose sanitize function globally for use in other scripts
     window.sanitizeInput = sanitizeInput;
 })();
+
+//-----------------------------------------------<<< End of File >>> -------------------------------------------------------

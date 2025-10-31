@@ -1,18 +1,25 @@
-using System.Net;
+using System.Net;                // imports
 using System.Net.Mail;
 
 namespace DragoTactical.Services
 {
+    //------------------------------------------------------------------------------------------------------
+    // SMTP Email Sender - Sends emails via SMTP server
     public class SmtpEmailSender : IEmailSender
     {
         private readonly IConfiguration _config;
         private readonly ILogger<SmtpEmailSender> _logger;
+
+        //------------------------------------------------------------------------------------------------------
+        // Constructor
         public SmtpEmailSender(IConfiguration config, ILogger<SmtpEmailSender> logger)
         {
             _config = config;
             _logger = logger;
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Send email via SMTP
         public async Task SendAsync(string fromEmail, string subject, string body, CancellationToken ct = default)
         {
             var section = _config.GetSection("Smtp");
@@ -36,7 +43,6 @@ namespace DragoTactical.Services
             }
             var enableSsl = section.GetValue<bool?>("EnableSsl") ?? true;
 
-
             static string CleanHeader(string v) =>
                 string.IsNullOrEmpty(v) ? string.Empty : v.Replace("\r", "").Replace("\n", "").Trim();
 
@@ -47,8 +53,6 @@ namespace DragoTactical.Services
             if (safeSubject.Length > 200) safeSubject = safeSubject[..200];
 
             using var message = new MailMessage();
-
-            
             message.From = new MailAddress(user, "DragoTactical Website");
 
             try
@@ -85,3 +89,4 @@ namespace DragoTactical.Services
         }
     }
 }
+//-------------------------------------------------<<< Endof File >>>----------------------------------------------------

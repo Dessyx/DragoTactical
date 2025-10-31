@@ -1,10 +1,12 @@
-﻿using System;
+﻿using System;                        // imports
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DragoTactical.Models;
 
+//------------------------------------------------------------------------------------------------------
+// Category Model - Represents service categories
 public partial class Category
 {
     [Key]
@@ -15,3 +17,4 @@ public partial class Category
 
     public ICollection<Service> Services { get; set; } = new List<Service>();
 }
+//-------------------------------------------------<<< Endof File >>>----------------------------------------------------

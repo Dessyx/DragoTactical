@@ -1,15 +1,17 @@
-﻿using System;
+﻿using System;                        // imports
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DragoTactical.Models;
 
+//------------------------------------------------------------------------------------------------------
+// Service Model - Represents services offered
 public partial class Service
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int ServiceId { get; set; }
+    public int ServiceId { get; set; }                  // Variables
 
     public string? Title { get; set; }
 
@@ -21,3 +23,4 @@ public partial class Service
 
     public virtual Category Category { get; set; } = null!;
 }
+//-------------------------------------------------<<< Endof File >>>----------------------------------------------------

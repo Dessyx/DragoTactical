@@ -1,13 +1,17 @@
-﻿using System;
+﻿using System;                    // imports
 using System.Security.Cryptography;
 using System.Text;
 
 namespace DragoTactical.Services
 {
+    //------------------------------------------------------------------------------------------------------
+    // Encryption Config - Manages encryption key configuration
     public static class EncryptionConfig
     {
         private static byte[]? _keyBytes;
 
+        //------------------------------------------------------------------------------------------------------
+        // Set encryption key from string (supports Base64, Hex, or plain text)
         public static void SetKeyFromString(string? key)
         {
             if (string.IsNullOrWhiteSpace(key))
@@ -34,6 +38,8 @@ namespace DragoTactical.Services
 
         public static bool IsEnabled => _keyBytes != null && _keyBytes.Length == 32;
 
+        //------------------------------------------------------------------------------------------------------
+        // Get encryption key or throw if not configured
         public static byte[] GetKeyOrThrow()
         {
             if (!IsEnabled)
@@ -43,6 +49,8 @@ namespace DragoTactical.Services
             return _keyBytes!;
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Try to parse key from Base64 string
         private static bool TryFromBase64(string input, out byte[] bytes)
         {
             try
@@ -57,6 +65,8 @@ namespace DragoTactical.Services
             }
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Try to parse key from hexadecimal string
         private static bool TryFromHex(string input, out byte[] bytes)
         {
             try
@@ -81,6 +91,8 @@ namespace DragoTactical.Services
             }
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Ensure key is exactly 32 bytes using SHA256 
         private static byte[] EnsureKeySize(byte[] key)
         {
             if (key.Length == 32) return key;
@@ -89,10 +101,14 @@ namespace DragoTactical.Services
         }
     }
 
+    //------------------------------------------------------------------------------------------------------
+    // Field Encryption - Provides encryption and decryption for form field data
     public static class FieldEncryption
     {
         private const string Prefix = "enc:v1:";
 
+        //------------------------------------------------------------------------------------------------------
+        // Encrypt a string value
         public static string? EncryptString(string? plaintext)
         {
             if (!EncryptionConfig.IsEnabled) return plaintext;
@@ -117,6 +133,8 @@ namespace DragoTactical.Services
             return Prefix + b64;
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Decrypt an encrypted string value
         public static string? DecryptString(string? stored)
         {
             if (!EncryptionConfig.IsEnabled) return stored;
@@ -152,11 +170,12 @@ namespace DragoTactical.Services
             }
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Checks if a string value is encrypted
         public static bool LooksEncrypted(string? value)
         {
             return !string.IsNullOrEmpty(value) && value.StartsWith(Prefix, StringComparison.Ordinal);
         }
     }
 }
-
-
+//-------------------------------------------------<<< Endof File >>>----------------------------------------------------

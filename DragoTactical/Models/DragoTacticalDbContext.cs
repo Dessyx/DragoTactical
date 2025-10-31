@@ -1,15 +1,21 @@
-﻿using System;
+﻿using System;                        // imports
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 namespace DragoTactical.Models
 {
+    //------------------------------------------------------------------------------------------------------
+    // Database Context - Entity Framework database context
     public partial class DragoTacticalDbContext : DbContext
     {
+        //------------------------------------------------------------------------------------------------------
+        // Default constructor
         public DragoTacticalDbContext()
         {
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Constructor with options
         public DragoTacticalDbContext(DbContextOptions<DragoTacticalDbContext> options)
             : base(options)
         {
@@ -19,15 +25,16 @@ namespace DragoTactical.Models
         public virtual DbSet<FormSubmission> FormSubmissions { get; set; }
         public virtual DbSet<Service> Services { get; set; }
 
+        //------------------------------------------------------------------------------------------------------
+        // Configures database connection
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Connection string is configured in Program.cs via dependency injection
-            // No need to configure here when using DI
         }
 
+        //------------------------------------------------------------------------------------------------------
+        // Configures entity models and relationships
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // === Category Table ===
             modelBuilder.Entity<Category>(entity =>
             {
                 entity.HasKey(e => e.CategoryId)
@@ -39,7 +46,6 @@ namespace DragoTactical.Models
                       .HasMaxLength(100);
             });
 
-            // === FormSubmission Table ===
             modelBuilder.Entity<FormSubmission>(entity =>
             {
                 entity.HasKey(e => e.SubmissionId)
@@ -63,7 +69,6 @@ namespace DragoTactical.Models
                       .HasConstraintName("FK_FormSubmission_Services");
             });
 
-            // === Service Table ===
             modelBuilder.Entity<Service>(entity =>
             {
                 entity.HasKey(e => e.ServiceId)
@@ -87,13 +92,11 @@ namespace DragoTactical.Models
                       .HasConstraintName("FK_Services_Category");
             });
 
-
             modelBuilder.Entity<Category>().HasData(
                 new Category { CategoryId = 1, CategoryName = "Physical Service" },
                 new Category { CategoryId = 2, CategoryName = "Cybersecurity Service" }
             );
 
-            // Physical Services (CategoryId = 1)
             modelBuilder.Entity<Service>().HasData(
                 new Service { ServiceId = 1, CategoryId = 1, ServiceName = "Risk Analysis & Security Audits" },
                 new Service { ServiceId = 2, CategoryId = 1, ServiceName = "On-Site Security Personnel / VIP Protection" },
@@ -103,8 +106,6 @@ namespace DragoTactical.Models
                 new Service { ServiceId = 6, CategoryId = 1, ServiceName = "Vehicle & Perimeter Security" },
                 new Service { ServiceId = 7, CategoryId = 1, ServiceName = "Security Consulting" },
                 new Service { ServiceId = 8, CategoryId = 1, ServiceName = "Project Management" },
-
-                // Cybersecurity Services (CategoryId = 2)
                 new Service { ServiceId = 9, CategoryId = 2, ServiceName = "Risk Assessment and Vulnerability Testing" },
                 new Service { ServiceId = 10, CategoryId = 2, ServiceName = "Network Security" },
                 new Service { ServiceId = 11, CategoryId = 2, ServiceName = "Data Protection & Encryption" },
@@ -122,3 +123,4 @@ namespace DragoTactical.Models
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
+//-------------------------------------------------<<< Endof File >>>----------------------------------------------------

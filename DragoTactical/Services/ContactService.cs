@@ -1,7 +1,10 @@
-using DragoTactical.Models;
+using DragoTactical.Models;        // imports
 using Microsoft.EntityFrameworkCore;
 
 namespace DragoTactical.Services;
+
+//------------------------------------------------------------------------------------------------------
+// Contact Service - Processes form submissions with encryption and email notifications
 
 public sealed class ContactService : IContactService
 {
@@ -9,6 +12,8 @@ public sealed class ContactService : IContactService
     private readonly IEmailSender _emailSender;
     private readonly ILogger<ContactService> _logger;
 
+    //------------------------------------------------------------------------------------------------------
+    // Constructor
     public ContactService(DragoTacticalDbContext db, IEmailSender emailSender, ILogger<ContactService> logger)
     {
         _db = db;
@@ -16,12 +21,13 @@ public sealed class ContactService : IContactService
         _logger = logger;
     }
 
+    //------------------------------------------------------------------------------------------------------
+    // Process form submission with encryption and email notification
     public async Task<ContactSubmissionResult> ProcessSubmissionAsync(FormSubmission model, CancellationToken ct = default)
     {
         if (model == null) return new ContactSubmissionResult { Success = false, Error = "Invalid form data." };
 
-        // Encrypt all string fields before persisting
-        var plainEmail = model.Email; // keep plaintext for email sending
+        var plainEmail = model.Email;
         model.FirstName = FieldEncryption.EncryptString(model.FirstName) ?? model.FirstName;
         model.LastName = FieldEncryption.EncryptString(model.LastName) ?? model.LastName;
         model.Email = FieldEncryption.EncryptString(model.Email) ?? model.Email;
@@ -72,3 +78,4 @@ public sealed class ContactService : IContactService
         }
     }
 }
+//-------------------------------------------------<<< Endof File >>>----------------------------------------------------
