@@ -23,7 +23,6 @@
                 <div class="alert alert-danger" role="alert">@TempData["ErrorMessage"]</div>
             }
 
-            <!-- CSRF protected -->
             <form class="dt-contact-form" method="post" asp-controller="Contact" asp-action="Submit" id="contactForm" novalidate>
                 @Html.AntiForgeryToken()
                 <div class="row g-3">
@@ -104,5 +103,4 @@
     </div>
 </div>
 
-<!-- Front-end validation (single-icon, inline messages; prevents layout shift) -->
 <script src="~/js/form-validation.js"></script>

@@ -3,9 +3,7 @@
     ViewData["Title"] = "Physical Services Page";
 }
 
-<!-- Hero Section -->
 <header class="bg-physical-services text-white position-relative overflow-hidden">
-    <!-- Circuit decor for the top-left corner -->
     <div class="circuit-box">
         <img src="~/images/WhiteCircuit.png" class="circuit1" alt="Circuit design">
     </div>
@@ -34,14 +32,12 @@
         </div>
     </div>
 
-    <!-- Circuit decor for the bottom-left corner -->
     <div>
         <img src="~/images/InvertedWhiteCircuit.png" class="circuit2" alt="Circuit design">
     </div>
 
 </header>
 
-<!-- Services Section -->
 <section class="services-section py-5 position-relative overflow-hidden">
     <div class="container mx-auto px-4">
         <h2 class="card-main-title text-center fw-bold mb-5">
@@ -50,7 +46,6 @@
 
         <div class="container-card mx-auto">
 
-            <!-- Services Decor -->
             <div class="phy-bg-decor">
                 <img src="~/images/Wavy1.png" class="wavy-element" alt="Wavy design">
                 <img src="~/images/Wavy2.png" class="wavy-element2" alt="Wavy design">
@@ -78,7 +73,6 @@
     </div>
 </section>
 
-<!-- Contact Form Section -->
 <section class="contact-section pt-2 pb-2 position-relative overflow-hidden">
 
     <div class="mb-0">
@@ -92,9 +86,7 @@
     </div>
 
     <div class="physical-contact container mx-auto justify-content-center" style="margin-top: 2rem;">
-        <div class="security-warning">
-            This form is secured with CSRF protection and input validation. All data is sanitized before processing.
-        </div>
+        <div class="security-warning">This form is protected.</div>
 
         @if (TempData["SuccessMessage"] != null)
         {
@@ -111,7 +103,7 @@
         }
 
         <form class="phy-form" method="post" action="/Contact/Submit" id="physicalContactForm" novalidate autocomplete="off">
-            @Html.AntiForgeryToken()  @* Prevent CSRF attacks *@
+            @Html.AntiForgeryToken()
             <div class="row g-3">
                 <div class="col-12">
                     <input class="form-control phy-input" name="FirstName" type="text" placeholder="First Name*" required
