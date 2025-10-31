@@ -41,9 +41,9 @@
                         <div class="invalid-feedback" id="email-error">Email must contain &#64; symbol and valid domain (e.g., user&#64;example.com).</div>
                     </div>
                     <div class="col-12">
-                        <input class="form-control dt-input" name="PhoneNumber" type="tel" placeholder="Phone*" required
-                               pattern="^\+?[0-9\s\-]{10,15}$" title="Enter a valid phone number" />
-                        <div class="invalid-feedback" id="phone-error">Phone must be numbers only (10-15 digits, + allowed at start).</div>
+                        <input class="form-control dt-input" name="PhoneNumber" type="tel" placeholder="Phone*" required minlength="10" maxlength="15"
+                               pattern="^\+?[0-9\s\-]{10,15}$" title="Please enter a minimum of 10 digits." />
+                        <div class="invalid-feedback" id="phone-error">Please enter a minimum of 10 digits.</div>
                     </div>
                     <div class="col-12">
                         <input class="form-control dt-input" name="CompanyName" type="text" placeholder="Company name (Optional)"
@@ -86,8 +86,8 @@
                     </div>
                     <div class="col-12">
                         <textarea class="form-control dt-input" name="Message" rows="4" placeholder="Message – Please provide a description of your enquiry"
-                                  required pattern="^[^<>]{0,1000}$"></textarea>
-                        <div class="invalid-feedback" id="message-error">Message must be 0-1000 characters and cannot contain < or > characters.</div>
+                                  required minlength="10" maxlength="1000" pattern="^[^<>]{10,1000}$"></textarea>
+                        <div class="invalid-feedback" id="message-error">Please enter a minimum of 10 characters.</div>
                     </div>
                 </div>
 
